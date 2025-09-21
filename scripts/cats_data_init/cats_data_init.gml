@@ -335,7 +335,7 @@ data.cats.superfeline = {
         omni_range:[ [-100,350],[-100,350],[-100,350] ],
         abilities:[ [ABILITY.IMMUNE_CURSE],[ABILITY.IMMUNE_CURSE],[ABILITY.IMMUNE_CURSE,ABILITY.COLOSSUS_SLAYER] ],
         abilities_data:[ [{}],[{}],[{},{}] ],
-        effects:[ [],[],[EFFECT.MASSIVE_DMG] ],
+        effects:[ [EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG] ],
         effects_data:[ [{}],[{}],[{}] ],
         talents:{
             abilities:[],
