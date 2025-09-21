@@ -1,0 +1,6 @@
+cat_render.clean()
+stats_render.clean()
+abiltiy_render.clean()
+abiltiy_render.current.clean()
+top_buttons.clean()
+evolve_render.clean()

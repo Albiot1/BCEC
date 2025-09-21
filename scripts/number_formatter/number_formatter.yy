@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"number_formatter",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"number_formatter",
+  "parent":{
+    "name":"text_management",
+    "path":"folders/Scripts/text_management.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

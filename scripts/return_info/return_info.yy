@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"return_info",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"return_info",
+  "parent":{
+    "name":"cat_stats",
+    "path":"folders/Scripts/cat_stats.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

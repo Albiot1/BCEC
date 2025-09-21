@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"settings_save",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"settings_save",
+  "parent":{
+    "name":"data_management",
+    "path":"folders/Scripts/data_management.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

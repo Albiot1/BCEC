@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"get_translation",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_translation",
+  "parent":{
+    "name":"text_management",
+    "path":"folders/Scripts/text_management.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

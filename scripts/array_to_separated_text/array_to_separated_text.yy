@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"array_to_separated_text",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"array_to_separated_text",
+  "parent":{
+    "name":"text_management",
+    "path":"folders/Scripts/text_management.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_use_item",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":1.3073016,
+  "name":"snd_use_item",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_use_item.ogg",
+  "type":0,
+  "volume":1.0,
+}
