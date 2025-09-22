@@ -88,13 +88,13 @@ stats.update = function (){
     
     if _has_hpup[0]==true{
         if _has_hpup[2].unlocked==true{
-            _hpup += (_has_hpup[1].improv * (_has_hpup[2].level)+1)/100
+            _hpup += (_has_hpup[1].start_improv + _has_hpup[1].improv * _has_hpup[2].level)/100
         }
     }
     
     if _has_atkup[0]==true{
         if _has_atkup[2].unlocked==true{
-            _atkup += (_has_atkup[1].improv * (_has_atkup[2].level)+1)/100
+            _atkup += (_has_atkup[1].start_improv + _has_atkup[1].improv * _has_atkup[2].level)/100
         }
     }
     
@@ -110,7 +110,7 @@ stats.update = function (){
 
     if _has_spdup[0]==true{
         if _has_spdup[2].unlocked==true{
-            _spdup += _has_spdup[1].improv_number * (_has_spdup[2].level+1)
+            _spdup += _has_spdup[1].start_improv_number + _has_spdup[1].improv_number * _has_spdup[2].level
         }
     }
     
@@ -121,7 +121,7 @@ stats.update = function (){
     
     if _has_atkspdup[0]==true{
         if _has_atkspdup[2].unlocked==true{
-            _atkspdup += _has_atkspdup[1].time_improv * (_has_atkspdup[2].level+1)
+            _atkspdup += _has_atkspdup[1].start_time_improv + _has_atkspdup[1].time_improv * _has_atkspdup[2].level
         }
     }
     
@@ -132,7 +132,7 @@ stats.update = function (){
     
     if _has_recovery_down[0]==true{
         if _has_recovery_down[2].unlocked==true{
-            _rec_down += _has_recovery_down[1].time_improv * (_has_atkup[2].level+1)
+            _rec_down += _has_recovery_down[1].start_time_improv + _has_recovery_down[1].time_improv * _has_atkup[2].level
         }
     }
     
@@ -147,7 +147,7 @@ stats.update = function (){
     
     if _has_price_down[0]==true{
         if _has_price_down[2].unlocked==true{
-            _price_down += _has_price_down[1].improv_number * (_has_price_down[2].level+1)
+            _price_down += _has_price_down[1].start_improv_number + _has_price_down[1].improv_number * _has_price_down[2].level
         }
     }
     
