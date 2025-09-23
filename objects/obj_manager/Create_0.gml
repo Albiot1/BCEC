@@ -87,8 +87,8 @@ enum M_STATES {ADDCATS,NORMAL,SPECIAL,RARE,UBER_RARE,LEGEND,ALL}
 global.current_cats = []
 global.all_cats = [ 
     //normal cats
-    data.cats.cat, data.cats.tank_cat, data.cats.axe_cat, data.cats.gross_cat, data.cats.bird_cat, data.cats.fish_cat, data.cats.lizard_cat, data.cats.titan_cat, data.cats.superfeline, data.cats.ninja_cat, data.cats.sumo_cat, 
-    data.cats.actress_cat, data.cats.kungfu_cat
+    data.cats.cat, data.cats.tank_cat, data.cats.axe_cat, data.cats.gross_cat, data.cats.bird_cat, data.cats.fish_cat, data.cats.lizard_cat, data.cats.titan_cat, data.cats.superfeline, 
+    data.cats.actress_cat, data.cats.kungfu_cat, data.cats.mr
     ]
 global.selected_cat = -1
 

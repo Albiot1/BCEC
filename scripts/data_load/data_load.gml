@@ -12,6 +12,7 @@ function data_load(){
         
         for (var i = 0; i < _length; i++) {
         	var _data = data.cats[$ _names[i]]
+            
             var _max_form = array_length(_data.name)
             var _max_lvl = _data.max_lvl[0]
             var _max_lvl_plus = _data.max_lvl[1]

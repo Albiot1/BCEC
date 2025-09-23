@@ -412,79 +412,42 @@ data.cats.kungfu_cat = {
         effects_data:[ [{}],[{}],[{}] ],
         talents:{
             abilities:[ABILITY.SURGE,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_WAVE,ABILITY.HP_UP,ABILITY.ATK_UP],
-            talent_type:[0,0,0,0,0],
+            talent_type:[0,0,0,0,0,0],
             data:[{chance:2,lvl:1,distance:[480,750],chance_improv:2,chance_improv_max:18,total_cost:165},{total_cost:75},{total_cost:75},{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
         }
     }
 }
     
-    
-data.cats.ninja_cat = {
+data.cats.mr = {
     max_lvl: [50,0],
     name: ["","",""],
     rarity: RARITY.SPECIAL,
-    spr:[ spr_unit_ninja_cat, spr_unit_ninja_cat_b, spr_unit_ninja_cat_c ],
+    spr:[ spr_mr,spr_mr_b,spr_mr_c ],
     evolutions:{
         type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
-        value:[-1,-1,[ ["ninja_awakens"] ]],
-        level:[1,10,20],
-        xp:[0,0,300]
-    },
-    stats:{
-        life:[240,240,240],
-        dmg:[14,14,28],
-        atk_spd:[21,21,21],
-        range:[150,150,150],
-        spd:[13,13,10],
-        knockback:[3,3,3],
-        recharge: [60,60,60],
-        cost: [200,200,150],
-        targetings:[ [TARGETING.RED],[TARGETING.RED],[TARGETING.RED] ],
-        attack_type:[ [ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE] ],
-        multi_hit_dmg_multiplier:[ [2,2],[2,2],0 ],
-        abilities:[ [],[],[] ],
-        abilities_data:[ [{}],[{}],[{}] ],
-        effects:[ [EFFECT.STRONG],[EFFECT.STRONG],[EFFECT.STRONG] ],
-        effects_data:[ [{}],[{}],[{}] ],
-        talents:{
-            abilities:[ TARGETING.BLACK,EFFECT.DODGE,ABILITY.SPD_UP,ABILITY.HP_UP,ABILITY.ATK_UP ],
-            talent_type:[ 0,0,0,0,0 ],
-            data:[ { total_cost:75 },{ time:24,chance:20,time_improv:4,time_improv_max:36,total_cost:165 },{improv_number:1,improv_number_max:9,total_cost:125},{improv:8,improv_max:72,total_cost:125},{improv:8,improv_max:72,total_cost:125}]
-        }
-    }
-}
-
-data.cats.sumo_cat = {
-    max_lvl: [50,0],
-    name: ["","",""],
-    rarity: RARITY.SPECIAL,
-    spr:[ spr_unit_sumo_cat, spr_unit_sumo_cat_b, spr_unit_sumo_cat_c ],
-    evolutions:{
-        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
-        value:[-1,-1,[ ["sumo_awakens"] ]],
-        level:[1,10,20],
+        value:[-1,-1,"mr_awakens"],
+        level:[0,0,20],
         xp:[0,0,0]
     },
     stats:{
-        life:[600,600,600],
-        dmg:[9,9,9],
-        atk_spd:[34,34,34],
-        range:[110,110,110],
-        spd:[8,8,24],
-        knockback:[1,1,1],
-        recharge: [270,270,270],
-        cost: [300,300,300],
+        life:[500,500,500],
+        dmg:[35,35,35],
+        atk_spd:[18,17,17],
+        range:[140,140,140],
+        spd:[31,31,47],
+        knockback:[5,5,5],
+        recharge: [480,480,480],
+        cost: [825,825,825],
         targetings:[ [],[],[] ],
-        attack_type:[ [ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT] ],
-        multi_hit_dmg_multiplier: [ [3,3,3],[3,3,3],[3,3,3] ],
-        abilities:[ [],[],[ABILITY.IMMUNE_KNOCKBACK] ],
+        attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA] ],
+        abilities:[ [],[],[ABILITY.ZOMBIE_KILLER] ],
         abilities_data:[ [{}],[{}],[{}] ],
         effects:[ [],[],[] ],
         effects_data:[ [{}],[{}],[{}] ],
         talents:{
-            abilities:[ ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_TOXIC,ABILITY.IMMUNE_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP ],
-            talent_type:[ 0,0,0,0,0 ],
-            data:[ { total_cost: 75 },{total_cost: 75},{total_cost: 75},{ improv: 8, improv_max: 72, total_cost: 125 },{ improv: 8, improv_max: 72, total_cost: 125 } ]
+            abilities:[ EFFECT.KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_WARP,ABILITY.HP_UP,ABILITY.ATK_UP ],
+            talent_type:[0,0,0,0,0],
+            data:[ { chance:3, chance_improv:3, chance_improv_max:27, total_cost:215, add_targeting:TARGETING.ZOMBIE },{},{},{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }, { total_cost:125, start_improv:8, improv:8, improv_max: 72 } ]
         }
     }
 }

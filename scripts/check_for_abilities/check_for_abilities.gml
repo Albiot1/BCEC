@@ -60,13 +60,15 @@ function has_targeting(_targeting){
     var _length1 = array_length(stats.talents)
     for (var i = 0; i < _length1; i++) {
         if mydata.talent_unlocked[i] == true{
+            //if talent is a targeting talent !!
         	if stats.talents[i] == _targeting
                 _found = true
-            
+            /*
             if variable_struct_exists(stats.talent_data[i],"add_targeting"){
                 if stats.talent_data[i].add_targeting == _targeting
                     _found = true
             }
+            */
         }
     }
     

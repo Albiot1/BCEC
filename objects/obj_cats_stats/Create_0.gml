@@ -167,6 +167,10 @@ stats.update = function (){
         stats.multi_hit = true
         stats.multi_hit_dmgs = variable_clone(_my_stats.multi_hit_dmgs[_form])
         
+        for (var i = 0; i < array_length(stats.multi_hit_dmgs); i++) {
+        	stats.multi_hit_dmgs[i] = calculate_stat(_rarity,_lvl,_is_crazed,_is_bahamut,stats.multi_hit_dmgs[i]*_atkup)*get_sword_multiplier()
+        }
+        
     }
     else{
         stats.multi_hit = false
@@ -188,7 +192,7 @@ stats.update = function (){
     
     for (var i = 0; i < array_length(_targ_list); i++) {
         if array_contains(stats.targetings,_targ_list[i])
-        continue;
+            continue;
         
     	if has_targeting(_targ_list[i]){
             array_push(stats.targetings,_targ_list[i])
@@ -699,7 +703,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         itf: get_itf_fruit_multiplier(),
         cotc: get_cotc_fruit_multiplier()
     }
-    var _target_plus = []
+    var _target_plus = undefined
     
     var _is_talent = false
     
@@ -731,6 +735,8 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     case TARGETING.TRAITELSS: _icon_target = spr_targeting_traitless break;
                     case TARGETING.ZOMBIE: _icon_target = spr_targeting_zombie break;
                 }
+                
+                _target_plus = _mydata.add_targeting
             }
         
         break;
@@ -922,7 +928,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 _mystats.info+=_info_build
             }
 
-            _desc += return_info(_targets,_bonus,_mystats)
+            _desc += return_info(_targets,_bonus,_mystats,_target_plus)
         
         
         break;
@@ -986,7 +992,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     info: "{stat0}% chance to reduce damage of enemies by {stat1}% for: {stat2}f/{stat3}s"
                 }
     
-            _desc += return_info(_targets,_bonus,_mystats)
+            _desc += return_info(_targets,_bonus,_mystats,_target_plus)
                 
             }
         
@@ -1066,7 +1072,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     info: "{stat0}% chance to freeze enemies for: {stat1}f/{stat2}s"
                 }
     
-                _desc += return_info(_targets,_bonus,_mystats)
+                _desc += return_info(_targets,_bonus,_mystats,_target_plus)
                 
             }
         
@@ -1153,7 +1159,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     info: "{stat0}% chance to slow enemies by {stat1}% for: {stat2}f/{stat3}s"
                 }
     
-                _desc += return_info(_targets,_bonus,_mystats)
+                _desc += return_info(_targets,_bonus,_mystats,_target_plus)
                 
             }
         
@@ -1207,7 +1213,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 info: "Effective HP: {stat0}"
             }
 
-            _desc += return_info(_targets,_bonus,_mystats)
+            _desc += return_info(_targets,_bonus,_mystats,_target_plus)
         
         break;
         
@@ -1231,7 +1237,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 info: "Effective HP: {stat0}"
             }
 
-            _desc += return_info(_targets,_bonus,_mystats)
+            _desc += return_info(_targets,_bonus,_mystats,_target_plus)
         
         break;
         
@@ -1274,7 +1280,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 _mystats.info+=_info_build
             }
 
-            _desc += return_info(_targets,_bonus,_mystats)
+            _desc += return_info(_targets,_bonus,_mystats,_target_plus)
         
         break;
         
@@ -1317,7 +1323,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 _mystats.info+=_info_build
             }
 
-            _desc += return_info(_targets,_bonus,_mystats)
+            _desc += return_info(_targets,_bonus,_mystats,_target_plus)
         
         break;
         
@@ -1347,6 +1353,18 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 }
                 
                 var _stat_targets = stats.targetings
+                
+                if _target_plus != undefined{
+                    if is_array(_target_plus){
+                        for (var t = 0; t < array_length(_target_plus); t++) {
+                        	array_push(_stat_targets,_target_plus[t])
+                        }
+                    }
+                    else {
+                        array_push(_stat_targets,_target_plus)
+                    }
+                }
+                
                 var _knockback_types = ""
                 if array_length(_stat_targets) == 9{
                     if array_value_exists(_stat_targets,TARGETING.TRAITELSS) and !array_value_exists(_stat_targets,TARGETING.METAL){
@@ -1361,7 +1379,9 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 }
                 else{
                     for (var c = 0; c < array_length(_stat_targets); c++) {
-                    	_knockback_types += targeting_to_string(_stat_targets[c])+","
+                    	_knockback_types += targeting_to_string(_stat_targets[c])
+                        if c<array_length(_stat_targets)-1
+                            _knockback_types += ","
                     }
                 }
                 
@@ -1458,7 +1478,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     info: "{stat0}% chance to curse enemies for: {stat1}f/{stat2}s"
                 }
     
-                _desc += return_info(_targets,_bonus,_mystats)
+                _desc += return_info(_targets,_bonus,_mystats,_target_plus)
                 
                 if stats.multi_hit == true and variable_struct_exists(_mydata,"on_x_hit"){
                     _desc += $"\neffect applies only on {number_with_ending(_mydata.on_x_hit)} hit"
@@ -1538,7 +1558,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     info: "{stat0}% chance to dodge enemy attacks for: {stat1}f/{stat2}s"
                 }
     
-                _desc += return_info(_targets,_bonus,_mystats)
+                _desc += return_info(_targets,_bonus,_mystats,_target_plus)
                 
             }
         

@@ -30,22 +30,40 @@ function return_info(_targ,_bon,_mystat,_targ_plus = undefined){
     
     if _targ_plus!=undefined{
     
-        for (var i = 0; i < array_length(_targ_plus); i++) {
-        	var _targeting = _targ_plus[i]
-            
+        if is_array(_targ_plus){
+        
+            for (var i = 0; i < array_length(_targ_plus); i++) {
+            	var _targeting = _targ_plus[i]
+                
+                for (var c = 0; c < array_length(_targ.nobonus); c++) {
+                	if _targeting == _targ.nobonus[c]
+                        array_push(_bontarg.nobonus,_targeting)
+                }
+                for (var c = 0; c < array_length(_targ.itf); c++) {
+                	if _targeting == _targ.itf[c]
+                        array_push(_bontarg.itf,_targeting)
+                }
+                for (var c = 0; c < array_length(_targ.cotc); c++) {
+                	if _targeting == _targ.cotc[c]
+                        array_push(_bontarg.cotc,_targeting)
+                }
+                
+            }
+                
+        }
+        else {
             for (var c = 0; c < array_length(_targ.nobonus); c++) {
-            	if _targeting == _targ.nobonus[c]
-                    array_push(_bontarg.nobonus,_targeting)
+                if _targ_plus == _targ.nobonus[c]
+                    array_push(_bontarg.nobonus,_targ_plus)
             }
             for (var c = 0; c < array_length(_targ.itf); c++) {
-            	if _targeting == _targ.itf[c]
-                    array_push(_bontarg.itf,_targeting)
+                if _targ_plus == _targ.itf[c]
+                    array_push(_bontarg.itf,_targ_plus)
             }
             for (var c = 0; c < array_length(_targ.cotc); c++) {
-            	if _targeting == _targ.cotc[c]
-                    array_push(_bontarg.cotc,_targeting)
+                if _targ_plus == _targ.cotc[c]
+                    array_push(_bontarg.cotc,_targ_plus)
             }
-            
         }
     
     }
