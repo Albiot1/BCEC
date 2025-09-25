@@ -4,6 +4,7 @@
 #macro DATA_LOADING true 
 #macro FRAMERATE 30 
 #macro DEBUG_STAT_RECTANGLES false
+#macro GAME_VERSION 14.5 
 
 draw_set_font(fnt_general)
 

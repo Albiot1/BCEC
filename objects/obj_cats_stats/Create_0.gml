@@ -110,7 +110,7 @@ stats.update = function (){
 
     if _has_spdup[0]==true{
         if _has_spdup[2].unlocked==true{
-            _spdup += _has_spdup[1].start_improv_number + _has_spdup[1].improv_number * _has_spdup[2].level
+            _spdup += _has_spdup[1].start_number_improv + _has_spdup[1].improv_number * _has_spdup[2].level
         }
     }
     
@@ -147,7 +147,7 @@ stats.update = function (){
     
     if _has_price_down[0]==true{
         if _has_price_down[2].unlocked==true{
-            _price_down += _has_price_down[1].start_improv_number + _has_price_down[1].improv_number * _has_price_down[2].level
+            _price_down += _has_price_down[1].start_number_improv + _has_price_down[1].improv_number * _has_price_down[2].level
         }
     }
     
@@ -577,11 +577,11 @@ stats_render.update = function (){
     
 
     _y+=24
-    draw_text_outline(_x,_y,c_black,c_white,"Price CH1: "+string(number_format_selected(stats.price)))
+    draw_text_outline(_x,_y,c_black,c_white,"Price CH1: "+string(number_format_selected(stats.price))+"$")
     _y+=24
-    draw_text_outline(_x,_y,c_black,c_white,"Price CH2: "+string(number_format_selected(stats.price*1.5)))
+    draw_text_outline(_x,_y,c_black,c_white,"Price CH2: "+string(number_format_selected(stats.price*1.5))+"$")
     _y+=24
-    draw_text_outline(_x,_y,c_black,c_white,"Price CH3: "+string(number_format_selected(stats.price*2)))
+    draw_text_outline(_x,_y,c_black,c_white,"Price CH3: "+string(number_format_selected(stats.price*2))+"$")
     
     surface_reset_target()
     
@@ -692,6 +692,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
     var _icon = -1
     var _txt = -1
     var _desc = ""
+    var _numtype = ""
     var _mydata = {}
     var _targets = {
         nobonus: [TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITELSS],
@@ -1110,7 +1111,6 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
                 var _time = _mydata.time
                 var _chance = _mydata.chance
-                var _slow = _mydata.slow
                 
                 //desc
                 _desc = "Indicated enemy types will have their movement speed reduced for a set amount of time.\n"
@@ -1137,12 +1137,6 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                             scales: false
                         },
                         {
-                            value: _slow,
-                            scales: false,
-                            multiplier: 0.2,
-                            base_multiplier: 1
-                        },
-                        {
                             value: _time,
                             scales: true,
                             multiplier: 0.2,
@@ -1156,7 +1150,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                             istime: true
                         }
                     ],
-                    info: "{stat0}% chance to slow enemies by {stat1}% for: {stat2}f/{stat3}s"
+                    info: "{stat0}% chance to slow enemies for: {stat1}f/{stat2}s"
                 }
     
                 _desc += return_info(_targets,_bonus,_mystats,_target_plus)
@@ -1648,7 +1642,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 var _chance = _mydata.chance
                 
                 //desc
-                _desc = "After this unit's health falls below zero, it may heal itself by a small amount.\n"
+                _desc = "After this unit's health falls below zero, it may heal itself by a small amount.\n\n"
                 if ((_has_talent[0] and !_is_talent) or (_is_talent and !_has_effect[0])){
                     //+to stats!
                     var _mytalent_data = _has_talent[1]
@@ -2080,7 +2074,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             
             _icon = spr_immune_to_warp
             _txt = "[IMMUNE TO WARP]"
-            _desc = "Enemy Warp abilities do not affect this unit."
+            _desc = "Enemy Warp abilities does not affect this unit."
         
         break;
         
@@ -2389,6 +2383,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             
             _icon = spr_ability_cost_down
             _txt = "[COST DOWN]"
+            _numtype = "$"
         
             var _perc =  _mydata.start_number_improv+_mydata.improv_number*_talent_data.level
             _desc = $"Lowers the cost of unit by a set amount.\n\nCost reduced by {number_format_selected(_perc)}$/{number_format_selected(_perc*1.5)}$/{number_format_selected(_perc*2)}$."
@@ -2450,13 +2445,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
     
                 
                 if stats.multi_hit == false{
-                    _desc += $"{_mydata.chance}% chance to create lvl {_mydata.lvl} wave.\n"
+                    _desc += $"{floor(_chance)}% chance to create lvl {_mydata.lvl} wave.\n"
                     _desc += $"\nEffective range: {_eff_range}\nDamage: {number_format_selected(stats.atk)}"
                 }
                 else {
                 	
                     if variable_struct_exists(_mydata,"on_x_hit"){
-                        _desc += $"{_mydata.chance}% chance to create lvl {_mydata.lvl} wave on {number_with_ending(_mydata.on_x_hit)} hit.\n"
+                        _desc += $"{floor(_chance)}% chance to create lvl {_mydata.lvl} wave on {number_with_ending(_mydata.on_x_hit)} hit.\n"
 
                         var _multi_dmgs = stats.multi_hit_dmgs
                         var _num = array_length(_multi_dmgs)
@@ -2474,7 +2469,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         _desc += $"\nEffective range: {_eff_range}\nDamage: {number_format_selected(stats.atk)}"+_info_build
                     }
                     else{
-                        _desc += $"{_mydata.chance}% chance to create lvl {_mydata.lvl} wave.\n"
+                        _desc += $"{floor(_chance)}% chance to create lvl {_mydata.lvl} wave.\n"
                         
                         var _multi_dmgs = stats.multi_hit_dmgs
                         var _num = array_length(_multi_dmgs)
@@ -2537,13 +2532,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
     
                 
                 if stats.multi_hit == false{
-                    _desc += $"{_mydata.chance}% chance to create lvl {_mydata.lvl} wave.\n"
+                    _desc += $"{_chance}% chance to create lvl {_mydata.lvl} wave.\n"
                     _desc += $"\nEffective range: {_eff_range}\nDamage: {number_format_selected(stats.atk*0.2)}"
                 }
                 else {
                 	
                     if variable_struct_exists(_mydata,"on_x_hit"){
-                        _desc += $"{_mydata.chance}% chance to create lvl {_mydata.lvl} mini-wave on {number_with_ending(_mydata.on_x_hit)} hit.\n"
+                        _desc += $"{_chance}% chance to create lvl {_mydata.lvl} mini-wave on {number_with_ending(_mydata.on_x_hit)} hit.\n"
 
                         var _multi_dmgs = stats.multi_hit_dmgs
                         var _num = array_length(_multi_dmgs)
@@ -2561,7 +2556,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         _desc += $"\nEffective range: {_eff_range}\nDamage: {number_format_selected(stats.atk*0.2)}"+_info_build
                     }
                     else{
-                        _desc += $"{_mydata.chance}% chance to create lvl {_mydata.lvl} mini-wave.\n"
+                        _desc += $"{_chance}% chance to create lvl {_mydata.lvl} mini-wave.\n"
                         
                         var _multi_dmgs = stats.multi_hit_dmgs
                         var _num = array_length(_multi_dmgs)
@@ -2735,13 +2730,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
     
                 
                 if stats.multi_hit == false{
-                    _desc += $"{_mydata.chance}% chance to create lvl {_mydata.lvl} mini-surge.\n"
+                    _desc += $"{_chance}% chance to create lvl {_mydata.lvl} mini-surge.\n"
                     _desc += $"\nEffective range: {_range}\nDuration: {_eff_time}f/{_eff_time/FRAMERATE}s\nDamage: {number_format_selected(stats.atk*0.2)}\nMaximum damage: {number_format_selected((stats.atk*0.2)*_mydata.lvl)}"
                 }
                 else {
                 	
                     if variable_struct_exists(_mydata,"on_x_hit"){
-                        _desc += $"{_mydata.chance}% chance to create lvl {_mydata.lvl} mini-surge on {number_with_ending(_mydata.on_x_hit)} hit.\n"
+                        _desc += $"{_chance}% chance to create lvl {_mydata.lvl} mini-surge on {number_with_ending(_mydata.on_x_hit)} hit.\n"
 
                         var _multi_dmgs = stats.multi_hit_dmgs
                         var _num = array_length(_multi_dmgs)
@@ -2769,7 +2764,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         _desc += $"\nEffective range: {_range}\nDuration: {_eff_time}f/{_eff_time/FRAMERATE}s\nDamage: {number_format_selected(stats.atk*0.2)}"+_info_build+$"\nMaximum damage: {number_format_selected((stats.atk*0.2)*_mydata.lvl)}"+_info_build_mx
                     }
                     else{
-                        _desc += $"{_mydata.chance}% chance to create lvl {_mydata.lvl} mini-surge.\n"
+                        _desc += $"{_chance}% chance to create lvl {_mydata.lvl} mini-surge.\n"
                         
                         var _multi_dmgs = stats.multi_hit_dmgs
                         var _num = array_length(_multi_dmgs)
@@ -2842,13 +2837,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
     
                 if stats.multi_hit == false{
                     var _max_dmg = number_format_selected( stats.atk + ((stats.atk*2)*0.7) + ((stats.atk*2)*0.4) )
-                    _desc += $"{_mydata.chance}% chance to create explosion at {number_format_selected(_mydata.range)} range.\n"
+                    _desc += $"{_chance}% chance to create explosion at {number_format_selected(_mydata.range)} range.\n"
                     _desc += $"Damage: \n1st wave: {number_format_selected(stats.atk)}\n2nd wave: {number_format_selected(stats.atk*0.7)}\n3rd wave: {number_format_selected(stats.atk*0.4)}\nMaximum damage: {_max_dmg}"
                 }
                 else {
                 	
                     if variable_struct_exists(_mydata,"on_x_hit"){
-                        _desc += $"{_mydata.chance}% chance to create explosion on {number_with_ending(_mydata.on_x_hit)} hit.\n"
+                        _desc += $"{_chance}% chance to create explosion on {number_with_ending(_mydata.on_x_hit)} hit.\n"
 
                         var _multi_dmgs = stats.multi_hit_dmgs
                         var _num = array_length(_multi_dmgs)
@@ -2897,7 +2892,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         _desc += _info_build+_info_build_mx
                     }
                     else{
-                        _desc += $"{_mydata.chance}% chance to create explosion.\n"
+                        _desc += $"{_chance}% chance to create explosion.\n"
                         
                         var _multi_dmgs = stats.multi_hit_dmgs
                         var _num = array_length(_multi_dmgs)
@@ -2991,9 +2986,9 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if variable_struct_exists(_mydata,"improv_max")
                 _desc += $"\n+{_mydata.improv_max+_improv_max_fix}% max"
             if variable_struct_exists(_mydata,"improv_number")
-                _desc += $"\n+{_mydata.improv_number} per level"
+                _desc += $"\n+{_mydata.improv_number}{_numtype} per level"
             if variable_struct_exists(_mydata,"improv_number_max")
-                _desc += $"\n+{_mydata.improv_number_max+_improv_number_max_fix} max"
+                _desc += $"\n+{_mydata.improv_number_max+_improv_number_max_fix}{_numtype} max"
             
             if variable_struct_exists(_mydata,"total_cost")
                 _desc += $"\nTotal cost: {_mydata.total_cost} NP"

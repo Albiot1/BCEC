@@ -53,6 +53,7 @@ data.items= {
 }
 
 cats_data_init()
+cats_combos_init()
 
 data.enemies = {}
 
@@ -88,7 +89,8 @@ global.current_cats = []
 global.all_cats = [ 
     //normal cats
     data.cats.cat, data.cats.tank_cat, data.cats.axe_cat, data.cats.gross_cat, data.cats.bird_cat, data.cats.fish_cat, data.cats.lizard_cat, data.cats.titan_cat, data.cats.superfeline, 
-    data.cats.actress_cat, data.cats.kungfu_cat, data.cats.mr
+    //special cats
+    data.cats.actress_cat, data.cats.kung_fu_cat, data.cats.mr, data.cats.bondage_cat, data.cats.dom_cat, data.cats.cats_in_a_box, data.cats.panties_cat, data.cats.moneko
     ]
 global.selected_cat = -1
 

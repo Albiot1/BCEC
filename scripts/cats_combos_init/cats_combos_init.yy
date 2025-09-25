@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"cats_combos_init",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"cats_combos_init",
+  "parent":{
+    "name":"cat_stats",
+    "path":"folders/Scripts/cat_stats.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

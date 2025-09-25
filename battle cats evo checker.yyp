@@ -73,6 +73,7 @@
     {"id":{"name":"array_to_separated_text","path":"scripts/array_to_separated_text/array_to_separated_text.yy",},},
     {"id":{"name":"array_value_exists","path":"scripts/array_value_exists/array_value_exists.yy",},},
     {"id":{"name":"array_value_position","path":"scripts/array_value_position/array_value_position.yy",},},
+    {"id":{"name":"cats_combos_init","path":"scripts/cats_combos_init/cats_combos_init.yy",},},
     {"id":{"name":"cats_data_init","path":"scripts/cats_data_init/cats_data_init.yy",},},
     {"id":{"name":"check_for_abilities","path":"scripts/check_for_abilities/check_for_abilities.yy",},},
     {"id":{"name":"data_load","path":"scripts/data_load/data_load.yy",},},

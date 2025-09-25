@@ -12,7 +12,7 @@ data.cats.cat = {
     evolutions:{
         type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.NONE],
         value:[-1,-1,-1],
-        level:[0,0,20],
+        level:[0,0,30],
         xp:[0,0,0]
     },
     stats:{
@@ -23,7 +23,7 @@ data.cats.cat = {
         spd:[10,10,10],
         knockback:[3,3,3],
         recharge: [150,150,150],
-        cost: [75,75,75],
+        cost: [50,50,50],
         targetings:[ [],[],[] ],
         attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
         abilities:[ [],[],[] ],
@@ -46,7 +46,7 @@ data.cats.tank_cat = {
     evolutions:{
         type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.NONE],
         value:[-1,-1,-1],
-        level:[0,0,20],
+        level:[0,0,30],
         xp:[0,0,0]
     },
     stats:{
@@ -57,9 +57,9 @@ data.cats.tank_cat = {
         spd:[8,8,8],
         knockback:[1,1,1],
         recharge: [240,240,240],
-        cost: [150,150,150],
+        cost: [100,100,100],
         targetings:[ [],[],[] ],
-        attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+        attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA] ],
         abilities:[ [],[],[] ],
         abilities_data:[ [{}],[{}],[{}] ],
         effects:[ [],[],[] ],
@@ -80,7 +80,7 @@ data.cats.axe_cat = {
     evolutions:{
         type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.NONE],
         value:[-1,-1,-1],
-        level:[0,0,20],
+        level:[0,0,30],
         xp:[0,0,0]
     },
     stats:{
@@ -91,7 +91,7 @@ data.cats.axe_cat = {
         spd:[12,12,12],
         knockback:[3,3,3],
         recharge: [210,210,300],
-        cost: [300,300,300],
+        cost: [200,200,200],
         targetings:[ [TARGETING.RED],[TARGETING.RED],[TARGETING.RED] ],
         attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
         abilities:[ [],[],[] ],
@@ -114,7 +114,7 @@ data.cats.gross_cat = {
     evolutions:{
         type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.NONE],
         value:[-1,-1,-1],
-        level:[0,0,20],
+        level:[0,0,30],
         xp:[0,0,0]
     },
     stats:{
@@ -125,7 +125,7 @@ data.cats.gross_cat = {
         spd:[10,10,10],
         knockback:[3,3,3],
         recharge: [330,330,490],
-        cost: [600,600,600],
+        cost: [400,400,400],
         targetings:[ [],[],[TARGETING.ALIEN] ],
         attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
         abilities:[ [],[],[] ],
@@ -148,7 +148,7 @@ data.cats.cow_cat = {
     evolutions:{
         type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.NONE],
         value:[-1,-1,-1],
-        level:[0,0,20],
+        level:[0,0,30],
         xp:[0,0,0]
     },
     stats:{
@@ -159,7 +159,7 @@ data.cats.cow_cat = {
         spd:[30,30,30],
         knockback:[5,5,5],
         recharge: [270,270,270],
-        cost: [750,750,750],
+        cost: [500,500,500],
         targetings:[ [],[],[] ],
         attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
         abilities:[ [],[],[] ],
@@ -182,7 +182,7 @@ data.cats.bird_cat = {
     evolutions:{
         type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.NONE],
         value:[-1,-1,-1],
-        level:[0,0,20],
+        level:[0,0,30],
         xp:[0,0,0]
     },
     stats:{
@@ -193,7 +193,7 @@ data.cats.bird_cat = {
         spd:[10,10,10],
         knockback:[4,4,4],
         recharge: [250,250,370],
-        cost: [975,975,975],
+        cost: [650,650,650],
         targetings:[ [],[],[TARGETING.ANGEL] ],
         attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA] ],
         abilities:[ [],[],[] ],
@@ -216,7 +216,7 @@ data.cats.fish_cat = {
     evolutions:{
         type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.NONE],
         value:[-1,-1,-1],
-        level:[0,0,20],
+        level:[0,0,30],
         xp:[0,0,0]
     },
     stats:{
@@ -227,7 +227,7 @@ data.cats.fish_cat = {
         spd:[10,10,10],
         knockback:[3,3,3],
         recharge: [350,350,510],
-        cost: [1200,1200,1200],
+        cost: [800,800,800],
         targetings:[ [TARGETING.RED],[TARGETING.RED],[TARGETING.RED] ],
         attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
         abilities:[ [],[],[ABILITY.CRITICAL] ],
@@ -250,7 +250,7 @@ data.cats.lizard_cat = {
     evolutions:{
         type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.NONE],
         value:[-1,-1,-1],
-        level:[0,0,20],
+        level:[0,0,30],
         xp:[0,0,0]
     },
     stats:{
@@ -261,7 +261,7 @@ data.cats.lizard_cat = {
         spd:[10,10,10],
         knockback:[3,3,3],
         recharge: [570,570,770],
-        cost: [1500,1500,1500],
+        cost: [1000,1000,1000],
         targetings:[ [],[],[] ],
         attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
         abilities:[ [],[],[] ],
@@ -284,7 +284,7 @@ data.cats.titan_cat = {
     evolutions:{
         type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.NONE],
         value:[-1,-1,-1],
-        level:[0,0,20],
+        level:[0,0,30],
         xp:[0,0,0]
     },
     stats:{
@@ -295,7 +295,7 @@ data.cats.titan_cat = {
         spd:[8,8,8],
         knockback:[1,1,1],
         recharge: [810,810,930],
-        cost: [1950,1950,1950],
+        cost: [1300,1300,1300],
         targetings:[ [],[],[TARGETING.AKU,TARGETING.ALIEN,TARGETING.ANGEL,TARGETING.BLACK,TARGETING.FLOATING,TARGETING.RED,TARGETING.RELIC,TARGETING.TRAITELSS,TARGETING.ZOMBIE] ],
         attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA] ],
         abilities:[ [],[],[] ],
@@ -318,7 +318,7 @@ data.cats.superfeline = {
     evolutions:{
         type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.NONE],
         value:[-1,-1,-1],
-        level:[0,0,20],
+        level:[0,0,100],
         xp:[0,0,0]
     },
     stats:{
@@ -329,7 +329,7 @@ data.cats.superfeline = {
         spd:[38,38,38],
         knockback:[10,10,10],
         recharge: [850,850,850],
-        cost: [2400,2400,2400],
+        cost: [1600,1600,1600],
         targetings:[ [TARGETING.RELIC],[TARGETING.RELIC],[TARGETING.RELIC] ],
         attack_type:[ [ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI] ],
         omni_range:[ [-100,350],[-100,350],[-100,350] ],
@@ -368,7 +368,7 @@ data.cats.actress_cat = {
         spd:[10,10,10],
         knockback:[3,3,3],
         recharge: [330,330,330],
-        cost: [900,900,900],
+        cost: [600,600,600],
         targetings:[ [],[],[] ],
         attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA] ],
         abilities:[ [],[],[] ],
@@ -383,7 +383,7 @@ data.cats.actress_cat = {
     }
 }
     
-data.cats.kungfu_cat = {
+data.cats.kung_fu_cat = {
     max_lvl: [50,0],
     name: ["","",""],
     rarity: RARITY.SPECIAL,
@@ -403,7 +403,7 @@ data.cats.kungfu_cat = {
         spd:[9,9,9],
         knockback:[1,1,1],
         recharge: [860,860,860],
-        cost: [2250,2250,2250],
+        cost: [1500,1500,1500],
         targetings:[ [],[],[] ],
         attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA] ],
         abilities:[ [],[],[ABILITY.IMMUNE_WEAKEN] ],
@@ -437,7 +437,7 @@ data.cats.mr = {
         spd:[31,31,47],
         knockback:[5,5,5],
         recharge: [480,480,480],
-        cost: [825,825,825],
+        cost: [550,550,550],
         targetings:[ [],[],[] ],
         attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA] ],
         abilities:[ [],[],[ABILITY.ZOMBIE_KILLER] ],
@@ -448,6 +448,211 @@ data.cats.mr = {
             abilities:[ EFFECT.KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_WARP,ABILITY.HP_UP,ABILITY.ATK_UP ],
             talent_type:[0,0,0,0,0],
             data:[ { chance:3, chance_improv:3, chance_improv_max:27, total_cost:215, add_targeting:TARGETING.ZOMBIE },{},{},{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }, { total_cost:125, start_improv:8, improv:8, improv_max: 72 } ]
+        }
+    }
+}
+    
+data.cats.bondage_cat = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_bondagecat,spr_bondagecat_b,spr_bondagecat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"bondage_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[700,700,1400],
+        dmg:[100,100,100],
+        atk_spd:[45,45,45],
+        range:[120,120,120],
+        spd:[5,5,5],
+        knockback:[1,1,1],
+        recharge: [440,440,440],
+        cost: [690,690,690],
+        targetings:[ [TARGETING.RED],[TARGETING.RED],[TARGETING.RED] ],
+        attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+        abilities:[ [],[],[ABILITY.SURVIVE,ABILITY.IMMUNE_WARP] ],
+        abilities_data:[ [{}],[{}],[{chance:50},{}] ],
+        effects:[ [EFFECT.STRONG],[EFFECT.STRONG],[EFFECT.STRONG] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{
+            abilities:[EFFECT.FREEZE,EFFECT.DODGE,ABILITY.IMMUNE_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[ { chance:30, time:15, time_improv:5, time_improv_max:45, total_cost:165 },{ chance:40, time:12, time_improv:2, time_improv_max:18, total_cost:165 },{ total_cost:75 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+        }
+    }
+}
+    
+data.cats.dom_cat = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_domcat,spr_domcat_b,spr_domcat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"the_dom_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[700,700,700],
+        dmg:[132,132,132],
+        multi_hit_dmgs:[ [44,44,44],[44,44,44],0 ],
+        atk_spd:[45,45,12],
+        range:[210,210,210],
+        spd:[5,5,5],
+        knockback:[1,1,1],
+        recharge: [440,440,440],
+        cost: [960,960,960],
+        targetings:[ [TARGETING.RED],[TARGETING.RED],[TARGETING.RED,TARGETING.BLACK] ],
+        attack_type:[ [ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE] ],
+        abilities:[ [],[],[] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [EFFECT.STRONG],[EFFECT.STRONG],[EFFECT.STRONG] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{
+            abilities:[ABILITY.WAVE,ABILITY.IMMUNE_WEAKEN,ABILITY.COST_DOWN,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[{chance:5, lvl:6, chance_improv:1.112, chance_improv_max:9.99, total_cost:165},{ total_cost:75 },{ total_cost:125, start_number_improv:20, improv_number:20, improv_number_max: 180 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+        }
+    }
+}
+    
+data.cats.cats_in_a_box = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_catsinabox, spr_catsinabox_b, spr_catsinabox_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"box_cat_awaken"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[800,800,800],
+        dmg:[300,300,300],
+        atk_spd:[101,101,101],
+        range:[140,140,199],
+        spd:[35,35,30],
+        knockback:[3,3,3],
+        recharge: [460,460,460],
+        cost: [750,750,750],
+        targetings:[ [],[],[TARGETING.BLACK] ],
+        attack_type:[ [],[],[] ],
+        abilities:[ [],[],[] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[EFFECT.WEAKEN] ],
+        effects_data:[ [{}],[{}],[{ chance:30, time:200, weaken:50 }] ],
+        talents:{
+            abilities:[EFFECT.MASSIVE_DMG,ABILITY.IMMUNE_WEAKEN,ABILITY.RESIST_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[{ total_cost:75 },{ total_cost:75 },{ start_improv:16, improv:6, improv_max:54, total_cost: 125 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+        }
+    }
+}
+    
+data.cats.panties_cat = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_panties_cat,spr_panties_cat_b,spr_panties_cat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
+        value:[-1,-1,"panties_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[400,400,400],
+        dmg:[100,100,100],
+        atk_spd:[125,125,125],
+        range:[350,350,350],
+        spd:[10,10,10],
+        knockback:[3,3,3],
+        recharge: [330,330,330],
+        cost: [350,350,350],
+        targetings:[ [],[],[] ],
+        attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.AREA] ],
+        abilities:[ [],[],[] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{
+            abilities:[EFFECT.SLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.RESIST_FREEZE,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[{ chance:30, time:39, time_improv:9, time_improv_max:81, add_targeting:TARGETING.METAL , total_cost:215 },{ total_cost:75 },{ start_improv:16, improv:6, improv_max:54 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+        }
+    }
+}
+    
+data.cats.moneko = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_moneko,spr_moneko_b,spr_moneko_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
+        value:[-1,-1,[ ["red_seed",3],["blue_seed",3],["yellow_seed",3],["epic_seed",1],["gold_seed",1] ]],
+        level:[0,0,30],
+        xp:[0,0,500000]
+    },
+    stats:{
+        life:[600,1000,1250],
+        dmg:[400,400,400],
+        atk_spd:[127,127,127],
+        range:[160,160,160],
+        spd:[5,5,5],
+        knockback:[4,4,4],
+        recharge: [1998,1998,1332],
+        cost: [99,99,99],
+        targetings:[ [],[],[] ],
+        attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+        abilities:[ [ABILITY.CRITICAL],[ABILITY.CRITICAL],[ABILITY.CRITICAL,ABILITY.MINI_WAVE] ],
+        abilities_data:[ [{chance:15}],[{chance:15}],[{chance:20},{chance:100, lvl:3}] ],
+        effects:[ [],[],[] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{
+            abilities:[],
+            talent_type:[],
+            data:[]
+        }
+    }
+}
+    
+data.cats.tricycle_cat = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"tricycle_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[400,400,400],
+        dmg:[180,180,180],
+        atk_spd:[59,59,59],
+        range:[170,170,170],
+        spd:[10,10,10],
+        knockback:[4,4,4],
+        recharge: [250,250,250],
+        cost: [700,700,350],
+        targetings:[ [],[],[] ],
+        attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA] ],
+        abilities:[ [],[],[] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{
+            abilities:[],
+            talent_type:[],
+            data:[]
         }
     }
 }
