@@ -657,6 +657,77 @@ data.cats.tricycle_cat = {
     }
 }
     
+data.cats.ninja_cat = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_ninja_cat,spr_ninja_cat_b,spr_ninja_cat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"ninja_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[240,240,432],
+        dmg:[28,28,28],
+        atk_spd:[21,21,21],
+        range:[150,150,150],
+        spd:[13,13,10],
+        knockback:[3,3,3],
+        recharge: [210,210,210],
+        cost: [200,200,150],
+        targetings:[ [TARGETING.RED],[TARGETING.RED],[TARGETING.RED] ],
+        multi_hit_dmgs:[ [14,14],[14,14],0 ],
+        attack_type:[ [ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE] ],
+        abilities:[ [],[],[] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [EFFECT.STRONG],[EFFECT.STRONG],[EFFECT.STRONG] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{ abilities:[TARGETING.BLACK,EFFECT.DODGE,ABILITY.SPD_UP,ABILITY.HP_UP,ABILITY.ATK_UP],talent_type:[0,0,0,0,0],data:[{ total_cost:75 },{ total_cost:165, chance:20, time:20, time_improv:4, time_improv_max:40 },{ total_cost:125, improv_number:1 ,improv_number_max:9 , start_number_improv:1  },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]}
+    }
+}
+    
+data.cats.zombie_cat = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_zombie_cat,spr_zombie_cat_b,spr_zombie_cat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"zombie_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[700,700,700],
+        dmg:[200,200,200],
+        atk_spd:[59,59,59],
+        range:[150,150,150],
+        spd:[8,8,8],
+        knockback:[3,3,3],
+        recharge: [400,400,400],
+        cost: [750,750,750],
+        targetings:[ [TARGETING.RED],[TARGETING.RED],[TARGETING.RED,TARGETING.ZOMBIE] ],
+        attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.AREA] ],
+        abilities:[ [],[],[] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [EFFECT.STRONG],[EFFECT.STRONG],[EFFECT.STRONG] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{
+            abilities:[EFFECT.WEAKEN,ABILITY.RESIST_SLOW,ABILITY.RECOVER_DOWN,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[
+                { time: 39, time_improv: 9, time_improv_max: 81, chance:40, weaken:50 },
+                { total_cost:125, improv:6, improv_max:54, start_improv:16 },
+                { total_cost:125, start_time_improv: 15, time_improv: 5, time_improv_max:45 },
+                { total_cost:125, start_improv:8, improv:8, improv_max: 72 },
+                { total_cost:125, start_improv:8, improv:8, improv_max: 72 }
+            ]
+        }
+    }
+}
+        
 #endregion
     
     

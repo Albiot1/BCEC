@@ -60,7 +60,7 @@ data.enemies = {}
 data.enemies.doge = {
     name: "Doge",
     traits: [TARGETING.TRAITELSS],
-    spr: spr_unit_ninja_cat,
+    spr: spr_unit_titan_cat,
     stats:{
         life: 240,
         dmg: 14,
@@ -90,7 +90,8 @@ global.all_cats = [
     //normal cats
     data.cats.cat, data.cats.tank_cat, data.cats.axe_cat, data.cats.gross_cat, data.cats.bird_cat, data.cats.fish_cat, data.cats.lizard_cat, data.cats.titan_cat, data.cats.superfeline, 
     //special cats
-    data.cats.actress_cat, data.cats.kung_fu_cat, data.cats.mr, data.cats.bondage_cat, data.cats.dom_cat, data.cats.cats_in_a_box, data.cats.panties_cat, data.cats.moneko
+    data.cats.actress_cat, data.cats.kung_fu_cat, data.cats.mr, data.cats.bondage_cat, data.cats.dom_cat, data.cats.cats_in_a_box, data.cats.panties_cat, data.cats.moneko,
+    data.cats.ninja_cat, data.cats.zombie_cat
     ]
 global.selected_cat = -1
 
@@ -126,6 +127,8 @@ global.save.add_cat = function (_cat_id,_form = 0){
     }
     
     global.save.added_cats[$ _cat_id] = _save_data
+    
+    data_save()
 }
 global.save.set_level = function (_cat_id,_lvl,_plus_lvl){
     global.save.added_cats[$ _cat_id].level = _lvl
@@ -177,7 +180,7 @@ info.max_page = 0
 info.current_page = 0
 info.cats_number = 0
 info.display = {}
-info.display.start_pos = [86,104]
+info.display.start_pos = [86-41,104]
 info.display.spacing = [120,95]
 info.display.mouse_on = array_create(60,false)
 info.display.evolved = array_create(60,false)
@@ -351,7 +354,6 @@ open_fruits_info = function (){
 #endregion
 
 #region STAGES INFO ALL
-
 info.stages = {}
 info.stages.surface = -1
 info.stages.size = [800,600]
@@ -377,8 +379,6 @@ open_stages_info = function (){
     show_message("NOT IMPLEMENTED YET !!!")
 }
 #endregion
-
-
 
 #region BOTTOM BAR
 info.bottom_bar = {}
@@ -716,7 +716,7 @@ info.step = function (){
             
             if _on_unit and mouse_check_button_pressed(mb_left){
                 if info.display.selected[i]==false
-                global.save.add_cat(_current_cat.myid)
+                    global.save.add_cat(_current_cat.myid)
             }
             
         }

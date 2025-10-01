@@ -110,7 +110,7 @@ stats.update = function (){
 
     if _has_spdup[0]==true{
         if _has_spdup[2].unlocked==true{
-            _spdup += _has_spdup[1].start_number_improv + _has_spdup[1].improv_number * _has_spdup[2].level
+            _spdup += _has_spdup[1].start_number_improv + (_has_spdup[1].improv_number * _has_spdup[2].level)
         }
     }
     
@@ -121,7 +121,7 @@ stats.update = function (){
     
     if _has_atkspdup[0]==true{
         if _has_atkspdup[2].unlocked==true{
-            _atkspdup += _has_atkspdup[1].start_time_improv + _has_atkspdup[1].time_improv * _has_atkspdup[2].level
+            _atkspdup += _has_atkspdup[1].start_time_improv + (_has_atkspdup[1].time_improv * _has_atkspdup[2].level)
         }
     }
     
@@ -132,7 +132,7 @@ stats.update = function (){
     
     if _has_recovery_down[0]==true{
         if _has_recovery_down[2].unlocked==true{
-            _rec_down += _has_recovery_down[1].start_time_improv + _has_recovery_down[1].time_improv * _has_atkup[2].level
+            _rec_down += _has_recovery_down[1].start_time_improv + (_has_recovery_down[1].time_improv * _has_recovery_down[2].level)
         }
     }
     
@@ -954,15 +954,18 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     //+to stats!
                     var _mytalent_data = _has_talent[1]
                     
+                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
-                        var _stat_num = _chance+_mytalent_data.chance_improv*_has_talent[2].level
-                        _chance_improv_max_fix = _chance
+                        var _stat_num = _mytalent_data.chance_improv*_has_talent[2].level
                         _chance+=_stat_num
                     }
+                    
+                    _time_improv_max_fix = _time
                     if variable_struct_exists(_mytalent_data,"time_improv"){
-                        var _stat_num = _time+_mytalent_data.time_improv*_has_talent[2].level
-                        _time_improv_max_fix = _time
+                        var _stat_num = _mytalent_data.time_improv*_has_talent[2].level
+                        show_message(_time_improv_max_fix)
                         _time+=_stat_num
+                        show_message(_time_improv_max_fix)
                     }
                 }
                 
@@ -2980,7 +2983,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if variable_struct_exists(_mydata,"time_improv")
                 _desc += $"\n+{_mydata.time_improv}f/{_mydata.time_improv/FRAMERATE}s per level"
             if variable_struct_exists(_mydata,"time_improv_max")
-                _desc += $"\n+{_mydata.time_improv_max+_time_improv_max_fix}f/{(_mydata.time_improv_max+_time_improv_max_fix)/FRAMERATE}s per level"
+                _desc += $"\n+{_mydata.time_improv_max+_time_improv_max_fix}f/{(_mydata.time_improv_max+_time_improv_max_fix)/FRAMERATE}s max"
             if variable_struct_exists(_mydata,"improv")
                 _desc += $"\n+{_mydata.improv}% per level"
             if variable_struct_exists(_mydata,"improv_max")
@@ -3375,6 +3378,7 @@ abiltiy_render.step = function (){
                 
                 var _stat_modyfying = false
                 switch(stats.talents[_talent]){
+                    case ABILITY.RECOVER_DOWN: _stat_modyfying = true break;
                     case ABILITY.ATK_SPEED_UP: _stat_modyfying = true break;
                     case ABILITY.ATK_UP: _stat_modyfying = true break;
                     case ABILITY.COST_DOWN: _stat_modyfying = true break;
