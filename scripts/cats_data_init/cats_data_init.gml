@@ -727,6 +727,46 @@ data.cats.zombie_cat = {
         }
     }
 }
+    
+data.cats.samurai_cat = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_samurai_cat,spr_samurai_cat_b,spr_samurai_cat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"samurai_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[540,540,540],
+        dmg:[130,130,130],
+        atk_spd:[57,57,57],
+        range:[150,160,160],
+        spd:[7,7,7],
+        knockback:[3,3,3],
+        recharge: [300,300,300],
+        cost: [350,350,350],
+        targetings:[ [],[],[TARGETING.AKU,TARGETING.ALIEN,TARGETING.ANGEL,TARGETING.BLACK,TARGETING.FLOATING,TARGETING.RED,TARGETING.RELIC,TARGETING.TRAITELSS,TARGETING.ZOMBIE] ],
+        attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+        abilities:[ [],[],[] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[EFFECT.SLOW] ],
+        effects_data:[ [{}],[{}],[{ chance:10, time:60 }] ],
+        talents:{
+            abilities:[ABILITY.BARRIER_BREAKER,EFFECT.SLOW,ABILITY.RESIST_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[
+{ total_cost:165, chance:2, chance_improv:2, chance_improv_max:18 },
+{ total_cost:165, chance:10, time:0, weaken:50,  time_improv:4, time_improv_max:36},
+{ total_cost:125, improv:6, start_improv:16, improv_max:54 },
+{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },
+{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }
+            ]
+        }
+    }
+}
         
 #endregion
     

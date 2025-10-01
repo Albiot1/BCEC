@@ -91,7 +91,7 @@ global.all_cats = [
     data.cats.cat, data.cats.tank_cat, data.cats.axe_cat, data.cats.gross_cat, data.cats.bird_cat, data.cats.fish_cat, data.cats.lizard_cat, data.cats.titan_cat, data.cats.superfeline, 
     //special cats
     data.cats.actress_cat, data.cats.kung_fu_cat, data.cats.mr, data.cats.bondage_cat, data.cats.dom_cat, data.cats.cats_in_a_box, data.cats.panties_cat, data.cats.moneko,
-    data.cats.ninja_cat, data.cats.zombie_cat
+    data.cats.ninja_cat, data.cats.zombie_cat, data.cats.samurai_cat
     ]
 global.selected_cat = -1
 
