@@ -516,7 +516,7 @@ data.cats.dom_cat = {
         talents:{
             abilities:[ABILITY.WAVE,ABILITY.IMMUNE_WEAKEN,ABILITY.COST_DOWN,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{chance:5, lvl:6, chance_improv:1.112, chance_improv_max:9.99, total_cost:165},{ total_cost:75 },{ total_cost:125, start_number_improv:20, improv_number:20, improv_number_max: 180 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+            data:[{chance:5, lvl:6, chance_improv:1.112, chance_improv_max:9.99, total_cost:165},{ total_cost:75 },{ total_cost:125, start_number_improv:20, number_improv:20, number_improv_max: 180 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
         }
     }
 }
@@ -561,7 +561,7 @@ data.cats.panties_cat = {
     rarity: RARITY.SPECIAL,
     spr:[ spr_panties_cat,spr_panties_cat_b,spr_panties_cat_c ],
     evolutions:{
-        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
         value:[-1,-1,"panties_awakens"],
         level:[0,0,20],
         xp:[0,0,0]
@@ -684,7 +684,7 @@ data.cats.ninja_cat = {
         abilities_data:[ [{}],[{}],[{}] ],
         effects:[ [EFFECT.STRONG],[EFFECT.STRONG],[EFFECT.STRONG] ],
         effects_data:[ [{}],[{}],[{}] ],
-        talents:{ abilities:[TARGETING.BLACK,EFFECT.DODGE,ABILITY.SPD_UP,ABILITY.HP_UP,ABILITY.ATK_UP],talent_type:[0,0,0,0,0],data:[{ total_cost:75 },{ total_cost:165, chance:20, time:20, time_improv:4, time_improv_max:40 },{ total_cost:125, improv_number:1 ,improv_number_max:9 , start_number_improv:1  },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]}
+        talents:{ abilities:[TARGETING.BLACK,EFFECT.DODGE,ABILITY.SPD_UP,ABILITY.HP_UP,ABILITY.ATK_UP],talent_type:[0,0,0,0,0],data:[{ total_cost:75 },{ total_cost:165, chance:20, time:20, time_improv:4, time_improv_max:40 },{ total_cost:125, number_improv:1 ,number_improv_max:9 , start_number_improv:1  },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]}
     }
 }
     
@@ -755,19 +755,189 @@ data.cats.samurai_cat = {
         effects:[ [],[],[EFFECT.SLOW] ],
         effects_data:[ [{}],[{}],[{ chance:10, time:60 }] ],
         talents:{
-            abilities:[ABILITY.BARRIER_BREAKER,EFFECT.SLOW,ABILITY.RESIST_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
+            abilities:[ABILITY.BARRIER_BREAKER,EFFECT.WEAKEN,ABILITY.RESIST_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
+            data:[{ total_cost:165, chance:2, chance_improv:2, chance_improv_max:18 },{ total_cost:165, chance:10, time:24, weaken:50, time_improv:4, time_improv_max:36},{ total_cost:125, improv:6, start_improv:16, improv_max:54 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+        }
+    }
+}
+    
+data.cats.sumo_cat = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_sumo_cat,spr_sumo_cat_b,spr_sumo_cat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"sumo_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[600,600,600],
+        dmg:[9,9,9],
+        atk_spd:[34,34,34],
+        range:[110,110,110],
+        spd:[8,8,24],
+        knockback:[1,1,1],
+        recharge: [270,270,270],
+        cost: [200,200,200],
+        targetings:[ [],[],[] ],
+        multi_hit_dmgs:[ [3,3,3],[3,3,3],[3,3,3] ],
+        attack_type:[ [ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT] ],
+        abilities:[ [],[],[ABILITY.IMMUNE_KNOCKBACK] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{
+            abilities:[ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_TOXIC,ABILITY.IMMUNE_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[{total_cost:75},{total_cost:75},{total_cost:75},{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+        }
+    }
+}
+    
+data.cats.boogie_cat = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_boogie_cat,spr_boogie_cat_b,spr_boogie_cat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"boogie_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[200,200,200],
+        dmg:[20,20,20],
+        atk_spd:[43,43,43],
+        range:[140,140,140],
+        spd:[6,6,6],
+        knockback:[3,3,3],
+        recharge: [240,240,240],
+        cost: [50,50,50],
+        targetings:[ [],[],[TARGETING.AKU,TARGETING.ALIEN,TARGETING.ANGEL,TARGETING.BLACK,TARGETING.FLOATING,TARGETING.RED,TARGETING.RELIC,TARGETING.TRAITELSS,TARGETING.ZOMBIE] ],
+        attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+        abilities:[ [],[],[] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[EFFECT.KNOCKBACK] ],
+        effects_data:[ [{}],[{}],[{chance:5}] ],
+        talents:{
+            abilities:[EFFECT.KNOCKBACK,ABILITY.IMMUNE_SURGE,ABILITY.RESIST_FREEZE,ABILITY.RESIST_SLOW,ABILITY.HP_UP],
+            talent_type:[0,0,0,0,0],
+            data:[{total_cost:125,chance:0,chance_improv:1.112,chance_improv_max:10,start_chance_improv:5},{total_cost:75},{total_cost:125,improv:6,start_improv:16,improv_max:54},{total_cost:125,improv:6,start_improv:16,improv_max:54},{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+        }
+    }
+}
+    
+data.cats.skirt_cat = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_skirt_cat,spr_skirt_cat_b,spr_skirt_cat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"skirt_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[400,400,400],
+        dmg:[100,100,100],
+        atk_spd:[125,125,85],
+        range:[350,350,350],
+        spd:[10,10,10],
+        knockback:[3,3,3],
+        recharge: [330,330,330],
+        cost: [350,350,350],
+        targetings:[ [],[],[] ],
+        attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+        abilities:[ [],[],[ABILITY.BARRIER_BREAKER] ],
+        abilities_data:[ [{}],[{}],[{chance:30}] ],
+        effects:[ [],[],[] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{
+            abilities:[ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_WARP,EFFECT.WEAKEN,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[{total_cost:125, start_chance_improv:2 , chance_improv:2, chance_improv_max:18},{total_cost:75},{chance:30 ,weaken:50, time:39, time_improv:9, time_improv_max:81, add_targeting:TARGETING.ALIEN},{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+        }
+    }
+}
+    
+data.cats.valkyrie_cat = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_valkyrie_cat,spr_valkyrie_cat_b,spr_valkyrie_cat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.WIN_CHAPTER],
+        value:[-1,-1,"eoc_2"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[1400,1400,1400],
+        dmg:[500,500,720],
+        atk_spd:[129,129,129],
+        range:[350,350,350],
+        spd:[20,20,20],
+        knockback:[2,2,2],
+        recharge: [2200,2200,2200],
+        cost: [2000,2000,2000],
+        targetings:[ [],[],[TARGETING.AKU,TARGETING.ALIEN,TARGETING.ANGEL,TARGETING.BLACK,TARGETING.FLOATING,TARGETING.RED,TARGETING.RELIC,TARGETING.TRAITELSS,TARGETING.ZOMBIE] ],
+        attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA] ],
+        abilities:[ [],[],[] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[EFFECT.FREEZE] ],
+        effects_data:[ [{}],[{}],[{chance:35,time:60}] ],
+        talents:{
+            abilities:[ABILITY.STRENGTHEN,EFFECT.FREEZE,ABILITY.COST_DOWN,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[{ total_cost:235, threshold: 50, amount:10, start_improv:10, improv:10, improv_max:90 },{ total_cost:175, start_time_improv:12, time_improv:2, time_improv_max:18 },{ total_cost:175, number_improv: 50, number_improv_max:450, start_number_improv:50 },{ total_cost:175, start_improv:8, improv:8, improv_max: 72 },{ total_cost:175, start_improv:8, improv:8, improv_max: 72 }]
+        }
+    }
+}
+       
+data.cats.bahamut_cat = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.WIN_CHAPTER],
+        value:[-1,-1,"eoc_3"],
+        level:[0,0,0],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[1500,1500,1500],
+        dmg:[5000,5000,5500],
+        multi_hit_dmgs:[0,0,[5000,200,300]],
+        atk_spd:[600,600,93],
+        range:[450,450,200],
+        spd:[6,6,60],
+        knockback:[3,3,6],
+        recharge: [4800,4800,3200],
+        cost: [3000,3000,3000],
+        targetings:[ [],[],[] ],
+        attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.MULTI_HIT] ],
+        abilities:[ [],[],[] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{
+            abilities:[ABILITY.EXPLOSION,ABILITY.SPD_UP,ABILITY.IMMUNE_SLOW],
+            talent_type:[0,0,0],
             data:[
-{ total_cost:165, chance:2, chance_improv:2, chance_improv_max:18 },
-{ total_cost:165, chance:10, time:0, weaken:50,  time_improv:4, time_improv_max:36},
-{ total_cost:125, improv:6, start_improv:16, improv_max:54 },
-{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },
-{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }
+                { total_cost:235 },
+                { total_cost:175 },
+                { total_cost:100 }
             ]
         }
     }
 }
-        
+     
 #endregion
     
     

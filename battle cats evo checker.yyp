@@ -2,10 +2,13 @@
   "$GMProject":"v1",
   "%Name":"battle cats evo checker",
   "AudioGroups":[
-    {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
   "configs":{
-    "children":[],
+    "children":[
+      {"children":[],"name":"DEBUG",},
+      {"children":[],"name":"NO_SAVE",},
+    ],
     "name":"Default",
   },
   "defaultScriptType":1,
@@ -54,7 +57,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.13.1.193",
+    "IDEVersion":"2024.14.0.207",
   },
   "name":"battle cats evo checker",
   "resources":[
@@ -94,6 +97,7 @@
     {"id":{"name":"set_resolution","path":"scripts/set_resolution/set_resolution.yy",},},
     {"id":{"name":"settings_load","path":"scripts/settings_load/settings_load.yy",},},
     {"id":{"name":"settings_save","path":"scripts/settings_save/settings_save.yy",},},
+    {"id":{"name":"stage_data_init","path":"scripts/stage_data_init/stage_data_init.yy",},},
     {"id":{"name":"stats_format","path":"scripts/stats_format/stats_format.yy",},},
     {"id":{"name":"surface_to_buffer","path":"scripts/surface_to_buffer/surface_to_buffer.yy",},},
     {"id":{"name":"targeting_to_string","path":"scripts/targeting_to_string/targeting_to_string.yy",},},

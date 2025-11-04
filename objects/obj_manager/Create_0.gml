@@ -9,7 +9,7 @@ global.translation = load_json("data\\translation_en.json")
 
 
 #region data init
-enum EVO_TYPE {NONE,STAGE,FRUITS}
+enum EVO_TYPE {NONE,STAGE,FRUITS,WIN_CHAPTER}
 enum RARITY {NORMAL,SPECIAL,RARE,SUPER_RARE,UBER_SUPER_RARE,LEGEND_RARE}
 enum TARGETING {RED = 0,FLOATING,BLACK,METAL,ANGEL,ALIEN,ZOMBIE,RELIC,AKU,TRAITELSS}
 enum ATTACKS {SINGLE = 10,AREA,LONG,OMNI,MULTI_HIT}
@@ -54,6 +54,7 @@ data.items= {
 
 cats_data_init()
 cats_combos_init()
+stage_data_init()
 
 data.enemies = {}
 
@@ -78,7 +79,7 @@ data.enemies.doge = {
         effects_data:[ [{},{time: 30,chance: 20, slow:50}],[{}] ],
     },
 }
-#endregion
+#endregion 
 
 //stat = stats.life * (1+(global.save_settings.cat_shield/2))
 enum M_STATES {ADDCATS,NORMAL,SPECIAL,RARE,UBER_RARE,LEGEND,ALL}
@@ -91,7 +92,7 @@ global.all_cats = [
     data.cats.cat, data.cats.tank_cat, data.cats.axe_cat, data.cats.gross_cat, data.cats.bird_cat, data.cats.fish_cat, data.cats.lizard_cat, data.cats.titan_cat, data.cats.superfeline, 
     //special cats
     data.cats.actress_cat, data.cats.kung_fu_cat, data.cats.mr, data.cats.bondage_cat, data.cats.dom_cat, data.cats.cats_in_a_box, data.cats.panties_cat, data.cats.moneko,
-    data.cats.ninja_cat, data.cats.zombie_cat, data.cats.samurai_cat
+    data.cats.ninja_cat, data.cats.zombie_cat, data.cats.samurai_cat, data.cats.sumo_cat, data.cats.boogie_cat, data.cats.skirt_cat, data.cats.valkyrie_cat
     ]
 global.selected_cat = -1
 
@@ -500,20 +501,33 @@ info.get_evolution_requirements = function (){
     info.progress.stages.number = 0
     
     var _cats_num = array_length(global.current_cats)
-    
+    show_debug_message(global.current_cats)
     for(var i=0;i<_cats_num;i++){
         var _data = global.current_cats[i]
         var _evo_num = array_length(_data.evolutions.type)
+        var _true_form = _data.true_form
+        var _ultra_form = false
+        
+        if variable_struct_exists(_data,"ultra_form"){
+            _ultra_form = _data.ultra_form
+        }
         
         for(var e=0;e<_evo_num;e++){
             var _evo_type = _data.evolutions.type[e]
             var _evo_value = _data.evolutions.value[e]
+            
+            if e == 2 and _true_form == true
+                continue
+            if e == 3 and _ultra_form == true
+                continue
             
             switch (_evo_type) {
             	case EVO_TYPE.NONE: break;
                 case EVO_TYPE.FRUITS: 
                     var _fruit_length = array_length(_evo_value)
                     for(var f=0;f<_fruit_length;f++){
+                        
+                        
                         var _fruit_type = _evo_value[f][0]
                         var _fruit_num = _evo_value[f][1]
                         //show_debug_message($"FRUIT:{_fruit_type},C:{_fruit_num}")

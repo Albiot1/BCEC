@@ -59,6 +59,9 @@
 	"ninja_cat_0":"Ninja Cat",
 	"ninja_cat_1":"Ninja Frog Cat",
 	"ninja_cat_2":"Flying Ninja Cat",
+	"sumo_cat_0":"Sumo Cat",
+	"sumo_cat_1":"Madame Sumo",
+	"sumo_cat_2":"Riceball Cat",
 	"zombie_cat_0":"Zombie Cat",
 	"zombie_cat_1":"Devil Cat",
 	"zombie_cat_2":"Skelecat",
@@ -114,7 +117,24 @@
 	"ninja_awakens_main":"Ninja Awakens!",
 	"zombie_awakens_main":"Zombie Awakens!",
 	"samurai_awakens_main":"Samurai Awakens!",
+	"sumo_awakens_main":"Sumo Awakens!",
+	"boogie_awakens_main":"Boogie Awakens!",
+	"skirt_awakens_main":"Skirt Awakens!",
 	
+	"chapter_itf_1":"Into the Future Chapter 1",
+	"chapter_itf_2":"Into the Future Chapter 2",
+	"chapter_itf_3":"Into the Future Chapter 3",
+	
+	"chapter_eoc_1":"Empire of Cats Chapter 1",
+	"chapter_eoc_2":"Empire of Cats Chapter 2",
+	"chapter_eoc_3":"Empire of Cats Chapter 3",
+	
+	"chapter_cotc_1":"Cats of the Cosmos 1",
+	"chapter_cotc_2":"Cats of the Cosmos 2",
+	"chapter_cotc_3":"Cats of the Cosmos 3",
+	
+	"jurney_to_talent_valkyrie_cat":"Jurney to Talent",
+	"jurney_to_talent_bahamut_cat":"Jurney to Talent",
 	
 	"combo_attack_name":"Unit Attack Up",
 	"combo_attack_1_stat":"Attack +10%",

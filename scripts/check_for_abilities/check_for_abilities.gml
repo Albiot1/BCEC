@@ -49,7 +49,7 @@ function has_effect(_effect,_return_stats = false){
     return _found
 }
 
-function has_targeting(_targeting){
+function has_targeting(_targeting,_check_talent = true){
     var _found = false
     var _length = array_length(stats.targetings)
     for (var i = 0; i < _length; i++) {
@@ -57,18 +57,20 @@ function has_targeting(_targeting){
             _found = true
     }
     
-    var _length1 = array_length(stats.talents)
-    for (var i = 0; i < _length1; i++) {
-        if mydata.talent_unlocked[i] == true{
-            //if talent is a targeting talent !!
-        	if stats.talents[i] == _targeting
-                _found = true
-            /*
-            if variable_struct_exists(stats.talent_data[i],"add_targeting"){
-                if stats.talent_data[i].add_targeting == _targeting
+    if _check_talent == true{
+        var _length1 = array_length(stats.talents)
+        for (var i = 0; i < _length1; i++) {
+            if mydata.talent_unlocked[i] == true{
+                //if talent is a targeting talent !!
+            	if stats.talents[i] == _targeting
                     _found = true
+                /*
+                if variable_struct_exists(stats.talent_data[i],"add_targeting"){
+                    if stats.talent_data[i].add_targeting == _targeting
+                        _found = true
+                }
+                */
             }
-            */
         }
     }
     

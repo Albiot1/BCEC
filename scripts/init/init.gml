@@ -2,8 +2,10 @@
 #macro COLOR_LEVEL  #FEC601
 #macro DATA_SAVING true 
 #macro DATA_LOADING true 
+#macro NO_SAVE:DATA_LOADING false 
 #macro FRAMERATE 30 
 #macro DEBUG_STAT_RECTANGLES false
+#macro DEBUG:DEBUG_STAT_RECTANGLES true 
 #macro GAME_VERSION 14.5 
 
 draw_set_font(fnt_general)

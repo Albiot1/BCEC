@@ -50,6 +50,10 @@ stats.update = function (){
     var _lvl = mydata.level + mydata.level_plus
     var _form = mydata.form_selected
     var _rarity = mydata.rarity
+    var _check_talent = false
+    
+    if _form>=2
+        _check_talent = true
     
     switch (_rarity) {
         case RARITY.NORMAL: stats.current_rarity = "Normal" break;
@@ -86,13 +90,13 @@ stats.update = function (){
     var _has_hpup = has_talent(ABILITY.HP_UP,true,true)
     var _has_atkup = has_talent(ABILITY.ATK_UP,true,true)
     
-    if _has_hpup[0]==true{
+    if _has_hpup[0]==true and _check_talent==true{
         if _has_hpup[2].unlocked==true{
             _hpup += (_has_hpup[1].start_improv + _has_hpup[1].improv * _has_hpup[2].level)/100
         }
     }
     
-    if _has_atkup[0]==true{
+    if _has_atkup[0]==true and _check_talent==true{
         if _has_atkup[2].unlocked==true{
             _atkup += (_has_atkup[1].start_improv + _has_atkup[1].improv * _has_atkup[2].level)/100
         }
@@ -108,9 +112,9 @@ stats.update = function (){
     var _spdup = 0
     var _has_spdup = has_talent(ABILITY.SPD_UP,true,true)
 
-    if _has_spdup[0]==true{
+    if _has_spdup[0]==true and _check_talent==true{
         if _has_spdup[2].unlocked==true{
-            _spdup += _has_spdup[1].start_number_improv + (_has_spdup[1].improv_number * _has_spdup[2].level)
+            _spdup += _has_spdup[1].start_number_improv + (_has_spdup[1].number_improv * _has_spdup[2].level)
         }
     }
     
@@ -119,7 +123,7 @@ stats.update = function (){
     var _atkspdup = 0
     var _has_atkspdup = has_talent(ABILITY.ATK_SPEED_UP,true,true)
     
-    if _has_atkspdup[0]==true{
+    if _has_atkspdup[0]==true and _check_talent==true{
         if _has_atkspdup[2].unlocked==true{
             _atkspdup += _has_atkspdup[1].start_time_improv + (_has_atkspdup[1].time_improv * _has_atkspdup[2].level)
         }
@@ -130,7 +134,7 @@ stats.update = function (){
     var _rec_down = 0
     var _has_recovery_down = has_talent(ABILITY.RECOVER_DOWN,true,true)
     
-    if _has_recovery_down[0]==true{
+    if _has_recovery_down[0]==true and _check_talent==true{
         if _has_recovery_down[2].unlocked==true{
             _rec_down += _has_recovery_down[1].start_time_improv + (_has_recovery_down[1].time_improv * _has_recovery_down[2].level)
         }
@@ -145,9 +149,9 @@ stats.update = function (){
     var _price_down = 0
     var _has_price_down = has_talent(ABILITY.COST_DOWN,true,true)
     
-    if _has_price_down[0]==true{
+    if _has_price_down[0]==true and _check_talent==true{
         if _has_price_down[2].unlocked==true{
-            _price_down += _has_price_down[1].start_number_improv + _has_price_down[1].improv_number * _has_price_down[2].level
+            _price_down += _has_price_down[1].start_number_improv + _has_price_down[1].number_improv * _has_price_down[2].level
         }
     }
     
@@ -194,7 +198,7 @@ stats.update = function (){
         if array_contains(stats.targetings,_targ_list[i])
             continue;
         
-    	if has_targeting(_targ_list[i]){
+    	if has_targeting(_targ_list[i],_check_talent){
             array_push(stats.targetings,_targ_list[i])
         }
     }
@@ -242,9 +246,9 @@ cat_render.update = function (){
     draw_clear_alpha(c_white,0)
     if DEBUG_STAT_RECTANGLES
         draw_rectangle_color(0,0,cat_render.size[0],cat_render.size[1],c_red,c_red,c_red,c_red,0)
-    
+
     var _middle = cat_render.size[0]/2
-    
+
     draw_set_halign(fa_center)
     draw_set_valign(fa_middle)
     draw_text_outline(_middle,16,c_black,c_white,stats.current_rarity)
@@ -749,7 +753,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
     var _chance_improv_max_fix = 0
     var _time_improv_max_fix = 0
     var _improv_max_fix = 0
-    var _improv_number_max_fix = 0
+    var _number_improv_max_fix = 0
     
     switch (_type) {
     	default: 
@@ -881,7 +885,6 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _txt = "[MULTI HIT]"
             _desc = "Attacks are split into mutliple one's with smaller damage per hit."
         break;
-        
         case EFFECT.STRONG:
             _icon = spr_strong_against
             _txt = "[STRONG AGAINST]"
@@ -933,7 +936,6 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         
         
         break;
-        
         case EFFECT.WEAKEN:
             _icon = spr_weaken
             _txt = "[WEAKEN]"
@@ -1424,7 +1426,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     }
                 }
                 
-                _desc += $"{_chance}% chance to knockback "+_knockback_types+"."
+                _desc += $"{floor(_chance)}% chance to knockback"+_knockback_types+"."
                 
             }
         
@@ -1438,7 +1440,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if variable_struct_exists(_mydata,"chance_improv"){
                     var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
                     _chance_improv_max_fix = _mydata.start_chance_improv
-                    _desc = $"\n+{_stat_num}% chance to knockback the enemy."
+                    _desc = $"\n+{floor(_stat_num)}% chance to knockback the enemy."
                 }
                 
             }
@@ -1870,6 +1872,10 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         var _stat_num = _mytalent_data.improv*_has_talent[2].level
                         _percent+=_stat_num
                     }
+                    
+                    if stats.multi_hit == true and variable_struct_exists(_mydata,"on_x_hit"){
+                        _desc += $"\neffect applies only on {number_with_ending(_mydata.on_x_hit)} hit"
+                    }
                 }
                 
                 if (_has_talent[0] and !_is_talent){
@@ -2126,7 +2132,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         
         case ABILITY.COUNTER_SURGE:
             
-            _icon = spr_counter_surge    
+            _icon = spr_counter_surge
             _txt = "[COUNTER SURGE]"
             _desc = "When struck by a Surge Attack from an enemy, strikes back with a Surge Attack of its own.\n\nSurge type, level and spawn area are inherited from the attack that struck the unit with this ability.\ndamage and secondary effects are inherited from the unit though."
         
@@ -2499,10 +2505,10 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _icon = spr_ability_speed_up
             _txt = "[MOVE SPEED UP]"
         
-            var _perc = _mydata.start_number_improv+_mydata.improv_number*_talent_data.level
+            var _perc = _mydata.start_number_improv+_mydata.number_improv*_talent_data.level
             _desc = $"Increases unit's move speed by a set amount.\n\nMoevement speed increased by {_perc}."
         
-            _improv_number_max_fix = _mydata.start_number_improv
+            _number_improv_max_fix = _mydata.start_number_improv
             
         break;
         
@@ -2512,10 +2518,10 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _txt = "[COST DOWN]"
             _numtype = "$"
         
-            var _perc =  _mydata.start_number_improv+_mydata.improv_number*_talent_data.level
+            var _perc =  _mydata.start_number_improv+_mydata.number_improv*_talent_data.level
             _desc = $"Lowers the cost of unit by a set amount.\n\nCost reduced by {number_format_selected(_perc)}$/{number_format_selected(_perc*1.5)}$/{number_format_selected(_perc*2)}$."
         
-            _improv_number_max_fix = _mydata.start_number_improv
+            _number_improv_max_fix = _mydata.start_number_improv
         
         break;
         
@@ -3147,10 +3153,10 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 _desc += $"\n+{_mydata.improv}% per level"
             if variable_struct_exists(_mydata,"improv_max")
                 _desc += $"\n+{_mydata.improv_max+_improv_max_fix}% max"
-            if variable_struct_exists(_mydata,"improv_number")
-                _desc += $"\n+{_mydata.improv_number}{_numtype} per level"
-            if variable_struct_exists(_mydata,"improv_number_max")
-                _desc += $"\n+{_mydata.improv_number_max+_improv_number_max_fix}{_numtype} max"
+            if variable_struct_exists(_mydata,"number_improv")
+                _desc += $"\n+{_mydata.number_improv}{_numtype} per level"
+            if variable_struct_exists(_mydata,"number_improv_max")
+                _desc += $"\n+{_mydata.number_improv_max+_number_improv_max_fix}{_numtype} max"
             
             if variable_struct_exists(_mydata,"total_cost")
                 _desc += $"\nTotal cost: {_mydata.total_cost} NP"
@@ -3161,7 +3167,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         else {
         	_desc +="\n\n[PRESS RMB TO LOCK]"
             
-            if variable_struct_exists(_mydata,"improv_number") or variable_struct_exists(_mydata,"chance_improv") or variable_struct_exists(_mydata,"time_improv") or variable_struct_exists(_mydata,"improv"){
+            if variable_struct_exists(_mydata,"number_improv") or variable_struct_exists(_mydata,"chance_improv") or variable_struct_exists(_mydata,"time_improv") or variable_struct_exists(_mydata,"improv"){
                 _desc+="\n[SCROLL TO INCR/DECR LEVEL]\n"+"LEVEL:"+string(_talent_data.level+1)
             }
             
@@ -3382,124 +3388,127 @@ abiltiy_render.update = function (){
     
     _x = 24
     
-    _length = array_length(stats.talents)
+    if mydata.form_selected>=2{
+        
+        _length = array_length(stats.talents)
+        
+        if _length>0{
+        draw_set_valign(fa_middle) draw_set_font(fnt_big)
+        draw_text_outline(_x,_y,c_black,COLOR_LEVEL,"TALENTS:")
+        _x += string_width("TALENTS:")+20
+        draw_set_valign(0) draw_set_font(fnt_general)
+        }
     
-    if _length>0{
-    draw_set_valign(fa_middle) draw_set_font(fnt_big)
-    draw_text_outline(_x,_y,c_black,COLOR_LEVEL,"TALENTS:")
-    _x += string_width("TALENTS:")+20
-    draw_set_valign(0) draw_set_font(fnt_general)
-    }
+        _column = 0
+        _row = 0
+        
+        var _talents_unlocked = mydata.talent_unlocked
+        
+        for (var i = 0; i < _length; i++) {
+            var _cicon = -1
+            switch (stats.talents[i]) {
+            	case EFFECT.WEAKEN: _cicon = spr_weaken break;
+                case EFFECT.FREEZE: _cicon = spr_freeze break;
+                case EFFECT.SLOW: _cicon = spr_slow break;
+                case EFFECT.TARGET_ONLY: _cicon = spr_attack_only break;
+                case EFFECT.STRONG: _cicon = spr_strong_against break;
+                case EFFECT.RESISTANT: _cicon = spr_resistant break;
+                case EFFECT.ULTRA_TOUGH: _cicon = spr_insanly_tough break;
+                case EFFECT.MASSIVE_DMG: _cicon = spr_massive_damage break;
+                case EFFECT.INSANE_DMG: _cicon = spr_insane_damage break;
+                case EFFECT.KNOCKBACK: _cicon = spr_knockback break;
+                case EFFECT.WARP: _cicon = spr_warp break;
+                case EFFECT.CURSE: _cicon = spr_curse break;
+                case EFFECT.DODGE: _cicon = spr_dodge_attack break;
+                
+            	case ABILITY.BARRIER_BREAKER: _cicon = spr_barrier_breaker break;
+                case ABILITY.BASE_DESTROYER: _cicon = spr_base_destroyer break;
+                case ABILITY.BEHEMOT_SLAYER: _cicon = spr_behemot_slayer break;
+                case ABILITY.COLOSSUS_SLAYER: _cicon = spr_colossus_slayer break;
+                case ABILITY.CONJURE: _cicon = spr_conjure break;
+                case ABILITY.COUNTER_SURGE: _cicon = spr_counter_surge break;
+                case ABILITY.CRITICAL: _cicon = spr_critical break;
+                case ABILITY.EVA_KILLER: _cicon = spr_eva_angel_killer break;
+                case ABILITY.EXPLOSION: _cicon = spr_explosion break;
+                case ABILITY.EXTRA_MONEY: _cicon = spr_extra_money break;
+                case ABILITY.IMMUNE_CURSE: _cicon = spr_immune_to_curse break;
+                case ABILITY.IMMUNE_EXPLOSION: _cicon = spr_immune_to_explosions break;
+                case ABILITY.IMMUNE_FREEZE: _cicon = spr_immune_to_freeze break;
+                case ABILITY.IMMUNE_KNOCKBACK: _cicon = spr_immune_to_knockback break;
+                case ABILITY.IMMUNE_SLOW: _cicon = spr_immune_to_slow break;
+                case ABILITY.IMMUNE_SURGE: _cicon = spr_immune_to_surge break;
+                case ABILITY.IMMUNE_TOXIC: _cicon = spr_immune_to_toxic break;
+                case ABILITY.IMMUNE_WARP: _cicon = spr_immune_to_warp break;
+                case ABILITY.IMMUNE_WAVE: _cicon = spr_immune_to_waves break;
+                case ABILITY.IMMUNE_WEAKEN: _cicon = spr_immune_to_weaken break;
+                case ABILITY.METAL: _cicon = spr_metal break;
+                case ABILITY.METAL_KILLER: _cicon = spr_metal_killer break;
+                case ABILITY.MINI_SURGE: _cicon = spr_mini_surge break;
+                case ABILITY.MINI_WAVE: _cicon = spr_mini_wave break;
+                case ABILITY.SAGE_SLAYER: _cicon = spr_sage_slayer break;
+                case ABILITY.SAVAGE_BLOW: _cicon = spr_savage_blow break;
+                case ABILITY.SHIELD_BREAKER: _cicon = spr_shield_piercing break;
+                case ABILITY.SOULSTRIKE: _cicon = spr_soulstrike break;
+                case ABILITY.STOP_WAVES: _cicon = spr_wave_shield break;
+                case ABILITY.STRENGTHEN: _cicon = spr_strengthen break;
+                case ABILITY.SURGE: _cicon = spr_surge_attack break;
+                case ABILITY.SURVIVE: _cicon = spr_survive break;
+                case ABILITY.WAVE: _cicon = spr_wave_attack break;
+                case ABILITY.WITCH_KILLER: _cicon = spr_witch_killer break;
+                case ABILITY.ZOMBIE_KILLER: _cicon = spr_zombie_killer break;
+                case ABILITY.BOSS_SHOCKWAVE_IMMUNITY: _cicon = spr_boss_wave_immune break;
+                
+                case ABILITY.ATK_UP: _cicon = spr_ability_attack_up break;
+                case ABILITY.HP_UP: _cicon = spr_ability_defense_up break;
+                case ABILITY.ATK_SPEED_UP: _cicon = spr_ability_frequency_up break;
+                case ABILITY.COST_DOWN: _cicon = spr_ability_cost_down break;
+                case ABILITY.IMPROVED_KNOCKBACK: _cicon = spr_ability_improved_knockback break;
+                case ABILITY.RECOVER_DOWN: _cicon = spr_ability_recover_speed_up break;
+                case ABILITY.SPD_UP: _cicon = spr_ability_speed_up break;
+                
+                case ABILITY.RESIST_WEAKEN: _cicon = spr_ability_resist_weaken break;
+                case ABILITY.RESIST_FREEZE: _cicon = spr_ability_resist_freeze break;
+                case ABILITY.RESIST_SLOW: _cicon = spr_ability_resist_slow break;
+                case ABILITY.RESIST_KNOCKBACK: _cicon = spr_ability_resist_knockback break;
+                case ABILITY.RESIST_WAVE: _cicon = spr_ability_resist_wave break;
+                case ABILITY.RESIST_SURGE: _cicon = spr_ability_resist_surge break;
+                case ABILITY.RESIST_WARP: _cicon = spr_ability_resist_warp break;
+                case ABILITY.RESIST_CURSE: _cicon = spr_ability_resist_curse break;
+                case ABILITY.RESIST_TOXIC: _cicon = spr_ability_resist_toxic break;
+                
+                case TARGETING.AKU: _cicon = spr_targeting_aku break;
+                case TARGETING.ALIEN: _cicon = spr_targeting_alien break;
+                case TARGETING.ANGEL: _cicon = spr_targeting_angel break;
+                case TARGETING.BLACK: _cicon = spr_targeting_black break;
+                case TARGETING.FLOATING: _cicon = spr_targeting_floating break;
+                case TARGETING.METAL: _cicon = spr_targeting_metal break;
+                case TARGETING.RED: _cicon = spr_targeting_red break;
+                case TARGETING.RELIC: _cicon = spr_targeting_relic break;
+                case TARGETING.TRAITELSS:  _cicon = spr_targeting_traitless break;
+                case TARGETING.ZOMBIE: _cicon = spr_targeting_zombie break;
+                
+            }
     
-    
-    _column = 0
-    _row = 0
-    
-    var _talents_unlocked = mydata.talent_unlocked
-    
-    for (var i = 0; i < _length; i++) {
-        var _cicon = -1
-        switch (stats.talents[i]) {
-        	case EFFECT.WEAKEN: _cicon = spr_weaken break;
-            case EFFECT.FREEZE: _cicon = spr_freeze break;
-            case EFFECT.SLOW: _cicon = spr_slow break;
-            case EFFECT.TARGET_ONLY: _cicon = spr_attack_only break;
-            case EFFECT.STRONG: _cicon = spr_strong_against break;
-            case EFFECT.RESISTANT: _cicon = spr_resistant break;
-            case EFFECT.ULTRA_TOUGH: _cicon = spr_insanly_tough break;
-            case EFFECT.MASSIVE_DMG: _cicon = spr_massive_damage break;
-            case EFFECT.INSANE_DMG: _cicon = spr_insane_damage break;
-            case EFFECT.KNOCKBACK: _cicon = spr_knockback break;
-            case EFFECT.WARP: _cicon = spr_warp break;
-            case EFFECT.CURSE: _cicon = spr_curse break;
-            case EFFECT.DODGE: _cicon = spr_dodge_attack break;
+            abiltiy_render.list.add( [_x+48*_column,_y-20+48*_row],stats.talents[i],stats.talent_types[i]+1,DATA_TYPE.TALENT,i )
             
-        	case ABILITY.BARRIER_BREAKER: _cicon = spr_barrier_breaker break;
-            case ABILITY.BASE_DESTROYER: _cicon = spr_base_destroyer break;
-            case ABILITY.BEHEMOT_SLAYER: _cicon = spr_behemot_slayer break;
-            case ABILITY.COLOSSUS_SLAYER: _cicon = spr_colossus_slayer break;
-            case ABILITY.CONJURE: _cicon = spr_conjure break;
-            case ABILITY.COUNTER_SURGE: _cicon = spr_counter_surge break;
-            case ABILITY.CRITICAL: _cicon = spr_critical break;
-            case ABILITY.EVA_KILLER: _cicon = spr_eva_angel_killer break;
-            case ABILITY.EXPLOSION: _cicon = spr_explosion break;
-            case ABILITY.EXTRA_MONEY: _cicon = spr_extra_money break;
-            case ABILITY.IMMUNE_CURSE: _cicon = spr_immune_to_curse break;
-            case ABILITY.IMMUNE_EXPLOSION: _cicon = spr_immune_to_explosions break;
-            case ABILITY.IMMUNE_FREEZE: _cicon = spr_immune_to_freeze break;
-            case ABILITY.IMMUNE_KNOCKBACK: _cicon = spr_immune_to_knockback break;
-            case ABILITY.IMMUNE_SLOW: _cicon = spr_immune_to_slow break;
-            case ABILITY.IMMUNE_SURGE: _cicon = spr_immune_to_surge break;
-            case ABILITY.IMMUNE_TOXIC: _cicon = spr_immune_to_toxic break;
-            case ABILITY.IMMUNE_WARP: _cicon = spr_immune_to_warp break;
-            case ABILITY.IMMUNE_WAVE: _cicon = spr_immune_to_waves break;
-            case ABILITY.IMMUNE_WEAKEN: _cicon = spr_immune_to_weaken break;
-            case ABILITY.METAL: _cicon = spr_metal break;
-            case ABILITY.METAL_KILLER: _cicon = spr_metal_killer break;
-            case ABILITY.MINI_SURGE: _cicon = spr_mini_surge break;
-            case ABILITY.MINI_WAVE: _cicon = spr_mini_wave break;
-            case ABILITY.SAGE_SLAYER: _cicon = spr_sage_slayer break;
-            case ABILITY.SAVAGE_BLOW: _cicon = spr_savage_blow break;
-            case ABILITY.SHIELD_BREAKER: _cicon = spr_shield_piercing break;
-            case ABILITY.SOULSTRIKE: _cicon = spr_soulstrike break;
-            case ABILITY.STOP_WAVES: _cicon = spr_wave_shield break;
-            case ABILITY.STRENGTHEN: _cicon = spr_strengthen break;
-            case ABILITY.SURGE: _cicon = spr_surge_attack break;
-            case ABILITY.SURVIVE: _cicon = spr_survive break;
-            case ABILITY.WAVE: _cicon = spr_wave_attack break;
-            case ABILITY.WITCH_KILLER: _cicon = spr_witch_killer break;
-            case ABILITY.ZOMBIE_KILLER: _cicon = spr_zombie_killer break;
-            case ABILITY.BOSS_SHOCKWAVE_IMMUNITY: _cicon = spr_boss_wave_immune break;
+        	draw_sprite(_cicon,0,_x+48*_column,_y-20+48*_row)
             
-            case ABILITY.ATK_UP: _cicon = spr_ability_attack_up break;
-            case ABILITY.HP_UP: _cicon = spr_ability_defense_up break;
-            case ABILITY.ATK_SPEED_UP: _cicon = spr_ability_frequency_up break;
-            case ABILITY.COST_DOWN: _cicon = spr_ability_cost_down break;
-            case ABILITY.IMPROVED_KNOCKBACK: _cicon = spr_ability_improved_knockback break;
-            case ABILITY.RECOVER_DOWN: _cicon = spr_ability_recover_speed_up break;
-            case ABILITY.SPD_UP: _cicon = spr_ability_speed_up break;
+            if _talents_unlocked[i]==true{
+                if stats.talent_types[i]==0
+                draw_sprite(spr_talent_frame,0,_x+48*_column,_y-20+48*_row)
+                else if stats.talent_types[i]==1
+                 draw_sprite(spr_ultra_talent_frame,0,_x+48*_column,_y-20+48*_row)   
+            }
             
-            case ABILITY.RESIST_WEAKEN: _cicon = spr_ability_resist_weaken break;
-            case ABILITY.RESIST_FREEZE: _cicon = spr_ability_resist_freeze break;
-            case ABILITY.RESIST_SLOW: _cicon = spr_ability_resist_slow break;
-            case ABILITY.RESIST_KNOCKBACK: _cicon = spr_ability_resist_knockback break;
-            case ABILITY.RESIST_WAVE: _cicon = spr_ability_resist_wave break;
-            case ABILITY.RESIST_SURGE: _cicon = spr_ability_resist_surge break;
-            case ABILITY.RESIST_WARP: _cicon = spr_ability_resist_warp break;
-            case ABILITY.RESIST_CURSE: _cicon = spr_ability_resist_curse break;
-            case ABILITY.RESIST_TOXIC: _cicon = spr_ability_resist_toxic break;
-            
-            case TARGETING.AKU: _cicon = spr_targeting_aku break;
-            case TARGETING.ALIEN: _cicon = spr_targeting_alien break;
-            case TARGETING.ANGEL: _cicon = spr_targeting_angel break;
-            case TARGETING.BLACK: _cicon = spr_targeting_black break;
-            case TARGETING.FLOATING: _cicon = spr_targeting_floating break;
-            case TARGETING.METAL: _cicon = spr_targeting_metal break;
-            case TARGETING.RED: _cicon = spr_targeting_red break;
-            case TARGETING.RELIC: _cicon = spr_targeting_relic break;
-            case TARGETING.TRAITELSS:  _cicon = spr_targeting_traitless break;
-            case TARGETING.ZOMBIE: _cicon = spr_targeting_zombie break;
+            _column++
+            if _x+48*_column+40 > abiltiy_render.size[0]{
+                _column = 0
+                _row ++
+                _x = 16
+            }
             
         }
-
-        abiltiy_render.list.add( [_x+48*_column,_y-20+48*_row],stats.talents[i],stats.talent_types[i]+1,DATA_TYPE.TALENT,i )
-        
-    	draw_sprite(_cicon,0,_x+48*_column,_y-20+48*_row)
-        
-        if _talents_unlocked[i]==true{
-            if stats.talent_types[i]==0
-            draw_sprite(spr_talent_frame,0,_x+48*_column,_y-20+48*_row)
-            else if stats.talent_types[i]==1
-             draw_sprite(spr_ultra_talent_frame,0,_x+48*_column,_y-20+48*_row)   
-        }
-        
-        _column++
-        if _x+48*_column+40 > abiltiy_render.size[0]{
-            _column = 0
-            _row ++
-            _x = 16
-        }
-        
+    
     }
     
     surface_reset_target()
@@ -3571,8 +3580,8 @@ abiltiy_render.step = function (){
                 if variable_struct_exists(_data,"improv"){
                     _max_lvl = _data.improv_max/_data.improv
                 }
-                if variable_struct_exists(_data,"improv_number"){
-                    _max_lvl = _data.improv_number_max/_data.improv_number
+                if variable_struct_exists(_data,"number_improv"){
+                    _max_lvl = _data.number_improv_max/_data.number_improv
                 }
                 
                 var _lvl = mydata.talent_level[_talent]
@@ -3822,6 +3831,43 @@ evolve_render.update = function (){
         var _evolevel = _evodata.level[_form_number-1]
         var _evoxp = _evodata.xp[_form_number-1]
         var _evovalue = _evodata.value[_form_number-1]
+        
+        switch (_evotype) {
+        	case EVO_TYPE.FRUITS:
+                
+                var _fruits = array_length(_evovalue)
+                var _px = evolve_render.size[0]/2 + (_fruits * 32)/2
+                var _py = evolve_render.size[1]/2 - 32
+                
+                for (var i = 0; i < _fruits; i++) {
+                	var _fruit_type = _evovalue[i][0]
+                    var _fruit_sprite = obj_manager.data.items[$ _fruit_type].spr
+                    
+                    var _fruit_number = _evovalue[i][1]
+                    
+                    draw_sprite(_fruit_sprite,0,_px-16,_py-64)
+                    
+                    draw_text_outline(_px+48,_py,c_black,c_white,$"x{_fruit_number}")
+                    
+                    _px-=64
+                }
+                
+            break;
+            case EVO_TYPE.STAGE:
+                align_set(fa_middle,fa_center)
+                var _stage = get_translation(_evovalue+"_main")
+                draw_text_outline(evolve_render.size[0]/2,evolve_render.size[1]/2-16,c_black,c_white,"Get from stage:\n"+_stage)
+                align_reset()
+            break;
+            case EVO_TYPE.WIN_CHAPTER:
+                align_set(fa_middle,fa_center)
+                var _chapter = get_translation("chapter_"+_evovalue)
+                draw_text_outline(evolve_render.size[0]/2,evolve_render.size[1]/2-16,c_black,c_white,"Clear:\n"+_chapter)
+                align_reset()
+            break;
+        }
+        
+        //draw_circle(evolve_render.size[0]/2,evolve_render.size[1]/2,4,1)
         
         if _evoxp > 0{
             var _xp_pos = []
