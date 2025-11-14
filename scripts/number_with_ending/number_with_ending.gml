@@ -4,21 +4,23 @@ function number_with_ending(_value){
         
         var _ret = ""
         var _spacing = " and "
-        if array_length(_value)>2{
+        if array_length(_value)>1{
             _spacing = ","
         }
         
         for (var i = 0; i < array_length(_value); i++) {
         	
-            switch (_value) {
-            	default: _ret += $"{_value}th" break;
-                case 1: _ret += $"{_value}st" break;
-                case 2: _ret += $"{_value}nd" break;
-                case 3: _ret += $"{_value}rd" break;
+            switch (_value[i]) {
+            	default: _ret += $"{_value[i]}th" break;
+                case 1: _ret += $"{_value[i]}st" break;
+                case 2: _ret += $"{_value[i]}nd" break;
+                case 3: _ret += $"{_value[i]}rd" break;
             }
             if i < array_length(_value)-1{
                 _ret+=_spacing
             }
+            
+            return _ret
             
         }
         

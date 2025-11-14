@@ -38,9 +38,6 @@ stats.ultra_form = false
 stats.omni_range = []
 stats.long_dist_range = []
 
-_yshift = 0
-_xshift = -43
-
 stats.update = function (){
     
     stats.multi_hit_dmgs = [0]
@@ -189,6 +186,8 @@ stats.update = function (){
         stats.form_number = 4
         stats.ultra_form = mydata.ultra_form
     }
+    stats.form_number = array_length( mydata.evolutions.type )
+
     
     stats.true_form = mydata.true_form
     
@@ -207,7 +206,7 @@ stats.update = function (){
 
 
 cat_render = {}
-cat_render.pos = [32+51+_xshift,82+_yshift]
+cat_render.pos = [32+51-43,82]
 cat_render.size = [200,602]
 cat_render.surface = -1
 cat_render.buffer = -1
@@ -520,7 +519,7 @@ cat_render.draw = function (){
 }
 
 stats_render = {}
-stats_render.pos = [200+32+51+_xshift,84+_yshift]
+stats_render.pos = [200+32+51-43,84]
 stats_render.size = [250,600]
 stats_render.surface = -1
 stats_render.buffer = -1
@@ -606,7 +605,7 @@ stats_render.draw = function (){
 enum ABILITY_RENDER_TYPE { NORMAL,TALENT,ULTRA_TALENT }
 
 abiltiy_render = {}
-abiltiy_render.pos = [200+32+250+51+_xshift,84+_yshift]
+abiltiy_render.pos = [200+32+250+51-43,84]
 abiltiy_render.size = [750,400]
 abiltiy_render.surface = -1
 abiltiy_render.buffer = -1
@@ -1791,17 +1790,16 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     
                     _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
-                        var _stat_num = _mytalent_data.chance_improv*_has_talent[2].level
-                        _chance+=_stat_num
+                        
+                        if _mytalent_data.chance_improv == _mytalent_data.chance_improv_max{
+                            _chance += _mytalent_data.chance_improv
+                        }
+                        else {
+                            var _stat_num = _mytalent_data.chance_improv*_has_talent[2].level
+                            _chance+=_stat_num
+                        }
+                        
                     }
-                }
-                
-                if (_has_talent[0] and !_is_talent){
-                    
-                    if variable_struct_exists(_has_talent[1],"start_chance_improv"){
-                        _chance += _has_talent[1].start_chance_improv
-                    }
-                    
                 }
                 
                 if variable_struct_exists(_mydata,"on_x_hit") and stats.multi_hit != false{
@@ -1841,7 +1839,15 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 //+x% or +xf of critical etc.
                 if variable_struct_exists(_mydata,"chance_improv"){
                     var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                    _chance_improv_max_fix = _mydata.start_chance_improv
+                    
+                    if _mydata.chance_improv == _mydata.chance_improv_max{
+                        if _talent_data.unlocked == true
+                        _stat_num = _mydata.chance_improv
+                        else
+                        _stat_num = 0
+                    }
+                    
+                    _chance_improv_max_fix = 0//_mydata.start_chance_improv
                     _desc = $"\n+{_stat_num}% chance to deal critical damage."
                 }
                 
@@ -2381,7 +2387,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 _desc+=_info_build
             }
         
-            _desc += $"\n{_dodge_ch}% chance to dodge behemoth attacks for {_dodge_tm}f/{_dodge_tm/FRAMERATE}s"
+            _desc += $"\n\n{_dodge_ch}% chance to dodge behemoth attacks for {_dodge_tm}f/{_dodge_tm/FRAMERATE}s"
         
         break;
         
@@ -3014,12 +3020,12 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         _desc += $"{_chance}% chance to create explosion on {number_with_ending(_mydata.on_x_hit)} hit.\n"
 
                         var _multi_dmgs = stats.multi_hit_dmgs
-                        var _num = array_length(_multi_dmgs)
+                        var _num = array_length(_mydata.on_x_hit)
         
                         var _info_build = "\nMulti hit: \n1st wave: "
                         
                         for (var i = 0; i < _num; i++) {
-                            var _val = _multi_dmgs[i]
+                            var _val = _multi_dmgs[ _mydata.on_x_hit[i]-1 ]
                             _info_build+=$"{number_format_selected(_val)}"
                             if i < _num-1{
                                 _info_build+=","
@@ -3029,7 +3035,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         _info_build += "\n2nd wave: "
                         
                         for (var i = 0; i < _num; i++) {
-                            var _val = _multi_dmgs[i]
+                            var _val = _multi_dmgs[ _mydata.on_x_hit[i]-1 ]
                             _info_build+=$"{number_format_selected(_val*0.7)}"
                             if i < _num-1{
                                 _info_build+=","
@@ -3039,7 +3045,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         _info_build += "\n3rd wave: "
                         
                         for (var i = 0; i < _num; i++) {
-                            var _val = _multi_dmgs[i]
+                            var _val = _multi_dmgs[ _mydata.on_x_hit[i]-1 ]
                             _info_build+=$"{number_format_selected(_val*0.4)}"
                             if i < _num-1{
                                 _info_build+=","
@@ -3050,7 +3056,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         var _info_build_mx = "\nMulti hit max damage: "
                         
                         for (var i = 0; i < _num; i++) {
-                            var _val = _multi_dmgs[i]
+                            var _val = _multi_dmgs[ _mydata.on_x_hit[i]-1 ]
                             _info_build_mx+=$"{number_format_selected( _val + ((_val*2)*0.7) + ((_val*2)*0.4) )}"
                             if i < _num-1{
                                 _info_build_mx+=","
@@ -3168,7 +3174,30 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         	_desc +="\n\n[PRESS RMB TO LOCK]"
             
             if variable_struct_exists(_mydata,"number_improv") or variable_struct_exists(_mydata,"chance_improv") or variable_struct_exists(_mydata,"time_improv") or variable_struct_exists(_mydata,"improv"){
-                _desc+="\n[SCROLL TO INCR/DECR LEVEL]\n"+"LEVEL:"+string(_talent_data.level+1)
+                var _show_level_change = true
+                
+                if variable_struct_exists(_mydata,"improv"){
+                    if _mydata.improv == _mydata.improv_max
+                        _show_level_change = false
+                }
+                
+                if variable_struct_exists(_mydata,"time_improv"){
+                    if _mydata.time_improv == _mydata.time_improv_max
+                        _show_level_change = false
+                }
+                
+                if variable_struct_exists(_mydata,"chance_improv"){
+                    if _mydata.chance_improv == _mydata.chance_improv_max
+                        _show_level_change = false
+                }
+                
+                if variable_struct_exists(_mydata,"number_improv"){
+                    if _mydata.number_improv == _mydata.number_improv_max
+                        _show_level_change = false
+                }
+                
+                if _show_level_change==true
+                    _desc+="\n[SCROLL TO INCR/DECR LEVEL]\n"+"LEVEL:"+string(_talent_data.level+1)
             }
             
         }
@@ -3572,16 +3601,20 @@ abiltiy_render.step = function (){
                 
                 var _max_lvl = 0
                 if variable_struct_exists(_data,"chance_improv"){
-                    _max_lvl = _data.chance_improv_max/_data.chance_improv
+                    if _data.chance_improv_max != _data.chance_improv
+                        _max_lvl = _data.chance_improv_max/_data.chance_improv
                 }
                 if variable_struct_exists(_data,"time_improv"){
-                    _max_lvl = _data.time_improv_max/_data.time_improv
+                    if _data.time_improv_max != _data.time_improv
+                        _max_lvl = _data.time_improv_max/_data.time_improv
                 }
                 if variable_struct_exists(_data,"improv"){
-                    _max_lvl = _data.improv_max/_data.improv
+                    if _data.improv_max != _data.improv
+                        _max_lvl = _data.improv_max/_data.improv
                 }
                 if variable_struct_exists(_data,"number_improv"){
-                    _max_lvl = _data.number_improv_max/_data.number_improv
+                    if _data.time_improv_max != _data.time_improv
+                        _max_lvl = _data.time_improv_max/_data.time_improv
                 }
                 
                 var _lvl = mydata.talent_level[_talent]
@@ -3700,7 +3733,7 @@ abiltiy_render.draw = function (){
 }
 
 evolve_render = {}
-evolve_render.pos = [200+32+250+51+_xshift,84+400+_yshift]
+evolve_render.pos = [200+32+250+51-43,84+400]
 evolve_render.size = [750,200]
 evolve_render.surface = -1
 evolve_render.buffer = -1
@@ -3788,9 +3821,10 @@ evolve_render.update = function (){
     
     draw_clear_alpha(c_white,0)
     
-    if DEBUG_STAT_RECTANGLES
+    if DEBUG_STAT_RECTANGLES{
         draw_rectangle_color(0,0,evolve_render.size[0],evolve_render.size[1],c_yellow,c_yellow,c_yellow,c_yellow,0)
-
+    }
+        
     var _draw_info = false
     var _form_number = 2
     
@@ -3798,10 +3832,9 @@ evolve_render.update = function (){
     if stats.form_number>2{
         _has_trueform = true
     }
-    var _has_ultraform = false
-    if stats.form_number>3{
-        _has_ultraform = true
-    }
+
+    _has_ultraform = stats.ultra_form
+
     var _trueform_unlocked = stats.true_form
     var _ultraform_unlocked = stats.ultra_form
     
@@ -3815,6 +3848,7 @@ evolve_render.update = function (){
     }
     
     if _draw_info == true{
+        
         var _btn = evolve_render.button
 
         draw_set_font(fnt_big)
@@ -3823,8 +3857,9 @@ evolve_render.update = function (){
         
         draw_button_special(_btn.pos[0]-_strw/2,_btn.pos[1],_btn.text)
         
-        if DEBUG_STAT_RECTANGLES
+        if DEBUG_STAT_RECTANGLES{
             draw_rectangle(_btn.pos[0]-_strw/2,_btn.pos[1],_btn.pos[0]+_strw/2,_btn.pos[1]+48,1)
+        }
         
         var _evodata = mydata.evolutions
         var _evotype = _evodata.type[_form_number-1]
@@ -3836,8 +3871,10 @@ evolve_render.update = function (){
         	case EVO_TYPE.FRUITS:
                 
                 var _fruits = array_length(_evovalue)
-                var _px = evolve_render.size[0]/2 + (_fruits * 32)/2
-                var _py = evolve_render.size[1]/2 - 32
+                var _px = evolve_render.size[0]/2 + (_fruits * 96)/2 - 48
+                var _py = evolve_render.size[1]/2 - 28
+                
+                align_set(fa_middle,fa_center)
                 
                 for (var i = 0; i < _fruits; i++) {
                 	var _fruit_type = _evovalue[i][0]
@@ -3845,12 +3882,21 @@ evolve_render.update = function (){
                     
                     var _fruit_number = _evovalue[i][1]
                     
-                    draw_sprite(_fruit_sprite,0,_px-16,_py-64)
+                    draw_sprite(_fruit_sprite,0,_px-64,_py-64)
                     
-                    draw_text_outline(_px+48,_py,c_black,c_white,$"x{_fruit_number}")
+                    var _num = $"x{_fruit_number}"
+                    var _num_w = string_width(_num)+4
+                    var _num_h = string_height(_num)
+                    draw_set_alpha(0.5)
+                    draw_roundrect_color(_px+4-_num_w/2,_py-_num_h/2+32,_px+4+_num_w/2,_py+32+_num_h/2,c_black,c_black,false)
+                    draw_set_alpha(1)
+
+                    draw_text_outline(_px+4,_py+32,c_black,c_white,_num)
                     
-                    _px-=64
+                    _px-=96
                 }
+                
+                align_reset()
                 
             break;
             case EVO_TYPE.STAGE:

@@ -20,6 +20,36 @@ enum TRAIT {RED = 0,FLOATING,BLACK,METAL,ANGEL,ALIEN,ZOMBIE,RELIC,AKU,TRAITELSS,
 
 data = {}
 
+#macro CATFRUIT_RED "red_catfruit"
+#macro SEED_RED "red_seed"
+#macro CATFRUIT_BLUE "blue_catfruit"
+#macro SEED_BLUE "blue_seed"
+#macro CATFRUIT_GREEN "green_catfruit"
+#macro SEED_GREEN "green_seed"
+#macro CATFRUIT_YELLOW "yellow_catfruit"
+#macro SEED_YELLOW "yellow_seed"
+#macro CATFRUIT_PURPLE "purple_catfruit"
+#macro SEED_PURPLE "purple_seed"
+#macro CATFRUIT_EPIC "epic_catfruit"
+#macro SEED_EPIC "epic_seed"  
+#macro CATFRUIT_GOLD "gold_catfruit"
+#macro SEED_GOLD "gold_seed" 
+#macro CATFRUIT_ELDER "elder_catfruit" 
+#macro SEED_ELDER "elder_seed" 
+#macro CATFRUIT_AKU "aku_catfruit" 
+#macro SEED_AKU "aku_seed" 
+#macro BEHEMOT_RED "behemot_red" 
+#macro BEHEMOT_BLUE "behemot_blue"
+#macro BEHEMOT_PURPLE "behemot_purple"
+#macro BEHEMOT_YELLOW "behemot_yellow"
+#macro BEHEMOT_GREEN "behemot_green"
+#macro BEHEMOT_EPIC "behemot_epic"     
+#macro BEHEMOT_RED_BIG "behemot_red_big" 
+#macro BEHEMOT_BLUE_BIG "behemot_blue_big"
+#macro BEHEMOT_PURPLE_BIG "behemot_purple_big"
+#macro BEHEMOT_YELLOW_BIG "behemot_yellow_big"
+#macro BEHEMOT_GREEN_BIG "behemot_green_big"
+
 data.items= {
     red_catfruit:{ spr: spr_fruit_red },
     red_seed:{ spr: spr_seed_red },
@@ -92,7 +122,9 @@ global.all_cats = [
     data.cats.cat, data.cats.tank_cat, data.cats.axe_cat, data.cats.gross_cat, data.cats.bird_cat, data.cats.fish_cat, data.cats.lizard_cat, data.cats.titan_cat, data.cats.superfeline, 
     //special cats
     data.cats.actress_cat, data.cats.kung_fu_cat, data.cats.mr, data.cats.bondage_cat, data.cats.dom_cat, data.cats.cats_in_a_box, data.cats.panties_cat, data.cats.moneko,
-    data.cats.ninja_cat, data.cats.zombie_cat, data.cats.samurai_cat, data.cats.sumo_cat, data.cats.boogie_cat, data.cats.skirt_cat, data.cats.valkyrie_cat
+    data.cats.ninja_cat, data.cats.zombie_cat, data.cats.samurai_cat, data.cats.sumo_cat, data.cats.boogie_cat, data.cats.skirt_cat, data.cats.valkyrie_cat, data.cats.bahamut_cat,
+    data.cats.kerihime, data.cats.cat_princess, data.cats.blue_shinobi, data.cats.cabaret_cat, data.cats.healer, data.cats.merc, data.cats.bean_cat,data.cats.flower_cat,
+    data.cats.ururun_wolf, data.cats.lil_nyandam, data.cats.meowla_meowla, data.cats.yuki_cat, data.cats.mr_ninja, data.cats.titi, data.cats.lil_cat
     ]
 global.selected_cat = -1
 

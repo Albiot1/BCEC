@@ -13,6 +13,13 @@ if initialized==false{
     exit
 }
 
+draw_sprite_stretched(spr_line,0,40+196,78,4,604)
+draw_sprite_stretched(spr_line,0,40+449,78,4,604)
+
+if stats.form_number>=3 and stats.true_form == false or (stats.form_number==4 and stats.ultra_form == false)
+draw_sprite_stretched(spr_line,0,40+451,78+406,749,4)
+
+
 top_buttons.draw()
 
 cat_render.draw()
