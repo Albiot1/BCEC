@@ -1860,8 +1860,8 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _icon = spr_metal_killer
             _txt = "[METAL KILLER]"
         
-            var _has_talent = has_talent(ABILITY.CRITICAL,true,true)
-            var _has_effect = has_effect(ABILITY.CRITICAL)
+            var _has_talent = has_talent(ABILITY.METAL_KILLER,true,true)
+            var _has_effect = has_effect(ABILITY.METAL_KILLER)
         
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
@@ -1991,8 +1991,8 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _icon = spr_shield_piercing
             _txt = "[SHIELD PIERCING]"
 
-            var _has_talent = has_talent(ABILITY.CRITICAL,true,true)
-            var _has_effect = has_effect(ABILITY.CRITICAL)
+            var _has_talent = has_talent(ABILITY.SHIELD_BREAKER,true,true)
+            var _has_effect = has_effect(ABILITY.SHIELD_BREAKER)
         
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
@@ -2054,8 +2054,8 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _txt = "[SAVAGE BLOW]"
             var _savage_dmg = stats.atk*3
 
-            var _has_talent = has_talent(ABILITY.CRITICAL,true,true)
-            var _has_effect = has_effect(ABILITY.CRITICAL)
+            var _has_talent = has_talent(ABILITY.SAVAGE_BLOW,true,true)
+            var _has_effect = has_effect(ABILITY.SAVAGE_BLOW)
         
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
@@ -2868,7 +2868,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             var _range = $"{number_format_selected(_mydata.distance[0])}~{number_format_selected(_mydata.distance[1])}"
 
             var _has_talent = has_talent(ABILITY.MINI_SURGE,true,true)
-            var _has_effect = has_effect(ABILITY.MINI_WAVE)
+            var _has_effect = has_effect(ABILITY.MINI_SURGE)
         
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 

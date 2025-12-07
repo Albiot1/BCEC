@@ -124,7 +124,8 @@ global.all_cats = [
     data.cats.actress_cat, data.cats.kung_fu_cat, data.cats.mr, data.cats.bondage_cat, data.cats.dom_cat, data.cats.cats_in_a_box, data.cats.panties_cat, data.cats.moneko,
     data.cats.ninja_cat, data.cats.zombie_cat, data.cats.samurai_cat, data.cats.sumo_cat, data.cats.boogie_cat, data.cats.skirt_cat, data.cats.valkyrie_cat, data.cats.bahamut_cat,
     data.cats.kerihime, data.cats.cat_princess, data.cats.blue_shinobi, data.cats.cabaret_cat, data.cats.healer, data.cats.merc, data.cats.bean_cat,data.cats.flower_cat,
-    data.cats.ururun_wolf, data.cats.lil_nyandam, data.cats.meowla_meowla, data.cats.yuki_cat, data.cats.mr_ninja, data.cats.titi, data.cats.lil_cat
+    data.cats.ururun_wolf, data.cats.lil_nyandam, data.cats.meowla_meowla, data.cats.yuki_cat, data.cats.mr_ninja, data.cats.titi, data.cats.lil_cat, data.cats.lil_tank_cat,
+    data.cats.lil_axe_cat, data.cats.catburger, data.cats.lil_gross_cat
     ]
 global.selected_cat = -1
 

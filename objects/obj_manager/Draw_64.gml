@@ -23,3 +23,11 @@ else{
     shader_reset();
     gpu_set_tex_filter(false);
 }
+
+if DEBUG_FRAMES == true{
+    var _txt = $"{1000/fps_real}ms/16.6ms ({round(1000/fps_real / 16.6 * 100)}%)"
+    var _str_w = string_width(_txt)
+    var _str_h = string_height(_txt)
+    draw_rectangle_color(0,0,_str_w,_str_h,c_black,c_black,c_black,c_black,0)
+    draw_text(0, 0, $"{1000/fps_real}ms/16.6ms ({round(1000/fps_real / 16.6 * 100)}%)");
+}
