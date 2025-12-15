@@ -57,7 +57,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.1.210",
+    "IDEVersion":"2024.14.2.212",
   },
   "name":"battle cats evo checker",
   "resources":[
@@ -101,6 +101,7 @@
     {"id":{"name":"stats_format","path":"scripts/stats_format/stats_format.yy",},},
     {"id":{"name":"surface_to_buffer","path":"scripts/surface_to_buffer/surface_to_buffer.yy",},},
     {"id":{"name":"targeting_to_string","path":"scripts/targeting_to_string/targeting_to_string.yy",},},
+    {"id":{"name":"text_format_insert","path":"scripts/text_format_insert/text_format_insert.yy",},},
     {"id":{"name":"shdCaseyMuratori","path":"shaders/shdCaseyMuratori/shdCaseyMuratori.yy",},},
     {"id":{"name":"snd_click","path":"sounds/snd_click/snd_click.yy",},},
     {"id":{"name":"snd_music_menu","path":"sounds/snd_music_menu/snd_music_menu.yy",},},

@@ -17,6 +17,25 @@ function has_talent(_effect,_unlocked = true,_return_stats = false){
     return _found
 }
 
+function find_talent(_effect,_return_stats = false){
+    var _found = [false,-1,-1]
+    var _talen = stats.talents
+    for (var i = 0; i < array_length(_talen); i++) {
+        if _talen[i] == _effect{
+            _found[0] = true
+            
+            if _return_stats == true{
+            _found[1] = stats.talent_data[i]
+            _found[2] = { unlocked: mydata.talent_unlocked[i], level:mydata.talent_level[i] }
+            }
+            
+            break;
+        }
+    }
+    
+    return _found
+}
+
 function has_effect(_effect,_return_stats = false){
     var _found = [false,-1]
     

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"text_format_insert",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"text_format_insert",
+  "parent":{
+    "name":"text_management",
+    "path":"folders/Scripts/text_management.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

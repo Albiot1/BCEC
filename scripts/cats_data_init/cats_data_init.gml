@@ -28,8 +28,8 @@ data.cats.cat = {
         attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
         abilities:[ [],[],[] ],
         abilities_data:[ [{}],[{}],[{}] ],
-        effects:[ [],[],[] ],
-        effects_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[EFFECT.WEAKEN] ],
+        effects_data:[ [{}],[{}],[{time:10,weaken:20,chance:50}] ],
         talents:{
             abilities:[],
             talent_type:[],
@@ -378,7 +378,7 @@ data.cats.actress_cat = {
         talents:{
             abilities:[ABILITY.STRENGTHEN,ABILITY.IMMUNE_SURGE,ABILITY.RESIST_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{ total_cost:165,threshold: 33, amount: 5, improv:5, improv_max:45 },{total_cost:75},{ total_cost:125, start_improv:16, improv:6, improv_max:54 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+            data:[{ total_cost:165, threshold: 33, amount: 5, improv:5, improv_max:50 },{total_cost:75},{ total_cost:125, start_improv:16, improv:6, improv_max:70 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }
@@ -413,7 +413,7 @@ data.cats.kung_fu_cat = {
         talents:{
             abilities:[ABILITY.SURGE,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_WAVE,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0,0],
-            data:[{chance:2,lvl:1,distance:[480,750],chance_improv:2,chance_improv_max:18,total_cost:165},{total_cost:75},{total_cost:75},{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+            data:[{chance:2,lvl:1,distance:[480,750],chance_improv:2,chance_improv_max:20,total_cost:165},{total_cost:75},{total_cost:75},{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }
@@ -447,7 +447,7 @@ data.cats.mr = {
         talents:{
             abilities:[ EFFECT.KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_WARP,ABILITY.HP_UP,ABILITY.ATK_UP ],
             talent_type:[0,0,0,0,0],
-            data:[ { chance:3, chance_improv:3, chance_improv_max:27, total_cost:215, add_targeting:TARGETING.ZOMBIE },{},{},{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }, { total_cost:125, start_improv:8, improv:8, improv_max: 72 } ]
+            data:[ { chance:3, chance_improv:3, chance_improv_max:30, total_cost:215, add_targeting:TARGETING.ZOMBIE },{},{},{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }, { total_cost:125, start_improv:8, improv:8, improv_max: 80 } ]
         }
     }
 }
@@ -481,7 +481,7 @@ data.cats.bondage_cat = {
         talents:{
             abilities:[EFFECT.FREEZE,EFFECT.DODGE,ABILITY.IMMUNE_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[ { chance:30, time:15, time_improv:5, time_improv_max:45, total_cost:165 },{ chance:40, time:12, time_improv:2, time_improv_max:18, total_cost:165 },{ total_cost:75 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+            data:[ { chance:30, time:0, start_time_improv:15, time_improv:5, time_improv_max:60, total_cost:165 },{ chance:40, time:0, start_time_improv:12, time_improv:2, time_improv_max:30, total_cost:165 },{ total_cost:75 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }
@@ -1581,7 +1581,7 @@ data.cats.lil_gross_cat = {
         talents:{
             abilities:[ABILITY.SHIELD_BREAKER,EFFECT.KNOCKBACK,ABILITY.RESIST_CURSE,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{chance:3, chance_improv:3, chance_improv_max:27},{chance_improv:1,chance_improv_max:9,start_chance_improv:1},{improv:6,improv_max:54,start_improv:16},{improv:2,improv_max:18,start_improv:2},{improv:2,improv_max:18,start_improv:2}]
+            data:[{chance:0, chance_improv:3, start_chance_improv:3, chance_improv_max:30},{chance_improv:1,chance_improv_max:10,start_chance_improv:1},{improv:6,improv_max:70,start_improv:16},{improv:2,improv_max:18,start_improv:2},{improv:2,improv_max:18,start_improv:2}]
         }
     }
 }
