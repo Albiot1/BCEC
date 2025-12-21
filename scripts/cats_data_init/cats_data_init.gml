@@ -28,8 +28,8 @@ data.cats.cat = {
         attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
         abilities:[ [],[],[] ],
         abilities_data:[ [{}],[{}],[{}] ],
-        effects:[ [],[],[EFFECT.WEAKEN] ],
-        effects_data:[ [{}],[{}],[{time:10,weaken:20,chance:50}] ],
+        effects:[ [],[],[] ],
+        effects_data:[ [{}],[{}],[{}] ],
         talents:{
             abilities:[],
             talent_type:[],
@@ -516,7 +516,7 @@ data.cats.dom_cat = {
         talents:{
             abilities:[ABILITY.WAVE,ABILITY.IMMUNE_WEAKEN,ABILITY.COST_DOWN,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{chance:5, lvl:6, chance_improv:1.112, chance_improv_max:9.99, total_cost:165},{ total_cost:75 },{ total_cost:125, start_number_improv:20, number_improv:20, number_improv_max: 180 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+            data:[{chance:5, lvl:6, chance_improv:1.112, chance_improv_max:14.99, total_cost:165},{ total_cost:75 },{ total_cost:125, start_number_improv:20, number_improv:20, number_improv_max: 200 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }
@@ -550,7 +550,7 @@ data.cats.cats_in_a_box = {
         talents:{
             abilities:[EFFECT.MASSIVE_DMG,ABILITY.IMMUNE_WEAKEN,ABILITY.RESIST_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{ total_cost:75 },{ total_cost:75 },{ start_improv:16, improv:6, improv_max:54, total_cost: 125 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+            data:[{ total_cost:75 },{ total_cost:75 },{ start_improv:16, improv:6, improv_max:70, total_cost: 125 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }
@@ -584,7 +584,7 @@ data.cats.panties_cat = {
         talents:{
             abilities:[EFFECT.SLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.RESIST_FREEZE,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{ chance:30, time:39, time_improv:9, time_improv_max:81, add_targeting:TARGETING.METAL , total_cost:215 },{ total_cost:75 },{ start_improv:16, improv:6, improv_max:54 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+            data:[{ chance:30, time:39, time_improv:9, time_improv_max:90, add_targeting:TARGETING.METAL , total_cost:215 },{ total_cost:75 },{ start_improv:16, improv:6, improv_max:70 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }
@@ -684,7 +684,11 @@ data.cats.ninja_cat = {
         abilities_data:[ [{}],[{}],[{}] ],
         effects:[ [EFFECT.STRONG],[EFFECT.STRONG],[EFFECT.STRONG] ],
         effects_data:[ [{}],[{}],[{}] ],
-        talents:{ abilities:[TARGETING.BLACK,EFFECT.DODGE,ABILITY.SPD_UP,ABILITY.HP_UP,ABILITY.ATK_UP],talent_type:[0,0,0,0,0],data:[{ total_cost:75 },{ total_cost:165, chance:20, time:20, time_improv:4, time_improv_max:40 },{ total_cost:125, number_improv:1 ,number_improv_max:9 , start_number_improv:1  },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]}
+        talents:{ 
+            abilities:[TARGETING.BLACK,EFFECT.DODGE,ABILITY.SPD_UP,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[{ total_cost:75 },{ total_cost:165, chance:20, time:20, time_improv:4, time_improv_max:60 },{ total_cost:125, number_improv:1 ,number_improv_max:10 , start_number_improv:1  },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
+        }
     }
 }
     
@@ -717,13 +721,7 @@ data.cats.zombie_cat = {
         talents:{
             abilities:[EFFECT.WEAKEN,ABILITY.RESIST_SLOW,ABILITY.RECOVER_DOWN,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[
-                { time: 39, time_improv: 9, time_improv_max: 81, chance:40, weaken:50 },
-                { total_cost:125, improv:6, improv_max:54, start_improv:16 },
-                { total_cost:125, start_time_improv: 15, time_improv: 5, time_improv_max:45 },
-                { total_cost:125, start_improv:8, improv:8, improv_max: 72 },
-                { total_cost:125, start_improv:8, improv:8, improv_max: 72 }
-            ]
+            data:[{ time: 39, time_improv: 9, time_improv_max: 90, chance:40, weaken:50 },{ total_cost:125, improv:6, improv_max:70, start_improv:16 },{ total_cost:125, start_time_improv: 15, time_improv: 5, time_improv_max:50 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }
@@ -757,7 +755,7 @@ data.cats.samurai_cat = {
         talents:{
             abilities:[ABILITY.BARRIER_BREAKER,EFFECT.WEAKEN,ABILITY.RESIST_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{ total_cost:165, chance:2, chance_improv:2, chance_improv_max:18 },{ total_cost:165, chance:10, time:24, weaken:50, time_improv:4, time_improv_max:36},{ total_cost:125, improv:6, start_improv:16, improv_max:54 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+            data:[{ total_cost:165, chance:2, chance_improv:2, chance_improv_max:20 },{ total_cost:165, chance:10, time:24, weaken:50, time_improv:4, time_improv_max:60},{ total_cost:125, improv:6, start_improv:16, improv_max:70 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }
@@ -792,7 +790,7 @@ data.cats.sumo_cat = {
         talents:{
             abilities:[ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_TOXIC,ABILITY.IMMUNE_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{total_cost:75},{total_cost:75},{total_cost:75},{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+            data:[{total_cost:75},{total_cost:75},{total_cost:75},{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }
@@ -826,7 +824,7 @@ data.cats.boogie_cat = {
         talents:{
             abilities:[EFFECT.KNOCKBACK,ABILITY.IMMUNE_SURGE,ABILITY.RESIST_FREEZE,ABILITY.RESIST_SLOW,ABILITY.HP_UP],
             talent_type:[0,0,0,0,0],
-            data:[{total_cost:125,chance:0,chance_improv:1.112,chance_improv_max:10,start_chance_improv:5},{total_cost:75},{total_cost:125,improv:6,start_improv:16,improv_max:54},{total_cost:125,improv:6,start_improv:16,improv_max:54},{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+            data:[{total_cost:125,chance:0,chance_improv:1.112,chance_improv_max:15,start_chance_improv:10},{total_cost:75},{total_cost:125,improv:6,start_improv:16,improv_max:70},{total_cost:125,improv:6,start_improv:16,improv_max:70},{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }
@@ -860,7 +858,7 @@ data.cats.skirt_cat = {
         talents:{
             abilities:[ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_WARP,EFFECT.WEAKEN,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{total_cost:125, start_chance_improv:2 , chance_improv:2, chance_improv_max:18},{total_cost:75},{chance:30 ,weaken:50, time:39, time_improv:9, time_improv_max:81, add_targeting:TARGETING.ALIEN},{ total_cost:125, start_improv:8, improv:8, improv_max: 72 },{ total_cost:125, start_improv:8, improv:8, improv_max: 72 }]
+            data:[{total_cost:125, start_chance_improv:2 , chance_improv:2, chance_improv_max:20},{total_cost:75},{chance:30 ,weaken:50, time:39, time_improv:9, time_improv_max:120, add_targeting:TARGETING.ALIEN},{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }
@@ -894,7 +892,7 @@ data.cats.valkyrie_cat = {
         talents:{
             abilities:[ABILITY.STRENGTHEN,EFFECT.FREEZE,ABILITY.COST_DOWN,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{ total_cost:235, threshold: 50, amount:10, start_improv:10, improv:10, improv_max:90 },{ total_cost:175, start_time_improv:12, time_improv:2, time_improv_max:18 },{ total_cost:175, number_improv: 50, number_improv_max:450, start_number_improv:50 },{ total_cost:175, start_improv:8, improv:8, improv_max: 72 },{ total_cost:175, start_improv:8, improv:8, improv_max: 72 }]
+            data:[{ total_cost:235, threshold: 50, amount:10, start_improv:10, improv:10, improv_max:100 },{ total_cost:175, start_time_improv:12, time_improv:2, time_improv_max:20 },{ total_cost:175, number_improv: 50, number_improv_max:500, start_number_improv:50 },{ total_cost:175, start_improv:8, improv:8, improv_max: 80 },{ total_cost:175, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }
@@ -929,11 +927,7 @@ data.cats.bahamut_cat = {
         talents:{
             abilities:[ABILITY.EXPLOSION,ABILITY.SPD_UP,ABILITY.IMMUNE_SLOW],
             talent_type:[0,0,0],
-            data:[
-                { total_cost:235, chance:28, chance_improv:8, chance_improv_max:72, on_x_hit:[1] },
-                { total_cost:175, number_improv:1, number_improv_max:9, start_number_improv:1 },
-                { total_cost:100 }
-            ]
+            data:[{ total_cost:235, chance:28, chance_improv:8, chance_improv_max:100, on_x_hit:[1] },{ total_cost:175, number_improv:1, number_improv_max:10, start_number_improv:1 },{ total_cost:100 }]
         }
     }
 }
@@ -1445,7 +1439,7 @@ data.cats.lil_cat = {
         talents:{
             abilities:[ABILITY.CRITICAL,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{total_cost: 75, chance: 0, chance_improv:10, chance_improv_max:10, start_chance_improv:10},{total_cost:75},{total_cost:75},{total_cost:125, improv: 2, improv_max: 18, start_improv:2},{total_cost:125, improv:2, improv_max: 18, start_improv: 2}]
+            data:[{total_cost: 75, chance: 0, chance_improv:10, chance_improv_max:10, start_chance_improv:10},{total_cost:75},{total_cost:75},{total_cost:125, improv: 2, improv_max: 20, start_improv:2},{total_cost:125, improv:2, improv_max: 20, start_improv: 2}]
         }
     }
 }
@@ -1479,7 +1473,7 @@ data.cats.lil_tank_cat = {
         talents:{
             abilities:[ABILITY.RESIST_TOXIC,ABILITY.SOULSTRIKE,EFFECT.DODGE,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{total_cost:125, start_improv:5, improv:5, improv_max:45},{total_cost:75},{total_cost:215,chance:10,time:4,time_improv:4,time_improv_max:56,start_time_improv:0},{improv:2,improv_max:18,start_improv:2},{improv:2,improv_max:18,start_improv:2}]
+            data:[{total_cost:125, start_improv:5, improv:5, improv_max:50},{total_cost:75},{total_cost:215,chance:10,time:4,time_improv:4,time_improv_max:60,start_time_improv:0},{improv:2,improv_max:20,start_improv:2},{improv:2,improv_max:20,start_improv:2}]
         }
     }
 }
@@ -1513,7 +1507,7 @@ data.cats.lil_axe_cat = {
         talents:{
             abilities:[TARGETING.AKU,EFFECT.FREEZE,ABILITY.RESIST_SURGE,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{total_cost:75},{chance:20,time:4,time_improv:4,time_improv_max:20,start_time_improv:0},{total_cost:125,improv:5,improv_max:45,start_improv:5},{improv:2,improv_max:18,start_improv:2},{improv:2,improv_max:18,start_improv:2}]
+            data:[{total_cost:75},{chance:20,time:24,time_improv:4,time_improv_max:60,start_time_improv:0},{total_cost:125,improv:5,improv_max:50,start_improv:5},{improv:2,improv_max:20,start_improv:2},{improv:2,improv_max:20,start_improv:2}]
         }
     }
 }
@@ -1581,7 +1575,7 @@ data.cats.lil_gross_cat = {
         talents:{
             abilities:[ABILITY.SHIELD_BREAKER,EFFECT.KNOCKBACK,ABILITY.RESIST_CURSE,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{chance:0, chance_improv:3, start_chance_improv:3, chance_improv_max:30},{chance_improv:1,chance_improv_max:10,start_chance_improv:1},{improv:6,improv_max:70,start_improv:16},{improv:2,improv_max:18,start_improv:2},{improv:2,improv_max:18,start_improv:2}]
+            data:[{chance:0, chance_improv:3, start_chance_improv:3, chance_improv_max:30},{chance_improv:1,chance_improv_max:10,start_chance_improv:1},{improv:6,improv_max:70,start_improv:16},{improv:2,improv_max:20,start_improv:2},{improv:2,improv_max:20,start_improv:2}]
         }
     }
 }

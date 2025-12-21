@@ -947,10 +947,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 _desc = get_translation("effect_weaken_desc")
                 if ((_has_talent[0] and !_is_talent) or (_is_talent and !_has_effect[0])){
                     var _mytalent_data = _has_talent[1]
-                    var _level = _has_talent[2].level
+                    var _level = 0
                     
                     if _is_talent{
                         _level = _talent_data.level
+                    }
+                    if !_is_talent and _has_talent[0]{
+                        _level = _has_talent[2].level
                     }
                     
                     _chance_improv_max_fix = _chance
@@ -1048,10 +1051,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
                 var _time = _mydata.time
                 var _chance = _mydata.chance
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 _desc = get_translation("effect_freeze_desc")
@@ -1098,7 +1104,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                             istime: true
                         }
                     ],
-                    info: audio_sound_get_track_position("effect_freeze_stats")
+                    info: get_translation("effect_freeze_stats")
                 }
     
                 _desc += return_info(_targets,_bonus,_mystats,_target_plus)
@@ -1150,10 +1156,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
                 var _time = _mydata.time
                 var _chance = _mydata.chance
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 _desc = get_translation("effect_slow_desc")
@@ -1396,10 +1405,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _chance = _mydata.chance
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 _desc = get_translation("effect_knockback_desc")
@@ -1489,7 +1501,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _desc+=text_format_insert( get_translation("effect_warp_name"),[_chance,number_format_selected(_dist),_time,_time/FRAMERATE] )
         
             if stats.multi_hit == true and variable_struct_exists(_mydata,"on_x_hit"){
-                _desc += text_format_insert( get_translation("effect_onxhit_desc",[number_with_ending(_mydata.on_x_hit)]) )
+                _desc += text_format_insert( get_translation("effect_onxhit_desc"),[number_with_ending(_mydata.on_x_hit)] )
             }
         
         break;
@@ -1506,10 +1518,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
                 var _time = _mydata.time
                 var _chance = _mydata.chance
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 //desc
@@ -1610,10 +1625,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
                 var _time = _mydata.time
                 var _chance = _mydata.chance
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 _desc = get_translation("effect_dodge_desc")
@@ -1730,10 +1748,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 var _threshold = _mydata.threshold
                 var _amount = _mydata.amount
                 var _dmg = stats.atk
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 //desc
@@ -1789,10 +1810,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _chance = _mydata.chance
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 _desc = get_translation("ability_survive_desc")
@@ -1860,10 +1884,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _chance = _mydata.chance
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 _desc = get_translation("ability_critical_desc")
@@ -1956,10 +1983,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _percent = _mydata.percent
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 //desc
@@ -2033,10 +2063,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _chance = _mydata.chance
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 _desc = get_translation("ability_barrier_breaker_desc")
@@ -2102,6 +2135,14 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _chance = _mydata.chance
+                var _level = 0
+                
+                if _is_talent{
+                    _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
+                }
                 
                 //desc
                 _desc = get_translation("ability_shield_pierce_desc")
@@ -2111,7 +2152,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     
                     _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
-                        var _stat_num = _mytalent_data.chance_improv*_has_talent[2].level
+                        var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
                     }
                 }
@@ -2168,6 +2209,14 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _chance = _mydata.chance
+                var _level = 0
+                
+                if _is_talent{
+                    _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
+                }
                 
                 //desc
                 _desc = get_translation("ability_savage_blow_desc")
@@ -2177,7 +2226,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     
                     _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
-                        var _stat_num = _mytalent_data.chance_improv*_has_talent[2].level
+                        var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
                     }
                 }
@@ -2735,10 +2784,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _chance = _mydata.chance
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 //desc
@@ -2837,10 +2889,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _chance = _mydata.chance
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 //desc
@@ -2941,10 +2996,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _chance = _mydata.chance
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 //desc
@@ -3065,10 +3123,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _chance = _mydata.chance
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 //desc
@@ -3187,10 +3248,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _chance = _mydata.chance
-                var _level = _has_talent[2].level
+                var _level = 0
                 
                 if _is_talent{
                     _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
                 }
                 
                 //desc
@@ -3370,7 +3434,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if variable_struct_exists(_mydata,"number_improv")
                 _desc += text_format_insert( get_translation("talent_number_note"),[_mydata.number_improv,_numtype] )
             if variable_struct_exists(_mydata,"number_improv_max")
-                _desc += text_format_insert( get_translation("talent_numbermax_note"),[_mydata.number_improv_max,_numtype]) )
+                _desc += text_format_insert( get_translation("talent_numbermax_note"),[_mydata.number_improv_max,_numtype] )
 
             if variable_struct_exists(_mydata,"total_cost")
                 _desc += text_format_insert( get_translation("talent_cost_note"),[_mydata.total_cost] )

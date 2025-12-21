@@ -625,4 +625,21 @@
 	"talent_unlock_note":"\n\n[PRESS LMB TO UNLOCK]",
 	"talent_lock_note":"\n\n[PRESS RMB TO LOCK]",
 	"talent_chance_note":"\n[SCROLL TO INCR/DECR LEVEL]\nLEVEL:{0}",
+
+	"settings_top_text":"SETTINGS",
+	"settings_text_0":"EoC Cat Shield %",
+	"settings_text_1":"EoC Cat Sword %",
+	"settings_text_2":"ItF Crystal's %",
+	"settings_text_3":"CoTC Crystal's %",
+	"settings_text_4":"ItF Fruit's %",
+	"settings_text_5":"CoTC Fruit's %",
+	"settings_text_6":"Research LVL",
+	"settings_text_7":"Accounting LVL",
+	"settings_max_value":"(MAX{0})",
+	"settings_button_text_0":"ERASE DATA",
+	"settings_button_text_1":"FULLSCREEN",
+	"settings_button_text_2":"NUMBER FORMATTING",
+	"settings_erase_save_choice_0":"YES",
+	"settings_erase_save_choice_1":"NO",
+	"settings_erase_save_warning":"Are you sure you want to erease your save ?\n(It will delete all your added cats and close the program)"
 }

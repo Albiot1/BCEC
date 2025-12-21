@@ -10,7 +10,7 @@ window.update = function (){
     draw_sprite_stretched(spr_back_wood,0,0,0,window.size[0],window.size[1])
     
     draw_set_font(fnt_big) draw_set_valign(fa_middle) draw_set_halign(fa_center)
-    draw_text_outline(600,16,c_black,c_white,"SETTINGS")
+    draw_text_outline(600,16,c_black,c_white,get_translation("settings_top_text"))
     draw_set_font(fnt_general) draw_set_valign(0) draw_set_halign(0)
     
     surface_reset_target()
@@ -42,7 +42,7 @@ input_boxes.row = [0,0,0,0,0,0,1,1]
 input_boxes.active = [false,false,false,false,false,false,false,false]
 input_boxes.size = [64,24]
 input_boxes.mouse_on = [false,false,false,false,false,false,false,false]
-input_boxes.text = ["EoC Cat Shield %","EoC Cat Sword %","ItF Crystal's %","CoTC Crystal's %","ItF Fruit's %","CoTC Fruit's %","Research LVL","Accounting LVL"]
+input_boxes.text = [get_translation("settings_text_0"),get_translation("settings_text_1"),get_translation("settings_text_2"),get_translation("settings_text_3"),get_translation("settings_text_4"),get_translation("settings_text_5"),get_translation("settings_text_6"),get_translation("settings_text_7")]
 input_boxes.value_id = ["cat_shield","cat_sword","anti_alien_power","anti_alien_starred_power","itf_fruits","cotc_fruits","research","accounting"]
 input_boxes.max_value = [300,300,600,1500,300,300,30,30]
 input_boxes.surface = -1
@@ -86,7 +86,7 @@ input_boxes.update = function (){
         
         _x_now += _size[0] + 8
         
-        draw_text_outline(_x_now,_y_now,c_black,c_white,$"(MAX {number_format_selected(_max)})")
+        draw_text_outline(_x_now,_y_now,c_black,c_white,text_format_insert( get_translation("settings_max_value"),[number_format_selected(_max)] ))
         
         _y_row[_row]++
         
@@ -244,7 +244,7 @@ input_boxes.clean = function (){
 
 buttons = {}
 buttons.pos = []
-buttons.text = ["ERASE DATA","FULSCREEN","NUMBER FORMATTING"]
+buttons.text = [get_translation("settings_button_text_0"),get_translation("settings_button_text_1"),get_translation("settings_button_text_2")]
 buttons.height = 48
 buttons.width = [0,0,0]
 buttons.surface = [-1,-1,-1]
@@ -387,9 +387,10 @@ reset_window.buttons = {}
 reset_window.buttons.pos = []
 reset_window.buttons.offset = [0,48]
 reset_window.buttons.mouse_on = [false,false]
-reset_window.buttons.text = ["YES","NO"]
+reset_window.buttons.text = [get_translation("settings_erase_save_choice_0"),get_translation("settings_erase_save_choice_1")]
 reset_window.buttons.width = [0,0]
 reset_window.opened = false
+reset_window.message = get_translation("settings_erase_save_warning")
 
 reset_window.update = function (){
     
@@ -399,7 +400,7 @@ reset_window.update = function (){
     
     draw_sprite_stretched(spr_back_wood,0,0,0,reset_window.size[0],reset_window.size[1])
     
-    draw_text_outline_ext(8,12,c_black,c_white,"Are you sure you want to erease your save ?\n(It will delete all your added cats and close the program)",16,190)
+    draw_text_outline_ext(8,12,c_black,c_white,reset_window.message,16,190)
     
     for (var i = 0; i < 2; i++) {
     	var _txt = reset_window.buttons.text[i]
