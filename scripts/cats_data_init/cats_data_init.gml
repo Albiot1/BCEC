@@ -481,7 +481,7 @@ data.cats.bondage_cat = {
         talents:{
             abilities:[EFFECT.FREEZE,EFFECT.DODGE,ABILITY.IMMUNE_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[ { chance:30, time:0, start_time_improv:15, time_improv:5, time_improv_max:60, total_cost:165 },{ chance:40, time:0, start_time_improv:12, time_improv:2, time_improv_max:30, total_cost:165 },{ total_cost:75 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
+            data:[ { chance:30, time:0, start_time_improv:12, time_improv:2, time_improv_max:60, total_cost:165 },{ chance:40, time:0, start_time_improv:12, time_improv:2, time_improv_max:30, total_cost:165 },{ total_cost:75 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }
@@ -584,7 +584,7 @@ data.cats.panties_cat = {
         talents:{
             abilities:[EFFECT.SLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.RESIST_FREEZE,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
-            data:[{ chance:30, time:39, time_improv:9, time_improv_max:90, add_targeting:TARGETING.METAL , total_cost:215 },{ total_cost:75 },{ start_improv:16, improv:6, improv_max:70 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
+            data:[{ chance:30, time:39, time_improv:9, time_improv_max:120, add_targeting:TARGETING.METAL , total_cost:215 },{ total_cost:75 },{ start_improv:16, improv:6, improv_max:70 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 },{ total_cost:125, start_improv:8, improv:8, improv_max: 80 }]
         }
     }
 }

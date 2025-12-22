@@ -613,7 +613,7 @@
 	"ability_onxhit_desc":"\neffect applies only on {0} hit",
 	
 	"talent_chance_note":"\n+{0}% per level",
-	"talent_chancemax_note":"\n+{0}$ max",
+	"talent_chancemax_note":"\n+{0}% max",
 	"talent_time_note":"\n+{0}f/{1}s per level",
 	"talent_timemax_note":"\n+{0}f/{1}s max",
 	"talent_improv_note":"\n+{0}% per level",

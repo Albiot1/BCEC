@@ -1156,6 +1156,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
                 var _time = _mydata.time
                 var _chance = _mydata.chance
+
                 var _level = 0
                 
                 if _is_talent{
@@ -2811,13 +2812,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 }
                 
                 if stats.multi_hit == false{
-                    _desc += text_format_insert( get_translation("ability_wave_stats"),[_chance,_mydata.lvl] )
+                    _desc += text_format_insert( get_translation("ability_wave_stats"),[floor(_chance),_mydata.lvl] )
                     _desc += text_format_insert( get_translation("ability_wave_stats_2"),[_eff_range,number_format_selected(stats.atk)] )
                 }
                 else {
                 	
                     if variable_struct_exists(_mydata,"on_x_hit"){
-                        _desc += text_format_insert( get_translation("ability_wave_stats_xhit"),[_chance,_mydata.lvl,number_with_ending(_mydata.on_x_hit)] )
+                        _desc += text_format_insert( get_translation("ability_wave_stats_xhit"),[floor(_chance),_mydata.lvl,number_with_ending(_mydata.on_x_hit)] )
 
                         var _multi_dmgs = stats.multi_hit_dmgs
                         var _num = array_length(_multi_dmgs)
@@ -2835,7 +2836,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         _desc += text_format_insert( get_translation("ability_wave_stats_xhit_2"),[_eff_range,number_format_selected(stats.atk)] )+_info_build
                     }
                     else{
-                        _desc += text_format_insert( get_translation("ability_wave_stats_multihit"),[_chance,_mydata.lvl] )
+                        _desc += text_format_insert( get_translation("ability_wave_stats_multihit"),[floor(_chance),_mydata.lvl] )
 
                         var _multi_dmgs = stats.multi_hit_dmgs
                         var _num = array_length(_multi_dmgs)
@@ -2863,7 +2864,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
                         _chance_improv_max_fix = _mydata.start_chance_improv
-                        _desc = text_format_insert( get_translation("ability_wave_chance"),[_stat_num] )
+                        _desc = text_format_insert( get_translation("ability_wave_chance"),[floor(_stat_num)] )
                     }
                 }
                 else {
@@ -3875,8 +3876,12 @@ abiltiy_render.step = function (){
                 if variable_struct_exists(_data,"chance_improv"){
                     var _max = (_data.chance_improv_max-_data.chance_improv)
                     
+                    if variable_struct_exists(_data,"chance"){
+                        _max -= (_data.chance-_data.chance_improv)
+                    }
+                    
                     if variable_struct_exists(_data,"start_chance_improv"){
-                        _max -= (_data.start_chance_improv-_data.chance_improv)
+                        _max -= (_data.start_chance_improv)
                     }
                     
                     if _data.chance_improv_max != _data.chance_improv
@@ -3885,10 +3890,14 @@ abiltiy_render.step = function (){
                 if variable_struct_exists(_data,"time_improv"){
                     var _max = (_data.time_improv_max-_data.time_improv)
                     
-                    if variable_struct_exists(_data,"start_time_improv"){
-                        _max -= (_data.start_time_improv-_data.time_improv)
+                    if variable_struct_exists(_data,"time"){
+                        _max -= (_data.time-_data.time_improv)
                     }
                     
+                    if variable_struct_exists(_data,"start_time_improv"){
+                        _max -= (_data.start_time_improv)
+                    }
+
                     if _data.time_improv_max != _data.time_improv
                         _max_lvl = (_max)/_data.time_improv
                 }
