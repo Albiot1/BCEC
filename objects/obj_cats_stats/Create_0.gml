@@ -764,60 +764,70 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             
             _icon = spr_targeting_aku
             _txt = get_translation("targeting_aku_name")
-        
+            _desc = get_translation("targeting_aku_desc")
+            
         break;
         case TARGETING.ALIEN:
             
             _icon = spr_targeting_alien
             _txt = get_translation("targeting_alien_name")
+            _desc = get_translation("targeting_alien_desc")
         
         break;
         case TARGETING.ANGEL:
             
             _icon = spr_targeting_angel
             _txt = get_translation("targeting_angel_name")
+            _desc = get_translation("targeting_angel_desc")
         
         break;
         case TARGETING.FLOATING:
             
             _icon = spr_targeting_floating
             _txt = get_translation("targeting_floating_name")
+            _desc = get_translation("targeting_floating_desc")
         
         break;
         case TARGETING.METAL:
             
             _icon = spr_targeting_metal
             _txt = get_translation("targeting_metal_name")
+            _desc = get_translation("targeting_metal_desc")
         
         break;
         case TARGETING.RED:
             
             _icon = spr_targeting_red
             _txt = get_translation("targeting_red_name")
+            _desc = get_translation("targeting_red_desc")
         
         break;
         case TARGETING.RELIC:
             
             _icon = spr_targeting_relic
             _txt = get_translation("targeting_relic_name")
+            _desc = get_translation("targeting_relic_desc")
         
         break;
         case TARGETING.TRAITELSS:
             
             _icon = spr_targeting_traitless
             _txt = get_translation("targeting_traitless_name")
+            _desc = get_translation("targeting_traitless_desc")
         
         break;
         case TARGETING.ZOMBIE:
             
             _icon = spr_targeting_zombie
             _txt = get_translation("targeting_zombie_name")
+            _desc = get_translation("targeting_zombie_desc")
         
         break;
         case TARGETING.BLACK:
             
             _icon = spr_targeting_black
             _txt = get_translation("targeting_black_name")
+            _desc = get_translation("targeting_black_desc")
         
         break;
         case ATTACKS.SINGLE:
@@ -3288,7 +3298,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         var _multi_dmgs = stats.multi_hit_dmgs
                         var _num = array_length(_mydata.on_x_hit)
         
-                        var _info_build = "\nMulti hit: \n1st wave: "
+                        var _info_build = "\n1st wave: "
                         
                         for (var i = 0; i < _num; i++) {
                             var _val = _multi_dmgs[ _mydata.on_x_hit[i]-1 ]
@@ -3319,7 +3329,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         }
                         
         
-                        var _info_build_mx = "\nMulti hit max damage: "
+                        var _info_build_mx = "\nMax damage: "
                         
                         for (var i = 0; i < _num; i++) {
                             var _val = _multi_dmgs[ _mydata.on_x_hit[i]-1 ]
@@ -3423,7 +3433,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if variable_struct_exists(_mydata,"chance_improv")
                 _desc += text_format_insert( get_translation("talent_chance_note"),[_mydata.chance_improv] )
             if variable_struct_exists(_mydata,"chance_improv_max")
-                _desc += text_format_insert( get_translation("talent_chancemax_note"),[_mydata.chance_improv_max] )
+                _desc += text_format_insert( get_translation("talent_chancemax_note"),[ceil(_mydata.chance_improv_max)] )
             if variable_struct_exists(_mydata,"time_improv")
                 _desc += text_format_insert( get_translation("talent_time_note"),[_mydata.time_improv,_mydata.time_improv/FRAMERATE] )
             if variable_struct_exists(_mydata,"time_improv_max")
@@ -3470,7 +3480,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 }
                 
                 if _show_level_change==true
-                    _desc+=text_format_insert( get_translation("talent_chance_note"),[_talent_data.level+1] )
+                    _desc+=text_format_insert( get_translation("talent_change_note"),[_talent_data.level+1] )
             }
             
         }
@@ -3881,7 +3891,7 @@ abiltiy_render.step = function (){
                     }
                     
                     if variable_struct_exists(_data,"start_chance_improv"){
-                        _max -= (_data.start_chance_improv)
+                        _max -= (_data.start_chance_improv-_data.chance_improv)
                     }
                     
                     if _data.chance_improv_max != _data.chance_improv
@@ -3895,7 +3905,7 @@ abiltiy_render.step = function (){
                     }
                     
                     if variable_struct_exists(_data,"start_time_improv"){
-                        _max -= (_data.start_time_improv)
+                        _max -= (_data.start_time_improv-_data.time_improv)
                     }
 
                     if _data.time_improv_max != _data.time_improv
@@ -3920,6 +3930,11 @@ abiltiy_render.step = function (){
                     
                     if _data.number_improv_max != _data.number_improv
                         _max_lvl = (_max)/_data.number_improv
+                }
+                
+                //show_message(_data)
+                if variable_struct_exists(_data,"forced_max_level"){
+                    _max_lvl = _data.forced_max_level
                 }
                 
                 var _lvl = mydata.talent_level[_talent]
