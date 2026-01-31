@@ -163,7 +163,7 @@ stats.update = function (){
     
     stats.attack_type = _my_stats.attack_type[_form]
     
-    if array_value_exists(stats.attack_type,ATTACKS.MULTI_HIT){
+    if array_contains(stats.attack_type,ATTACKS.MULTI_HIT){
         
         stats.multi_hit = true
         stats.multi_hit_dmgs = variable_clone(_my_stats.multi_hit_dmgs[_form])
@@ -1457,10 +1457,10 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
                 var _knockback_types = " "
                 if array_length(_stat_targets) == 9{
-                    if array_value_exists(_stat_targets,TARGETING.TRAITELSS) and !array_value_exists(_stat_targets,TARGETING.METAL){
+                    if array_contains(_stat_targets,TARGETING.TRAITELSS) and !array_contains(_stat_targets,TARGETING.METAL){
                         _knockback_types = get_translation("effect_on_nonmetal")
                     }
-                    else if array_value_exists(_stat_targets,TARGETING.METAL) and !array_value_exists(_stat_targets,TARGETING.TRAITELSS){
+                    else if array_contains(_stat_targets,TARGETING.METAL) and !array_contains(_stat_targets,TARGETING.TRAITELSS){
                         _knockback_types = get_translation("effect_on_traited")
                     }
                 }

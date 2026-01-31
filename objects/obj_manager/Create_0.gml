@@ -7,7 +7,6 @@ surface_resize(application_surface, room_width, room_height);
 global.resseting_data = false
 global.translation = load_json("data\\translation_en.json")
 
-
 #region data init
 enum EVO_TYPE {NONE,STAGE,FRUITS,WIN_CHAPTER}
 enum RARITY {NORMAL,SPECIAL,RARE,SUPER_RARE,UBER_SUPER_RARE,LEGEND_RARE}
@@ -125,7 +124,7 @@ global.all_cats = [
     data.cats.ninja_cat, data.cats.zombie_cat, data.cats.samurai_cat, data.cats.sumo_cat, data.cats.boogie_cat, data.cats.skirt_cat, data.cats.valkyrie_cat, data.cats.bahamut_cat,
     data.cats.kerihime, data.cats.cat_princess, data.cats.blue_shinobi, data.cats.cabaret_cat, data.cats.healer, data.cats.merc, data.cats.bean_cat,data.cats.flower_cat,
     data.cats.ururun_wolf, data.cats.lil_nyandam, data.cats.meowla_meowla, data.cats.yuki_cat, data.cats.mr_ninja, data.cats.titi, data.cats.lil_cat, data.cats.lil_tank_cat,
-    data.cats.lil_axe_cat, data.cats.catburger, data.cats.lil_gross_cat
+    data.cats.lil_axe_cat, data.cats.catburger, data.cats.lil_gross_cat, data.cats.lil_cow_cat, data.cats.lil_bird_cat
     ]
 global.selected_cat = -1
 
@@ -214,11 +213,13 @@ info.max_page = 0
 info.current_page = 0
 info.cats_number = 0
 info.display = {}
-info.display.start_pos = [86-41,104]
+info.display.start_pos = [45,104]
 info.display.spacing = [120,95]
 info.display.mouse_on = array_create(60,false)
-info.display.evolved = array_create(60,false)
 info.display.selected = array_create(60,false)
+info.display.surface  = -1
+info.display.buffer = -1
+info.display.surface_size = [ 1235,664 ]
 info.pages = []
 info.progress = {}
 info.progress.number = 0
@@ -583,6 +584,89 @@ info.get_evolution_requirements = function (){
         
     }
 }
+
+info.display_refresh = function(){
+    
+    surface_free(info.display.surface)
+    info.display.surface = surface_create(info.display.surface_size[0],info.display.surface_size[1])
+    surface_set_target(info.display.surface)
+    draw_clear_alpha(c_white,0)
+    surface_reset_target()
+
+    if buffer_exists(info.display.buffer)
+        buffer_delete(info.display.buffer)
+    
+    if info.cats_number<=0
+        exit
+    
+    surface_set_target(info.display.surface)
+    
+    var _current_data = info.pages[ info.current_page ]
+    var _length = array_length(_current_data)
+    
+    var _x_start = 0//info.display.start_pos[0]
+    var _y_start = 0//info.display.start_pos[1]
+    var _x_dist = info.display.spacing[0]
+    var _y_dist = info.display.spacing[1]
+    var _row = 0
+    var _num = 0
+    
+    for(var i=0;i<_length;i++){
+        var _current_cat = _current_data[i]
+        var _x = _x_start + _x_dist * _num
+        var _y = _y_start + _y_dist * _row
+        
+        var _form = _current_cat.form_selected
+        var _spr = _current_cat.spr[_form]
+        var _added = _current_cat.added
+        var _evolved = false
+        var _selected = false
+        
+        draw_sprite_ext(_spr,0,_x,_y,1,1,0,c_white,1)
+        
+        var _last_form = false
+        if variable_struct_exists(_current_cat,"ultra_form"){
+            if _current_cat.ultra_form == true
+                _last_form = true    
+        }
+        else{
+            if _current_cat.true_form == true
+                _last_form = true
+        }
+        
+        if _last_form == true{
+            _evolved = true
+        }
+        
+        if variable_struct_get(global.save.added_cats,_current_cat.myid){
+            _selected=true
+        }
+        
+        if menu.state==M_STATES.ADDCATS and _selected==true{
+            if _evolved==false
+                draw_sprite(spr_frame_selected_unit,0,_x,_y)
+            else
+                draw_sprite(spr_frame_selected_evolved_unit,0,_x,_y)
+        }
+        else {
+        	if _evolved==true
+                draw_sprite(spr_frame_evolved_unit,0,_x,_y)
+        }
+        
+        _num ++
+        
+        if _num > 9{
+            _num = 0
+            _row ++
+        }
+    }
+    
+    surface_reset_target()
+    
+    info.display.buffer = surface_to_buffer(info.display.surface)
+    
+}
+
 info.get_pages = function (){
     info.cats_number = 0
     info.pages = []
@@ -615,15 +699,18 @@ info.get_pages = function (){
             _num = 0
         }
     }
+    
+    info.display_refresh()
 }
+
 info.draw = function (){
     if info.cats_number<=0
         exit
     
     var _pages = array_length( info.pages )
     var _width = 32*_pages-32
-    
     var _y = 84
+    
     for(var c=0;c<_pages;c++){
         var _x = 1280/2 + 32*c - _width/2
         var _active = false
@@ -633,9 +720,6 @@ info.draw = function (){
         
         draw_sprite_ext(spr_pages,_active,_x,_y,2,2,0,c_white,1)
     }
-    
-
-    
     
     var _current_data = info.pages[ info.current_page ]
     var _length = array_length(_current_data)
@@ -647,31 +731,18 @@ info.draw = function (){
     var _row = 0
     var _num = 0
     
+    if surface_exists(info.display.surface){
+        draw_surface(info.display.surface,_x_start,_y_start)
+    }
+    
     for(var i=0;i<_length;i++){
         var _current_cat = _current_data[i]
         var _x = _x_start + _x_dist * _num
         var _y = _y_start + _y_dist * _row
-        
-        var _form = _current_cat.form_selected
-        var _spr = _current_cat.spr[_form]
-        var _added = _current_cat.added
-        
-        draw_sprite_ext(_spr,0,_x,_y,1,1,0,c_white,1)
-        
+    
+
         if info.display.mouse_on[i]==true{
             draw_sprite(spr_frame_hover_unit,0,_x,_y)
-        }
-
-        
-        if menu.state==M_STATES.ADDCATS and info.display.selected[i]==true{
-            if info.display.evolved[i]==false
-                draw_sprite(spr_frame_selected_unit,0,_x,_y)
-            else
-                draw_sprite(spr_frame_selected_evolved_unit,0,_x,_y)
-        }
-        else {
-        	if info.display.evolved[i]==true
-                draw_sprite(spr_frame_evolved_unit,0,_x,_y)
         }
         
         _num ++
@@ -684,21 +755,28 @@ info.draw = function (){
     
     info.bottom_bar.draw()
 }
+
 info.step = function (){
     if info.cats_number<=0
         exit
+        
+    if !surface_exists(info.display.surface){
+        if buffer_exists(info.display.buffer){
+            info.display.surface = surface_create(info.display.surface_size[0],info.display.surface_size[1])
+            buffer_set_surface(info.display.buffer,info.display.surface,0)
+        }
+    }
     
     var _pages = array_length( info.pages )
     var _width = 32*_pages-32
     
     if mouse_wheel_down() and info.current_page<_pages-1{
         info.current_page++
-        if info.current_page>_pages-1{
-            info.current_page = 0
-        }
+        info.display_refresh()
     }
     if mouse_wheel_up() and info.current_page>0{
         info.current_page--
+        info.display_refresh()
     }
     
     var _y = 84
@@ -713,6 +791,7 @@ info.step = function (){
         
         if _active == false and mouse_check_button_pressed(mb_left) and _on_button == true and global.gui_layer == 0 and global.gui_wait == 0{
             info.current_page = c
+            info.display_refresh()
         }
         
     }
@@ -754,35 +833,19 @@ info.step = function (){
         
         if menu.state==M_STATES.ADDCATS{
             
+            var _selected = false
+            
             if variable_struct_get(global.save.added_cats,_current_cat.myid){
-                info.display.selected[i]=true
-            }
-            else{
-                info.display.selected[i]=false
+                _selected=true
             }
             
             if _on_unit and mouse_check_button_pressed(mb_left){
-                if info.display.selected[i]==false
+                if _selected==false{
                     global.save.add_cat(_current_cat.myid)
+                    info.display_refresh()
+                }
             }
             
-        }
-        
-        var _last_form = false
-        if variable_struct_exists(_current_cat,"ultra_form"){
-            if _current_cat.ultra_form == true
-                _last_form = true    
-        }
-        else{
-            if _current_cat.true_form == true
-                _last_form = true
-        }
-        
-        if _last_form == true{
-            info.display.evolved[i] = true
-        }
-        else{
-            info.display.evolved[i] = false
         }
         
         _num ++

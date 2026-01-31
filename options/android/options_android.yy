@@ -1,6 +1,18 @@
 {
   "$GMAndroidOptions":"v1",
   "%Name":"Android",
+  "ConfigValues":{
+    "DEBUG":{
+      "option_android_build_tools":"35.0.0",
+      "option_android_support_lib":"35.0.0",
+      "option_android_target_sdk":"35",
+      "option_android_compile_sdk":"35",
+      "option_android_minimum_sdk":"21",
+      "option_android_package_product":"bcec",
+      "option_android_orient_portrait_flipped":"false",
+      "option_android_orient_portrait":"false",
+    },
+  },
   "name":"Android",
   "option_android_application_tag_inject":"",
   "option_android_arch_arm64":true,

@@ -3,7 +3,7 @@ if DATA_LOADING==false
 
 function data_load(){
     if file_exists(working_directory+"save.json")
-    global.save.added_cats = load_json(working_directory+"save.json")
+        global.save.added_cats = load_json(working_directory+"save.json")
     
     //check if everything is okay!!
     if variable_struct_exists(global.save,"added_cats"){

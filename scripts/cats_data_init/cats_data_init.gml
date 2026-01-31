@@ -500,8 +500,8 @@ data.cats.bondage_cat = {
             abilities:[EFFECT.FREEZE,EFFECT.DODGE,ABILITY.IMMUNE_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
             talent_type:[0,0,0,0,0],
             data:[
-                { chance:30, time:0, start_time_improv:12, time_improv:2, time_improv_max:60, total_cost:165 },
-                { chance:40, time:0, start_time_improv:12, time_improv:2, time_improv_max:30, total_cost:165 },
+                { chance:30, time:15, time_improv:5, time_improv_max:60, total_cost:165 },
+                { chance:40, time:12, time_improv:2, time_improv_max:30, total_cost:165 },
                 { total_cost:75 },
                 { total_cost:125, start_improv:8, improv:8, improv_max: 80 },
                 { total_cost:125, start_improv:8, improv:8, improv_max: 80 }
@@ -1687,6 +1687,86 @@ data.cats.lil_gross_cat = {
                 { improv:6, improv_max:70, start_improv:16 },
                 { improv:2, improv_max:20, start_improv:2 },
                 { improv:2, improv_max:20, start_improv:2 }
+            ]
+        }
+    }
+}
+
+data.cats.lil_cow_cat = {
+    max_lvl: [50,60],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_lil_cow_cat,spr_lil_cow_cat_b,spr_lil_cow_cat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"lil_cow_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[200,200,800],
+        dmg:[13,13,26],
+        atk_spd:[10,10,10],
+        range:[130,130,130],
+        spd:[20,20,20],
+        knockback:[5,5,5],
+        recharge: [270,270,390],
+        cost: [500,500,500],
+        targetings:[ [],[],[] ],
+        attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+        abilities:[ [],[],[ABILITY.IMMUNE_WAVE] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{
+            abilities:[ABILITY.SHIELD_BREAKER,ABILITY.COST_DOWN,ABILITY.IMMUNE_SURGE,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[
+                { total_cost:165, chance:1, chance_improv:1, chance_improv_max:10 },
+                { total_cost:125, number_improv:20, number_improv_max:200, start_number_improv:0 },
+                { total_cost:75 },
+                { total_cost:125, improv:2, improv_max:20, start_improv:2 },
+                { total_cost:125, improv:2, improv_max:20, start_improv:2 }
+            ]
+        }
+    }
+}
+
+data.cats.lil_bird_cat = {
+    max_lvl: [50,60],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_lil_bird_cat,spr_lil_bird_cat_b,spr_lil_bird_cat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"lil_bird_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[120,120,480],
+        dmg:[140,165,330],
+        atk_spd:[49,57,57],
+        range:[160,160,170],
+        spd:[8,8,8],
+        knockback:[4,4,4],
+        recharge: [250,250,370],
+        cost: [650,650,650],
+        targetings:[ [],[],[TARGETING.ZOMBIE] ],
+        attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA] ],
+        abilities:[ [],[],[ABILITY.ZOMBIE_KILLER] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[EFFECT.STRONG] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{
+            abilities:[TARGETING.RELIC,ABILITY.IMMUNE_CURSE,EFFECT.CURSE,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[
+                { total_cost:75 },
+                { total_cost:75 },
+                { total_cost:165, chance:20, time:24, time_improv:4, time_improv_max:60 },
+                { total_cost:125, improv:2, improv_max:20, start_improv:2 },
+                { total_cost:125, improv:2, improv_max:20, start_improv:2 }
             ]
         }
     }

@@ -83,7 +83,7 @@ function return_info(_targ,_bon,_mystat,_targ_plus = undefined){
         _has_more_than_metal = true
     }
     var _has_metal = false
-    if array_value_exists(_bontarg.cotc,TARGETING.METAL){
+    if array_contains(_bontarg.cotc,TARGETING.METAL){
         _has_metal = true
     }
 

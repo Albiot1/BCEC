@@ -2,8 +2,6 @@ buttons.step()
 
 info.bottom_bar.step()
 
-info.step()
-
 info.fruits.step()
 
 info.step()
