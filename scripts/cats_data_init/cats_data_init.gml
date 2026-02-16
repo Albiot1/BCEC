@@ -1498,6 +1498,40 @@ data.cats.titi = {
     }
 }
     
+data.cats.baozi_cat = {
+    max_lvl: [50,30],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_baozie_cat,spr_baozie_cat_b ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+        value:[-1,-1],
+        level:[0,10],
+        xp:[0,0]
+    },
+    stats:{
+        life:[110,450],
+        dmg:[8,65],
+        atk_spd:[29,39],
+        range:[140,300],
+        spd:[9,6],
+        knockback:[3,3],
+        recharge: [150,480],
+        cost: [50,500],
+        targetings:[ [],[] ],
+        attack_type:[ [ATTACKS.SINGLE],[ATTACKS.AREA] ],
+        abilities:[ [],[] ],
+        abilities_data:[ [{}],[{}] ],
+        effects:[ [],[] ],
+        effects_data:[ [{}],[{}] ],
+        talents:{
+            abilities:[],
+            talent_type:[],
+            data:[]
+        }
+    }
+}
+    
 data.cats.lil_cat = {
     max_lvl: [50,60],
     name: ["","",""],
@@ -1767,6 +1801,195 @@ data.cats.lil_bird_cat = {
                 { total_cost:165, chance:20, time:24, time_improv:4, time_improv_max:60 },
                 { total_cost:125, improv:2, improv_max:20, start_improv:2 },
                 { total_cost:125, improv:2, improv_max:20, start_improv:2 }
+            ]
+        }
+    }
+}
+    
+data.cats.red_riding_mina = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_red_riding_mina,spr_red_riding_mina_b,spr_red_riding_mina_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
+        value:[-1,-1, [ [SEED_RED,10],[CATFRUIT_RED,10],[CATFRUIT_EPIC,5],[CATFRUIT_ELDER,1] ] ],
+        level:[0,0,30],
+        xp:[0,0,1000000]
+    },
+    stats:{
+        life:[1200,1200,1800],
+        dmg:[600,600,1200],
+        atk_spd:[119,119,119],
+        range:[435,435,435],
+        spd:[10,10,10],
+        knockback:[4,4,4],
+        recharge: [3200,3200,3200],
+        cost: [2600,2600,2600],
+        targetings:[ [],[],[TARGETING.RELIC] ],
+        attack_type:[ [ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG] ],
+        long_dist_range:[ [300,600],[300,600],[300,700] ],
+        abilities:[ [],[],[ABILITY.IMMUNE_CURSE] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[EFFECT.WEAKEN] ],
+        effects_data:[ [{}],[{}],[{chance:50, weaken:50, time:100}] ],
+        talents:{
+            abilities:[],
+            talent_type:[],
+            data:[]
+        }
+    }
+}
+    
+data.cats.lil_homura = {
+    max_lvl: [50,0],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_lil_homura,spr_lil_homura_b,spr_lil_homura_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"nutckracker_witch"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[600,600,600],
+        dmg:[80,80,160],
+        atk_spd:[71,69,87],
+        range:[225,225,275],
+        spd:[11,11,11],
+        knockback:[2,2,2],
+        recharge: [1000,1000,1000],
+        cost: [300,300,300],
+        targetings:[ [],[],[TARGETING.BLACK] ],
+        attack_type:[ [],[],[] ],
+        abilities:[ [ABILITY.WITCH_KILLER],[ABILITY.WITCH_KILLER],[ABILITY.WITCH_KILLER] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[EFFECT.WEAKEN] ],
+        effects_data:[ [{}],[{}],[{chance:50, weaken:50, time:150}] ],
+        talents:{
+            abilities:[],
+            talent_type:[],
+            data:[]
+        }
+    }
+}
+    
+data.cats.lil_fish_cat = {
+    max_lvl: [50,60],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_lil_fish_cat,spr_lil_fish_cat_b,spr_lil_fish_cat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"lil_fish_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[280,280,1120],
+        dmg:[180,180,360],
+        atk_spd:[43,43,43],
+        range:[140,140,140],
+        spd:[8,8,8],
+        knockback:[3,3,3],
+        recharge: [390,390,510],
+        cost: [800,800,800],
+        targetings:[ [TARGETING.RED],[TARGETING.RED],[TARGETING.RED] ],
+        attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+        abilities:[ [],[],[ABILITY.CRITICAL] ],
+        abilities_data:[ [{}],[{}],[{chance:5}] ],
+        effects:[ [EFFECT.STRONG],[EFFECT.STRONG],[EFFECT.STRONG] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{
+            abilities:[TARGETING.AKU,ABILITY.WAVE,ABILITY.RESIST_CURSE,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[
+                {total_cost:75},
+                {total_cost:165,chance:2,lvl:2,chance_improv:2,chance_improv_max:20},
+                {total_cost:125,improv:6,start_improv:16,improv_max:70},
+                {total_cost:125,start_improv:2,improv:2,improv_max:20},
+                {total_cost:125,start_improv:2,improv:2,improv_max:20}
+            ]
+        }
+    }
+}
+    
+data.cats.lil_lizard_cat = {
+    max_lvl: [50,60],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_lil_lizard_cat,spr_lil_lizard_cat_b,spr_lil_lizard_cat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.STAGE],
+        value:[-1,-1,"lil_lizard_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[320,320,900],
+        dmg:[350,350,400],
+        atk_spd:[127,127,127],
+        range:[320,320,400],
+        spd:[8,8,10],
+        knockback:[3,3,3],
+        recharge: [570,570,770],
+        cost: [1000,1000,1000],
+        targetings:[ [],[],[] ],
+        attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+        abilities:[ [],[],[] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[] ],
+        effects_data:[ [{}],[{}],[{}] ],
+        talents:{
+            abilities:[ABILITY.MINI_WAVE,ABILITY.SURVIVE,ABILITY.IMMUNE_SURGE,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[
+                {total_cost:165,chance:4,chance_improv:4,lvl:4,chance_improv_max:40},
+                {total_cost:165,chance:28,chance_improv:8,chance_improv_max:100},
+                {total_cost:75},
+                {total_cost:125,improv:2,improv_max:20,start_improv:2},
+                {total_cost:125,improv:2,improv_max:20,start_improv:2}
+            ]
+        }
+    }
+}
+    
+data.cats.lil_titan_cat = {
+    max_lvl: [50,60],
+    name: ["","",""],
+    rarity: RARITY.SPECIAL,
+    spr:[ spr_lil_titan_cat,spr_lil_titan_cat_b,spr_lil_titan_cat_c ],
+    evolutions:{
+        type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.NONE],
+        value:[-1,-1,"lil_titan_awakens"],
+        level:[0,0,20],
+        xp:[0,0,0]
+    },
+    stats:{
+        life:[400,400,1600],
+        dmg:[280,280,460],
+        atk_spd:[67,67,57],
+        range:[140,140,140],
+        spd:[6,6,6],
+        knockback:[1,1,1],
+        recharge: [810,810,930],
+        cost: [1300,1300,1300],
+        targetings:[ [],[],[TARGETING_NON_METAL] ],
+        attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA] ],
+        abilities:[ [],[],[] ],
+        abilities_data:[ [{}],[{}],[{}] ],
+        effects:[ [],[],[EFFECT.KNOCKBACK] ],
+        effects_data:[ [{}],[{}],[{chance:20}] ],
+        talents:{
+            abilities:[ABILITY.SHIELD_BREAKER,ABILITY.IMMUNE_WEAKEN,ABILITY.RESIST_SURGE,ABILITY.HP_UP,ABILITY.ATK_UP],
+            talent_type:[0,0,0,0,0],
+            data:[
+                {chance:3, chance_improv:3, chance_improv_max:30, total_cost:165},
+                {total_cost:75},
+                {improv:5,start_improv:5,improv_max:50,total_cost:125},
+                {improv:2,start_improv:2,improv_max:20,total_cost:125},
+                {improv:2,start_improv:2,improv_max:20,total_cost:125}
             ]
         }
     }

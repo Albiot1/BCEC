@@ -123,8 +123,9 @@ global.all_cats = [
     data.cats.actress_cat, data.cats.kung_fu_cat, data.cats.mr, data.cats.bondage_cat, data.cats.dom_cat, data.cats.cats_in_a_box, data.cats.panties_cat, data.cats.moneko, data.cats.tricycle_cat,
     data.cats.ninja_cat, data.cats.zombie_cat, data.cats.samurai_cat, data.cats.sumo_cat, data.cats.boogie_cat, data.cats.skirt_cat, data.cats.valkyrie_cat, data.cats.bahamut_cat,
     data.cats.kerihime, data.cats.cat_princess, data.cats.blue_shinobi, data.cats.cabaret_cat, data.cats.healer, data.cats.merc, data.cats.bean_cat,data.cats.flower_cat,
-    data.cats.ururun_wolf, data.cats.lil_nyandam, data.cats.meowla_meowla, data.cats.yuki_cat, data.cats.mr_ninja, data.cats.titi, data.cats.lil_cat, data.cats.lil_tank_cat,
-    data.cats.lil_axe_cat, data.cats.catburger, data.cats.lil_gross_cat, data.cats.lil_cow_cat, data.cats.lil_bird_cat
+    data.cats.ururun_wolf, data.cats.lil_nyandam, data.cats.meowla_meowla, data.cats.yuki_cat, data.cats.mr_ninja, data.cats.titi, data.cats.baozi_cat, data.cats.lil_cat,
+    data.cats.lil_tank_cat, data.cats.lil_axe_cat, data.cats.catburger, data.cats.lil_gross_cat, data.cats.lil_cow_cat, data.cats.lil_bird_cat, data.cats.red_riding_mina,
+    data.cats.lil_homura, data.cats.lil_fish_cat, data.cats.lil_lizard_cat, data.cats.lil_titan_cat
     ]
 global.selected_cat = -1
 
@@ -819,7 +820,7 @@ info.step = function (){
         
         if _on_unit and global.gui_layer == 0{
             info.display.mouse_on[i]=true
-            if mouse_check_button_pressed(mb_left) and menu.state!=M_STATES.ADDCATS{
+            if mouse_check_button_pressed(mb_left) and menu.state!=M_STATES.ADDCATS and global.gui_layer == 0 and global.gui_wait == 0{
                 with instance_create_depth(0,0,depth-1,obj_cats_stats){
                     mydata = _current_cat
                 }
@@ -839,7 +840,7 @@ info.step = function (){
                 _selected=true
             }
             
-            if _on_unit and mouse_check_button_pressed(mb_left){
+            if _on_unit and mouse_check_button_pressed(mb_left) and global.gui_layer == 0 and global.gui_wait == 0{
                 if _selected==false{
                     global.save.add_cat(_current_cat.myid)
                     info.display_refresh()

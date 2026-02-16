@@ -117,6 +117,8 @@
 	"titi_0":"Titi",
 	"titi_1":"Titi CC",
 	"titi_2":"Titi Cat CC",
+	"baozi_cat_0":"Baozi Cat",
+	"baozi_cat_1":"Big Baozi",
 	"lil_cat_0":"Li'l Cat",
 	"lil_cat_1":"Li'l Macho Cat",
 	"lil_cat_2":"Li'l Mohawk Cat",
@@ -180,7 +182,11 @@
     "lil_gross_awakens_main":"Li'l Gross Awakens!",
     "lil_cow_awakens_main":"Li'l Cow Awakens!",
     "lil_bird_awakens_main":"Li'l Bird Awakens!",
-    
+	"nutckracker_witch_main":"Nutckracker Witch",
+	"lil_fish_awakens_main":"Li'l Fish Awakens!",
+	"lil_lizard_awakens_main":"Li'l Lizard Awakens!",
+    "lil_titan_awakens_main":"Li'l Titan Awakens!",
+	
 	"chapter_itf_1":"Into the Future Chapter 1",
 	"chapter_itf_2":"Into the Future Chapter 2",
 	"chapter_itf_3":"Into the Future Chapter 3",

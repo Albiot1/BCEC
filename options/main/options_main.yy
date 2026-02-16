@@ -1,6 +1,12 @@
 {
   "$GMMainOptions":"v5",
   "%Name":"Main",
+  "ConfigValues":{
+    "DEBUG":{
+      "option_allow_instance_change":"false",
+      "option_legacy_primitive_drawing":"false",
+    },
+  },
   "name":"Main",
   "option_allow_instance_change":true,
   "option_audio_error_behaviour":false,
@@ -20,7 +26,7 @@
   "option_sci_usesci":false,
   "option_spine_licence":false,
   "option_steam_app_id":"0",
-  "option_template_description":null,
+  "option_template_description":"",
   "option_template_icon":"${base_options_dir}/main/template_icon.png",
   "option_template_image":"${base_options_dir}/main/template_image.png",
   "option_window_colour":255,
