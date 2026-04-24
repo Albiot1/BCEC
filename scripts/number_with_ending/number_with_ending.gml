@@ -20,10 +20,10 @@ function number_with_ending(_value){
                 _ret+=_spacing
             }
             
-            return _ret
+           
             
         }
-        
+        return _ret
     }
     else{
     

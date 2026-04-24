@@ -4,7 +4,7 @@ enum FORMAT_TYPES{
 }
 
 function number_format_dotted(_number){
-    var _num = string(floor(_number))
+    var _num = string(round(_number))
     var _start = ""
     if string_count("-",_num)>0{
         _num = string_replace(_num,"-","")
@@ -25,7 +25,7 @@ function number_format_dotted(_number){
 }
 
 function number_format_named(_number){
-    var _num = floor(_number)
+    var _num = round(_number)
     var _str = string(_num)
     
     if _num>=1000 and _num<1000000{

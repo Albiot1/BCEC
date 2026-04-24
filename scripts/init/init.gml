@@ -9,26 +9,38 @@
 #macro DEBUG_FRAMES false
 #macro DEBUG:DEBUG_FRAMES true  
 #macro GAME_VERSION 14.5 
-#macro TARGETING_NON_METAL [TARGETING.AKU,TARGETING.ALIEN,TARGETING.ANGEL,TARGETING.BLACK,TARGETING.FLOATING,TARGETING.RED,TARGETING.RELIC,TARGETING.TRAITELSS,TARGETING.ZOMBIE]
+#macro TARGETING_NON_METAL [TARGETING.AKU,TARGETING.ALIEN,TARGETING.ANGEL,TARGETING.BLACK,TARGETING.FLOATING,TARGETING.RED,TARGETING.RELIC,TARGETING.TRAITLESS,TARGETING.ZOMBIE]
 #macro TARGETING_TRAITED [TARGETING.AKU,TARGETING.ALIEN,TARGETING.ANGEL,TARGETING.BLACK,TARGETING.FLOATING,TARGETING.RED,TARGETING.RELIC,TARGETING.METAL,TARGETING.ZOMBIE]
-#macro TARGETING_ALL [TARGETING.AKU,TARGETING.ALIEN,TARGETING.ANGEL,TARGETING.BLACK,TARGETING.FLOATING,TARGETING.RED,TARGETING.RELIC,TARGETING.METAL,TARGETING.ZOMBIE,TARGETING.TRAITELSS] 
+#macro TARGETING_ALL [TARGETING.AKU,TARGETING.ALIEN,TARGETING.ANGEL,TARGETING.BLACK,TARGETING.FLOATING,TARGETING.RED,TARGETING.RELIC,TARGETING.METAL,TARGETING.ZOMBIE,TARGETING.TRAITLESS] 
 draw_set_font(fnt_general)
 
 function sound_click_play(){
     audio_play_sound(snd_click,1,0)
 }
 
-function calculate_stat(rarity, level, is_crazed, is_bahamut, stat) {
-    if (is_bahamut and level > 30) {
+function calculate_stat(rarity, level, unit_type, stat) {
+    if (unit_type == "bahamut_cat" and level > 30) {
         return stat * (1 + 29 * 0.2 + (level - 30) * 0.1);
     }
+    if (unit_type == "gacha_cat" or unit_type == "principal_cat"){
+        if (level < 31) {
+            return stat * (1 + 19 * 0.2 + (level - 20) * 0.6);
+        }
+        else if (level < 41) {
+            return stat * (1 + 19 * 0.2 + 10 * 0.6 + (level - 30) * 1.2);
+        }
+        else {
+            return stat * (1 + 19 * 0.2 + 10 * 0.6 + 10 * 1.2 + (level - 40) * 1.8);
+        }
+    }
     
+    var _is_crazed = false
     
     // Crazed, Lv 0-20
-    if (is_crazed and level < 21) {
+    if (_is_crazed and level < 21) {
         return stat * (1 + (level - 1) * 0.2);
         // Crazed, Lv 21+
-    } else if (is_crazed and level > 20) {
+    } else if (_is_crazed and level > 20) {
         return stat * (1 + 19 * 0.2 + (level - 20) * 0.1);
         // Basic, Special, Rare, Super Rare, Uber Super Rare, Lv<61
     } else if (level < 61) {

@@ -10,12 +10,12 @@ global.translation = load_json("data\\translation_en.json")
 #region data init
 enum EVO_TYPE {NONE,STAGE,FRUITS,WIN_CHAPTER}
 enum RARITY {NORMAL,SPECIAL,RARE,SUPER_RARE,UBER_SUPER_RARE,LEGEND_RARE}
-enum TARGETING {RED = 0,FLOATING,BLACK,METAL,ANGEL,ALIEN,ZOMBIE,RELIC,AKU,TRAITELSS}
+enum TARGETING {RED = 0,FLOATING,BLACK,METAL,ANGEL,ALIEN,ZOMBIE,RELIC,AKU,TRAITLESS}
 enum ATTACKS {SINGLE = 10,AREA,LONG,OMNI,MULTI_HIT}
 
 enum EFFECT {WEAKEN = 110,FREEZE,SLOW,TARGET_ONLY,STRONG,RESISTANT,ULTRA_TOUGH,MASSIVE_DMG,INSANE_DMG,KNOCKBACK,WARP,CURSE,DODGE}
 enum ABILITY {BOSS_SHOCKWAVE_IMMUNITY = 510,STRENGTHEN,SURVIVE,BASE_DESTROYER,CRITICAL,METAL_KILLER,ZOMBIE_KILLER,SOULSTRIKE,BARRIER_BREAKER,SHIELD_BREAKER,SAVAGE_BLOW,EXTRA_MONEY,METAL,MINI_WAVE,WAVE,MINI_SURGE,SURGE,EXPLOSION,COUNTER_SURGE,STOP_WAVES,CONJURE,COLOSSUS_SLAYER,BEHEMOT_SLAYER,SAGE_SLAYER,WITCH_KILLER,EVA_KILLER,IMMUNE_WEAKEN,IMMUNE_FREEZE,IMMUNE_SLOW,IMMUNE_KNOCKBACK,IMMUNE_WAVE,IMMUNE_SURGE,IMMUNE_EXPLOSION,IMMUNE_WARP,IMMUNE_CURSE,IMMUNE_TOXIC,RESIST_WEAKEN,RESIST_FREEZE,RESIST_SLOW,RESIST_KNOCKBACK,RESIST_WAVE,RESIST_SURGE,RESIST_WARP,RESIST_CURSE,RESIST_TOXIC,HP_UP,ATK_UP,SPD_UP,IMPROVED_KNOCKBACK,COST_DOWN,RECOVER_DOWN,ATK_SPEED_UP}
-enum TRAIT {RED = 0,FLOATING,BLACK,METAL,ANGEL,ALIEN,ZOMBIE,RELIC,AKU,TRAITELSS,BEHEMOT,COLOSSUS,SAGE,WITCH}
+enum TRAIT {RED = 0,FLOATING,BLACK,METAL,ANGEL,ALIEN,ZOMBIE,RELIC,AKU,TRAITLESS,BEHEMOT,COLOSSUS,SAGE,WITCH}
 
 data = {}
 
@@ -89,7 +89,7 @@ data.enemies = {}
 
 data.enemies.doge = {
     name: "Doge",
-    traits: [TARGETING.TRAITELSS],
+    traits: [TARGETING.TRAITLESS],
     spr: spr_unit_titan_cat,
     stats:{
         life: 240,
@@ -125,7 +125,11 @@ global.all_cats = [
     data.cats.kerihime, data.cats.cat_princess, data.cats.blue_shinobi, data.cats.cabaret_cat, data.cats.healer, data.cats.merc, data.cats.bean_cat,data.cats.flower_cat,
     data.cats.ururun_wolf, data.cats.lil_nyandam, data.cats.meowla_meowla, data.cats.yuki_cat, data.cats.mr_ninja, data.cats.titi, data.cats.baozi_cat, data.cats.lil_cat,
     data.cats.lil_tank_cat, data.cats.lil_axe_cat, data.cats.catburger, data.cats.lil_gross_cat, data.cats.lil_cow_cat, data.cats.lil_bird_cat, data.cats.red_riding_mina,
-    data.cats.lil_homura, data.cats.lil_fish_cat, data.cats.lil_lizard_cat, data.cats.lil_titan_cat
+    data.cats.lil_homura, data.cats.lil_fish_cat, data.cats.lil_lizard_cat, data.cats.lil_titan_cat, data.cats.miyamoku_musashi, data.cats.happy_100, data.cats.maneki_cat, data.cats.hermit_cat,
+    data.cats.saber_the_cat, data.cats.lil_sakura, data.cats.coin_cat, data.cats.farmer_cat, data.cats.masked_yulala, data.cats.gendo_and_fuyutsuki_cats, data.cats.kaworu_and_cat,
+    data.cats.crazed_moneko, data.cats.mecha_bun, data.cats.nekokkuma, data.cats.cat_god_the_great, data.cats.shirou_the_cat, data.cats.filibuster_cat_x, data.cats.dogumaru,
+    data.cats.rosary_angel, data.cats.wakamiko_cat, data.cats.cat_devil, data.cats.shakurel_cat, data.cats.shakurel_lion, data.cats.shakurel_tiger, data.cats.shakurel_panda,
+    data.cats.chun_li_cat, data.cats.urs_and_fenrir, data.cats.master_uril, data.cats.heavenly_jack, data.cats.gacha_cat, data.cats.idi_n
     ]
 global.selected_cat = -1
 
@@ -144,7 +148,8 @@ global.save_settings = {
     research: 1,
     accounting: 1,
     fullscreen: false,
-    number_format: FORMAT_TYPES.DOTTED
+    number_format: FORMAT_TYPES.DOTTED,
+    black_targeting: true
 }
 
 global.save.add_cat = function (_cat_id,_form = 0){
@@ -304,7 +309,7 @@ info.fruits.get = function (){
         
         draw_set_font(fnt_big)
         draw_set_halign(fa_center)
-        draw_text_outline(400,8,c_yellow,c_black,"FRUITS TO EVOLVE ALL CATS")
+        draw_text_outline(400,8,c_yellow,c_black,"FRUITS TO EVOLVE YOUR CATS")
         draw_set_halign(fa_left)
         
         var _order = [
@@ -354,6 +359,9 @@ info.fruits.get = function (){
             if variable_struct_exists(info.progress.fruits,_type){
                 _num = info.progress.fruits[$ _type]
             }
+            
+            if _num==0
+                continue
             
             var _str_w = string_width(string(_num))
             
@@ -1046,3 +1054,5 @@ menu.draw = function (){
 
 global.gui_wait = 0
 global.gui_layer = 0
+
+get_menu_cats()

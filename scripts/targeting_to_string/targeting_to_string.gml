@@ -10,7 +10,7 @@ function targeting_to_string(_targeting){
         case TARGETING.METAL: _txt = "METAL" break;
         case TARGETING.RED: _txt = "RED" break;
         case TARGETING.RELIC: _txt = "RELIC" break;
-        case TARGETING.TRAITELSS: _txt = "TRAITLESS" break;
+        case TARGETING.TRAITLESS: _txt = "TRAITLESS" break;
         case TARGETING.ZOMBIE: _txt = "ZOMBIE" break;
 	}
 

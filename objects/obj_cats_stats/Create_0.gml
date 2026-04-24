@@ -64,12 +64,7 @@ stats.update = function (){
     var _is_bahamut = false
     var _is_crazed = false
     
-    if mydata.myid == "bahamut"{
-        _is_bahamut = true
-    }
-    if variable_struct_exists(mydata,"crazed"){
-        _is_crazed = true
-    }
+
     
     var _my_stats = mydata.stats
     
@@ -99,9 +94,9 @@ stats.update = function (){
         }
     }
     
-    stats.hp = calculate_stat(_rarity,_lvl,_is_crazed,_is_bahamut,_my_stats.life[_form]*_hpup)*get_shield_multiplier()
+    stats.hp = calculate_stat(_rarity,_lvl,mydata.myid,_my_stats.life[_form]*_hpup)*get_shield_multiplier()
 
-    stats.atk = calculate_stat(_rarity,_lvl,_is_crazed,_is_bahamut,_my_stats.dmg[_form]*_atkup)*get_sword_multiplier()
+    stats.atk = calculate_stat(_rarity,_lvl,mydata.myid,_my_stats.dmg[_form]*_atkup)*get_sword_multiplier()
     
     stats.lvl = mydata.level
     stats.lvl_plus = mydata.level_plus
@@ -169,7 +164,7 @@ stats.update = function (){
         stats.multi_hit_dmgs = variable_clone(_my_stats.multi_hit_dmgs[_form])
         
         for (var i = 0; i < array_length(stats.multi_hit_dmgs); i++) {
-        	stats.multi_hit_dmgs[i] = calculate_stat(_rarity,_lvl,_is_crazed,_is_bahamut,stats.multi_hit_dmgs[i]*_atkup)*get_sword_multiplier()
+        	stats.multi_hit_dmgs[i] = calculate_stat(_rarity,_lvl,mydata.myid,stats.multi_hit_dmgs[i]*_atkup)*get_sword_multiplier()
         }
         
     }
@@ -191,7 +186,7 @@ stats.update = function (){
     
     stats.true_form = mydata.true_form
     
-    var _targ_list =  [TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITELSS,TARGETING.BLACK,TARGETING.RED,TARGETING.FLOATING,TARGETING.ANGEL,TARGETING.METAL,TARGETING.ZOMBIE,TARGETING.ALIEN]
+    var _targ_list =  TARGETING_ALL
     
     for (var i = 0; i < array_length(_targ_list); i++) {
         if array_contains(stats.targetings,_targ_list[i])
@@ -243,6 +238,7 @@ cat_render.update = function (){
     surface_set_target(cat_render.surface)
     
     draw_clear_alpha(c_white,0)
+    
     if DEBUG_STAT_RECTANGLES
         draw_rectangle_color(0,0,cat_render.size[0],cat_render.size[1],c_red,c_red,c_red,c_red,0)
 
@@ -267,6 +263,8 @@ cat_render.update = function (){
     
     var _form_names = cat_render.form_buttons.names
     
+    cat_render.form_buttons.pos = []
+    cat_render.form_buttons.width = []
     for (var i = 0; i < stats.form_number; i++) {
         array_push(cat_render.form_buttons.pos,[_x,_y])
         var _bw = string_width(_form_names[i])+32
@@ -293,6 +291,7 @@ cat_render.update = function (){
     //draw_roundrect_color(_x,_y-_h/2,_x+_w,_y+_h/2,c_gray,c_gray,0)
     draw_sprite_stretched(spr_input_box,0,_x,_y-_h/2,_w,_h)
     
+    cat_render.level_boxes.pos = []
     array_push( cat_render.level_boxes.pos,[_x,_y] )
     
     draw_text_outline(_x+_w+6,_y,c_black,c_white,$"MAX({stats.lvl_max})")
@@ -316,6 +315,7 @@ cat_render.update = function (){
     surface_reset_target()
     
     cat_render.buffer = surface_to_buffer(cat_render.surface)
+    
     
 }
 cat_render.step = function (){
@@ -348,7 +348,7 @@ cat_render.step = function (){
                 stats_render.update()
                 abiltiy_render.update()
                 abiltiy_render.current.clean()
-                break;
+                exit
             }
         }
         else{
@@ -698,7 +698,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
     var _numtype = ""
     var _mydata = {}
     var _targets = {
-        nobonus: [TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITELSS],
+        nobonus: [TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS],
         itf: [TARGETING.BLACK,TARGETING.RED,TARGETING.FLOATING,TARGETING.ANGEL],
         cotc: [TARGETING.METAL,TARGETING.ZOMBIE,TARGETING.ALIEN]
     }
@@ -731,12 +731,12 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 	case TARGETING.AKU: _icon_target = spr_targeting_aku break;
                     case TARGETING.ALIEN: _icon_target = spr_targeting_alien break;
                     case TARGETING.ANGEL: _icon_target = spr_targeting_angel break;
-                    case TARGETING.BLACK: _icon_target = spr_targeting_black break;
+                    case TARGETING.BLACK: _icon_target = global.save_settings.black_targeting == true ? spr_targeting_black : spr_targeting_dark break;
                     case TARGETING.FLOATING: _icon_target = spr_targeting_floating break;
                     case TARGETING.METAL: _icon_target = spr_targeting_metal break;
                     case TARGETING.RED: _icon_target = spr_targeting_red break;
                     case TARGETING.RELIC: _icon_target = spr_targeting_relic break;
-                    case TARGETING.TRAITELSS: _icon_target = spr_targeting_traitless break;
+                    case TARGETING.TRAITLESS: _icon_target = spr_targeting_traitless break;
                     case TARGETING.ZOMBIE: _icon_target = spr_targeting_zombie break;
                 }
                 
@@ -809,7 +809,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _desc = get_translation("targeting_relic_desc")
         
         break;
-        case TARGETING.TRAITELSS:
+        case TARGETING.TRAITLESS:
             
             _icon = spr_targeting_traitless
             _txt = get_translation("targeting_traitless_name")
@@ -825,7 +825,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         break;
         case TARGETING.BLACK:
             
-            _icon = spr_targeting_black
+            _icon = global.save_settings.black_targeting == true ? spr_targeting_black : spr_targeting_dark
             _txt = get_translation("targeting_black_name")
             _desc = get_translation("targeting_black_desc")
         
@@ -884,7 +884,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if _len>0 and stats.multi_hit==true and _len_second == true{
                 _desc+=$"\n"
                 for (var i = 0; i < _len; i++) {
-                	_desc+=text_format_insert( get_translation("attack_omni_mhit_xhits_desc"),[number_with_ending(i),number_format_selected(stats.omni_range[i][0]),number_format_selected(stats.omni_range[i][1])] )
+                	_desc+=text_format_insert( get_translation("attack_omni_mhit_xhits_desc"),[number_with_ending(i+1),number_format_selected(stats.omni_range[i][0]),number_format_selected(stats.omni_range[i][1])] )
                 }
             }
         break;
@@ -1457,10 +1457,10 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
                 var _knockback_types = " "
                 if array_length(_stat_targets) == 9{
-                    if array_contains(_stat_targets,TARGETING.TRAITELSS) and !array_contains(_stat_targets,TARGETING.METAL){
+                    if array_contains(_stat_targets,TARGETING.TRAITLESS) and !array_contains(_stat_targets,TARGETING.METAL){
                         _knockback_types = get_translation("effect_on_nonmetal")
                     }
-                    else if array_contains(_stat_targets,TARGETING.METAL) and !array_contains(_stat_targets,TARGETING.TRAITELSS){
+                    else if array_contains(_stat_targets,TARGETING.METAL) and !array_contains(_stat_targets,TARGETING.TRAITLESS){
                         _knockback_types = get_translation("effect_on_traited")
                     }
                 }
@@ -1592,7 +1592,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if stats.multi_hit == true and variable_struct_exists(_mydata,"on_x_hit"){
                     _desc += text_format_insert( get_translation("effect_onxhit_desc"),[number_with_ending(_mydata.on_x_hit)] )
                 }
-                
+
             }
         
             if (_is_talent and _has_effect[0]){
@@ -1925,7 +1925,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
                 if variable_struct_exists(_mydata,"on_x_hit") and stats.multi_hit != false{
                     var _multi_dmgs = stats.multi_hit_dmgs
-                    _desc += text_format_insert( get_translation("ability_critical_stats_multi_xhit"),[_chance,number_format_selected(_multi_dmgs[_mydata.on_x_hit] * 2)] )
+                    _desc += text_format_insert( get_translation("ability_critical_stats_multi_xhit"),[_chance,number_format_selected(_multi_dmgs[_mydata.on_x_hit-1] * 2)] )
                 }
                 else if stats.multi_hit == false{
                 	_desc += text_format_insert( get_translation("ability_critical_stats"),[_chance,number_format_selected(_crit_dmg)] )
@@ -3419,7 +3419,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _icon = spr_conjure
             _txt = get_translation("ability_conjure_name")
             _desc = get_translation("ability_conjure_desc")
-            var _conj_damage = calculate_stat(mydata.rarity,stats.lvl+stats.lvl_plus,false,false,_mydata.damage)
+            var _conj_damage = calculate_stat(mydata.rarity,stats.lvl+stats.lvl_plus,"conjure",_mydata.damage)
 
             _desc += text_format_insert( get_translation("ability_conjure_stats"), [number_format_selected(_conj_damage),number_format_selected(_mydata.range),_mydata.attack_animation,_mydata.attack_animation/FRAMERATE,_mydata.desc] )
 
@@ -3529,8 +3529,8 @@ abiltiy_render.update = function (){
     _x += string_width("TARGETING:")+20
     draw_set_valign(0) draw_set_font(fnt_general)
     
-    var _targ_icon = [spr_targeting_red,spr_targeting_floating,spr_targeting_black,spr_targeting_metal,spr_targeting_angel,spr_targeting_alien,spr_targeting_zombie,spr_targeting_relic,spr_targeting_aku,spr_targeting_traitless]
-    var _targ_value = [TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITELSS]
+    var _targ_icon = [spr_targeting_red,spr_targeting_floating,global.save_settings.black_targeting == true ? spr_targeting_black : spr_targeting_dark,spr_targeting_metal,spr_targeting_angel,spr_targeting_alien,spr_targeting_zombie,spr_targeting_relic,spr_targeting_aku,spr_targeting_traitless]
+    var _targ_value = [TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS]
     var _length = 10
     
     for (var i = 0; i < _length; i++) {
@@ -3791,12 +3791,12 @@ abiltiy_render.update = function (){
                 case TARGETING.AKU: _cicon = spr_targeting_aku break;
                 case TARGETING.ALIEN: _cicon = spr_targeting_alien break;
                 case TARGETING.ANGEL: _cicon = spr_targeting_angel break;
-                case TARGETING.BLACK: _cicon = spr_targeting_black break;
+                case TARGETING.BLACK: _cicon = global.save_settings.black_targeting == true ? spr_targeting_black : spr_targeting_dark break;
                 case TARGETING.FLOATING: _cicon = spr_targeting_floating break;
                 case TARGETING.METAL: _cicon = spr_targeting_metal break;
                 case TARGETING.RED: _cicon = spr_targeting_red break;
                 case TARGETING.RELIC: _cicon = spr_targeting_relic break;
-                case TARGETING.TRAITELSS:  _cicon = spr_targeting_traitless break;
+                case TARGETING.TRAITLESS:  _cicon = spr_targeting_traitless break;
                 case TARGETING.ZOMBIE: _cicon = spr_targeting_zombie break;
                 
             }
@@ -3872,7 +3872,7 @@ abiltiy_render.step = function (){
                     case TARGETING.METAL: _stat_modyfying = true break;
                     case TARGETING.RED: _stat_modyfying = true break;
                     case TARGETING.RELIC: _stat_modyfying = true break;
-                    case TARGETING.TRAITELSS: _stat_modyfying = true break;
+                    case TARGETING.TRAITLESS: _stat_modyfying = true break;
                     case TARGETING.ZOMBIE: _stat_modyfying = true break;
                 }
                 
@@ -4121,6 +4121,11 @@ evolve_render.step = function (){
             
             evolve_render.button.mouse_on = false
             
+            with obj_manager{
+                info.get_evolution_requirements()
+                info.bottom_bar.update()
+            }
+            
             data_save()
         }
     }
@@ -4222,7 +4227,7 @@ evolve_render.update = function (){
             case EVO_TYPE.STAGE:
                 align_set(fa_middle,fa_center)
                 var _stage = get_translation(_evovalue+"_main")
-                draw_text_outline(evolve_render.size[0]/2,evolve_render.size[1]/2-16,c_black,c_white,"Get from stage:\n"+_stage)
+                draw_text_outline(evolve_render.size[0]/2,evolve_render.size[1]/2-16,c_black,c_white,"Get from stage/(s):\n"+_stage)
                 align_reset()
             break;
             case EVO_TYPE.WIN_CHAPTER:
@@ -4246,7 +4251,7 @@ evolve_render.update = function (){
             
             draw_sprite_ext(spr_xp,0,_xp_pos[0],_xp_pos[1],0.5,0.5,0,c_white,1)
             draw_set_valign(fa_middle)
-            draw_text_outline(_xp_pos[0]+64,_xp_pos[1]+28,c_black,COLOR_LEVEL,_evoxp)
+            draw_text_outline(_xp_pos[0]+64,_xp_pos[1]+28,c_black,COLOR_LEVEL,number_format_selected(_evoxp))
             draw_set_valign(fa_top)
         }
         if _evolevel > 0{
