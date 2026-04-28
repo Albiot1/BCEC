@@ -129,7 +129,14 @@ global.all_cats = [
     data.cats.saber_the_cat, data.cats.lil_sakura, data.cats.coin_cat, data.cats.farmer_cat, data.cats.masked_yulala, data.cats.gendo_and_fuyutsuki_cats, data.cats.kaworu_and_cat,
     data.cats.crazed_moneko, data.cats.mecha_bun, data.cats.nekokkuma, data.cats.cat_god_the_great, data.cats.shirou_the_cat, data.cats.filibuster_cat_x, data.cats.dogumaru,
     data.cats.rosary_angel, data.cats.wakamiko_cat, data.cats.cat_devil, data.cats.shakurel_cat, data.cats.shakurel_lion, data.cats.shakurel_tiger, data.cats.shakurel_panda,
-    data.cats.chun_li_cat, data.cats.urs_and_fenrir, data.cats.master_uril, data.cats.heavenly_jack, data.cats.gacha_cat, data.cats.idi_n
+    data.cats.chun_li_cat, data.cats.urs_and_fenrir, data.cats.master_uril, data.cats.heavenly_jack, data.cats.gacha_cat, data.cats.idi_n, data.cats.panda_cat, data.cats.gold_brick_cat,
+    data.cats.elder_mask_doron, data.cats.kabuto_cat, data.cats.kuwagata_cat, data.cats.jagando_jr, data.cats.million_dollar_cat, data.cats.firecracker_cat, data.cats.secret_crush_cat,
+    data.cats.tomboy_lion_cat, data.cats.chalkboard_eraser_cat, data.cats.elder_beast_naala, data.cats.ancient_egg_001, data.cats.ancient_egg_201, data.cats.ancient_egg_003, data.cats.ancient_egg_202,
+    data.cats.chika_amatori_and_cat, data.cats.ancient_egg_004, data.cats.meditation_cat, data.cats.ancient_egg_000, data.cats.class_rep_cat, data.cats.ancient_egg_005, data.cats.ancient_egg_203,
+    data.cats.ancient_egg_006, data.cats.medal_king, data.cats.master_of_mind_soractes, data.cats.ancient_egg_204, data.cats.principal_cat, data.cats.trash_cat, data.cats.felix_the_cat_duke_cat,
+    data.cats.dotty_cat, data.cats.kaoru_cat, data.cats.ancient_egg_205, data.cats.ancient_egg_206, data.cats.sardine, data.cats.squid, data.cats.master_of_life_dr_nova, data.cats.lieutenant_cat,
+    data.cats.lil_baki, data.cats.baki_cat, data.cats.kaioh_cat, data.cats.doppo_cat, data.cats.master_of_logic_newton, data.cats.tails_cat, data.cats.tasmanian_giant_crab, data.cats.consultant_cat,
+    data.cats.nezuko_cat, data.cats.occultist_cat, data.cats.master_of_selection_darvin
     ]
 global.selected_cat = -1
 
@@ -219,10 +226,10 @@ info.max_page = 0
 info.current_page = 0
 info.cats_number = 0
 info.display = {}
-info.display.start_pos = [45,104]
+info.display.start_pos = [45,104+32]
 info.display.spacing = [120,95]
-info.display.mouse_on = array_create(60,false)
-info.display.selected = array_create(60,false)
+info.display.mouse_on = array_create(50,false)
+info.display.selected = array_create(50,false)
 info.display.surface  = -1
 info.display.buffer = -1
 info.display.surface_size = [ 1235,664 ]
@@ -682,7 +689,7 @@ info.get_pages = function (){
     
     var _current_rarity = RARITY.NORMAL
     var _num = 0
-    var _max_num = 60
+    var _max_num = 50
     var _page = 0
     
     var _cats_num = array_length(global.current_cats)

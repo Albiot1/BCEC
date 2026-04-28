@@ -247,7 +247,11 @@ cat_render.update = function (){
     draw_set_halign(fa_center)
     draw_set_valign(fa_middle)
     draw_text_outline(_middle,16,c_black,c_white,stats.current_rarity)
+    
+    draw_set_valign(fa_top)
     draw_text_outline_ext(_middle,48,c_black,c_white,stats.current_name,16,cat_render.size[0])
+    
+    draw_set_valign(fa_middle)
     
     var _text_h = string_height_ext(stats.current_name,16,cat_render.size[0])
     
@@ -853,14 +857,14 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     _len_second = true
                 }
             }
-                
+            
             if (_len > 0 and stats.multi_hit == false) or (_len > 0 and _len_second == false) {
                 _desc += text_format_insert( get_translation("attack_long_mhit_desc"),[number_format_selected(stats.long_dist_range[0]),number_format_selected(stats.long_dist_range[1])] )
             }
             if _len>0 and stats.multi_hit==true and _len_second == true{
                 _desc+=$"\n"
                 for (var i = 0; i < _len; i++) {
-                	_desc += text_format_insert( get_translation("attack_long_mhit_xhits_desc"),[number_with_ending(i),number_format_selected(stats.long_dist_range[i][0]),number_format_selected(stats.long_dist_range[i][1])] )
+                	_desc += text_format_insert( get_translation("attack_long_mhit_xhits_desc"),[number_with_ending(i+1),number_format_selected(stats.long_dist_range[i][0]),number_format_selected(stats.long_dist_range[i][1])] )
                 }
             }
         break;
@@ -3421,7 +3425,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _desc = get_translation("ability_conjure_desc")
             var _conj_damage = calculate_stat(mydata.rarity,stats.lvl+stats.lvl_plus,"conjure",_mydata.damage)
 
-            _desc += text_format_insert( get_translation("ability_conjure_stats"), [number_format_selected(_conj_damage),number_format_selected(_mydata.range),_mydata.attack_animation,_mydata.attack_animation/FRAMERATE,_mydata.desc] )
+            _desc += text_format_insert( get_translation("ability_conjure_stats"), [number_format_selected(_conj_damage),number_format_selected(_mydata.range),_mydata.attack_animation,_mydata.attack_animation/FRAMERATE,get_translation(mydata.myid+"_spirit_desc")] )
 
         break;
     }

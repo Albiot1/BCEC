@@ -28,14 +28,14 @@ function number_format_named(_number){
     var _num = round(_number)
     var _str = string(_num)
     
-    if _num>=1000 and _num<1000000{
-        _str = string(_num/1000)+"K"
+    if _num>=1_000 and _num<1_000_000{
+        _str = string(_num/1_000)+"K"
     }
-    if _num>=1000000 and _num<1000000000{
-        _str = string(_num/1000000)+"M"
+    if _num>=1_000_000 and _num<1_000_000_000{
+        _str = string(_num/1_000_000)+"M"
     }
-    if _num>=1000000000{
-        _str = string(_num/1000000000)+"B"
+    if _num>=1_000_000_000{
+        _str = string(_num/1_000_000_000)+"B"
     }
     return _str
 }

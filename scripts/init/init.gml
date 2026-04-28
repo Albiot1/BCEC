@@ -8,7 +8,7 @@
 #macro DEBUG:DEBUG_STAT_RECTANGLES false
 #macro DEBUG_FRAMES false
 #macro DEBUG:DEBUG_FRAMES true  
-#macro GAME_VERSION 14.5 
+#macro GAME_VERSION 15.3
 #macro TARGETING_NON_METAL [TARGETING.AKU,TARGETING.ALIEN,TARGETING.ANGEL,TARGETING.BLACK,TARGETING.FLOATING,TARGETING.RED,TARGETING.RELIC,TARGETING.TRAITLESS,TARGETING.ZOMBIE]
 #macro TARGETING_TRAITED [TARGETING.AKU,TARGETING.ALIEN,TARGETING.ANGEL,TARGETING.BLACK,TARGETING.FLOATING,TARGETING.RED,TARGETING.RELIC,TARGETING.METAL,TARGETING.ZOMBIE]
 #macro TARGETING_ALL [TARGETING.AKU,TARGETING.ALIEN,TARGETING.ANGEL,TARGETING.BLACK,TARGETING.FLOATING,TARGETING.RED,TARGETING.RELIC,TARGETING.METAL,TARGETING.ZOMBIE,TARGETING.TRAITLESS] 
@@ -23,7 +23,10 @@ function calculate_stat(rarity, level, unit_type, stat) {
         return stat * (1 + 29 * 0.2 + (level - 30) * 0.1);
     }
     if (unit_type == "gacha_cat" or unit_type == "principal_cat"){
-        if (level < 31) {
+        if (level <= 20){
+            return stat * (1 + (level - 1) * 0.2);
+        }
+        else if (level < 31) {
             return stat * (1 + 19 * 0.2 + (level - 20) * 0.6);
         }
         else if (level < 41) {
