@@ -621,7 +621,8 @@ abiltiy_render.list = {
     targeting:[],
     mouse_on:[],
     length:0,
-    type:[]
+    type:[],
+    npcost:[]
 }
 abiltiy_render.clean = function (){
     if surface_exists(abiltiy_render.surface){
@@ -648,6 +649,7 @@ abiltiy_render.current.update = function (_num){
     var _txt = abiltiy_render.list.text[_num]
     var _desc = abiltiy_render.list.desc[_num]
     var _menu_type = abiltiy_render.list.type[_num]
+    var _npcost = abiltiy_render.list.npcost[_num]
     
     var _h = 40+20+16 + 20 + string_height_ext(_desc,16,350)
     var _w = 400
@@ -683,6 +685,13 @@ abiltiy_render.current.update = function (_num){
     
     draw_set_halign(0)
     
+    if _npcost!=-1{
+        var _np_y = 0
+        draw_sprite_ext(spr_npoints,0,0,_np_y+4,0.5,0.5,0,c_white,1)
+        draw_set_font(fnt_big)
+        draw_text_outline(54,_np_y-3,c_black,NPCOLOR,_npcost)
+    }
+    
     surface_reset_target()
     
     abiltiy_render.current.height = _h
@@ -701,22 +710,14 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
     var _desc = ""
     var _numtype = ""
     var _mydata = {}
-    var _targets = {
-        nobonus: [TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS],
-        itf: [TARGETING.BLACK,TARGETING.RED,TARGETING.FLOATING,TARGETING.ANGEL],
-        cotc: [TARGETING.METAL,TARGETING.ZOMBIE,TARGETING.ALIEN]
-    }
-    var _bonus = {
-        nobonus: 0,
-        itf: get_itf_fruit_multiplier(),
-        cotc: get_cotc_fruit_multiplier()
-    }
     var _target_plus = undefined
     
     var _is_talent = false
     
     if (_render == ABILITY_RENDER_TYPE.TALENT or _render == ABILITY_RENDER_TYPE.ULTRA_TALENT)
         _is_talent = true
+    
+    var _max_time_calculated = false //if needs to account treasures for max time imrovement
     
     switch (_data_type) {
     	case DATA_TYPE.EFFECT:
@@ -735,7 +736,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 	case TARGETING.AKU: _icon_target = spr_targeting_aku break;
                     case TARGETING.ALIEN: _icon_target = spr_targeting_alien break;
                     case TARGETING.ANGEL: _icon_target = spr_targeting_angel break;
-                    case TARGETING.BLACK: _icon_target = global.save_settings.black_targeting == true ? spr_targeting_black : spr_targeting_dark break;
+                    case TARGETING.BLACK: _icon_target = spr_targeting_dark break;
                     case TARGETING.FLOATING: _icon_target = spr_targeting_floating break;
                     case TARGETING.METAL: _icon_target = spr_targeting_metal break;
                     case TARGETING.RED: _icon_target = spr_targeting_red break;
@@ -829,7 +830,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         break;
         case TARGETING.BLACK:
             
-            _icon = global.save_settings.black_targeting == true ? spr_targeting_black : spr_targeting_dark
+            _icon = spr_targeting_dark
             _txt = get_translation("targeting_black_name")
             _desc = get_translation("targeting_black_desc")
         
@@ -942,10 +943,11 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     
                 _mystats.info+=_info_build
             }
-
-            _desc += return_info(_targets,_bonus,_mystats,_target_plus)
+            
+            _desc += return_info(_mystats,_target_plus)
         break;
         case EFFECT.WEAKEN:
+            _max_time_calculated = true
             _icon = spr_weaken
             _txt = get_translation("effect_weaken_name")
             
@@ -1017,7 +1019,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     info: get_translation("effect_weaken_stats")
                 }
     
-            _desc += return_info(_targets,_bonus,_mystats,_target_plus)
+            _desc += return_info(_mystats,_target_plus)
                 
             }
         
@@ -1055,9 +1057,10 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         
         case EFFECT.FREEZE:
             
+            _max_time_calculated = true
             _icon = spr_freeze
             _txt = get_translation("effect_freeze_name")
-        
+            
             var _has_talent = has_talent(EFFECT.FREEZE,true,true)
             var _has_effect = has_effect(EFFECT.FREEZE)
         
@@ -1121,7 +1124,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     info: get_translation("effect_freeze_stats")
                 }
     
-                _desc += return_info(_targets,_bonus,_mystats,_target_plus)
+                _desc += return_info(_mystats,_target_plus)
                 
             }
         
@@ -1160,6 +1163,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         
         case EFFECT.SLOW:
             
+            _max_time_calculated = true
             _icon = spr_slow
             _txt = get_translation("effect_slow_name")
             
@@ -1228,7 +1232,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     info: get_translation("effect_slow_stats")
                 }
     
-                _desc += return_info(_targets,_bonus,_mystats,_target_plus)
+                _desc += return_info(_mystats,_target_plus)
                 
             }
         
@@ -1295,7 +1299,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 info: get_translation("effect_resist_stats")
             }
 
-            _desc += return_info(_targets,_bonus,_mystats,_target_plus)
+            _desc += return_info(_mystats,_target_plus)
         
         break;
         
@@ -1319,7 +1323,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 info: get_translation("effect_though_stats")
             }
 
-            _desc += return_info(_targets,_bonus,_mystats,_target_plus)
+            _desc += return_info(_mystats,_target_plus)
         
         break;
         
@@ -1362,7 +1366,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 _mystats.info+=_info_build
             }
 
-            _desc += return_info(_targets,_bonus,_mystats,_target_plus)
+            _desc += return_info(_mystats,_target_plus)
         
         break;
         
@@ -1405,7 +1409,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 _mystats.info+=_info_build
             }
 
-            _desc += return_info(_targets,_bonus,_mystats,_target_plus)
+            _desc += return_info(_mystats,_target_plus)
         
         break;
         
@@ -1523,6 +1527,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         
         case EFFECT.CURSE:
 
+            _max_time_calculated = true
             _icon = spr_curse
             _txt = get_translation("effect_curse_name")
             
@@ -1591,7 +1596,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     info: get_translation("effect_curse_stats")
                 }
     
-                _desc += return_info(_targets,_bonus,_mystats,_target_plus)
+                _desc += return_info(_mystats,_target_plus)
                 
                 if stats.multi_hit == true and variable_struct_exists(_mydata,"on_x_hit"){
                     _desc += text_format_insert( get_translation("effect_onxhit_desc"),[number_with_ending(_mydata.on_x_hit)] )
@@ -1605,20 +1610,20 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
                         _chance_improv_max_fix = _mydata.start_chance_improv
-                        _desc = text_format_insert( get_translation("effect_knockback_chance"),[_stat_num] )
+                        _desc = text_format_insert( get_translation("effect_curse_chance"),[_stat_num] )
                     }
                     if variable_struct_exists(_mydata,"time_improv"){
                         var _stat_num = _mydata.start_time_improv + _mydata.time_improv*_talent_data.level
                         _time_improv_max_fix = _mydata.start_time_improv
-                        _desc = text_format_insert( get_translation("effect_knockback_time"),[_stat_num,_stat_num/FRAMERATE] )
+                        _desc = text_format_insert( get_translation("effect_curse_time"),[_stat_num,_stat_num/FRAMERATE] )
                     }
                 }
                 else {
                     if variable_struct_exists(_mydata,"chance_improv"){
-                        _desc = get_translation("effect_knockback_chance_locked")
+                        _desc = get_translation("effect_curse_chance_locked")
                     }
                     if variable_struct_exists(_mydata,"time_improv"){
-                        _desc = get_translation("effect_knockback_time_locked")
+                        _desc = get_translation("effect_curse_time_locked")
                     }
                 }
                 
@@ -1630,6 +1635,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
 
         case EFFECT.DODGE:
 
+            _max_time_calculated = true
             _icon = spr_dodge_attack
             _txt = get_translation("effect_dodge_name")
         
@@ -1707,7 +1713,7 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     info: get_translation("effect_dodge_stats")
                 }
     
-                _desc += return_info(_targets,_bonus,_mystats,_target_plus)
+                _desc += return_info(_mystats,_target_plus)
                 
             }
         
@@ -1846,9 +1852,6 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     }
                 }
                 
-                if variable_struct_exists(_has_talent[1],"start_time_improv"){
-                    _time += _has_talent[1].start_time_improv
-                }
                 if variable_struct_exists(_has_talent[1],"start_chance_improv"){
                     _chance += _has_talent[1].start_chance_improv
                 }
@@ -3430,6 +3433,8 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         break;
     }
     
+ 
+    
     if _is_talent{
         _desc+="\n"
         
@@ -3438,10 +3443,89 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 _desc += text_format_insert( get_translation("talent_chance_note"),[_mydata.chance_improv] )
             if variable_struct_exists(_mydata,"chance_improv_max")
                 _desc += text_format_insert( get_translation("talent_chancemax_note"),[ceil(_mydata.chance_improv_max)] )
-            if variable_struct_exists(_mydata,"time_improv")
-                _desc += text_format_insert( get_translation("talent_time_note"),[_mydata.time_improv,_mydata.time_improv/FRAMERATE] )
-            if variable_struct_exists(_mydata,"time_improv_max")
-                _desc += text_format_insert( get_translation("talent_timemax_note"),[_mydata.time_improv_max,_mydata.time_improv_max/FRAMERATE] )
+
+            if _max_time_calculated == true{
+                
+                var _has_nobonus = false
+                var _has_itf = false
+                var _has_cotc = false
+                
+                var _nobonus_num = array_length(global.treasure_targetings.nobonus)
+                for (var l = 0; l < _nobonus_num; l++) {
+                	if has_targeting(global.treasure_targetings.nobonus[l]){
+                        _has_nobonus = true
+                        break
+                    }
+                }
+                
+                var _itf_num = array_length(global.treasure_targetings.itf)
+                for (var l = 0; l < _itf_num; l++) {
+                	if has_targeting(global.treasure_targetings.itf[l]){
+                        _has_itf = true
+                        break
+                    }
+                }
+                
+                var _cotc_num = array_length(global.treasure_targetings.cotc)
+                for (var l = 0; l < _cotc_num; l++) {
+                	if has_targeting(global.treasure_targetings.cotc[l]){
+                        _has_cotc = true
+                        break
+                    }
+                }
+                
+                var _time = []
+                var _timemax = []
+                var _num = 0
+                
+                if _has_nobonus == true{
+                    array_push(_time,_mydata.time_improv)
+                    array_push(_timemax,_mydata.time_improv_max)
+                    _num++
+                }
+                
+                if _has_itf == true{
+                    var _multi = 1 + (0.2 * get_itf_fruit_multiplier())
+                    array_push(_time,floor( _mydata.time_improv*_multi ) )
+                    array_push(_timemax,floor( _mydata.time_improv_max*_multi) )
+                    _num++
+                }
+                
+                if _has_cotc == true{
+                    var _multi = 1 + (0.2 * get_cotc_fruit_multiplier())
+                    array_push(_time,floor( _mydata.time_improv*_multi ) )
+                    array_push(_timemax,floor( _mydata.time_improv_max*_multi) )
+                    _num++
+                }
+                
+                var _time_min = script_execute_ext( min,_time )
+                var _time_max = script_execute_ext( max,_time )
+                var _timemax_min = script_execute_ext( min,_timemax )
+                var _timemax_max = script_execute_ext( max,_timemax )
+                
+                if _time_min == _time_max {
+                    if variable_struct_exists(_mydata,"time_improv")
+                        _desc += text_format_insert( get_translation("talent_time_note"),[_time_min,_time_min/FRAMERATE] )
+                    if variable_struct_exists(_mydata,"time_improv_max")
+                        _desc += text_format_insert( get_translation("talent_timemax_note"),[_timemax_min,_timemax_min/FRAMERATE] )
+                }
+                else {
+                    if variable_struct_exists(_mydata,"time_improv")
+                        _desc += text_format_insert( get_translation("talent_time_range_note"),[_time_max,_time_min,_time_max/FRAMERATE,_time_min/FRAMERATE] )
+                    if variable_struct_exists(_mydata,"time_improv_max")
+                        _desc += text_format_insert( get_translation("talent_timemax_range_note"),[_timemax_max,_timemax_min,_timemax_max/FRAMERATE,_timemax_min/FRAMERATE] )
+                }
+                
+            }
+            else {
+                if variable_struct_exists(_mydata,"time_improv")
+                    _desc += text_format_insert( get_translation("talent_time_note"),[_mydata.time_improv,_mydata.time_improv/FRAMERATE] )
+                if variable_struct_exists(_mydata,"time_improv_max")
+                    _desc += text_format_insert( get_translation("talent_timemax_note"),[_mydata.time_improv_max,_mydata.time_improv_max/FRAMERATE] )
+            }
+
+            
+            
             if variable_struct_exists(_mydata,"improv")
                 _desc += text_format_insert( get_translation("talent_improv_note"),[_mydata.improv] )
             if variable_struct_exists(_mydata,"improv_max")
@@ -3450,9 +3534,6 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 _desc += text_format_insert( get_translation("talent_number_note"),[_mydata.number_improv,_numtype] )
             if variable_struct_exists(_mydata,"number_improv_max")
                 _desc += text_format_insert( get_translation("talent_numbermax_note"),[_mydata.number_improv_max,_numtype] )
-
-            if variable_struct_exists(_mydata,"total_cost")
-                _desc += text_format_insert( get_translation("talent_cost_note"),[_mydata.total_cost] )
             
             _desc +=get_translation("talent_unlock_note")
             
@@ -3491,6 +3572,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         
     }
     
+    if variable_struct_exists(_mydata,"total_cost"){
+        array_push(abiltiy_render.list.npcost,_mydata.total_cost)
+    }
+    else {
+    	array_push(abiltiy_render.list.npcost,-1)
+    }
+    
     array_push(abiltiy_render.list.pos,_pos)
     array_push(abiltiy_render.list.icon,_icon)
     array_push(abiltiy_render.list.text,_txt)
@@ -3510,6 +3598,7 @@ abiltiy_render.update = function (){
     abiltiy_render.list.np_cost = []
     abiltiy_render.list.on_mouse = []
     abiltiy_render.list.mouse_on = []
+    abiltiy_render.list.np_cost = []
     abiltiy_render.list.length = 0
 
     surface_free(abiltiy_render.surface)
@@ -3533,7 +3622,7 @@ abiltiy_render.update = function (){
     _x += string_width("TARGETING:")+20
     draw_set_valign(0) draw_set_font(fnt_general)
     
-    var _targ_icon = [spr_targeting_red,spr_targeting_floating,global.save_settings.black_targeting == true ? spr_targeting_black : spr_targeting_dark,spr_targeting_metal,spr_targeting_angel,spr_targeting_alien,spr_targeting_zombie,spr_targeting_relic,spr_targeting_aku,spr_targeting_traitless]
+    var _targ_icon = [spr_targeting_red,spr_targeting_floating, spr_targeting_dark,spr_targeting_metal,spr_targeting_angel,spr_targeting_alien,spr_targeting_zombie,spr_targeting_relic,spr_targeting_aku,spr_targeting_traitless]
     var _targ_value = [TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS]
     var _length = 10
     
@@ -3795,7 +3884,7 @@ abiltiy_render.update = function (){
                 case TARGETING.AKU: _cicon = spr_targeting_aku break;
                 case TARGETING.ALIEN: _cicon = spr_targeting_alien break;
                 case TARGETING.ANGEL: _cicon = spr_targeting_angel break;
-                case TARGETING.BLACK: _cicon = global.save_settings.black_targeting == true ? spr_targeting_black : spr_targeting_dark break;
+                case TARGETING.BLACK: _cicon = spr_targeting_dark break;
                 case TARGETING.FLOATING: _cicon = spr_targeting_floating break;
                 case TARGETING.METAL: _cicon = spr_targeting_metal break;
                 case TARGETING.RED: _cicon = spr_targeting_red break;
@@ -3936,7 +4025,6 @@ abiltiy_render.step = function (){
                         _max_lvl = (_max)/_data.number_improv
                 }
                 
-                //show_message(_data)
                 if variable_struct_exists(_data,"forced_max_level"){
                     _max_lvl = _data.forced_max_level
                 }

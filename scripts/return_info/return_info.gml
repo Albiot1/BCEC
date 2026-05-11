@@ -1,4 +1,13 @@
-function return_info(_targ,_bon,_mystat,_targ_plus = undefined){
+function return_info(_mystat,_targ_plus = undefined){
+    
+    var _targ = global.treasure_targetings
+    
+    var _bon = {
+        nobonus: 0,
+        itf: get_itf_fruit_multiplier(),
+        cotc: get_cotc_fruit_multiplier()
+    }
+    
     show_debug_message($"return_info({_targ},{_bon},{_mystat})")
 	var _return_desc = "\n"
 	

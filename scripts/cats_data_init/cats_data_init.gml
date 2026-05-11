@@ -461,8 +461,8 @@ data.cats.mr = {
             talent_type:[0,0,0,0,0],
             data:[
                 { chance:3, chance_improv:3, chance_improv_max:30, total_cost:215, add_targeting:TARGETING.ZOMBIE },
-                {},
-                {},
+                { total_cost:75 },
+                { total_cost:75 },
                 { total_cost:125, start_improv:8, improv:8, improv_max: 80 },
                 { total_cost:125, start_improv:8, improv:8, improv_max: 80 }
             ]
@@ -623,7 +623,7 @@ data.cats.panties_cat = {
             data:[
                 { chance:30, time:39, time_improv:9, time_improv_max:120, add_targeting:TARGETING.METAL , total_cost:215 },
                 { total_cost:75 },
-                { start_improv:16, improv:6, improv_max:70 },
+                { start_improv:16, improv:6, improv_max:70, total_cost: 125 },
                 { total_cost:125, start_improv:8, improv:8, improv_max: 80 },
                 { total_cost:125, start_improv:8, improv:8, improv_max: 80 }
             ]
@@ -1604,9 +1604,9 @@ data.cats.lil_tank_cat = {
             data:[
                 { total_cost:125, start_improv:5, improv:5, improv_max:50 },
                 { total_cost:75 },
-                { total_cost:215, chance:10, time:24, time_improv:4, time_improv_max:60 },
-                { improv:2, improv_max:20, start_improv:2 },
-                { improv:2, improv_max:20, start_improv:2 }
+                { total_cost:215, chance:10, time:24, time_improv:4, time_improv_max:60,  add_targeting:TARGETING.ZOMBIE },
+                { improv:2, improv_max:20, start_improv:2, total_cost:125 },
+                { improv:2, improv_max:20, start_improv:2, total_cost:125 }
             ]
         }
     }
@@ -4817,6 +4817,11 @@ data.cats.master_of_selection_darvin = {
     
 #endregion
     
+#region rare cats
+
+
+
+#endregion
     
 }
 

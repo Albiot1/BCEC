@@ -7,6 +7,12 @@ surface_resize(application_surface, room_width, room_height);
 global.resseting_data = false
 global.translation = load_json("data\\translation_en.json")
 
+global.treasure_targetings = {
+    nobonus: [TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS],
+    itf: [TARGETING.BLACK,TARGETING.RED,TARGETING.FLOATING,TARGETING.ANGEL],
+    cotc: [TARGETING.METAL,TARGETING.ZOMBIE,TARGETING.ALIEN]
+}
+
 #region data init
 enum EVO_TYPE {NONE,STAGE,FRUITS,WIN_CHAPTER}
 enum RARITY {NORMAL,SPECIAL,RARE,SUPER_RARE,UBER_SUPER_RARE,LEGEND_RARE}
@@ -637,6 +643,12 @@ info.display_refresh = function(){
         var _added = _current_cat.added
         var _evolved = false
         var _selected = false
+        var _hastf = true
+        var _maxform = array_length(_current_cat.spr)
+        
+        if _maxform<3{
+            _hastf = false
+        }
         
         draw_sprite_ext(_spr,0,_x,_y,1,1,0,c_white,1)
         
@@ -663,10 +675,16 @@ info.display_refresh = function(){
                 draw_sprite(spr_frame_selected_unit,0,_x,_y)
             else
                 draw_sprite(spr_frame_selected_evolved_unit,0,_x,_y)
+            
+            if _hastf==false
+                draw_sprite(spr_frame_selected_notf_unit,0,_x,_y)
         }
         else {
         	if _evolved==true
                 draw_sprite(spr_frame_evolved_unit,0,_x,_y)
+            
+            if _hastf==false
+                draw_sprite(spr_frame_notf_unit,0,_x,_y)
         }
         
         _num ++
@@ -786,11 +804,11 @@ info.step = function (){
     var _pages = array_length( info.pages )
     var _width = 32*_pages-32
     
-    if mouse_wheel_down() and info.current_page<_pages-1{
+    if mouse_wheel_down() and global.gui_layer == 0 and info.current_page<_pages-1{
         info.current_page++
         info.display_refresh()
     }
-    if mouse_wheel_up() and info.current_page>0{
+    if mouse_wheel_up() and global.gui_layer == 0 and info.current_page>0{
         info.current_page--
         info.display_refresh()
     }
