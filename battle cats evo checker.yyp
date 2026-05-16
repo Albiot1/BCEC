@@ -72,6 +72,7 @@
     {"id":{"name":"align_reset","path":"scripts/align_reset/align_reset.yy",},},
     {"id":{"name":"align_set","path":"scripts/align_set/align_set.yy",},},
     {"id":{"name":"animcurve_evaluate","path":"scripts/animcurve_evaluate/animcurve_evaluate.yy",},},
+    {"id":{"name":"array_sum","path":"scripts/array_sum/array_sum.yy",},},
     {"id":{"name":"array_to_separated_text","path":"scripts/array_to_separated_text/array_to_separated_text.yy",},},
     {"id":{"name":"cats_combos_init","path":"scripts/cats_combos_init/cats_combos_init.yy",},},
     {"id":{"name":"cats_data_init","path":"scripts/cats_data_init/cats_data_init.yy",},},

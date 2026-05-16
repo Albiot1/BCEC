@@ -117,7 +117,12 @@ stats.update = function (){
     
     if _has_atkspdup[0]==true and _check_talent==true{
         if _has_atkspdup[2].unlocked==true{
-            _atkspdup += _has_atkspdup[1].start_time_improv + (_has_atkspdup[1].time_improv * _has_atkspdup[2].level)
+            if is_array(_has_atkspdup[1].time_improv){
+                _atkspdup += _has_atkspdup[1].start_time_improv + array_sum( _has_atkspdup[1].time_improv,0,_has_atkspdup[2].level )
+            }
+            else {
+            	_atkspdup += _has_atkspdup[1].start_time_improv + (_has_atkspdup[1].time_improv * _has_atkspdup[2].level)
+            }
         }
     }
     
@@ -2778,8 +2783,15 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
             _icon = spr_ability_frequency_up
             _txt = get_translation("ability_atk_speedup_name")
-        
-            var _perc = _mydata.start_time_improv + _mydata.time_improv*_talent_data.level
+            
+            if is_array(_mydata.time_improv){
+                var _perc = _mydata.start_time_improv + array_sum(_mydata.time_improv,0,_talent_data.level)
+            }
+            else {
+            	var _perc = _mydata.start_time_improv + _mydata.time_improv*_talent_data.level
+            }
+            
+            
             _desc = get_translation("ability_atk_speedup_desc")
         
             if _talent_data.unlocked == true
@@ -3518,8 +3530,15 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
             }
             else {
-                if variable_struct_exists(_mydata,"time_improv")
-                    _desc += text_format_insert( get_translation("talent_time_note"),[_mydata.time_improv,_mydata.time_improv/FRAMERATE] )
+                if variable_struct_exists(_mydata,"time_improv"){
+                    if is_array(_mydata.time_improv){
+                        _desc += text_format_insert( get_translation("talent_time_note"),[_mydata.time_improv[_talent_data.level],_mydata.time_improv[_talent_data.level]/FRAMERATE] )
+                    }
+                    else {
+                    	_desc += text_format_insert( get_translation("talent_time_note"),[_mydata.time_improv,_mydata.time_improv/FRAMERATE] )
+                    }
+                    
+                }
                 if variable_struct_exists(_mydata,"time_improv_max")
                     _desc += text_format_insert( get_translation("talent_timemax_note"),[_mydata.time_improv_max,_mydata.time_improv_max/FRAMERATE] )
             }
@@ -3550,8 +3569,13 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 }
                 
                 if variable_struct_exists(_mydata,"time_improv"){
-                    if _mydata.time_improv == _mydata.time_improv_max
-                        _show_level_change = false
+                    if is_array(_mydata.time_improv){
+                        //do nothing
+                    }
+                    else {
+                        if _mydata.time_improv == _mydata.time_improv_max
+                            _show_level_change = false
+                    }
                 }
                 
                 if variable_struct_exists(_mydata,"chance_improv"){
@@ -3991,18 +4015,26 @@ abiltiy_render.step = function (){
                         _max_lvl = (_max)/_data.chance_improv
                 }
                 if variable_struct_exists(_data,"time_improv"){
-                    var _max = (_data.time_improv_max-_data.time_improv)
                     
-                    if variable_struct_exists(_data,"time"){
-                        _max -= (_data.time-_data.time_improv)
+                    if is_array(_data.time_improv){
+                        _max_lvl = array_length(_data.time_improv)
+                    }
+                    else {
+                        var _max = (_data.time_improv_max-_data.time_improv)
+                        
+                        if variable_struct_exists(_data,"time"){
+                            _max -= (_data.time-_data.time_improv)
+                        }
+                        
+                        if variable_struct_exists(_data,"start_time_improv"){
+                            _max -= (_data.start_time_improv-_data.time_improv)
+                        }
+    
+                        if _data.time_improv_max != _data.time_improv
+                            _max_lvl = (_max)/_data.time_improv
                     }
                     
-                    if variable_struct_exists(_data,"start_time_improv"){
-                        _max -= (_data.start_time_improv-_data.time_improv)
-                    }
 
-                    if _data.time_improv_max != _data.time_improv
-                        _max_lvl = (_max)/_data.time_improv
                 }
                 if variable_struct_exists(_data,"improv"){
                     var _max = (_data.improv_max-_data.improv)
