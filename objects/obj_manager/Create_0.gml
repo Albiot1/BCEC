@@ -4,7 +4,7 @@ room_set_height(RM_MAIN,720)
 
 surface_resize(application_surface, room_width, room_height);
 
-global.resseting_data = false
+global.resetting_data = false
 global.translation = load_json("data\\translation_en.json")
 
 global.treasure_targetings = {
@@ -896,9 +896,125 @@ info.get_evolution_requirements()
 info.bottom_bar.update()
 #endregion
 
+#region TOP BUTTONS
+buttons = {}
+buttons.text = ["ADD CATS","NORMAL","SPECIAL","RARE","UBER","LEGEND","ALL CATS"]
+buttons.pos = []
+buttons.surf = []
+buttons.buffer = []
+buttons.width = []
+buttons.mouse_on = []
+buttons.action = [M_STATES.ADDCATS,M_STATES.NORMAL,M_STATES.SPECIAL,M_STATES.RARE,M_STATES.UBER_RARE,M_STATES.LEGEND,M_STATES.ALL]
+buttons.number = 0
+buttons.pos_plus = 0
+buttons.height = 48
+
+buttons.init = function (){
+    //var _width_all = 0
+    //var _position_start = 32
+    //var _position_end = 0
+    draw_set_font(fnt_general)
+    
+    var _start_pos = 32
+    var _padding = 16
+    for(var i = 0;i< array_length(buttons.text);i++){
+        buttons.mouse_on[i] = false
+        buttons.pos[i]=[ _start_pos,10 ]
+        var _txt = buttons.text[i]
+        var _str_w = string_width(_txt)+32
+        buttons.width[i] = _str_w
+        _start_pos = buttons.pos[i][0] + _str_w +32+_padding
+        buttons.surf[i] = surface_create(_str_w,buttons.height)
+        surface_set_target(buttons.surf[i])
+            draw_button_special(0,0,_txt)
+        surface_reset_target()
+        buttons.buffer[i] = surface_to_buffer( buttons.surf[i] )
+        buttons.number++
+        
+        //if i == array_length(buttons.text)-1{
+        //    _position_end = _start_pos
+        //}
+        
+    }
+    //_width_all = _position_end - _position_start
+}
+
+buttons.step = function(){
+    for(var i = 0; i < buttons.number;i ++){
+        var _pos_x = buttons.pos[i][0]+buttons.pos_plus
+        var _pos_y = buttons.pos[i][1]
+        var _surf = buttons.surf[i]
+        var _w = buttons.width[i]
+        var _mouse_on = buttons.mouse_on[i]
+        
+        if !surface_exists(_surf){
+            buttons.surf[i] = surface_create(buttons.width[i],buttons.height)
+            buffer_set_surface(buttons.buffer[i],buttons.surf[i],0)
+        }
+        
+        var _on_button = point_in_rectangle(mouse_x,mouse_y,_pos_x,_pos_y,_pos_x+buttons.width[i],_pos_y+buttons.height)
+        
+        if _on_button and global.gui_wait == 0 and global.gui_layer == 0{
+            buttons.mouse_on[i] = true
+            if mouse_check_button_pressed(mb_left){
+                info.current_page = 0
+                menu.state = buttons.action[i]
+                global.gui_wait = 10
+                sound_click_play()
+                get_menu_cats()
+            }
+        }
+        
+        if !_on_button{
+            buttons.mouse_on[i] = false
+        }
+        
+        if menu.state == buttons.action[i]{
+            buttons.mouse_on[i] = true  
+        }
+        
+    }
+}
+
+buttons.draw = function(){
+    for(var i =0 ; i < buttons.number;i ++){
+        var _pos_x = buttons.pos[i][0]+buttons.pos_plus
+        var _pos_y = buttons.pos[i][1]
+        var _surf = buttons.surf[i]
+        var _mouse_on = buttons.mouse_on[i]
+        
+        if surface_exists(_surf)
+            draw_surface(_surf,_pos_x,_pos_y)
+        
+        if _mouse_on{
+            var _w = buttons.width[i]
+            var _h = buttons.height
+            
+            draw_sprite_stretched(spr_button,1,_pos_x,_pos_y,_w,_h)
+        }
+    }
+}
+
+buttons.init()
+#endregion
+
+
+menu = {}
+menu.state = M_STATES.ALL
+menu.draw = function (){
+    if array_length(global.current_cats)<=0{
+        draw_set_font(fnt_big)
+        align_set(fa_center,fa_middle)
+            draw_text_outline(1280/2,720/2,c_black,c_white,"NO CATS ADDED OR ALL CATS EVOLVED")
+        align_reset()
+        draw_set_font(fnt_general)
+    }
+}
+
 get_menu_cats = function (){
     global.current_cats = []
     
+
     switch (menu.state) {
     	case M_STATES.ADDCATS:
             global.current_cats = global.all_cats
@@ -962,119 +1078,6 @@ get_menu_cats = function (){
     info.get_pages()
     info.get_evolution_requirements()
     info.bottom_bar.update()
-}
-
-#region TOP BUTTONS
-buttons = {}
-buttons.text = ["ADD CATS","NORMAL","SPECIAL","RARE","UBER","LEGEND","ALL CATS"]
-buttons.pos = []
-buttons.surf = []
-buttons.buffer = []
-buttons.width = []
-buttons.mouse_on = []
-buttons.action = [M_STATES.ADDCATS,M_STATES.NORMAL,M_STATES.SPECIAL,M_STATES.RARE,M_STATES.UBER_RARE,M_STATES.LEGEND,M_STATES.ALL]
-buttons.number = 0
-buttons.pos_plus = 0
-buttons.height = 48
-
-buttons.init = function (){
-    var _width_all = 0
-    var _position_start = 32
-    var _position_end = 0
-    var _start_pos = 32
-    var _padding = 16
-    for(var i = 0;i< array_length(buttons.text);i++){
-        buttons.mouse_on[i] = false
-        buttons.pos[i]=[ _start_pos,10 ]
-        var _txt = buttons.text[i]
-        var _str_w = string_width(_txt)+32
-        buttons.width[i] = _str_w
-        _start_pos = buttons.pos[i][0] + _str_w +32+_padding
-        buttons.surf[i] = surface_create(_str_w,buttons.height)
-        surface_set_target(buttons.surf[i])
-            draw_button_special(0,0,_txt)
-        surface_reset_target()
-        buttons.buffer[i] = surface_to_buffer( buttons.surf[i] )
-        buttons.number++
-        
-        if i == array_length(buttons.text)-1{
-            _position_end = _start_pos
-        }
-    }
-    _width_all = _position_end - _position_start
-    //buttons.pos_plus = floor((1280 - _width_all)/2)
-}
-
-buttons.step = function(){
-    for(var i = 0; i < buttons.number;i ++){
-        var _pos_x = buttons.pos[i][0]+buttons.pos_plus
-        var _pos_y = buttons.pos[i][1]
-        var _surf = buttons.surf[i]
-        var _w = buttons.width[i]
-        var _mouse_on = buttons.mouse_on[i]
-        
-        if !surface_exists(_surf){
-            buttons.surf[i] = surface_create(buttons.width[i],buttons.height)
-            buffer_set_surface(buttons.buffer[i],buttons.surf[i],0)
-        }
-        
-        var _on_button = point_in_rectangle(mouse_x,mouse_y,_pos_x,_pos_y,_pos_x+buttons.width[i],_pos_y+buttons.height)
-        
-        if _on_button and global.gui_wait == 0 and global.gui_layer == 0{
-            buttons.mouse_on[i] = true
-            if mouse_check_button_pressed(mb_left){
-                info.current_page = 0
-                menu.state = buttons.action[i]
-                global.gui_wait = 10
-                sound_click_play()
-                get_menu_cats()
-            }
-        }
-        
-        if !_on_button{
-            buttons.mouse_on[i] = false
-        }
-        
-        if menu.state == buttons.action[i]{
-            buttons.mouse_on[i] = true  
-        }
-        
-    }
-}
-
-buttons.draw = function(){
-    for(var i =0 ; i < buttons.number;i ++){
-        var _pos_x = buttons.pos[i][0]+buttons.pos_plus
-        var _pos_y = buttons.pos[i][1]
-        var _surf = buttons.surf[i]
-        var _mouse_on = buttons.mouse_on[i]
-        
-        if surface_exists(_surf)
-        draw_surface(_surf,_pos_x,_pos_y)
-        
-        if _mouse_on{
-            var _w = buttons.width[i]
-            var _h = buttons.height
-            
-            draw_sprite_stretched(spr_button,1,_pos_x,_pos_y,_w,_h)
-        }
-    }
-}
-
-buttons.init()
-#endregion
-
-
-menu = {}
-menu.state = M_STATES.ALL
-menu.draw = function (){
-    if array_length(global.current_cats)<=0{
-        draw_set_font(fnt_big)
-        align_set(fa_center,fa_middle)
-            draw_text_outline(1280/2,720/2,c_black,c_white,"NO CATS ADDED OR ALL CATS EVOLVED")
-        align_reset()
-        draw_set_font(fnt_general)
-    }
 }
 
 global.gui_wait = 0

@@ -13,10 +13,14 @@ if initialized==false{
     exit
 }
 
+//main info divider (name/icon/level etc.)
 draw_sprite_stretched(spr_line,0,40+196,78,4,604)
+
+//stats divider
 draw_sprite_stretched(spr_line,0,40+449,78,4,604)
 
-if stats.form_number>=3 and stats.true_form == false or (stats.form_number==4 and stats.ultra_form == false)
+//unlock requirement divider
+if (stats.form_number>=3 and stats.true_form == false) or (stats.form_number==4 and stats.ultra_form == false)
 draw_sprite_stretched(spr_line,0,40+451,78+406,749,4)
 
 
@@ -28,7 +32,7 @@ stats_render.draw()
 
 evolve_render.draw()
 
-abiltiy_render.draw()
+ability_render.draw()
 
 draw_sprite_ext(spr_cancel,0,1251-43,64-24+20,0.5,0.5,0,c_white,1)
 

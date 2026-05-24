@@ -1,4 +1,4 @@
-if global.resseting_data == false{
+if global.resetting_data == false{
     data_save()
     settings_save()
 }

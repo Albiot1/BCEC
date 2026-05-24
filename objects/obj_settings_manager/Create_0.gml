@@ -222,7 +222,7 @@ input_boxes.draw = function (){
             draw_text_outline(_x+_pos[0]+5,_y+_pos[1],c_black,COLOR_LEVEL,_data_old)
         }
         else if _active==true{
-            var _time = power(abs(sin(current_time/200)),1) 
+            var _time = abs(sin(current_time/200)) 
             var _sign = ""
             if _time>0.5{
                 _sign = "|"
@@ -310,8 +310,6 @@ buttons.step = function (){
         
         if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+_w,_y+_h) and global.gui_layer == 1 and global.gui_wait == 0{
             buttons.mouse_on[i] = true
-            var _base_size = [1280,720]
-            
             
             if mouse_check_button_pressed(mb_left){
                 global.gui_wait = 5
@@ -394,9 +392,12 @@ reset_window.message = get_translation("settings_erase_save_warning")
 
 reset_window.update = function (){
     
+    if !surface_exists(reset_window.surface)
     reset_window.surface = surface_create(reset_window.size[0],reset_window.size[1])
     
     surface_set_target(reset_window.surface)
+    
+    draw_clear_alpha(c_white,0)
     
     draw_sprite_stretched(spr_back_wood,0,0,0,reset_window.size[0],reset_window.size[1])
     
@@ -443,7 +444,7 @@ reset_window.step = function (){
             if mouse_check_button_pressed(mb_left){
                 if i == 0{
                     file_delete(working_directory+"save.json")
-                    global.resseting_data = true
+                    global.resetting_data = true
                     game_end()
                 }
                 else if i == 1{

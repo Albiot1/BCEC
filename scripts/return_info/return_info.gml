@@ -92,7 +92,7 @@ function return_info(_mystat,_targ_plus = undefined){
         _has_more_than_metal = true
     }
     var _has_metal = false
-    if array_contains(_bontarg.cotc,TARGETING.METAL){
+    if array_contains(_bontarg.cotc,targeting_to_string(TARGETING.METAL)){
         _has_metal = true
     }
 
@@ -156,7 +156,7 @@ function return_info(_mystat,_targ_plus = undefined){
 		if _has_nobonus and _has_cotc{
 			_return_desc+="["+array_to_separated_text(_bontarg.nobonus)+" "+array_to_separated_text(_bontarg.cotc)+"]"
 			_return_desc+="\n"+_mystat.info
-			_return_desc = stats_format(_return_desc,_mystat.stats,_has_metal,_has_more_than_metal)
+			_return_desc = stats_format(_return_desc,_mystat.stats,_bon.nobonus,_has_metal,_has_more_than_metal)
 			_added = true
 		}
         

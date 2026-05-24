@@ -25,7 +25,7 @@ stats.abilities_data = []
 stats.effects = []
 stats.effects_data = []
 stats.talents = []
-stats.telent_types = []
+stats.talent_types = []
 stats.talent_data = []
 stats.multi_hit = false
 stats.multi_hit_dmgs = [0]
@@ -61,10 +61,6 @@ stats.update = function (){
         case RARITY.LEGEND_RARE: stats.current_rarity = "Legend Rare" break;
     }
     
-    var _is_bahamut = false
-    var _is_crazed = false
-    
-
     
     var _my_stats = mydata.stats
     
@@ -183,7 +179,6 @@ stats.update = function (){
     stats.lvl_plus_max = mydata.max_lvl[1]
     
     if variable_struct_exists(mydata,"ultra_form"){
-        stats.form_number = 4
         stats.ultra_form = mydata.ultra_form
     }
     stats.form_number = array_length( mydata.evolutions.type )
@@ -230,13 +225,14 @@ cat_render.clean = function (){
     }
 }
 cat_render.update = function (){
-    surface_free(cat_render.surface)
+    if surface_exists(cat_render.surface)
+        surface_free(cat_render.surface)
     
     cat_render.form_buttons.unlocked[2] = stats.true_form
     cat_render.form_buttons.unlocked[3] = stats.ultra_form
     
     if buffer_exists(cat_render.buffer)
-    buffer_delete(cat_render.buffer)
+        buffer_delete(cat_render.buffer)
     
     cat_render.surface = surface_create(cat_render.size[0],cat_render.size[1])
     
@@ -355,8 +351,8 @@ cat_render.step = function (){
                 stats.update()
                 cat_render.update()
                 stats_render.update()
-                abiltiy_render.update()
-                abiltiy_render.current.clean()
+                ability_render.update()
+                ability_render.current.clean()
                 exit
             }
         }
@@ -469,8 +465,8 @@ cat_render.step = function (){
         stats.update()
         cat_render.update()
         stats_render.update()
-        abiltiy_render.update()
-        abiltiy_render.current.clean()
+        ability_render.update()
+        ability_render.current.clean()
     }
     
 }
@@ -514,7 +510,7 @@ cat_render.draw = function (){
             draw_text_outline(_x+_lboxes.pos[i][0]+5,_y+_lboxes.pos[i][1],c_black,COLOR_LEVEL,_lvl_now)
         }
         else if _lboxes.active[i]==true{
-            var _time = power(abs(sin(current_time/200)),1) 
+            var _time = abs(sin(current_time/200))
             var _sign = ""
             if _time>0.5{
                 _sign = "|"
@@ -613,12 +609,12 @@ stats_render.draw = function (){
 
 enum ABILITY_RENDER_TYPE { NORMAL,TALENT,ULTRA_TALENT }
 
-abiltiy_render = {}
-abiltiy_render.pos = [200+32+250+51-43,84]
-abiltiy_render.size = [750,400]
-abiltiy_render.surface = -1
-abiltiy_render.buffer = -1
-abiltiy_render.list = {
+ability_render = {}
+ability_render.pos = [200+32+250+51-43,84]
+ability_render.size = [750,400]
+ability_render.surface = -1
+ability_render.buffer = -1
+ability_render.list = {
     pos:[],
     icon:[],
     text:[],
@@ -629,39 +625,39 @@ abiltiy_render.list = {
     type:[],
     npcost:[]
 }
-abiltiy_render.clean = function (){
-    if surface_exists(abiltiy_render.surface){
-    surface_free(abiltiy_render.surface)
+ability_render.clean = function (){
+    if surface_exists(ability_render.surface){
+    surface_free(ability_render.surface)
     }
-    if buffer_exists(abiltiy_render.buffer){
-        buffer_delete(abiltiy_render.buffer)
+    if buffer_exists(ability_render.buffer){
+        buffer_delete(ability_render.buffer)
     }
 }
-abiltiy_render.current = {
+ability_render.current = {
     number: -1,
     surf: -1,
     height: -1
 }
-abiltiy_render.current.update = function (_num){
+ability_render.current.update = function (_num){
     
-    abiltiy_render.current.number = _num
+    ability_render.current.number = _num
     
-    if surface_exists(abiltiy_render.current.surf)
-        surface_free(abiltiy_render.current.surf)
+    if surface_exists(ability_render.current.surf)
+        surface_free(ability_render.current.surf)
     
-    var _ico = abiltiy_render.list.icon[_num]
-    var _ico_targ = abiltiy_render.list.targeting[_num]
-    var _txt = abiltiy_render.list.text[_num]
-    var _desc = abiltiy_render.list.desc[_num]
-    var _menu_type = abiltiy_render.list.type[_num]
-    var _npcost = abiltiy_render.list.npcost[_num]
+    var _ico = ability_render.list.icon[_num]
+    var _ico_targ = ability_render.list.targeting[_num]
+    var _txt = ability_render.list.text[_num]
+    var _desc = ability_render.list.desc[_num]
+    var _menu_type = ability_render.list.type[_num]
+    var _npcost = ability_render.list.npcost[_num]
     
     var _h = 40+20+16 + 20 + string_height_ext(_desc,16,350)
     var _w = 400
     
-    abiltiy_render.current.surf = surface_create(_w,_h)
+    ability_render.current.surf = surface_create(_w,_h)
     
-    surface_set_target(abiltiy_render.current.surf)
+    surface_set_target(ability_render.current.surf)
     
     draw_sprite_stretched(spr_back_many,_menu_type,0,0,_w,32)
     draw_sprite_stretched(spr_info,0,0,32,_w,_h-32)
@@ -699,16 +695,16 @@ abiltiy_render.current.update = function (_num){
     
     surface_reset_target()
     
-    abiltiy_render.current.height = _h
+    ability_render.current.height = _h
     
 }
-abiltiy_render.current.clean = function (){
-    if surface_exists(abiltiy_render.current.surf){
-    surface_free(abiltiy_render.current.surf)
+ability_render.current.clean = function (){
+    if surface_exists(ability_render.current.surf){
+    surface_free(ability_render.current.surf)
     }
 }
 
-abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NORMAL,_data_type = DATA_TYPE.EFFECT,_data_num = -1,){
+ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NORMAL,_data_type = DATA_TYPE.EFFECT,_data_num = -1,){
     var _icon_target = -1
     var _icon = -1
     var _txt = -1
@@ -3597,46 +3593,46 @@ abiltiy_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
     }
     
     if variable_struct_exists(_mydata,"total_cost"){
-        array_push(abiltiy_render.list.npcost,_mydata.total_cost)
+        array_push(ability_render.list.npcost,_mydata.total_cost)
     }
     else {
-    	array_push(abiltiy_render.list.npcost,-1)
+    	array_push(ability_render.list.npcost,-1)
     }
     
-    array_push(abiltiy_render.list.pos,_pos)
-    array_push(abiltiy_render.list.icon,_icon)
-    array_push(abiltiy_render.list.text,_txt)
-    array_push(abiltiy_render.list.mouse_on,false)
-    array_push(abiltiy_render.list.desc,_desc)
-    array_push(abiltiy_render.list.type,_render)
-    array_push(abiltiy_render.list.targeting,_icon_target)
-    abiltiy_render.list.length++
+    array_push(ability_render.list.pos,_pos)
+    array_push(ability_render.list.icon,_icon)
+    array_push(ability_render.list.text,_txt)
+    array_push(ability_render.list.mouse_on,false)
+    array_push(ability_render.list.desc,_desc)
+    array_push(ability_render.list.type,_render)
+    array_push(ability_render.list.targeting,_icon_target)
+    ability_render.list.length++
 
 }
-abiltiy_render.update = function (){
-    abiltiy_render.list.pos = []
-    abiltiy_render.list.icon = []
-    abiltiy_render.list.text = []
-    abiltiy_render.list.type = []
-    abiltiy_render.list.desc = []
-    abiltiy_render.list.np_cost = []
-    abiltiy_render.list.on_mouse = []
-    abiltiy_render.list.mouse_on = []
-    abiltiy_render.list.np_cost = []
-    abiltiy_render.list.length = 0
+ability_render.update = function (){
+    ability_render.list.pos = []
+    ability_render.list.icon = []
+    ability_render.list.text = []
+    ability_render.list.type = []
+    ability_render.list.desc = []
+    ability_render.list.np_cost = []
+    ability_render.list.on_mouse = []
+    ability_render.list.mouse_on = []
+    ability_render.list.np_cost = []
+    ability_render.list.length = 0
 
-    surface_free(abiltiy_render.surface)
+    surface_free(ability_render.surface)
     
-    if buffer_exists(abiltiy_render.buffer)
-        buffer_delete(abiltiy_render.buffer)
+    if buffer_exists(ability_render.buffer)
+        buffer_delete(ability_render.buffer)
     
-    abiltiy_render.surface = surface_create(abiltiy_render.size[0],abiltiy_render.size[1])
+    ability_render.surface = surface_create(ability_render.size[0],ability_render.size[1])
     
-    surface_set_target(abiltiy_render.surface)
+    surface_set_target(ability_render.surface)
     
     draw_clear_alpha(c_white,0)
     if DEBUG_STAT_RECTANGLES
-        draw_rectangle_color(0,0,abiltiy_render.size[0],abiltiy_render.size[1],c_purple,c_purple,c_purple,c_purple,0)
+        draw_rectangle_color(0,0,ability_render.size[0],ability_render.size[1],c_purple,c_purple,c_purple,c_purple,0)
     
     var _x = 24
     var _y = 24+64
@@ -3681,7 +3677,7 @@ abiltiy_render.update = function (){
             case ATTACKS.MULTI_HIT: _cicon = spr_multi_hit break;
         }
 
-        abiltiy_render.list.add( [_x+48*i,_y-20],stats.attack_type[i],ABILITY_RENDER_TYPE.NORMAL,DATA_TYPE.NONE )
+        ability_render.list.add( [_x+48*i,_y-20],stats.attack_type[i],ABILITY_RENDER_TYPE.NORMAL,DATA_TYPE.NONE )
         
     	draw_sprite(_cicon,0,_x+48*i,_y-20)
     }
@@ -3716,7 +3712,7 @@ abiltiy_render.update = function (){
             case EFFECT.DODGE: _cicon = spr_dodge_attack break;
         }
 
-        abiltiy_render.list.add( [_x+48*i,_y-20],stats.effects[i],ABILITY_RENDER_TYPE.NORMAL,DATA_TYPE.EFFECT,i )
+        ability_render.list.add( [_x+48*i,_y-20],stats.effects[i],ABILITY_RENDER_TYPE.NORMAL,DATA_TYPE.EFFECT,i )
         
     	draw_sprite(_cicon,0,_x+48*i,_y-20)
     }
@@ -3794,12 +3790,12 @@ abiltiy_render.update = function (){
             case ABILITY.ATK_SPEED_UP: _cicon = spr_ability_frequency_up break;
         }
 
-        abiltiy_render.list.add( [_x+48*_column,_y-20+48*_row],stats.abilities[i],ABILITY_RENDER_TYPE.NORMAL,DATA_TYPE.ABILITY,i )
+        ability_render.list.add( [_x+48*_column,_y-20+48*_row],stats.abilities[i],ABILITY_RENDER_TYPE.NORMAL,DATA_TYPE.ABILITY,i )
         
     	draw_sprite(_cicon,0,_x+48*_column,_y-20+48*_row)
         
         _column++
-        if _x+48*_column+40 > abiltiy_render.size[0]{
+        if _x+48*_column+40 > ability_render.size[0]{
             _column = 0
             _row ++
             _x = 16
@@ -3918,7 +3914,7 @@ abiltiy_render.update = function (){
                 
             }
     
-            abiltiy_render.list.add( [_x+48*_column,_y-20+48*_row],stats.talents[i],stats.talent_types[i]+1,DATA_TYPE.TALENT,i )
+            ability_render.list.add( [_x+48*_column,_y-20+48*_row],stats.talents[i],stats.talent_types[i]+1,DATA_TYPE.TALENT,i )
             
         	draw_sprite(_cicon,0,_x+48*_column,_y-20+48*_row)
             
@@ -3930,7 +3926,7 @@ abiltiy_render.update = function (){
             }
             
             _column++
-            if _x+48*_column+40 > abiltiy_render.size[0]{
+            if _x+48*_column+40 > ability_render.size[0]{
                 _column = 0
                 _row ++
                 _x = 16
@@ -3942,32 +3938,32 @@ abiltiy_render.update = function (){
     
     surface_reset_target()
     
-    abiltiy_render.buffer = surface_to_buffer(abiltiy_render.surface)
+    ability_render.buffer = surface_to_buffer(ability_render.surface)
 }
-abiltiy_render.step = function (){
-    if !surface_exists(abiltiy_render.surface){
-        abiltiy_render.surface = surface_create(abiltiy_render.size[0],abiltiy_render.size[1])
-        buffer_set_surface(abiltiy_render.buffer,abiltiy_render.surface,0)
+ability_render.step = function (){
+    if !surface_exists(ability_render.surface){
+        ability_render.surface = surface_create(ability_render.size[0],ability_render.size[1])
+        buffer_set_surface(ability_render.buffer,ability_render.surface,0)
     }
     
     
-    var _px = abiltiy_render.pos[0]
-    var _py = abiltiy_render.pos[1]
+    var _px = ability_render.pos[0]
+    var _py = ability_render.pos[1]
     var _on_any_ability = false
     var _talent = 0
-    for (var i = 0; i < abiltiy_render.list.length; i++) {
+    for (var i = 0; i < ability_render.list.length; i++) {
         
         var _is_talent = false
-        if abiltiy_render.list.type[i]>0
+        if ability_render.list.type[i]>0
             _is_talent = true
-    	var _x = _px + abiltiy_render.list.pos[i][0]
-        var _y = _py + abiltiy_render.list.pos[i][1]
+    	var _x = _px + ability_render.list.pos[i][0]
+        var _y = _py + ability_render.list.pos[i][1]
         
         if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+40,_y+40) and global.gui_layer == 1 and global.gui_wait == 0{
             _on_any_ability = true
-            abiltiy_render.list.mouse_on[i] = true
-            if abiltiy_render.current.number != i{
-                abiltiy_render.current.update(i)
+            ability_render.list.mouse_on[i] = true
+            if ability_render.current.number != i{
+                ability_render.current.update(i)
             }
             
 
@@ -4074,8 +4070,8 @@ abiltiy_render.step = function (){
                             stats_render.update()
                         }
                         
-                        abiltiy_render.update()
-                        abiltiy_render.current.update(i)
+                        ability_render.update()
+                        ability_render.current.update(i)
                         
                     }
                     global.gui_wait = 5
@@ -4092,8 +4088,8 @@ abiltiy_render.step = function (){
                             stats_render.update()
                         }
                         
-                        abiltiy_render.update()
-                        abiltiy_render.current.update(i)
+                        ability_render.update()
+                        ability_render.current.update(i)
                         
                     }
                     global.gui_wait = 5
@@ -4109,8 +4105,8 @@ abiltiy_render.step = function (){
                             stats_render.update()
                         }
                         
-                        abiltiy_render.update()
-                        abiltiy_render.current.update(i)
+                        ability_render.update()
+                        ability_render.current.update(i)
                     }
                 }
                 
@@ -4124,15 +4120,15 @@ abiltiy_render.step = function (){
                             stats_render.update()
                         }
                         
-                        abiltiy_render.update()
-                        abiltiy_render.current.update(i)
+                        ability_render.update()
+                        ability_render.current.update(i)
                     }
                 }
                 
             }
         }
         else{
-            abiltiy_render.list.mouse_on[i] = false
+            ability_render.list.mouse_on[i] = false
         }
         
         if _is_talent{
@@ -4142,33 +4138,33 @@ abiltiy_render.step = function (){
     }
     
     if _on_any_ability == false{
-        abiltiy_render.current.number = -1
+        ability_render.current.number = -1
     }
     
 }
-abiltiy_render.draw = function (){
-    if surface_exists(abiltiy_render.surface)
-        draw_surface(abiltiy_render.surface,abiltiy_render.pos[0],abiltiy_render.pos[1])
+ability_render.draw = function (){
+    if surface_exists(ability_render.surface)
+        draw_surface(ability_render.surface,ability_render.pos[0],ability_render.pos[1])
 
-    var _px = abiltiy_render.pos[0]
-    var _py = abiltiy_render.pos[1]
+    var _px = ability_render.pos[0]
+    var _py = ability_render.pos[1]
     
     var _on_any_ability = false
-    for (var i = 0; i < abiltiy_render.list.length; i++) {
-    	var _x = _px + abiltiy_render.list.pos[i][0]
-        var _y = _py + abiltiy_render.list.pos[i][1]
+    for (var i = 0; i < ability_render.list.length; i++) {
+    	var _x = _px + ability_render.list.pos[i][0]
+        var _y = _py + ability_render.list.pos[i][1]
         
-        if abiltiy_render.list.mouse_on[i] == true
+        if ability_render.list.mouse_on[i] == true
             draw_sprite(spr_white_frame,0,_x,_y)
     }
     
-    var _num = abiltiy_render.current.number 
+    var _num = ability_render.current.number 
     
     if _num!=-1{
-        var _surf = abiltiy_render.current.surf
+        var _surf = ability_render.current.surf
         
         var _myx = clamp( mouse_x-200,0,1280-400 )
-        var _myy = clamp( mouse_y+32,0,720-abiltiy_render.current.height )
+        var _myy = clamp( mouse_y+32,0,720-ability_render.current.height )
         
         if surface_exists(_surf)
         draw_surface(_surf,_myx,_myy)
@@ -4238,10 +4234,10 @@ evolve_render.step = function (){
             stats.update()
             cat_render.update()
             stats_render.update()
-            abiltiy_render.update()
+            ability_render.update()
             evolve_render.update()
             
-            abiltiy_render.current.clean()
+            ability_render.current.clean()
             
             evolve_render.button.mouse_on = false
             
@@ -4282,7 +4278,7 @@ evolve_render.update = function (){
         _has_trueform = true
     }
 
-    _has_ultraform = stats.ultra_form
+    var _has_ultraform = stats.ultra_form
 
     var _trueform_unlocked = stats.true_form
     var _ultraform_unlocked = stats.ultra_form

@@ -31,9 +31,9 @@ data.cats.cat = {
         effects:[ [],[],[] ],
         effects_data:[ [{}],[{}],[{}] ],
         talents:{
-            abilities:[ABILITY.ATK_SPEED_UP],
-            talent_type:[0],
-            data:[{ start_time_improv:18,time_improv:[10,10,12,10,10,12,10,10,8],time_improv_max:110 }]
+            abilities:[],
+            talent_type:[],
+            data:[]
         }
     }
 }

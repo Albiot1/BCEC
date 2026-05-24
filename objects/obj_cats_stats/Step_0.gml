@@ -6,7 +6,7 @@ if initialized == false{
     cat_render.update()
     stats_render.update()
     
-    abiltiy_render.update()
+    ability_render.update()
     evolve_render.update()
     
     initialized = true
@@ -19,6 +19,6 @@ cat_render.step()
 
 stats_render.step()
 
-abiltiy_render.step()
+ability_render.step()
 
 evolve_render.step()
