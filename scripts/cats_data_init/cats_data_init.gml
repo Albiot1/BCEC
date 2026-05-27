@@ -4819,7 +4819,45 @@ data.cats.master_of_selection_darvin = {
     
 #region rare cats
 
-
+data.cats.pogo_cat = {
+	max_lvl:[50,80],
+	name:["","",""],
+	rarity: RARITY.RARE,
+	spr:[spr_pogo_cat,spr_pogo_cat_b,spr_pogo_cat_c],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
+		value:[-1,-1, [ [SEED_PURPLE,2],[SEED_RED,3],[SEED_YELLOW,3],[CATFRUIT_BLUE,1],[CATFRUIT_GREEN,1] ] ],
+		level:[0,0,30],
+		xp:[0,0,200_000]
+	},
+	stats:{
+		life:[300,400,400],
+		dmg:[65,75,105],
+		atk_spd:[49,49,49],
+		range:[150,150,150],
+		spd:[10,10,10],
+		knockback:[3,3,3],
+		recharge:[280,280,280],
+		cost:[240,240,160],
+		targetings:[ [],[],[] ],
+		attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+		abilities:[ [ABILITY.SURVIVE],[ABILITY.SURVIVE],[ABILITY.SURVIVE] ],
+		abilities_data:[ [{chance:50}],[{chance:50}],[{chance:100}] ],
+		effects:[ [],[],[] ],
+		effects_data:[ [],[],[] ],
+		talents:{
+			abilities:[ABILITY.RESIST_SLOW,ABILITY.RESIST_WAVE,ABILITY.HP_UP,ABILITY.ATK_UP,ABILITY.SPD_UP],
+			talent_type:[0,0,0,0,0],
+			data:[
+                {total_cost:75, start_improv:16, improv:6, improv_max:70},
+                {total_cost:75, start_improv:5, improv:5, improv_max:50},
+                {total_cost:75, start_improv:2, improv:2, improv_max:20},
+                {total_cost:75, start_improv:2, improv:2, improv_max:20},
+                {total_cost:75, start_number_improv:1, number_improv:1, number_improv_max:10}
+            ]
+		}
+	}
+}
 
 #endregion
     

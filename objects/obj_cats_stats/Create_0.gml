@@ -3592,12 +3592,14 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         
     }
     
-    if variable_struct_exists(_mydata,"total_cost"){
+    if _is_talent{
         array_push(ability_render.list.npcost,_mydata.total_cost)
     }
     else {
     	array_push(ability_render.list.npcost,-1)
     }
+    //show_message(_mydata)
+    //show_message(ability_render.list)
     
     array_push(ability_render.list.pos,_pos)
     array_push(ability_render.list.icon,_icon)
@@ -3615,10 +3617,9 @@ ability_render.update = function (){
     ability_render.list.text = []
     ability_render.list.type = []
     ability_render.list.desc = []
-    ability_render.list.np_cost = []
-    ability_render.list.on_mouse = []
+    ability_render.list.targeting = []
     ability_render.list.mouse_on = []
-    ability_render.list.np_cost = []
+    ability_render.list.npcost = []
     ability_render.list.length = 0
 
     surface_free(ability_render.surface)
