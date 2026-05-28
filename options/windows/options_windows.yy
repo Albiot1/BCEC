@@ -3,7 +3,7 @@
   "%Name":"Windows",
   "ConfigValues":{
     "DEBUG":{
-      "option_windows_interpolate_pixels":"true",
+      "option_windows_interpolate_pixels":"false",
     },
   },
   "name":"Windows",

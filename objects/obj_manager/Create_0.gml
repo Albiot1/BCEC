@@ -2,7 +2,7 @@ application_surface_draw_enable(false);
 room_set_width(RM_MAIN,1280)
 room_set_height(RM_MAIN,720)
 
-surface_resize(application_surface, room_width, room_height);
+surface_resize(application_surface, 1280, 720);
 
 global.resetting_data = false
 global.translation = load_json("data\\translation_en.json")
@@ -123,6 +123,8 @@ enum M_STATES {ADDCATS,NORMAL,SPECIAL,RARE,UBER_RARE,LEGEND,ALL}
 
 global.current_cats = []
 global.all_cats = [ 
+    //test cats
+    data.cats.MEGA_TESTER_CAT,
     //normal cats
     data.cats.cat, data.cats.tank_cat, data.cats.axe_cat, data.cats.gross_cat, data.cats.bird_cat, data.cats.fish_cat, data.cats.lizard_cat, data.cats.titan_cat, data.cats.superfeline, 
     //special cats
@@ -144,7 +146,7 @@ global.all_cats = [
     data.cats.lil_baki, data.cats.baki_cat, data.cats.kaioh_cat, data.cats.doppo_cat, data.cats.master_of_logic_newton, data.cats.tails_cat, data.cats.tasmanian_giant_crab, data.cats.consultant_cat,
     data.cats.nezuko_cat, data.cats.occultist_cat, data.cats.master_of_selection_darvin,
     //rare cats
-    data.cats.pogo_cat
+    data.cats.pogo_cat, data.cats.wheel_cat, data.cats.salon_cat, data.cats.jurassic_cat, data.cats.viking_cat, data.cats.pirate_cat, data.cats.thief_cat
     ]
 global.selected_cat = -1
 

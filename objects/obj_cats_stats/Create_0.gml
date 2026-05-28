@@ -609,6 +609,7 @@ stats_render.draw = function (){
 
 enum ABILITY_RENDER_TYPE { NORMAL,TALENT,ULTRA_TALENT }
 
+
 ability_render = {}
 ability_render.pos = [200+32+250+51-43,84]
 ability_render.size = [750,400]
@@ -754,11 +755,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             
         break;
     }
-    
-    var _chance_improv_max_fix = 0
-    var _time_improv_max_fix = 0
-    var _improv_max_fix = 0
-    var _number_improv_max_fix = 0
 
     switch (_type) {
     	default: 
@@ -973,13 +969,11 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         _level = _has_talent[2].level
                     }
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
                     }
                     
-                    _time_improv_max_fix = _time
                     if variable_struct_exists(_mytalent_data,"time_improv"){
                         var _stat_num = _mytalent_data.time_improv*_level
                         _time+=_stat_num
@@ -1029,16 +1023,13 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             }
             
             if (_is_talent and _has_effect[0]){
-                //+x% or +xf of weaken etc.
                 if _talent_data.unlocked == true{
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv+(_mydata.chance_improv*_talent_data.level)
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("effect_weaken_desc_chance"),[_stat_num] )
                     }
                     if variable_struct_exists(_mydata,"time_improv"){
                         var _stat_num = _mydata.start_time_improv+(_mydata.time_improv*_talent_data.level)
-                        _time_improv_max_fix = _mydata.start_time_improv
                         _desc = text_format_insert( get_translation("effect_weaken_desc_time"),[_stat_num,_stat_num/FRAMERATE] )
                     }
                 }
@@ -1082,13 +1073,11 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if ((_has_talent[0] and !_is_talent) or (_is_talent and !_has_effect[0])){
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
                     }
                     
-                    _time_improv_max_fix = _time
                     if variable_struct_exists(_mytalent_data,"time_improv"){
                         var _stat_num = _mytalent_data.time_improv*_level
                         _time+=_stat_num
@@ -1138,12 +1127,10 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if (_talent_data.unlocked == true){
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv+(_mydata.chance_improv*_talent_data.level)
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("effect_freeze_desc_chance"),[_stat_num] )
                     }
                     if variable_struct_exists(_mydata,"time_improv"){
                         var _stat_num = _mydata.start_time_improv+(_mydata.time_improv*_talent_data.level)
-                        _time_improv_max_fix = _mydata.start_time_improv
                         _desc = text_format_insert( get_translation("effect_freeze_desc_time"),[_stat_num,_stat_num/FRAMERATE] )
                     }
                 }
@@ -1190,13 +1177,11 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
 
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
                     }
                     
-                    _time_improv_max_fix = _time
                     if variable_struct_exists(_mytalent_data,"time_improv"){
                         var _stat_num = _mytalent_data.time_improv*_level
                         _time+=_stat_num
@@ -1247,12 +1232,10 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("effect_slow_desc_chance"),[_stat_num] )
                     }
                     if variable_struct_exists(_mydata,"time_improv"){
                         var _stat_num = _mydata.start_time_improv + _mydata.time_improv*_talent_data.level
-                        _time_improv_max_fix = _mydata.start_time_improv
                         _desc = text_format_insert( get_translation("effect_slow_desc_time"),[_stat_num,_stat_num/FRAMERATE] )
                     }
                     
@@ -1421,7 +1404,7 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             
             var _has_talent = has_talent(EFFECT.KNOCKBACK,true,true)
             var _has_effect = has_effect(EFFECT.KNOCKBACK)
-        
+            
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _chance = _mydata.chance
@@ -1439,7 +1422,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
 
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_level
                         
@@ -1493,7 +1475,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if (_talent_data.unlocked == true){
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("effect_knockback_chance"),[floor(_stat_num)] )
                     }
                 }
@@ -1554,13 +1535,11 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     //+to stats!
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
                     }
                     
-                    _time_improv_max_fix = _time
                     if variable_struct_exists(_mytalent_data,"time_improv"){
                         var _stat_num = _mytalent_data.time_improv*_level
                         _time+=_stat_num
@@ -1610,12 +1589,10 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if _talent_data.unlocked == true{
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("effect_curse_chance"),[_stat_num] )
                     }
                     if variable_struct_exists(_mydata,"time_improv"){
                         var _stat_num = _mydata.start_time_improv + _mydata.time_improv*_talent_data.level
-                        _time_improv_max_fix = _mydata.start_time_improv
                         _desc = text_format_insert( get_translation("effect_curse_time"),[_stat_num,_stat_num/FRAMERATE] )
                     }
                 }
@@ -1661,13 +1638,11 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
 
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
                     }
                     
-                    _time_improv_max_fix = _time
                     if variable_struct_exists(_mytalent_data,"time_improv"){
                         var _stat_num = _mytalent_data.time_improv*_level
                         _time+=_stat_num
@@ -1723,12 +1698,10 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if _talent_data.unlocked == true{
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("effect_dodge_chance"),[_stat_num] )
                     }
                     if variable_struct_exists(_mydata,"time_improv"){
                         var _stat_num = _mydata.start_time_improv + _mydata.time_improv*_talent_data.level
-                        _time_improv_max_fix = _mydata.start_time_improv
                         _desc = text_format_insert( get_translation("effect_dodge_time"),[_stat_num,_stat_num/FRAMERATE] )
                     }
                 }
@@ -1738,7 +1711,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     }
                     if variable_struct_exists(_mydata,"time_improv"){
                         var _stat_num = _mydata.start_time_improv + _mydata.time_improv*_talent_data.level
-                        _time_improv_max_fix = _mydata.start_time_improv
                         _desc = get_translation("effect_dodge_time_locked")
                     }
                 }
@@ -1785,7 +1757,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     //+to stats!
                     var _mytalent_data = _has_talent[1]
 
-                     _improv_max_fix = _amount
                     if variable_struct_exists(_mytalent_data,"improv"){
                         var _stat_num = _mytalent_data.improv*_level
                         _amount+=_stat_num
@@ -1805,14 +1776,12 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if _talent_data.unlocked == true{
                     if variable_struct_exists(_mydata,"improv"){
                         var _stat_num = _mydata.start_improv + _mydata.improv*_talent_data.level
-                        _improv_max_fix = _mydata.start_improv
                         _desc = text_format_insert( get_translation("ability_strengthen_percent"),[_stat_num] )
                     }
                 }
                 else {
                     if variable_struct_exists(_mydata,"improv"){
                         var _stat_num = _mydata.start_improv + _mydata.improv*_talent_data.level
-                        _improv_max_fix = _mydata.start_improv
                         _desc = get_translation("ability_strengthen_percent_locked")
                     }
                 }
@@ -1846,7 +1815,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
 
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
@@ -1866,7 +1834,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if _talent_data.unlocked == true{
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("ability_survive_chance"),[_stat_num] )
                     }
                 }
@@ -1917,7 +1884,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
 
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         
                         if _mytalent_data.chance_improv == _mytalent_data.chance_improv_max{
@@ -1977,7 +1943,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                             _stat_num = 0
                         }
                         
-                        _chance_improv_max_fix = 0
                         _desc = text_format_insert( get_translation("ability_critical_chance"),[_stat_num] )
                     }
                 }
@@ -2017,7 +1982,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     //+to stats!
                     var _mytalent_data = _has_talent[1]
                     
-                    _improv_max_fix = _percent
                     if variable_struct_exists(_mytalent_data,"improv"){
                         var _stat_num = _mytalent_data.improv*_level
                         _percent+=_stat_num
@@ -2041,7 +2005,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if _talent_data.unlocked == true{
                     if variable_struct_exists(_mydata,"improv"){
                         var _stat_num = _mydata.start_improv + _mydata.improv*_talent_data.level
-                        _improv_max_fix = _mydata.start_improv
                         _desc = text_format_insert( get_translation("ability_metal_killer_percent"),[_stat_num] )
                     }
                 }
@@ -2096,7 +2059,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
 
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_has_talent[2].level
                         _chance+=_stat_num
@@ -2129,7 +2091,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if _talent_data.unlocked==true{
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("ability_barrier_breaker_chance"),[_stat_num] )
                     }
                 }
@@ -2169,7 +2130,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     //+to stats!
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
@@ -2202,7 +2162,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if _talent_data.unlocked == true{
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("ability_shield_pierce_chance"),[_stat_num] )
                     }
                 }
@@ -2243,7 +2202,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     //+to stats!
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
@@ -2283,7 +2241,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if _talent_data.unlocked == true{
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("ability_savage_blow_chance"),[_stat_num] )
                     }
                 }
@@ -2415,7 +2372,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _icon = spr_ability_resist_weaken
             _txt = get_translation("ability_resist_weaken_name")
             var _perc = _mydata.start_improv + _mydata.improv*_talent_data.level
-            _improv_max_fix = _mydata.start_improv
         
             if _talent_data.unlocked == true{
                 _desc = text_format_insert( get_translation("ability_resist_weaken_desc"),[_perc] )
@@ -2432,7 +2388,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _txt = get_translation("ability_resist_freeze_name")
         
             var _perc = _mydata.start_improv + _mydata.improv*_talent_data.level
-            _improv_max_fix = _mydata.start_improv
         
             if _talent_data.unlocked == true{
                 _desc = text_format_insert( get_translation("ability_resist_freeze_desc"),[_perc] )
@@ -2449,7 +2404,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _txt = get_translation("ability_resist_slow_name")
         
             var _perc = _mydata.start_improv + _mydata.improv*_talent_data.level
-            _improv_max_fix = _mydata.start_improv
         
             if _talent_data.unlocked == true{
                 _desc = text_format_insert( get_translation("ability_resist_slow_desc"),[_perc] )
@@ -2466,7 +2420,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _txt = get_translation("ability_resist_knockback_name")
         
             var _perc = _mydata.start_improv + _mydata.improv*_talent_data.level
-            _improv_max_fix = _mydata.start_improv
         
             if _talent_data.unlocked == true{
                 _desc = text_format_insert( get_translation("ability_resist_knockback_desc"),[_perc] )
@@ -2483,7 +2436,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _txt = get_translation("ability_resist_wave_name")
         
             var _perc = _mydata.start_improv + _mydata.improv*_talent_data.level
-            _improv_max_fix = _mydata.start_improv
         
             if _talent_data.unlocked == true{
                 _desc = text_format_insert( get_translation("ability_resist_wave_desc"),[_perc] )
@@ -2500,7 +2452,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _txt = get_translation("ability_resist_surge_name")
         
             var _perc = _mydata.start_improv + _mydata.improv*_talent_data.level
-            _improv_max_fix = _mydata.start_improv
         
             if _talent_data.unlocked == true{
                 _desc = text_format_insert( get_translation("ability_resist_surge_desc"),[_perc] )
@@ -2517,7 +2468,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _txt = get_translation("ability_resist_curse_name")
         
             var _perc = _mydata.start_improv + _mydata.improv*_talent_data.level
-            _improv_max_fix = _mydata.start_improv
         
             if _talent_data.unlocked == true{
                 _desc = text_format_insert( get_translation("ability_resist_curse_desc"),[_perc] )
@@ -2534,7 +2484,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _txt = get_translation("ability_resist_toxic_name")
         
             var _perc = _mydata.start_improv + _mydata.improv*_talent_data.level
-            _improv_max_fix = _mydata.start_improv
         
             if _talent_data.unlocked == true{
                 _desc = text_format_insert( get_translation("ability_resist_toxic_desc"),[_perc] )
@@ -2710,8 +2659,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if _talent_data.unlocked == true
                 _desc += text_format_insert( get_translation("ability_hpup_stats"),[_perc] )
         
-            _improv_max_fix = _mydata.start_improv
-        
         break;
         
         case ABILITY.ATK_UP:
@@ -2725,8 +2672,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if _talent_data.unlocked == true
                 _desc += text_format_insert( get_translation("ability_atkup_stats"),[_perc] )
             
-            _improv_max_fix = _mydata.start_improv
-        
         break;
         
         case ABILITY.SPD_UP:
@@ -2739,8 +2684,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         
             if _talent_data.unlocked == true
                 _desc += text_format_insert( get_translation("ability_spdup_stats"),[_perc] )
-            
-            _number_improv_max_fix = _mydata.start_number_improv
             
         break;
         
@@ -2756,8 +2699,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if _talent_data.unlocked == true
                 _desc += text_format_insert( get_translation("ability_cost_down_stats"),[number_format_selected(_perc),number_format_selected(_perc*1.5),number_format_selected(_perc*2)] )
             
-            _number_improv_max_fix = _mydata.start_number_improv
-        
         break;
         
         case ABILITY.RECOVER_DOWN:
@@ -2771,8 +2712,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if _talent_data.unlocked == true
                 _desc += text_format_insert( get_translation("ability_recover_down_stats"),[_perc,_perc/FRAMERATE] )
             
-            _time_improv_max_fix = _mydata.start_time_improv
-        
         break;
         
         case ABILITY.ATK_SPEED_UP:
@@ -2793,8 +2732,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if _talent_data.unlocked == true
                 _desc += text_format_insert( get_translation("ability_atk_speedup_stats"),[_perc,_perc/FRAMERATE] )
             
-            _time_improv_max_fix = _mydata.start_time_improv
-        
         break;
         
         case ABILITY.WAVE:
@@ -2825,7 +2762,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     //+to stats!
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
@@ -2888,7 +2824,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if _talent_data.unlocked == true{
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("ability_wave_chance"),[floor(_stat_num)] )
                     }
                 }
@@ -2930,7 +2865,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     //+to stats!
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
@@ -2993,7 +2927,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if _talent_data.unlocked == true{
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("ability_mini_wave_chance"),[_stat_num] )
                     }
                 }
@@ -3036,7 +2969,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if ((_has_talent[0] and !_is_talent) or (_is_talent and !_has_effect[0])){
                     //+to stats!
                     var _mytalent_data = _has_talent[1]
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
@@ -3121,7 +3053,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if _talent_data.unlocked == true{
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("ability_surge_chance"),[_stat_num] )
                     }
                 }
@@ -3164,7 +3095,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     //+to stats!
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_has_talent[2].level
                         _chance+=_stat_num
@@ -3249,7 +3179,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if _talent_data.unlocked == true{
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("ability_mini_surge_chance"),[_stat_num] )
                     }
                 }
@@ -3289,7 +3218,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     //+to stats!
                     var _mytalent_data = _has_talent[1]
                     
-                    _chance_improv_max_fix = _chance
                     if variable_struct_exists(_mytalent_data,"chance_improv"){
                         var _stat_num = _mytalent_data.chance_improv*_level
                         _chance+=_stat_num
@@ -3415,7 +3343,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 if _talent_data.unlocked == true{
                     if variable_struct_exists(_mydata,"chance_improv"){
                         var _stat_num = _mydata.start_chance_improv + _mydata.chance_improv*_talent_data.level
-                        _chance_improv_max_fix = _mydata.start_chance_improv
                         _desc = text_format_insert( get_translation("ability_expl_chance"),[_stat_num] )
                     }
                 }
@@ -3446,13 +3373,23 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
     if _is_talent{
         _desc+="\n"
         
+        var _has_improv = variable_struct_exists(_mydata,"improv")
+        var _has_improv_max = variable_struct_exists(_mydata,"improv_max")
+        var _has_number_improv = variable_struct_exists(_mydata,"number_improv")
+        var _has_number_improv_max =variable_struct_exists(_mydata,"number_improv_max")
+        var _has_chance_improv = variable_struct_exists(_mydata,"chance_improv")
+        var _has_chance_improv_max = variable_struct_exists(_mydata,"chance_improv_max")
+        var _has_time_improv = variable_struct_exists(_mydata,"time_improv")
+        var _has_time_improv_max = variable_struct_exists(_mydata,"time_improv_max")
+        
         if _talent_data.unlocked == false{
-            if variable_struct_exists(_mydata,"chance_improv")
+            
+            if _has_chance_improv
                 _desc += text_format_insert( get_translation("talent_chance_note"),[_mydata.chance_improv] )
-            if variable_struct_exists(_mydata,"chance_improv_max")
+            if _has_chance_improv_max
                 _desc += text_format_insert( get_translation("talent_chancemax_note"),[ceil(_mydata.chance_improv_max)] )
-
-            if _max_time_calculated == true{
+            
+            if _max_time_calculated == true and _has_time_improv and _has_time_improv_max{
                 
                 var _has_nobonus = false
                 var _has_itf = false
@@ -3512,42 +3449,33 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 var _timemax_max = script_execute_ext( max,_timemax )
                 
                 if _time_min == _time_max {
-                    if variable_struct_exists(_mydata,"time_improv")
                         _desc += text_format_insert( get_translation("talent_time_note"),[_time_min,_time_min/FRAMERATE] )
-                    if variable_struct_exists(_mydata,"time_improv_max")
                         _desc += text_format_insert( get_translation("talent_timemax_note"),[_timemax_min,_timemax_min/FRAMERATE] )
                 }
                 else {
-                    if variable_struct_exists(_mydata,"time_improv")
                         _desc += text_format_insert( get_translation("talent_time_range_note"),[_time_max,_time_min,_time_max/FRAMERATE,_time_min/FRAMERATE] )
-                    if variable_struct_exists(_mydata,"time_improv_max")
                         _desc += text_format_insert( get_translation("talent_timemax_range_note"),[_timemax_max,_timemax_min,_timemax_max/FRAMERATE,_timemax_min/FRAMERATE] )
                 }
                 
             }
-            else {
-                if variable_struct_exists(_mydata,"time_improv"){
-                    if is_array(_mydata.time_improv){
-                        _desc += text_format_insert( get_translation("talent_time_note"),[_mydata.time_improv[_talent_data.level],_mydata.time_improv[_talent_data.level]/FRAMERATE] )
-                    }
-                    else {
-                    	_desc += text_format_insert( get_translation("talent_time_note"),[_mydata.time_improv,_mydata.time_improv/FRAMERATE] )
-                    }
-                    
+            else if _max_time_calculated == false and _has_time_improv and _has_time_improv_max{
+                if is_array(_mydata.time_improv){
+                    _desc += text_format_insert( get_translation("talent_time_note"),[_mydata.time_improv[_talent_data.level],_mydata.time_improv[_talent_data.level]/FRAMERATE] )
                 }
-                if variable_struct_exists(_mydata,"time_improv_max")
-                    _desc += text_format_insert( get_translation("talent_timemax_note"),[_mydata.time_improv_max,_mydata.time_improv_max/FRAMERATE] )
+                else {
+                    _desc += text_format_insert( get_translation("talent_time_note"),[_mydata.time_improv,_mydata.time_improv/FRAMERATE] )
+                }
+                    
+                _desc += text_format_insert( get_translation("talent_timemax_note"),[_mydata.time_improv_max,_mydata.time_improv_max/FRAMERATE] )
             }
-
             
-            
-            if variable_struct_exists(_mydata,"improv")
+            if _has_improv
                 _desc += text_format_insert( get_translation("talent_improv_note"),[_mydata.improv] )
-            if variable_struct_exists(_mydata,"improv_max")
+            if _has_improv_max
                 _desc += text_format_insert( get_translation("talent_improvmax_note"),[_mydata.improv_max] )
-            if variable_struct_exists(_mydata,"number_improv")
+            if _has_number_improv
                 _desc += text_format_insert( get_translation("talent_number_note"),[_mydata.number_improv,_numtype] )
-            if variable_struct_exists(_mydata,"number_improv_max")
+            if _has_number_improv_max
                 _desc += text_format_insert( get_translation("talent_numbermax_note"),[_mydata.number_improv_max,_numtype] )
             
             _desc +=get_translation("talent_unlock_note")
@@ -3556,15 +3484,15 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         else {
         	_desc +=get_translation("talent_lock_note")
             
-            if variable_struct_exists(_mydata,"number_improv") or variable_struct_exists(_mydata,"chance_improv") or variable_struct_exists(_mydata,"time_improv") or variable_struct_exists(_mydata,"improv"){
+            if _has_number_improv or _has_chance_improv or _has_time_improv or _has_improv{
                 var _show_level_change = true
                 
-                if variable_struct_exists(_mydata,"improv"){
+                if _has_improv{
                     if _mydata.improv == _mydata.improv_max
                         _show_level_change = false
                 }
                 
-                if variable_struct_exists(_mydata,"time_improv"){
+                if _has_time_improv{
                     if is_array(_mydata.time_improv){
                         //do nothing
                     }
@@ -3574,12 +3502,12 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     }
                 }
                 
-                if variable_struct_exists(_mydata,"chance_improv"){
+                if _has_chance_improv{
                     if _mydata.chance_improv == _mydata.chance_improv_max
                         _show_level_change = false
                 }
                 
-                if variable_struct_exists(_mydata,"number_improv"){
+                if _has_number_improv{
                     if _mydata.number_improv == _mydata.number_improv_max
                         _show_level_change = false
                 }
@@ -4038,6 +3966,18 @@ ability_render.step = function (){
                     
                     if variable_struct_exists(_data,"start_improv"){
                         _max -= (_data.start_improv-_data.improv)
+                    }
+                    
+                    if variable_struct_exists(_data,"amount"){
+                        _max -= (_data.amount-_data.improv)
+                    }
+                    
+                    if variable_struct_exists(_data,"weaken"){
+                        _max -= (_data.weaken-_data.improv)
+                    }
+                    
+                    if variable_struct_exists(_data,"percent"){
+                        _max -= (_data.percent-_data.improv)
                     }
                     
                     if _data.improv_max != _data.improv
