@@ -146,7 +146,8 @@ global.all_cats = [
     data.cats.lil_baki, data.cats.baki_cat, data.cats.kaioh_cat, data.cats.doppo_cat, data.cats.master_of_logic_newton, data.cats.tails_cat, data.cats.tasmanian_giant_crab, data.cats.consultant_cat,
     data.cats.nezuko_cat, data.cats.occultist_cat, data.cats.master_of_selection_darvin,
     //rare cats
-    data.cats.pogo_cat, data.cats.wheel_cat, data.cats.salon_cat, data.cats.jurassic_cat, data.cats.viking_cat, data.cats.pirate_cat, data.cats.thief_cat
+    data.cats.pogo_cat, data.cats.wheel_cat, data.cats.salon_cat, data.cats.jurassic_cat, data.cats.viking_cat, data.cats.pirate_cat, data.cats.thief_cat, data.cats.bishop_cat, data.cats.fortune_teller_cat,
+    data.cats.shaman_cat, data.cats.witch_cat, data.cats.archer_cat, data.cats.swordsman_cat, data.cats.bronze_cat, data.cats.sports_day_cat, data.cats.swordsman, data.cats.cow_princess, data.cats.lil_gau
     ]
 global.selected_cat = -1
 
