@@ -106,12 +106,6 @@ data.enemies.doge = {
         knockback: 3,
         recharge: 60,
         cost: 200,
-        attack_type:[ [ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE] ],
-        multi_hit_dmg_multiplier:[ [2,2],[2,2],0 ],
-        abilities:[ [],[],[] ],
-        abilities_data:[ [{}],[{}],[{}] ],
-        effects:[ [EFFECT.STRONG,EFFECT.SLOW],[EFFECT.STRONG] ],
-        effects_data:[ [{},{time: 30,chance: 20, slow:50}],[{}] ],
     },
 }
 #endregion 
@@ -122,9 +116,9 @@ enum M_STATES {ADDCATS,NORMAL,SPECIAL,RARE,UBER_RARE,LEGEND,ALL}
 //data_init()
 
 global.current_cats = []
-global.all_cats = [ 
+global.all_cats = [
     //test cats
-    data.cats.MEGA_TESTER_CAT,
+    //data.cats.MEGA_TESTER_CAT,
     //normal cats
     data.cats.cat, data.cats.tank_cat, data.cats.axe_cat, data.cats.gross_cat, data.cats.bird_cat, data.cats.fish_cat, data.cats.lizard_cat, data.cats.titan_cat, data.cats.superfeline, 
     //special cats
@@ -144,10 +138,26 @@ global.all_cats = [
     data.cats.ancient_egg_006, data.cats.medal_king, data.cats.master_of_mind_soractes, data.cats.ancient_egg_204, data.cats.principal_cat, data.cats.trash_cat, data.cats.felix_the_cat_duke_cat,
     data.cats.dotty_cat, data.cats.kaoru_cat, data.cats.ancient_egg_205, data.cats.ancient_egg_206, data.cats.sardine, data.cats.squid, data.cats.master_of_life_dr_nova, data.cats.lieutenant_cat,
     data.cats.lil_baki, data.cats.baki_cat, data.cats.kaioh_cat, data.cats.doppo_cat, data.cats.master_of_logic_newton, data.cats.tails_cat, data.cats.tasmanian_giant_crab, data.cats.consultant_cat,
+    data.cats.scarf_cat, data.cats.fedora_cat, data.cats.helmet_cat, data.cats.goggles_cat, data.cats.ribbon_cat, data.cats.the_invisible_cat,
     data.cats.nezuko_cat, data.cats.occultist_cat, data.cats.master_of_selection_darvin,
     //rare cats
     data.cats.pogo_cat, data.cats.wheel_cat, data.cats.salon_cat, data.cats.jurassic_cat, data.cats.viking_cat, data.cats.pirate_cat, data.cats.thief_cat, data.cats.bishop_cat, data.cats.fortune_teller_cat,
-    data.cats.shaman_cat, data.cats.witch_cat, data.cats.archer_cat, data.cats.swordsman_cat, data.cats.bronze_cat, data.cats.sports_day_cat, data.cats.swordsman, data.cats.cow_princess, data.cats.lil_gau
+    data.cats.shaman_cat, data.cats.witch_cat, data.cats.archer_cat, data.cats.swordsman_cat, data.cats.bronze_cat, data.cats.sports_day_cat, data.cats.swordsman, data.cats.cow_princess, data.cats.lil_gau,
+    data.cats.salaryman_cat, data.cats.reindeer_fish_cat, data.cats.space_cat, data.cats.adult_cat, data.cats.evil_cat, data.cats.doll_cats, data.cats.rope_jump_cat, data.cats.maiden_cat, data.cats.koi_cat,
+    data.cats.madam_bride, data.cats.celesse, data.cats.nono, data.cats.olga, data.cats.norn, data.cats.yoichi, data.cats.serum, data.cats.fuu, data.cats.vacation_queen, data.cats.clockwork_cat, data.cats.vengeful_cat,
+    data.cats.kung_fu_cat_x, data.cats.cat_gunslinger, data.cats.stilts_cat, data.cats.tin_cat, data.cats.rocker_cat, data.cats.mer_cat, data.cats.hoop_cat, data.cats.marshmallow_cat, data.cats.takuya_and_yuki, data.cats.psychocat,
+    data.cats.onmyoji_cat, data.cats.drumcorps_cat, data.cats.hyakutaro, data.cats.marco, data.cats.tarma, data.cats.eri, data.cats.fio, data.cats.mars_people, data.cats.pumpcat, data.cats.a_gift_of_cats,
+    data.cats.funghi, data.cats.awa_odori_cat, data.cats.madoka_cat, data.cats.homura_cat, data.cats.sayaka_cat, data.cats.mami_cat, data.cats.kyoko_cat, data.cats.lil_madoka, data.cats.kyubey_cat, data.cats.food_stall_cat,
+    data.cats.gardener_cat, data.cats.pikotaro, data.cats.killer_cat, data.cats.curling_cat, data.cats.welterweight_cat, data.cats.eggy_cat, data.cats.redhead_yuki_cat, data.cats.slug_jockey_cat, data.cats.sakura_the_cat, data.cats.rin_the_cat,
+    data.cats.illya_the_cat, data.cats.lil_shirou, data.cats.rover_cat, data.cats.volley_cat, data.cats.glass_cat, data.cats.akio_yabe, data.cats.sairi_nijitani, data.cats.misaki_konno, data.cats.ren_katagiri, data.cats.karin_nekozuka,
+    data.cats.mentori, data.cats.shinji_and_cat, data.cats.giraffe_unit_01, data.cats.rei_cat, data.cats.asuka_cat, data.cats.mari_cat, data.cats.pokota, data.cats.ovis, data.cats.coco, data.cats.souma_cat, data.cats.betakkuma, data.cats.lone_cat_and_kitten,
+    data.cats.primordial_cat, data.cats.archer_the_cat, data.cats.rider_the_cat, data.cats.prince_yamato, data.cats.kano_and_souma, data.cats.matador_cat, data.cats.cat_bros, data.cats.mightycat, data.cats.ryu_cat, data.cats.akuma_giraffe,
+    data.cats.medusa_cat, data.cats.wushu_cat, data.cats.slime_cat, data.cats.cossack_cat, data.cats.teacher_bearcat, data.cats.miku_cat, data.cats.rugby_cat, data.cats.phantom_cat, data.cats.kaworu_cat, data.cats.bakery_cat,
+    data.cats.luka_cat, data.cats.balrog_cat, data.cats.vega_cat, data.cats.sagat_cat, data.cats.m_bison_cat, data.cats.stone_cat, data.cats.neko_rin, data.cats.neko_len, data.cats.ranma_cat_m, data.cats.akane_cat, data.cats.godzilla_cat,
+    data.cats.aku_researcher, data.cats.pied_piper_cat, data.cats.calligraphy_cat, data.cats.ancient_egg_n101, data.cats.ancient_egg_n102, data.cats.ancient_egg_n103, data.cats.ancient_egg_n104, data.cats.ancient_egg_n105, data.cats.ancient_egg_n106,
+    data.cats.osamu_mikumo_and_cat, data.cats.yuma_kuga_and_cat, data.cats.killer_tank_cat, data.cats.ancient_egg_n107, data.cats.ancient_egg_n109, data.cats.jetpack_cat, data.cats.ancient_egg_n110, data.cats.maize_cat, data.cats.ancient_egg_n112,
+    data.cats.mollyanna_cat, data.cats.madhead, data.cats.kenshin_cat, data.cats.bowler_cat, data.cats.killer_gross_cat, data.cats.sonic_cat, data.cats.shadow_cat, data.cats.carpenter_cat, data.cats.tanjiro_cat, data.cats.paperboy_cat,
+    data.cats.killer_cowbird_cat
     ]
 global.selected_cat = -1
 

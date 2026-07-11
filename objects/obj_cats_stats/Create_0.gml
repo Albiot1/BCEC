@@ -38,11 +38,14 @@ stats.ultra_form = false
 stats.omni_range = []
 stats.long_dist_range = []
 
+stats.vs_targets = array_create(10,0)
+
 stats.update = function (){
     
     stats.multi_hit_dmgs = [0]
     stats.omni_range = []
     stats.long_dist_range = []
+    stats.vs_targets = []
     
     var _lvl = mydata.level + mydata.level_plus
     var _form = mydata.form_selected
@@ -195,6 +198,73 @@ stats.update = function (){
     	if has_targeting(_targ_list[i],_check_talent){
             array_push(stats.targetings,_targ_list[i])
         }
+    }
+    
+    //var _dps = stats.atk * ( FRAMERATE / stats.atkspd )
+    //show_debug_message($"DPS : {_dps}")
+    
+    for (var i = 0; i < array_length(stats.targetings); i++) {
+    	
+        var _targeting = stats.targetings[i]
+        
+        var _targ = global.treasure_targetings
+        
+        var _bon = {
+            nobonus: 0,
+            itf: get_itf_fruit_multiplier(),
+            cotc: get_cotc_fruit_multiplier()
+        }
+        
+        var _effect_multi = 0
+        
+        if array_contains(_targ.itf,_targeting){
+            _effect_multi = _bon.itf
+        }
+        if array_contains(_targ.cotc,_targeting){
+            _effect_multi = _bon.cotc
+        }
+        
+        var _hp_multi = 1
+        var _dmg_multi = 1
+        
+        if has_effect(EFFECT.STRONG)[0]{
+            _hp_multi += 1 + (0.5 * _effect_multi)
+            _dmg_multi += 0.5 + (0.3 * _effect_multi)
+        }
+        
+        if has_effect(EFFECT.RESISTANT)[0] or has_talent(EFFECT.RESISTANT,true)[0]{
+            _hp_multi += 3 + (1 * _effect_multi)
+        }
+        
+        if has_effect(EFFECT.ULTRA_TOUGH)[0] or has_talent(EFFECT.ULTRA_TOUGH,true)[0]{
+            _hp_multi += 5 + (1 * _effect_multi)
+        }
+        
+        if has_effect(EFFECT.MASSIVE_DMG)[0] or has_talent(EFFECT.MASSIVE_DMG,true)[0]{
+            _dmg_multi += 2 + (1 * _effect_multi)
+        }
+        if has_effect(EFFECT.INSANE_DMG)[0] or has_talent(EFFECT.INSANE_DMG)[0]{
+            _dmg_multi += 4 + (1 * _effect_multi)
+        }
+        
+        
+        
+        //strengthen considered
+        //weaken considered
+        //base destroyer shows base dmg
+        //critical considered
+        //savege blow considered
+        
+        //collosus slayer considered
+        //behemoth slayer considered
+        //sage slayer considered
+        //eva killer
+        //witch killer
+        //waves... surges... explosions
+        
+        stats.vs_targets = [] 
+        
+        
     }
     
 }
