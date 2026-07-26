@@ -1799,6 +1799,14 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         
         break;
         
+        case ABILITY.KAMIKAZE:
+        
+            _icon = spr_suicide
+            _txt = get_translation("ability_kamikaze_name")
+            _desc = get_translation("ability_kamikaze_desc")
+        
+        break;
+        
         case ABILITY.STRENGTHEN:
             
             _icon = spr_strengthen
@@ -3772,6 +3780,7 @@ ability_render.update = function (){
             case ABILITY.WITCH_KILLER: _cicon = spr_witch_killer break;
             case ABILITY.ZOMBIE_KILLER: _cicon = spr_zombie_killer break;
             case ABILITY.BOSS_SHOCKWAVE_IMMUNITY: _cicon = spr_boss_wave_immune break;
+            case ABILITY.KAMIKAZE: _cicon = spr_suicide break;
             case ABILITY.RESIST_WEAKEN: _cicon = spr_ability_resist_weaken break;
             case ABILITY.RESIST_FREEZE: _cicon = spr_ability_resist_freeze break;
             case ABILITY.RESIST_SLOW: _cicon = spr_ability_resist_slow break;
@@ -3881,6 +3890,7 @@ ability_render.update = function (){
                 case ABILITY.WITCH_KILLER: _cicon = spr_witch_killer break;
                 case ABILITY.ZOMBIE_KILLER: _cicon = spr_zombie_killer break;
                 case ABILITY.BOSS_SHOCKWAVE_IMMUNITY: _cicon = spr_boss_wave_immune break;
+                case ABILITY.KAMIKAZE: _cicon = spr_suicide break;
                 
                 case ABILITY.ATK_UP: _cicon = spr_ability_attack_up break;
                 case ABILITY.HP_UP: _cicon = spr_ability_defense_up break;

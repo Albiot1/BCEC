@@ -20,7 +20,7 @@ enum TARGETING {RED = 0,FLOATING,BLACK,METAL,ANGEL,ALIEN,ZOMBIE,RELIC,AKU,TRAITL
 enum ATTACKS {SINGLE = 10,AREA,LONG,OMNI,MULTI_HIT}
 
 enum EFFECT {WEAKEN = 110,FREEZE,SLOW,TARGET_ONLY,STRONG,RESISTANT,ULTRA_TOUGH,MASSIVE_DMG,INSANE_DMG,KNOCKBACK,WARP,CURSE,DODGE}
-enum ABILITY {BOSS_SHOCKWAVE_IMMUNITY = 510,STRENGTHEN,SURVIVE,BASE_DESTROYER,CRITICAL,METAL_KILLER,ZOMBIE_KILLER,SOULSTRIKE,BARRIER_BREAKER,SHIELD_BREAKER,SAVAGE_BLOW,EXTRA_MONEY,METAL,MINI_WAVE,WAVE,MINI_SURGE,SURGE,EXPLOSION,COUNTER_SURGE,STOP_WAVES,CONJURE,COLOSSUS_SLAYER,BEHEMOT_SLAYER,SAGE_SLAYER,WITCH_KILLER,EVA_KILLER,IMMUNE_WEAKEN,IMMUNE_FREEZE,IMMUNE_SLOW,IMMUNE_KNOCKBACK,IMMUNE_WAVE,IMMUNE_SURGE,IMMUNE_EXPLOSION,IMMUNE_WARP,IMMUNE_CURSE,IMMUNE_TOXIC,RESIST_WEAKEN,RESIST_FREEZE,RESIST_SLOW,RESIST_KNOCKBACK,RESIST_WAVE,RESIST_SURGE,RESIST_WARP,RESIST_CURSE,RESIST_TOXIC,HP_UP,ATK_UP,SPD_UP,IMPROVED_KNOCKBACK,COST_DOWN,RECOVER_DOWN,ATK_SPEED_UP}
+enum ABILITY {BOSS_SHOCKWAVE_IMMUNITY = 510,STRENGTHEN,SURVIVE,BASE_DESTROYER,CRITICAL,METAL_KILLER,ZOMBIE_KILLER,SOULSTRIKE,BARRIER_BREAKER,SHIELD_BREAKER,SAVAGE_BLOW,EXTRA_MONEY,METAL,MINI_WAVE,WAVE,MINI_SURGE,SURGE,EXPLOSION,COUNTER_SURGE,STOP_WAVES,CONJURE,COLOSSUS_SLAYER,BEHEMOT_SLAYER,SAGE_SLAYER,WITCH_KILLER,EVA_KILLER,IMMUNE_WEAKEN,IMMUNE_FREEZE,IMMUNE_SLOW,IMMUNE_KNOCKBACK,IMMUNE_WAVE,IMMUNE_SURGE,IMMUNE_EXPLOSION,IMMUNE_WARP,IMMUNE_CURSE,IMMUNE_TOXIC,RESIST_WEAKEN,RESIST_FREEZE,RESIST_SLOW,RESIST_KNOCKBACK,RESIST_WAVE,RESIST_SURGE,RESIST_WARP,RESIST_CURSE,RESIST_TOXIC,HP_UP,ATK_UP,SPD_UP,IMPROVED_KNOCKBACK,COST_DOWN,RECOVER_DOWN,ATK_SPEED_UP,KAMIKAZE}
 enum TRAIT {RED = 0,FLOATING,BLACK,METAL,ANGEL,ALIEN,ZOMBIE,RELIC,AKU,TRAITLESS,BEHEMOT,COLOSSUS,SAGE,WITCH}
 
 data = {}
@@ -124,7 +124,7 @@ global.all_cats = [
     //special cats
     data.cats.actress_cat, data.cats.kung_fu_cat, data.cats.mr, data.cats.bondage_cat, data.cats.dom_cat, data.cats.cats_in_a_box, data.cats.panties_cat, data.cats.moneko, data.cats.tricycle_cat,
     data.cats.ninja_cat, data.cats.zombie_cat, data.cats.samurai_cat, data.cats.sumo_cat, data.cats.boogie_cat, data.cats.skirt_cat, data.cats.valkyrie_cat, data.cats.bahamut_cat,
-    data.cats.kerihime, data.cats.cat_princess, data.cats.blue_shinobi, data.cats.cabaret_cat, data.cats.healer, data.cats.merc, data.cats.bean_cat,data.cats.flower_cat,
+    data.cats.kerihime, data.cats.cat_princess, data.cats.capsule_cat , data.cats.blue_shinobi, data.cats.cabaret_cat, data.cats.healer, data.cats.merc, data.cats.bean_cat,data.cats.flower_cat,
     data.cats.ururun_wolf, data.cats.lil_nyandam, data.cats.meowla_meowla, data.cats.yuki_cat, data.cats.mr_ninja, data.cats.titi, data.cats.baozi_cat, data.cats.lil_cat,
     data.cats.lil_tank_cat, data.cats.lil_axe_cat, data.cats.catburger, data.cats.lil_gross_cat, data.cats.lil_cow_cat, data.cats.lil_bird_cat, data.cats.red_riding_mina,
     data.cats.lil_homura, data.cats.lil_fish_cat, data.cats.lil_lizard_cat, data.cats.lil_titan_cat, data.cats.miyamoku_musashi, data.cats.happy_100, data.cats.maneki_cat, data.cats.hermit_cat,
@@ -157,7 +157,9 @@ global.all_cats = [
     data.cats.aku_researcher, data.cats.pied_piper_cat, data.cats.calligraphy_cat, data.cats.ancient_egg_n101, data.cats.ancient_egg_n102, data.cats.ancient_egg_n103, data.cats.ancient_egg_n104, data.cats.ancient_egg_n105, data.cats.ancient_egg_n106,
     data.cats.osamu_mikumo_and_cat, data.cats.yuma_kuga_and_cat, data.cats.killer_tank_cat, data.cats.ancient_egg_n107, data.cats.ancient_egg_n109, data.cats.jetpack_cat, data.cats.ancient_egg_n110, data.cats.maize_cat, data.cats.ancient_egg_n112,
     data.cats.mollyanna_cat, data.cats.madhead, data.cats.kenshin_cat, data.cats.bowler_cat, data.cats.killer_gross_cat, data.cats.sonic_cat, data.cats.shadow_cat, data.cats.carpenter_cat, data.cats.tanjiro_cat, data.cats.paperboy_cat,
-    data.cats.killer_cowbird_cat
+    data.cats.killer_cowbird_cat,
+    //super rare cats
+    data.cats.bodhisattva_cat, data.cats.delinquent_cat, data.cats.hip_hop_cat, data.cats.kotatsu_cat
     ]
 global.selected_cat = -1
 
