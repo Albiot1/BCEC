@@ -12,14 +12,14 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"v1","%Name":"9318753f-776d-41a5-963e-01b612032d87","name":"9318753f-776d-41a5-963e-01b612032d87","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"463da7a6-e46b-476b-839c-838f04b3e932","name":"463da7a6-e46b-476b-839c-838f04b3e932","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
   "height":85,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"19d2acd6-0644-436d-83d8-d156e50d2933","blendMode":0,"displayName":"default","isLocked":false,"name":"19d2acd6-0644-436d-83d8-d156e50d2933","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"7c6bb12a-fea0-4636-ac4f-b57588a47293","blendMode":0,"displayName":"default","isLocked":false,"name":"7c6bb12a-fea0-4636-ac4f-b57588a47293","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"spr_iz_the_dancer_of_grief",
   "nineSlice":null,
@@ -63,14 +63,14 @@
     "playbackSpeedType":0,
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",
-    "seqHeight":85.0,
-    "seqWidth":110.0,
     "showBackdrop":true,
     "showBackdropImage":false,
     "timeUnits":1,
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{"0":{"$SpriteFrameKeyframe":"","Id":{"name":"9318753f-776d-41a5-963e-01b612032d87","path":"sprites/spr_iz_the_dancer_of_grief/spr_iz_the_dancer_of_grief.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},},"Disabled":false,"id":"2c656e70-4c32-4080-ab09-b889366d4376","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"463da7a6-e46b-476b-839c-838f04b3e932","path":"sprites/spr_iz_the_dancer_of_grief/spr_iz_the_dancer_of_grief.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"4dd4f8bf-ec9b-4438-8668-504e635058a3","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

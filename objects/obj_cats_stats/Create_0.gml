@@ -8,6 +8,7 @@ enum DATA_TYPE {EFFECT,ABILITY,TALENT,NONE}
 stats = {}
 stats.hp = 0
 stats.atk = 0
+stats.dps = 0
 stats.spd = 0
 stats.atkspd = 0
 stats.recharge = 0
@@ -200,8 +201,7 @@ stats.update = function (){
         }
     }
     
-    //var _dps = stats.atk * ( FRAMERATE / stats.atkspd )
-    //show_debug_message($"DPS : {_dps}")
+    stats.dps = stats.atk * ( FRAMERATE / stats.atkspd )
     
     for (var i = 0; i < array_length(stats.targetings); i++) {
     	
@@ -320,11 +320,11 @@ cat_render.update = function (){
     draw_text_outline(_middle,16,c_black,c_white,stats.current_rarity)
     
     draw_set_valign(fa_top)
-    draw_text_outline_ext(_middle,48,c_black,c_white,stats.current_name,16,cat_render.size[0])
+    draw_text_outline_ext(_middle,48,c_black,c_white,stats.current_name,16,cat_render.size[0]-8)
     
     draw_set_valign(fa_middle)
     
-    var _text_h = string_height_ext(stats.current_name,16,cat_render.size[0])
+    var _text_h = string_height_ext(stats.current_name,16,cat_render.size[0]-8)
     
     var _x = _middle-55
     var _y = 48 + _text_h + 8
@@ -632,6 +632,9 @@ stats_render.update = function (){
     draw_text_outline(_x,_y,c_black,c_white,"Attack: "+string(number_format_selected(stats.atk)))
     _y+=24
     
+    draw_text_outline(_x,_y,c_black,c_white,"Dps: "+string(number_format_selected(stats.dps)))
+    _y+=24
+    
     if stats.multi_hit!=false{
         var _dmgs = array_to_separated_text(stats.multi_hit_dmgs,", ",true)
         var _str = "Multi hit: "+_dmgs
@@ -761,7 +764,7 @@ ability_render.current.update = function (_num){
         var _np_y = 0
         draw_sprite_ext(spr_npoints,0,0,_np_y+4,0.5,0.5,0,c_white,1)
         draw_set_font(fnt_big)
-        draw_text_outline(54,_np_y-3,c_black,NPCOLOR,_npcost)
+        draw_text_outline(54,_np_y+2,c_black,NPCOLOR,_npcost)
     }
     
     surface_reset_target()
@@ -972,6 +975,7 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             
             var _hp = stats.hp
             var _dmg = stats.atk
+            var _dps = stats.dps
         
             var _mystats = {
                 stats:[
@@ -983,6 +987,13 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     },
                     {
                         value: _dmg,
+                        scales: true,
+                        multiplier: 0.3,
+                        base_multiplier: 1.5,
+                        damage: true
+                    },
+                    {
+                        value: _dps,
                         scales: true,
                         multiplier: 0.3,
                         base_multiplier: 1.5,
@@ -1010,6 +1021,8 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     
                 _mystats.info+=_info_build
             }
+            
+            
             
             _desc += return_info(_mystats,_target_plus)
         break;
@@ -1388,11 +1401,19 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _desc = get_translation("effect_massdmg_desc")
             
             var _dmg = stats.atk
+            var _dps = stats.dps
         
             var _mystats = {
                 stats:[
                     {
                         value: _dmg,
+                        scales: true,
+                        multiplier: 1,
+                        base_multiplier: 3,
+                        damage: true
+                    },
+                    {
+                        value: _dps,
                         scales: true,
                         multiplier: 1,
                         base_multiplier: 3,
@@ -1431,11 +1452,19 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _desc = get_translation("effect_insadmg_desc")
             
             var _dmg = stats.atk
+            var _dps = stats.dps
         
             var _mystats = {
                 stats:[
                     {
                         value: _dmg,
+                        scales: true,
+                        multiplier: 1,
+                        base_multiplier: 5,
+                        damage: true
+                    },
+                    {
+                        value: _dps,
                         scales: true,
                         multiplier: 1,
                         base_multiplier: 5,
@@ -1820,6 +1849,7 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 var _threshold = _mydata.threshold
                 var _amount = _mydata.amount
                 var _dmg = stats.atk
+                var _dps = stats.dps
                 var _level = 0
                 
                 if _is_talent{
@@ -1845,7 +1875,11 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     _amount += _has_talent[1].start_improv
                 }
                 
-                _desc += text_format_insert( get_translation("ability_strengthen_stats"),[_amount,_threshold,number_format_selected(_dmg+_dmg*(_amount/100))] )
+                var _dmgstr = _dmg + _dmg * (_amount/100)
+                var _dpsstr = _dps + _dps * (_amount/100)
+                
+                _desc += text_format_insert( get_translation("ability_strengthen_stats"),[_amount,_threshold,number_format_selected(_dmgstr),number_format_selected(_dpsstr)] )
+                
                 
             }
         
@@ -1941,7 +1975,7 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _icon = spr_critical
             _txt = get_translation("ability_critical_name")
             var _crit_dmg = stats.atk*2
-        
+            
             var _has_talent = has_talent(ABILITY.CRITICAL,true,true)
             var _has_effect = has_effect(ABILITY.CRITICAL)
         
@@ -2257,7 +2291,7 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             
             _icon = spr_savage_blow
             _txt = get_translation("ability_savage_blow_name")
-            var _savage_dmg = stats.atk*3
+            var _savage_dmg = stats.atk*_mydata.percent
 
             var _has_talent = has_talent(ABILITY.SAVAGE_BLOW,true,true)
             var _has_effect = has_effect(ABILITY.SAVAGE_BLOW)
@@ -2578,9 +2612,10 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _txt = get_translation("ability_colossus_slayer_name")
             var _eff_hp = number_format_selected(stats.hp / 0.7)
             var _eff_atk = number_format_selected(stats.atk * 1.6)
+            var _eff_dps = number_format_selected(stats.dps * 1.6)
             
             _desc = get_translation("ability_colossus_slayer_desc")
-            _desc += text_format_insert( get_translation("ability_colossus_slayer_stats"),[_eff_hp,_eff_atk] )
+            _desc += text_format_insert( get_translation("ability_colossus_slayer_stats"),[_eff_hp,_eff_atk,_eff_dps] )
         
             if stats.multi_hit != false{
                 var _multi_dmgs = stats.multi_hit_dmgs
@@ -2607,12 +2642,13 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _txt = get_translation("ability_behemoth_slayer_name")
             var _eff_hp = number_format_selected(stats.hp / 0.6)
             var _eff_atk = number_format_selected(stats.atk * 2.5)
+            var _eff_dps = number_format_selected(stats.dps * 2.5)
             var _dodge_ch = _mydata.dodge_chance 
             var _dodge_tm = _mydata.dodge_time
         
         
             _desc = get_translation("ability_behemoth_slayer_desc")
-            _desc += text_format_insert( get_translation("ability_behemoth_slayer_stats"),[_eff_hp,_eff_atk] )
+            _desc += text_format_insert( get_translation("ability_behemoth_slayer_stats"),[_eff_hp,_eff_atk,_eff_dps] )
         
             if stats.multi_hit != false{
                 var _multi_dmgs = stats.multi_hit_dmgs
@@ -2641,9 +2677,10 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _txt = get_translation("ability_sage_slayer_name")
             var _eff_hp = number_format_selected(stats.hp * 2)
             var _eff_atk = number_format_selected(stats.atk * 1.2)
+            var _eff_dps = number_format_selected(stats.dps * 1.2)
         
             _desc = get_translation("ability_sage_slayer_desc")
-            _desc += text_format_insert( get_translation("ability_sage_slayer_stats"),[_eff_hp,_eff_atk] )
+            _desc += text_format_insert( get_translation("ability_sage_slayer_stats"),[_eff_hp,_eff_atk,_eff_dps] )
         
             if stats.multi_hit != false{
                 var _multi_dmgs = stats.multi_hit_dmgs
@@ -2673,9 +2710,10 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
         
             var _eff_hp = number_format_selected(stats.hp * 5)
             var _eff_atk = number_format_selected(stats.atk * 5)
+            var _eff_dps = number_format_selected(stats.dps * 5)
         
             _desc = get_translation("ability_evaa_killer_desc")
-            _desc += text_format_insert( get_translation("ability_evaa_killer_stats"),[_eff_hp,_eff_atk] )
+            _desc += text_format_insert( get_translation("ability_evaa_killer_stats"),[_eff_hp,_eff_atk,_eff_dps] )
             
             if stats.multi_hit != false{
                 var _multi_dmgs = stats.multi_hit_dmgs
@@ -2703,9 +2741,10 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             
             var _eff_hp = number_format_selected(stats.hp * 10)
             var _eff_atk = number_format_selected(stats.atk * 5)
+            var _eff_dps = number_format_selected(stats.dps * 5)
         
             _desc = get_translation("ability_witch_killer_desc")
-            _desc += text_format_insert( get_translation("ability_witch_killer_stats"),[_eff_hp,_eff_atk] )
+            _desc += text_format_insert( get_translation("ability_witch_killer_stats"),[_eff_hp,_eff_atk,_eff_dps] )
         
             if stats.multi_hit != false{
                 var _multi_dmgs = stats.multi_hit_dmgs
@@ -4298,11 +4337,13 @@ evolve_render.update = function (){
     if stats.form_number>2{
         _has_trueform = true
     }
+    
 
-    var _has_ultraform = stats.ultra_form
+    var _has_ultraform = stats.form_number>3
 
     var _trueform_unlocked = stats.true_form
     var _ultraform_unlocked = stats.ultra_form
+    
     
     if _has_trueform and _trueform_unlocked == false{
         _draw_info = true
