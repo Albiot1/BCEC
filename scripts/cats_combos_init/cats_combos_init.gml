@@ -48,11 +48,12 @@ function cats_combos_init(){
     data.combos[9] = { name:"take_a_bow", type:COMBO_TYPE.EFF_KNOCKBACK_UP, value:COMBO_VALUE.SMALL, cats:["tank_cat","kubiluga[b]"] }
     data.combos[10] = { name:"sister_act", type:COMBO_TYPE.ATK_UP, value:COMBO_VALUE.SMALL, cats:["moneko","neneko"] }
     data.combos[11] = { name:"hecks_angels", type:COMBO_TYPE.SPD_UP, value:COMBO_VALUE.SMALL, cats:["tricycle_cat[b]","usegi_kenshin"] }
-    data.combos[12] = { name:"lingerie_special", type:COMBO_TYPE.WORKER_LVL, value:COMBO_VALUE.SMALL, cats:["bean_cats[b]","panties_cat"] }
+    data.combos[12] = { name:"lingerie_special", type:COMBO_TYPE.WORKER_LVL, value:COMBO_VALUE.SMALL, cats:["bean_cat[b]","panties_cat"] }
     data.combos[13] = { name:"in_bloom", type:COMBO_TYPE.EFF_FREEZE_UP, value:COMBO_VALUE.SMALL, cats:["maeda_keiji[b]","flower_cat"] }
     data.combos[14] = { name:"childhood_friends", type:COMBO_TYPE.CANNON_RECHARGE, value:COMBO_VALUE.SMALL, cats:["baby_gao","lil_cat"] }
     data.combos[15] = { name:"rawhide", type:COMBO_TYPE.SPD_UP, value:COMBO_VALUE.SMALL, cats:["cow_cat","cat_gunslinger[b]"] }
     data.combos[16] = { name:"puppeteers_guild", type:COMBO_TYPE.CANNON_START_LEVEL, value:COMBO_VALUE.MEDIUM, cats:["warlock_and_pierre","clockwork_cat[b]"] }
+    data.combos[17] = { name:"pyon_pyon_for_two", type:COMBO_TYPE.WORKER_LVL, value:COMBO_VALUE.SMALL, cats:["pogo_cat","rope_jump_cat"] }
     #endregion
     
     //GET CAT FORMS FROM LETTERS
@@ -63,6 +64,7 @@ function cats_combos_init(){
         _combo.forms = array_create(_length,0)
         for (var c = 0; c < _length; c++) {
         	var _cat = _cats[c]
+            
             
             if string_count("[",_cat)>0{
                 
@@ -76,7 +78,15 @@ function cats_combos_init(){
                 
                 _combo.forms[c] = _form
                 
-                _combo.cats[c] = string_replace( _cat,"["+_type+"]","" )
+                var _curcat = string_replace( _cat,"["+_type+"]","" )
+                
+                _combo.cats[c] = _curcat
+                
+                show_debug_message(_curcat)
+                show_debug_message("\n")
+                show_debug_message(data.cats[$ _curcat])
+                array_push( data.cats[$ _curcat].combos,i )
+                
                 
             }
             

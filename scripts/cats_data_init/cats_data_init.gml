@@ -1856,7 +1856,6 @@ data.cats.red_riding_mina = {
         dmg:[600,600,1200],
         atk_spd:[119,119,119],
         range:[435,435,435],
-        long_dist_range:[ [300,600],[300,600],[300,700] ],
         spd:[10,10,10],
         knockback:[4,4,4],
         recharge: [3200,3200,3200],
@@ -10784,7 +10783,7 @@ data.cats.delinquent_cat = {
 		recharge:[1720,1720,1290],
 		cost:[1000,1000,1000],
 		targetings:[[TARGETING.FLOATING],[TARGETING.FLOATING],[TARGETING.FLOATING,TARGETING.RELIC]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[],[ABILITY.IMMUNE_FREEZE],[ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_CURSE]],
 		abilities_data:[[],[{}],[{},{}]],
 		effects:[[EFFECT.FREEZE],[EFFECT.FREEZE],[EFFECT.FREEZE]],
@@ -10793,7 +10792,7 @@ data.cats.delinquent_cat = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.SAVAGE_BLOW,ABILITY.RESIST_WEAKEN,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0],
 			data:[
-				{ total_cost : 165, improv_max : 50, amount : 5, improv : 5, threshold : 67 },
+				{ total_cost : 165, improv_max : 50, improv : 5, amount : 5, threshold : 67 },
 				{ total_cost : 165, percent : 300, chance : 1, chance_improv_max : 10, chance_improv : 1 },
 				{ total_cost : 125, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 125, start_improv : 2, improv_max : 20, improv : 2 },
@@ -11106,7 +11105,7 @@ data.cats.reaper = {
 		recharge:[1200,1200,1200],
 		cost:[500,500,500],
 		targetings:[[TARGETING.BLACK],[TARGETING.BLACK],[TARGETING.BLACK]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[],[],[]],
 		abilities_data:[[],[],[]],
 		effects:[[EFFECT.SLOW],[EFFECT.SLOW],[EFFECT.SLOW]],
@@ -12211,7 +12210,7 @@ data.cats.rich_cat_iii = {
 		recharge:[5000,5000,5000],
 		cost:[400,400,400],
 		targetings:[[],[],[]],
-		attack_type:[[ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE]],
+		attack_type:[[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE]],
 		abilities:[[ABILITY.EXTRA_MONEY],[ABILITY.EXTRA_MONEY],[ABILITY.EXTRA_MONEY]],
 		abilities_data:[[{}],[{}],[{}]],
 		effects:[[],[],[]],
@@ -12578,7 +12577,7 @@ data.cats.years_end_neneko = {
 		recharge:[1998,1998,1554],
 		cost:[99,99,99],
 		targetings:[[],[],[]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.CRITICAL],[ABILITY.CRITICAL],[ABILITY.CRITICAL]],
 		abilities_data:[[{chance:15}],[{chance:15}],[{chance:15}]],
 		effects:[[],[],[]],
@@ -12840,7 +12839,7 @@ data.cats.hijiri_rokudo = {
 		recharge:[840,840,840],
 		cost:[780,780,780],
 		targetings:[[TARGETING.ZOMBIE],[TARGETING.ZOMBIE],[TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.AREA]],
 		abilities:[[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER]],
 		abilities_data:[[{}],[{}],[{}]],
 		effects:[[EFFECT.STRONG],[EFFECT.STRONG],[EFFECT.STRONG]],
@@ -13060,7 +13059,7 @@ data.cats.piledriver_cat = {
 		recharge:[2000,2000,1500],
 		cost:[1000,1000,1000],
 		targetings:[[TARGETING.ZOMBIE],[TARGETING.ZOMBIE],[TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER]],
 		abilities_data:[[{}],[{}],[{}]],
 		effects:[[EFFECT.KNOCKBACK,EFFECT.RESISTANT],[EFFECT.KNOCKBACK,EFFECT.RESISTANT],[EFFECT.KNOCKBACK,EFFECT.RESISTANT]],
@@ -13221,32 +13220,32 @@ data.cats.kotomine_and_gilgamesh_cats = {
 
 data.cats.fiendish_nero = {
 	max_lvl:[50,70],
-	name:["",""],
+	name:["","",""],
 	rarity:RARITY.SUPER_RARE,
-	spr:[spr_fiendish_nero,spr_fiendish_nero_b],
+	spr:[spr_fiendish_nero,spr_fiendish_nero_b,spr_fiendish_nero_c],
 	evolutions:{
-		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
-		value:[-1,-1],
-		level:[0,0],
-		xp:[0,0]
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
+		value:[-1,-1,[["purple_catfruit",3]]],
+		level:[0,0,30],
+		xp:[0,0,1000000]
 	},
 	stats:{
-		life:[1200,1500],
-		dmg:[975,1275],
-		multi_hit_dmgs:[[325,325,325],[425,425,425]],
-		atk_spd:[185,185],
-		range:[225,225],
-		omni_range:[[[-800,225],[-800,225],[-800,225],[-800,225],[-800,225]],[[-800,225],[-800,225],[-800,225],[-800,225],[-800,225]]],
-		spd:[9,9],
-		knockback:[4,4],
-		recharge:[1120,1120],
-		cost:[990,990],
-		targetings:[[TARGETING.ZOMBIE],[TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
-		abilities:[[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER]],
-		abilities_data:[[{}],[{}]],
-		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
-		effects_data:[[{}],[{}]],
+		life:[1200,1500,1950],
+		dmg:[975,1275,1275],
+		multi_hit_dmgs:[[325,325,325],[425,425,425],[425,425,425]],
+		atk_spd:[185,185,185],
+		range:[225,225,275],
+		omni_range:[[[-800,225],[-800,225],[-800,225]],[[-800,225],[-800,225],[-800,225]],[[-800,275],[-800,275],[-800,275]]],
+		spd:[9,9,9],
+		knockback:[4,4,4],
+		recharge:[1120,1120,1120],
+		cost:[990,990,990],
+		targetings:[[TARGETING.ZOMBIE],[TARGETING.ZOMBIE],[TARGETING.ZOMBIE]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
+		abilities:[[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER]],
+		abilities_data:[[{}],[{}],[{}]],
+		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
+		effects_data:[[{}],[{}],[{}]],
 		talents:{
 			abilities:[],
 			talent_type:[],
@@ -13424,7 +13423,7 @@ data.cats.good_luck_ebisu = {
 		recharge:[1600,1600],
 		cost:[1600,1600],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU]],
-		attack_type:[[ATTACKS.SINGLE,ATTACKS.LONG],[ATTACKS.SINGLE,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.SINGLE,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.EXTRA_MONEY],[ABILITY.EXTRA_MONEY]],
 		abilities_data:[[{}],[{}]],
 		effects:[[EFFECT.WEAKEN,EFFECT.FREEZE,EFFECT.SLOW,EFFECT.KNOCKBACK],[EFFECT.WEAKEN,EFFECT.FREEZE,EFFECT.SLOW,EFFECT.KNOCKBACK]],
@@ -13462,7 +13461,7 @@ data.cats.nymph_cat = {
 		recharge:[800,800,800],
 		cost:[650,650,650],
 		targetings:[[],[],[TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[],[],[]],
 		abilities_data:[[],[],[]],
 		effects:[[],[],[EFFECT.KNOCKBACK]],
@@ -13650,7 +13649,7 @@ data.cats.c_honda = {
 		recharge:[760,760],
 		cost:[840,840],
 		targetings:[[TARGETING.ANGEL],[TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_SLOW],[ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_SLOW]],
 		abilities_data:[[{},{}],[{},{}]],
 		effects:[[EFFECT.RESISTANT],[EFFECT.RESISTANT]],
@@ -13759,7 +13758,7 @@ data.cats.happosai = {
 		recharge:[780,780],
 		cost:[780,780],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.ZOMBIE],[TARGETING.RED,TARGETING.FLOATING,TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER]],
 		abilities_data:[[{}],[{}]],
 		effects:[[EFFECT.KNOCKBACK],[EFFECT.KNOCKBACK]],
@@ -13832,7 +13831,7 @@ data.cats.tatewaki_kuno_gi = {
 		recharge:[960,960],
 		cost:[900,900],
 		targetings:[[TARGETING.ANGEL],[TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.IMMUNE_KNOCKBACK],[ABILITY.IMMUNE_KNOCKBACK]],
 		abilities_data:[[{}],[{}]],
 		effects:[[EFFECT.SLOW,EFFECT.KNOCKBACK,EFFECT.DODGE],[EFFECT.SLOW,EFFECT.KNOCKBACK,EFFECT.DODGE]],
@@ -14373,7 +14372,7 @@ data.cats.mummy_sumo = {
 		recharge:[580,580],
 		cost:[800,800],
 		targetings:[[TARGETING.FLOATING,TARGETING.BLACK],[TARGETING.FLOATING,TARGETING.BLACK]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.IMMUNE_KNOCKBACK],[ABILITY.IMMUNE_KNOCKBACK]],
 		abilities_data:[[{}],[{}]],
 		effects:[[EFFECT.RESISTANT],[EFFECT.RESISTANT]],
@@ -14482,7 +14481,7 @@ data.cats.jamie_cat = {
 		recharge:[640,640],
 		cost:[800,800],
 		targetings:[[TARGETING.AKU],[TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.STRENGTHEN,ABILITY.IMMUNE_SURGE],[ABILITY.STRENGTHEN,ABILITY.IMMUNE_SURGE]],
 		abilities_data:[[{amount:50,threshold:60},{}],[{amount:50,threshold:60},{}]],
 		effects:[[EFFECT.STRONG],[EFFECT.STRONG]],
@@ -14532,13 +14531,11 @@ data.cats.lil_sakonji_urokodaki = {
 		}
 	}
 }
-
-
     
 #endregion
 
 #region uber super rare
-    
+
 data.cats.nekoluga = {
 	max_lvl:[60,70],
 	name:["","",""],
@@ -14617,7 +14614,7 @@ data.cats.ice_cat = {
 				{ total_cost : 100 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
-				{ total_cost : 285, improv_max : 100, amount : 10, improv : 10, threshold : 66 },
+				{ total_cost : 285, improv_max : 100, improv : 10, amount : 10, threshold : 66 },
 				{ time : 6, total_cost : 285, time_improv_max : 60, time_improv : 6, chance : 40 },
 				{ total_cost : 150 }
 			]
@@ -14696,7 +14693,7 @@ data.cats.lesser_demon_cat = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.RESIST_WAVE,ABILITY.HP_UP,ABILITY.ATK_UP,ABILITY.COST_DOWN],
 			talent_type:[0,0,0,0,0],
 			data:[
-				{ total_cost : 235, improv_max : 200, amount : 20, improv : 20, threshold : 33 },
+				{ total_cost : 235, improv_max : 200, improv : 20, amount : 20, threshold : 33 },
 				{ total_cost : 175, start_improv : 5, improv_max : 50, improv : 5 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -14852,7 +14849,7 @@ data.cats.sanada_yukimura = {
 		recharge:[1800,1800,1800],
 		cost:[2050,2050,2050],
 		targetings:[[TARGETING.BLACK],[TARGETING.BLACK],[TARGETING.BLACK]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[],[],[]],
 		abilities_data:[[],[],[]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -14861,7 +14858,7 @@ data.cats.sanada_yukimura = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.RESIST_FREEZE,ABILITY.RESIST_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0],
 			data:[
-				{ total_cost : 235, improv_max : 50, amount : 14, improv : 4, threshold : 40 },
+				{ total_cost : 235, improv_max : 50, improv : 4, amount : 14, threshold : 40 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -14901,7 +14898,7 @@ data.cats.maeda_keiji = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.RESIST_WEAKEN,ABILITY.COST_DOWN,ABILITY.HP_UP,ABILITY.ATK_UP,TARGETING.FLOATING,ABILITY.WAVE,ABILITY.IMMUNE_FREEZE],
 			talent_type:[0,0,0,0,0,1,1,1],
 			data:[
-				{ total_cost : 175, improv_max : 50, amount : 23, improv : 3, threshold : 100 },
+				{ total_cost : 175, improv_max : 50, improv : 3, amount : 23, threshold : 100 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 175, start_number_improv : 30, number_improv_max : 300, number_improv : 30 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -14985,7 +14982,7 @@ data.cats.windy = {
 			talent_type:[0,0,0,0,0],
 			data:[
 				{ time : 15, total_cost : 235, time_improv_max : 60, time_improv : 5, chance : 40 },
-				{ total_cost : 235, improv_max : 50, amount : 23, improv : 3, threshold : 50 },
+				{ total_cost : 235, improv_max : 50, improv : 3, amount : 23, threshold : 50 },
 				{ total_cost : 100 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 }
@@ -15011,13 +15008,13 @@ data.cats.thundia = {
 		multi_hit_dmgs:[0,0,0,[4055,2020]],
 		atk_spd:[397,397,397,437],
 		range:[410,410,440,460],
-		long_dist_range:[0,0,0,[[1,461],[460,920],[1,461],[1,461],[1,461]]],
+		long_dist_range:[0,0,0,[[1,461],[460,920]]],
 		spd:[5,5,10,15],
 		knockback:[5,5,5,5],
 		recharge:[3444,3444,3444,3200],
 		cost:[2940,2940,2940,2940],
 		targetings:[[TARGETING.RED],[TARGETING.RED],[TARGETING.RED],[TARGETING.RED]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[],[],[],[ABILITY.SURVIVE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN]],
 		abilities_data:[[],[],[],[{chance:100},{},{}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -15026,7 +15023,7 @@ data.cats.thundia = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.RESIST_WAVE,ABILITY.IMMUNE_CURSE,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0],
 			data:[
-				{ total_cost : 235, improv_max : 50, amount : 23, improv : 3, threshold : 50 },
+				{ total_cost : 235, improv_max : 50, improv : 3, amount : 23, threshold : 50 },
 				{ total_cost : 175, start_improv : 5, improv_max : 50, improv : 5 },
 				{ total_cost : 100 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -15645,7 +15642,7 @@ data.cats.kasa_jizo = {
 		recharge:[380,4800,4800,380],
 		cost:[500,3950,3950,500],
 		targetings:[[TARGETING.BLACK,TARGETING.ANGEL],[TARGETING.BLACK,TARGETING.ANGEL],[TARGETING.BLACK,TARGETING.ANGEL],[TARGETING.BLACK,TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.OMNI]],
 		abilities:[[],[],[],[ABILITY.SURVIVE]],
 		abilities_data:[[],[],[],[{chance:100}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -16082,13 +16079,13 @@ data.cats.dioramos = {
 		multi_hit_dmgs:[0,0,0,[3600,1000,1000]],
 		atk_spd:[283,283,283,307],
 		range:[395,395,410,410],
-		long_dist_range:[0,0,0,[[1,411],[200,500],[290,590],[1,411]]],
+		long_dist_range:[0,0,0,[[1,411],[200,500],[290,590]]],
 		spd:[4,4,4,4],
 		knockback:[2,2,2,2],
 		recharge:[4960,4960,4960,4960],
 		cost:[4400,4400,4400,4400],
 		targetings:[[TARGETING.ANGEL],[TARGETING.ANGEL],[TARGETING.ANGEL],[TARGETING.ANGEL,TARGETING.ALIEN]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.IMMUNE_SLOW],[ABILITY.IMMUNE_SLOW],[ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_SLOW],[ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_SLOW]],
 		abilities_data:[[{}],[{}],[{chance:100},{}],[{chance:100},{}]],
 		effects:[[EFFECT.SLOW,EFFECT.KNOCKBACK],[EFFECT.SLOW,EFFECT.KNOCKBACK],[EFFECT.SLOW,EFFECT.KNOCKBACK],[EFFECT.SLOW,EFFECT.KNOCKBACK]],
@@ -16097,7 +16094,7 @@ data.cats.dioramos = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.RESIST_FREEZE,ABILITY.RESIST_WEAKEN,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0],
 			data:[
-				{ total_cost : 235, improv_max : 50, amount : 5, improv : 5, threshold : 50 },
+				{ total_cost : 235, improv_max : 50, improv : 5, amount : 5, threshold : 50 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -16179,7 +16176,7 @@ data.cats.hearscht = {
 			data:[
 				{ time : 9, total_cost : 235, time_improv_max : 90, time_improv : 9, chance : 40 },
 				{ total_cost : 100 },
-				{ total_cost : 235, improv_max : 50, amount : 5, improv : 5, threshold : 33 },
+				{ total_cost : 235, improv_max : 50, improv : 5, amount : 5, threshold : 33 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 }
 			]
@@ -16245,7 +16242,7 @@ data.cats.juvens = {
 		recharge:[1400,1400,1400],
 		cost:[1900,1900,1900],
 		targetings:[[TARGETING.ANGEL],[TARGETING.ANGEL],[TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE]],
+		attack_type:[[ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT]],
 		abilities:[[],[],[]],
 		abilities_data:[[],[],[]],
 		effects:[[EFFECT.RESISTANT],[EFFECT.RESISTANT],[EFFECT.DODGE,EFFECT.RESISTANT]],
@@ -16331,7 +16328,7 @@ data.cats.akira = {
 			talent_type:[0,0,0,0,0,1,1],
 			data:[
 				{ time : 39, total_cost : 235, time_improv_max : 120, time_improv : 9, chance : 40 },
-				{ total_cost : 235, improv_max : 50, amount : 23, improv : 3, threshold : 33 },
+				{ total_cost : 235, improv_max : 50, improv : 3, amount : 23, threshold : 33 },
 				{ total_cost : 235, chance : 28, chance_improv_max : 100, chance_improv : 8 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -16460,7 +16457,7 @@ data.cats.kachi_kachi = {
 				{ total_cost : 175, start_number_improv : 40, number_improv_max : 400, number_improv : 40 },
 				{ total_cost : 175, start_time_improv : 20, time_improv_max : 200, time_improv : 20 },
 				{ total_cost : 150 },
-				{ total_cost : 285, improv_max : 50, amount : 5, improv : 5, threshold : 50 },
+				{ total_cost : 285, improv_max : 50, improv : 5, amount : 5, threshold : 50 },
 				{ time : 41, total_cost : 285, time_improv_max : 140, time_improv : 11, chance : 40 }
 			]
 		}
@@ -16484,13 +16481,13 @@ data.cats.the_white_rabbit = {
 		multi_hit_dmgs:[0,0,0,[1980,460,460]],
 		atk_spd:[282,282,282,262],
 		range:[465,465,465,465],
-		long_dist_range:[0,0,0,[[1,466],[285,550],[385,650],[1,466],[1,466]]],
+		long_dist_range:[0,0,0,[[1,466],[285,550],[385,650]]],
 		spd:[11,11,11,11],
 		knockback:[6,6,6,6],
 		recharge:[4500,4500,4500,4500],
 		cost:[3550,3550,3550,3550],
 		targetings:[[TARGETING.RED,TARGETING.ALIEN],[TARGETING.RED,TARGETING.ALIEN],[TARGETING.RED,TARGETING.ALIEN],[TARGETING.RED,TARGETING.ALIEN]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[],[],[],[ABILITY.SAGE_SLAYER]],
 		abilities_data:[[],[],[],[{}]],
 		effects:[[EFFECT.SLOW],[EFFECT.STRONG],[EFFECT.WEAKEN,EFFECT.KNOCKBACK],[EFFECT.WEAKEN,EFFECT.SLOW,EFFECT.STRONG]],
@@ -17197,7 +17194,7 @@ data.cats.shining_amaterasu = {
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ time : 24, total_cost : 285, time_improv_max : 60, time_improv : 4, chance : 20 },
-				{ total_cost : 285, improv_max : 50, amount : 5, improv : 5, threshold : 50 }
+				{ total_cost : 285, improv_max : 50, improv : 5, amount : 5, threshold : 50 }
 			]
 		}
 	}
@@ -17234,7 +17231,7 @@ data.cats.splendid_ganesha = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.RESIST_WEAKEN,ABILITY.IMMUNE_KNOCKBACK,ABILITY.HP_UP,ABILITY.ATK_UP,ABILITY.ATK_SPEED_UP],
 			talent_type:[0,0,0,0,0,1],
 			data:[
-				{ total_cost : 175, improv_max : 50, amount : 23, improv : 3, threshold : 100 },
+				{ total_cost : 175, improv_max : 50, improv : 3, amount : 23, threshold : 100 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 100 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -17729,7 +17726,7 @@ data.cats.mighty_bomburr = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.IMMUNE_TOXIC,ABILITY.RESIST_FREEZE,ABILITY.SOULSTRIKE,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0,0],
 			data:[
-				{ total_cost : 235, improv_max : 50, amount : 5, improv : 5, threshold : 43 },
+				{ total_cost : 235, improv_max : 50, improv : 5, amount : 5, threshold : 43 },
 				{ total_cost : 100 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 100 },
@@ -18067,7 +18064,7 @@ data.cats.trickster_himeyuri = {
 		recharge:[3700,3700,3700],
 		cost:[3160,3160,3160],
 		targetings:[[TARGETING.FLOATING,TARGETING.ANGEL],[TARGETING.FLOATING,TARGETING.ANGEL],[TARGETING.FLOATING,TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[],[],[]],
 		abilities_data:[[],[],[]],
 		effects:[[EFFECT.SLOW],[EFFECT.SLOW],[EFFECT.SLOW]],
@@ -18110,7 +18107,7 @@ data.cats.sea_maiden_ruri = {
 		recharge:[3200,3200,3200],
 		cost:[2840,2840,2840],
 		targetings:[[TARGETING.RED],[TARGETING.RED],[TARGETING.RED]],
-		attack_type:[[ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE]],
+		attack_type:[[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT]],
 		abilities:[[],[],[]],
 		abilities_data:[[],[],[]],
 		effects:[[EFFECT.WEAKEN,EFFECT.RESISTANT],[EFFECT.WEAKEN,EFFECT.RESISTANT],[EFFECT.WEAKEN,EFFECT.RESISTANT]],
@@ -18154,7 +18151,7 @@ data.cats.queen_reika = {
 		recharge:[4000,4000,4000],
 		cost:[3320,3320,3320],
 		targetings:[[TARGETING.ALIEN,TARGETING.ZOMBIE],[TARGETING.ALIEN,TARGETING.ZOMBIE],[TARGETING.ALIEN,TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER]],
 		abilities_data:[[{}],[{}],[{}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -18397,7 +18394,7 @@ data.cats.twinstars = {
 		recharge:[2400,2400,2100],
 		cost:[2600,2600,2600],
 		targetings:[[TARGETING.BLACK,TARGETING.ALIEN],[TARGETING.BLACK,TARGETING.ALIEN],[TARGETING.BLACK,TARGETING.ALIEN]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[],[],[ABILITY.IMMUNE_WEAKEN]],
 		abilities_data:[[],[],[{}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -18518,7 +18515,7 @@ data.cats.wolfchild_deale = {
 		recharge:[3800,3800,3800],
 		cost:[3080,3080,3080],
 		targetings:[[TARGETING.ANGEL,TARGETING.ALIEN],[TARGETING.ANGEL,TARGETING.ALIEN],[TARGETING.ANGEL,TARGETING.ALIEN]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[],[],[]],
 		abilities_data:[[],[],[]],
 		effects:[[EFFECT.KNOCKBACK],[EFFECT.KNOCKBACK],[EFFECT.KNOCKBACK]],
@@ -18562,7 +18559,7 @@ data.cats.graveflower_verbena = {
 		recharge:[3000,3000,3000],
 		cost:[2500,2500,2500],
 		targetings:[[],[],[]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.CRITICAL],[ABILITY.CRITICAL],[ABILITY.CRITICAL]],
 		abilities_data:[[{chance:15}],[{chance:15}],[{chance:25}]],
 		effects:[[],[],[]],
@@ -18611,7 +18608,7 @@ data.cats.bora = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.RESIST_WEAKEN,ABILITY.RESIST_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0],
 			data:[
-				{ total_cost : 235, improv_max : 50, amount : 5, improv : 5, threshold : 33 },
+				{ total_cost : 235, improv_max : 50, improv : 5, amount : 5, threshold : 33 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -18801,7 +18798,7 @@ data.cats.illyasviel = {
 		recharge:[3900,3900],
 		cost:[2960,2960],
 		targetings:[[TARGETING.RED,TARGETING.METAL],[TARGETING.RED,TARGETING.METAL]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[],[]],
 		abilities_data:[[],[]],
 		effects:[[EFFECT.SLOW],[EFFECT.SLOW]],
@@ -18948,7 +18945,7 @@ data.cats.gilgamesh = {
 		recharge:[3800,3800],
 		cost:[3000,3000],
 		targetings:[[],[]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.STRENGTHEN],[ABILITY.STRENGTHEN]],
 		abilities_data:[[{amount:50,threshold:25}],[{amount:50,threshold:25}]],
 		effects:[[],[]],
@@ -19466,13 +19463,13 @@ data.cats.mighty_thermae_d_lux = {
 		multi_hit_dmgs:[[700,700,700],[700,700,700],[770,770,770],[850,850,850]],
 		atk_spd:[196,196,196,196],
 		range:[425,425,425,425],
-		omni_range:[[[-675,425],[-675,425],[-675,425],[-675,425],[-675,425]],[[-675,425],[-675,425],[-675,425],[-675,425],[-675,425]],[[-675,425],[-675,425],[-675,425],[-675,425],[-675,425]],[[-725,475],[-725,475],[-725,475],[-725,475],[-725,475]]],
+		omni_range:[[[-675,425],[-675,425],[-675,425]],[[-675,425],[-675,425],[-675,425]],[[-675,425],[-675,425],[-675,425]],[[-725,475],[-725,475],[-725,475]]],
 		spd:[4,4,4,4],
 		knockback:[5,5,5,5],
 		recharge:[5500,5500,5500,5500],
 		cost:[3100,3100,3100,3100],
 		targetings:[[TARGETING.ZOMBIE],[TARGETING.ZOMBIE],[TARGETING.ZOMBIE],[TARGETING.ZOMBIE,TARGETING.RELIC]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_TOXIC]],
 		abilities_data:[[{}],[{}],[{}],[{},{}]],
 		effects:[[EFFECT.FREEZE,EFFECT.STRONG],[EFFECT.FREEZE,EFFECT.STRONG],[EFFECT.FREEZE,EFFECT.STRONG],[EFFECT.FREEZE,EFFECT.STRONG]],
@@ -19481,7 +19478,7 @@ data.cats.mighty_thermae_d_lux = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.IMMUNE_CURSE,ABILITY.RESIST_FREEZE,ABILITY.SOULSTRIKE,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0,0],
 			data:[
-				{ total_cost : 235, improv_max : 50, amount : 5, improv : 5, threshold : 50 },
+				{ total_cost : 235, improv_max : 50, improv : 5, amount : 5, threshold : 50 },
 				{ total_cost : 100 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 100 },
@@ -19632,7 +19629,7 @@ data.cats.nobiluga = {
 		recharge:[1000,10000,6000],
 		cost:[3000,3000,1500],
 		targetings:[[],[],[]],
-		attack_type:[[ATTACKS.SINGLE],[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.SINGLE],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[],[ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_CURSE],[ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_CURSE]],
 		abilities_data:[[],[{},{},{},{},{},{},{}],[{},{},{},{},{},{},{}]],
 		effects:[[],[],[]],
@@ -19710,7 +19707,7 @@ data.cats.empress_chronos = {
 		recharge:[4000,4000,4000],
 		cost:[2700,2700,2700],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.IMMUNE_FREEZE],[ABILITY.IMMUNE_FREEZE],[ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_WARP]],
 		abilities_data:[[{}],[{}],[{},{}]],
 		effects:[[EFFECT.FREEZE],[EFFECT.FREEZE],[EFFECT.FREEZE]],
@@ -19751,7 +19748,7 @@ data.cats.bebe = {
 		recharge:[800,3200,3200],
 		cost:[800,2600,2600],
 		targetings:[[TARGETING.ALIEN,TARGETING.ZOMBIE],[TARGETING.ALIEN,TARGETING.ZOMBIE],[TARGETING.ALIEN,TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.ZOMBIE_KILLER,ABILITY.WITCH_KILLER,ABILITY.IMMUNE_WARP],[ABILITY.ZOMBIE_KILLER,ABILITY.WITCH_KILLER,ABILITY.IMMUNE_WARP],[ABILITY.BARRIER_BREAKER,ABILITY.ZOMBIE_KILLER,ABILITY.WITCH_KILLER,ABILITY.IMMUNE_WARP]],
 		abilities_data:[[{},{},{}],[{},{},{}],[{chance:30},{},{},{}]],
 		effects:[[EFFECT.WEAKEN],[EFFECT.WEAKEN],[EFFECT.WEAKEN,EFFECT.DODGE]],
@@ -20004,28 +20001,28 @@ data.cats.heracrist = {
 	max_lvl:[60,70],
 	name:["","",""],
 	rarity:RARITY.UBER_SUPER_RARE,
-	spr:[spr_heracrist,spr_heracrist_b],
+	spr:[spr_heracrist,spr_heracrist_b,spr_heracrist_c],
 	evolutions:{
-		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
-		value:[-1,-1],
-		level:[0,0],
-		xp:[0,0]
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
+		value:[-1,-1,[["blue_catfruit",6],["green_catfruit",6],["elder_catfruit",1]]],
+		level:[0,0,30],
+		xp:[0,0,1000000]
 	},
 	stats:{
-		life:[6000,6000],
-		dmg:[9000,9000],
-		atk_spd:[237,237],
-		range:[360,360],
-		spd:[4,4],
-		knockback:[2,2],
-		recharge:[2500,2500],
-		cost:[3000,3000],
-		targetings:[[TARGETING.FLOATING],[TARGETING.ALIEN]],
-		attack_type:[[ATTACKS.SINGLE],[ATTACKS.SINGLE]],
-		abilities:[[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP],[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP]],
-		abilities_data:[[{},{}],[{},{}]],
-		effects:[[EFFECT.STRONG],[EFFECT.STRONG]],
-		effects_data:[[{}],[{}]],
+		life:[6000,6000,6000],
+		dmg:[9000,9000,9000],
+		atk_spd:[237,237,237],
+		range:[360,360,360],
+		spd:[4,4,4],
+		knockback:[2,2,2],
+		recharge:[2500,2500,2500],
+		cost:[3000,3000,3000],
+		targetings:[[TARGETING.FLOATING],[TARGETING.ALIEN],[TARGETING.RELIC]],
+		attack_type:[[ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE]],
+		abilities:[[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP],[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP],[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_CURSE]],
+		abilities_data:[[{},{}],[{},{}],[{},{}]],
+		effects:[[EFFECT.STRONG],[EFFECT.STRONG],[EFFECT.STRONG]],
+		effects_data:[[{}],[{}],[{}]],
 		talents:{
 			abilities:[],
 			talent_type:[],
@@ -20171,7 +20168,7 @@ data.cats.eva_unit_08 = {
 		recharge:[4600,4600],
 		cost:[3050,3050],
 		targetings:[[TARGETING.FLOATING],[TARGETING.FLOATING]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.EVA_KILLER],[ABILITY.EVA_KILLER]],
 		abilities_data:[[{}],[{}]],
 		effects:[[EFFECT.WEAKEN,EFFECT.FREEZE,EFFECT.KNOCKBACK],[EFFECT.WEAKEN,EFFECT.FREEZE,EFFECT.KNOCKBACK]],
@@ -20320,7 +20317,7 @@ data.cats.myrcia_ = {
 		recharge:[3000,3000,3000],
 		cost:[2840,2840,2840],
 		targetings:[[TARGETING.TRAITLESS],[TARGETING.TRAITLESS],[TARGETING.TRAITLESS]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.WAVE],[ABILITY.WAVE],[ABILITY.WAVE]],
 		abilities_data:[[{lvl:2,chance:100,on_x_hit:2}],[{lvl:2,chance:100,on_x_hit:2}],[{lvl:4,chance:100,on_x_hit:2}]],
 		effects:[[EFFECT.DODGE],[EFFECT.DODGE],[EFFECT.DODGE]],
@@ -20477,7 +20474,7 @@ data.cats.chun_li = {
 		recharge:[3000,3000],
 		cost:[2300,2300],
 		targetings:[[TARGETING.RED,TARGETING.BLACK,TARGETING.ALIEN],[TARGETING.RED,TARGETING.BLACK,TARGETING.ALIEN]],
-		attack_type:[[ATTACKS.SINGLE],[ATTACKS.SINGLE]],
+		attack_type:[[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT]],
 		abilities:[[],[]],
 		abilities_data:[[],[]],
 		effects:[[EFFECT.KNOCKBACK],[EFFECT.KNOCKBACK]],
@@ -20514,7 +20511,7 @@ data.cats.guile = {
 		recharge:[4000,4000],
 		cost:[2800,2800],
 		targetings:[[TARGETING.FLOATING],[TARGETING.FLOATING]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[],[]],
 		abilities_data:[[],[]],
 		effects:[[EFFECT.WEAKEN,EFFECT.SLOW,EFFECT.RESISTANT],[EFFECT.WEAKEN,EFFECT.SLOW,EFFECT.RESISTANT]],
@@ -20552,7 +20549,7 @@ data.cats.zangief = {
 		recharge:[3600,3600],
 		cost:[2800,2800],
 		targetings:[[TARGETING.ZOMBIE],[TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_SLOW],[ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_SLOW]],
 		abilities_data:[[{},{},{}],[{},{},{}]],
 		effects:[[EFFECT.DODGE],[EFFECT.DODGE]],
@@ -20626,7 +20623,7 @@ data.cats.dhalsim = {
 		recharge:[3000,3000],
 		cost:[2500,2500],
 		targetings:[[TARGETING.TRAITLESS],[TARGETING.TRAITLESS]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[],[]],
 		abilities_data:[[],[]],
 		effects:[[EFFECT.WEAKEN],[EFFECT.WEAKEN]],
@@ -20658,13 +20655,13 @@ data.cats.ken = {
 		multi_hit_dmgs:[[1080,720,360],[1080,720,360],[1440,960,480]],
 		atk_spd:[179,179,179],
 		range:[250,250,250],
-		omni_range:[[[-150,350],[-150,350],[-150,350],[-150,350],[-150,350]],[[-150,350],[-150,350],[-150,350],[-150,350],[-150,350]],[[-150,350],[-150,350],[-150,350],[-150,350],[-150,350]]],
+		omni_range:[[[-150,350],[-150,350],[-150,350]],[[-150,350],[-150,350],[-150,350]],[[-150,350],[-150,350],[-150,350]]],
 		spd:[19,19,19],
 		knockback:[3,3,3],
 		recharge:[2800,2800,2800],
 		cost:[2400,2400,2400],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.ANGEL],[TARGETING.RED,TARGETING.FLOATING,TARGETING.ANGEL],[TARGETING.RED,TARGETING.FLOATING,TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[],[],[ABILITY.IMMUNE_SLOW]],
 		abilities_data:[[],[],[{}]],
 		effects:[[EFFECT.KNOCKBACK,EFFECT.STRONG],[EFFECT.KNOCKBACK,EFFECT.STRONG],[EFFECT.WEAKEN,EFFECT.KNOCKBACK,EFFECT.STRONG]],
@@ -20742,7 +20739,7 @@ data.cats.kintaro = {
 		recharge:[500,4600,4600],
 		cost:[560,3100,3100],
 		targetings:[[TARGETING.ANGEL],[TARGETING.ANGEL],[TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.SAVAGE_BLOW],[ABILITY.SAVAGE_BLOW],[ABILITY.SAVAGE_BLOW]],
 		abilities_data:[[{percent:200,chance:10}],[{percent:200,chance:20}],[{percent:200,chance:20}]],
 		effects:[[EFFECT.SLOW],[EFFECT.SLOW],[EFFECT.SLOW,EFFECT.CURSE]],
@@ -20783,7 +20780,7 @@ data.cats.snow_angel_twinstars = {
 		recharge:[2250,2250],
 		cost:[2600,2600],
 		targetings:[[TARGETING.FLOATING,TARGETING.ANGEL],[TARGETING.FLOATING,TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[],[]],
 		abilities_data:[[],[]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -20821,7 +20818,7 @@ data.cats.kasli_the_scourge = {
 		recharge:[640,3800],
 		cost:[520,3200],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
 		abilities:[[ABILITY.SURGE],[ABILITY.SURGE,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_WEAKEN,ABILITY.IMMUNE_CURSE]],
 		abilities_data:[[{lvl:1,distance:[325,525],chance:100,on_x_hit:2}],[{lvl:2,distance:[400,700],chance:100},{},{},{}]],
 		effects:[[EFFECT.KNOCKBACK],[EFFECT.KNOCKBACK]],
@@ -20859,7 +20856,7 @@ data.cats.herme = {
 		recharge:[2900,2900],
 		cost:[2300,2300],
 		targetings:[[TARGETING.ZOMBIE],[TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER]],
 		abilities_data:[[{}],[{}]],
 		effects:[[EFFECT.STRONG],[EFFECT.STRONG]],
@@ -20911,7 +20908,7 @@ data.cats.sharpshooter_saki = {
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 150 },
-				{ total_cost : 285, improv_max : 100, amount : 10, improv : 10, threshold : 1 },
+				{ total_cost : 285, improv_max : 100, improv : 10, amount : 10, threshold : 1 },
 				{ total_cost : 150 }
 			]
 		}
@@ -20940,7 +20937,7 @@ data.cats.hades_the_punisher = {
 		recharge:[4200,4200,4200],
 		cost:[2950,2950,2950],
 		targetings:[[],[],[]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_TOXIC],[ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_TOXIC],[ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_TOXIC]],
 		abilities_data:[[{},{}],[{},{}],[{},{},{},{}]],
 		effects:[[],[],[]],
@@ -21130,7 +21127,7 @@ data.cats.papaluga = {
 		recharge:[1000,7000,7000],
 		cost:[3000,3000,3000],
 		targetings:[[],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS]],
-		attack_type:[[ATTACKS.SINGLE],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.SINGLE],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[],[ABILITY.IMMUNE_CURSE],[ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_SURGE]],
 		abilities_data:[[],[{}],[{},{}]],
 		effects:[[],[EFFECT.CURSE],[EFFECT.CURSE]],
@@ -21387,13 +21384,13 @@ data.cats.hell_warden_emma = {
 		multi_hit_dmgs:[[400,400,400],[400,400,400],[400,400,400]],
 		atk_spd:[159,159,159],
 		range:[200,200,200],
-		omni_range:[[[-600,350],[-600,350],[-600,350],[-600,350]],[[-600,350],[-600,350],[-600,350],[-600,350]],[[-600,350],[-600,350],[-600,350],[-600,350]]],
+		omni_range:[[[-600,350],[-600,350],[-600,350]],[[-600,350],[-600,350],[-600,350]],[[-600,350],[-600,350],[-600,350]]],
 		spd:[30,30,30],
 		knockback:[10,10,10],
 		recharge:[4000,4000,4000],
 		cost:[2900,2900,2900],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[ABILITY.STOP_WAVES],[ABILITY.STOP_WAVES],[ABILITY.STOP_WAVES,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_WARP]],
 		abilities_data:[[{}],[{}],[{},{},{}]],
 		effects:[[EFFECT.WEAKEN],[EFFECT.WEAKEN],[EFFECT.WEAKEN]],
@@ -21486,11 +21483,11 @@ data.cats.squirtgun_saki = {
 	}
 }
 
-data.cats.summerluga = {
+data.cats.summerluga  = {
 	max_lvl:[60,70],
 	name:["","",""],
 	rarity:RARITY.UBER_SUPER_RARE,
-	spr:[spr_summerluga,spr_summerluga_b,spr_summerluga_c],
+	spr:[spr_summerluga ,spr_summerluga _b,spr_summerluga _c],
 	evolutions:{
 		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
 		value:[-1,-1,[["aku_seed",3],["epic_catfruit",3],["behemot_red",3]]],
@@ -21766,7 +21763,7 @@ data.cats.m_bison = {
 		recharge:[4500,4500],
 		cost:[2850,2850],
 		targetings:[[TARGETING.FLOATING,TARGETING.ALIEN,TARGETING.ZOMBIE],[TARGETING.FLOATING,TARGETING.ALIEN,TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[ABILITY.BARRIER_BREAKER,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_WARP],[ABILITY.BARRIER_BREAKER,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_WARP]],
 		abilities_data:[[{chance:100},{},{}],[{chance:100},{},{}]],
 		effects:[[EFFECT.STRONG],[EFFECT.STRONG]],
@@ -21803,7 +21800,7 @@ data.cats.hatsune_miku_mm2020_osaka = {
 		recharge:[4200,4200],
 		cost:[2600,2600],
 		targetings:[[TARGETING.RED,TARGETING.ANGEL],[TARGETING.RED,TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.SAVAGE_BLOW],[ABILITY.SAVAGE_BLOW]],
 		abilities_data:[[{percent:200,chance:10}],[{percent:200,chance:10}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -21840,7 +21837,7 @@ data.cats.hatsune_miku_mm2020_tokyo = {
 		recharge:[4600,4600],
 		cost:[2600,2600],
 		targetings:[[TARGETING.RED,TARGETING.ANGEL],[TARGETING.RED,TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.STOP_WAVES],[ABILITY.STOP_WAVES]],
 		abilities_data:[[{}],[{}]],
 		effects:[[EFFECT.RESISTANT],[EFFECT.RESISTANT]],
@@ -21885,7 +21882,7 @@ data.cats.keiji_claus = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.IMMUNE_SURGE,ABILITY.RESIST_FREEZE,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0],
 			data:[
-				{ total_cost : 175, improv_max : 50, amount : 23, improv : 3, threshold : 100 },
+				{ total_cost : 175, improv_max : 50, improv : 3, amount : 23, threshold : 100 },
 				{ total_cost : 100 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -21991,7 +21988,7 @@ data.cats.first_love_myrcia = {
 		recharge:[3000,3000],
 		cost:[2840,2840],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING],[TARGETING.RED,TARGETING.FLOATING]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.WAVE],[ABILITY.WAVE]],
 		abilities_data:[[{lvl:3,chance:100,on_x_hit:2}],[{lvl:3,chance:100,on_x_hit:2}]],
 		effects:[[EFFECT.DODGE],[EFFECT.DODGE]],
@@ -22144,7 +22141,7 @@ data.cats.ranma_saotome_m = {
 		recharge:[3000,3000],
 		cost:[2800,2800],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING],[TARGETING.RED,TARGETING.FLOATING]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[ABILITY.IMMUNE_SLOW],[ABILITY.IMMUNE_FREEZE]],
 		abilities_data:[[{}],[{}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -22254,7 +22251,7 @@ data.cats.shampoo_cat = {
 		recharge:[700,2800],
 		cost:[600,2700],
 		targetings:[[],[]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.MINI_WAVE],[ABILITY.MINI_WAVE]],
 		abilities_data:[[{lvl:4,chance:50}],[{lvl:4,chance:100}]],
 		effects:[[],[]],
@@ -22323,13 +22320,13 @@ data.cats.adventurer_kanna = {
 		multi_hit_dmgs:[[290,290,290],[380,380,380],[380,380,380]],
 		atk_spd:[225,225,225],
 		range:[400,400,400],
-		long_dist_range:[[[300,800],[250,750],[500,1000],[300,800]],[[300,800],[250,750],[500,1000],[300,800]],[[300,800],[250,750],[500,1000],[5,35]]],
+		long_dist_range:[[[300,800],[250,750],[500,1000]],[[300,800],[250,750],[500,1000]],[[300,800],[250,750],[500,1000]]],
 		spd:[12,12,12],
 		knockback:[3,3,3],
 		recharge:[4200,4200,4200],
 		cost:[3150,3150,3150],
 		targetings:[[TARGETING.BLACK],[TARGETING.BLACK],[TARGETING.BLACK]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.SURGE],[ABILITY.SURGE],[ABILITY.SURGE,ABILITY.BEHEMOT_SLAYER]],
 		abilities_data:[[{lvl:2,distance:[400,700],chance:100,on_x_hit:1}],[{lvl:2,distance:[400,700],chance:100,on_x_hit:1}],[{lvl:3,distance:[400,700],chance:100,on_x_hit:1},{dodge_chance:5,dodge_time:30}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -22520,7 +22517,7 @@ data.cats.amakusa_shiro = {
 		recharge:[4400,4400,4400],
 		cost:[3200,3200,3200],
 		targetings:[[TARGETING.BLACK,TARGETING.AKU],[TARGETING.BLACK,TARGETING.AKU],[TARGETING.BLACK,TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.IMMUNE_SURGE],[ABILITY.IMMUNE_SURGE],[ABILITY.IMMUNE_SURGE]],
 		abilities_data:[[{}],[{}],[{}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -22609,7 +22606,7 @@ data.cats.hevijak_the_wicked = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_KNOCKBACK,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0],
 			data:[
-				{ total_cost : 235, improv_max : 50, amount : 5, improv : 5, threshold : 33 },
+				{ total_cost : 235, improv_max : 50, improv : 5, amount : 5, threshold : 33 },
 				{ total_cost : 100 },
 				{ total_cost : 100 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -22642,7 +22639,7 @@ data.cats.kunio_kun = {
 		recharge:[1800,3000],
 		cost:[1900,1900],
 		targetings:[[],[]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.LONG]],
 		abilities:[[],[]],
 		abilities_data:[[],[]],
 		effects:[[],[]],
@@ -22687,7 +22684,7 @@ data.cats.furiluga = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.SURVIVE,ABILITY.RESIST_WAVE,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0],
 			data:[
-				{ total_cost : 235, improv_max : 500, amount : 100, improv : 44, threshold : 1 },
+				{ total_cost : 235, improv_max : 500, improv : 44, amount : 100, threshold : 1 },
 				{ total_cost : 235, chance : 10, chance_improv_max : 100, chance_improv : 10 },
 				{ total_cost : 175, start_improv : 5, improv_max : 50, improv : 5 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -22719,7 +22716,7 @@ data.cats.yamii = {
 		recharge:[700,3200,3200],
 		cost:[660,1900,1900],
 		targetings:[[TARGETING.ALIEN,TARGETING.AKU],[TARGETING.ALIEN,TARGETING.AKU],[TARGETING.ALIEN,TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.IMMUNE_WARP],[ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_WARP],[ABILITY.BARRIER_BREAKER,ABILITY.STOP_WAVES,ABILITY.IMMUNE_WARP]],
 		abilities_data:[[{}],[{chance:100},{}],[{chance:100},{},{}]],
 		effects:[[EFFECT.WEAKEN],[EFFECT.WEAKEN,EFFECT.RESISTANT],[EFFECT.WEAKEN,EFFECT.RESISTANT]],
@@ -22841,7 +22838,7 @@ data.cats.white_knight_cyclops = {
 		recharge:[4800,4800,4800],
 		cost:[3550,3550,3550],
 		targetings:[[TARGETING.ALIEN,TARGETING.AKU],[TARGETING.ALIEN,TARGETING.AKU],[TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.SHIELD_BREAKER],[ABILITY.IMMUNE_WAVE],[ABILITY.SHIELD_BREAKER,ABILITY.IMMUNE_FREEZE]],
 		abilities_data:[[{chance:50,on_x_hit:1}],[{}],[{chance:50,on_x_hit:1},{}]],
 		effects:[[EFFECT.FREEZE],[EFFECT.STRONG],[EFFECT.MASSIVE_DMG]],
@@ -22850,7 +22847,7 @@ data.cats.white_knight_cyclops = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.IMMUNE_WAVE,ABILITY.COST_DOWN,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0],
 			data:[
-				{ total_cost : 235, improv_max : 100, amount : 10, improv : 10, threshold : 66 },
+				{ total_cost : 235, improv_max : 100, improv : 10, amount : 10, threshold : 66 },
 				{ total_cost : 100 },
 				{ total_cost : 175, start_number_improv : 70, number_improv_max : 700, number_improv : 70 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -22883,7 +22880,7 @@ data.cats.iz_the_dancer = {
 		recharge:[1640,1640],
 		cost:[2100,2100],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[ABILITY.STRENGTHEN,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN],[ABILITY.STRENGTHEN,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN]],
 		abilities_data:[[{amount:50,threshold:50},{},{},{},{},{}],[{amount:100,threshold:50},{},{},{},{},{}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -23108,13 +23105,13 @@ data.cats.bliza = {
 		multi_hit_dmgs:[[180,180,360],[480,480,960],[500,500,1000]],
 		atk_spd:[247,247,247],
 		range:[250,350,350],
-		omni_range:[[[-250,250],[-350,350],[-450,450],[-250,250],[-250,250]],[[-350,350],[-450,450],[-550,550],[-350,350],[-350,350]],[[-350,350],[-450,450],[-550,550],[-350,350],[-350,350]]],
+		omni_range:[[[-250,250],[-350,350],[-450,450]],[[-350,350],[-450,450],[-550,550]],[[-350,350],[-450,450],[-550,550]]],
 		spd:[12,12,12],
 		knockback:[3,3,3],
 		recharge:[780,2660,2660],
 		cost:[750,2420,2420],
 		targetings:[[TARGETING.ALIEN,TARGETING.ZOMBIE],[TARGETING.ALIEN,TARGETING.ZOMBIE],[TARGETING.ALIEN,TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[ABILITY.COLOSSUS_SLAYER,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP],[ABILITY.BARRIER_BREAKER,ABILITY.COLOSSUS_SLAYER,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP],[ABILITY.BARRIER_BREAKER,ABILITY.COLOSSUS_SLAYER,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_TOXIC]],
 		abilities_data:[[{},{},{},{}],[{chance:100,on_x_hit:3},{},{},{},{}],[{chance:100,on_x_hit:3},{},{},{},{},{}]],
 		effects:[[EFFECT.SLOW],[EFFECT.SLOW,EFFECT.RESISTANT],[EFFECT.SLOW,EFFECT.RESISTANT]],
@@ -23146,13 +23143,13 @@ data.cats.iz_the_dancer_of_grief = {
 		multi_hit_dmgs:[[280,280,280],[340,340,340]],
 		atk_spd:[131,131],
 		range:[300,300],
-		omni_range:[[[-350,350],[-350,350],[-350,350],[-350,350]],[[-350,350],[-350,350],[-350,350],[-350,350]]],
+		omni_range:[[[-350,350],[-350,350],[-350,350]],[[-350,350],[-350,350],[-350,350]]],
 		spd:[20,20],
 		knockback:[2,2],
 		recharge:[1840,1840],
 		cost:[2100,2100],
 		targetings:[[TARGETING.TRAITLESS],[TARGETING.TRAITLESS]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[ABILITY.STRENGTHEN,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.IMMUNE_SURGE],[ABILITY.BARRIER_BREAKER,ABILITY.SHIELD_BREAKER,ABILITY.STRENGTHEN,ABILITY.COLOSSUS_SLAYER,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_TOXIC,ABILITY.IMMUNE_SURGE]],
 		abilities_data:[[{amount:100,threshold:50},{},{},{},{},{},{},{}],[{chance:100},{chance:100},{amount:150,threshold:50},{},{},{},{},{},{},{},{},{},{},{}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -23221,13 +23218,13 @@ data.cats.chronos_the_bride = {
 		multi_hit_dmgs:[[400,600,900],[440,660,990]],
 		atk_spd:[309,309],
 		range:[450,450],
-		long_dist_range:[[[300,700],[300,700],[300,700],[300,700]],[[300,700],[300,700],[300,700],[300,700]]],
+		long_dist_range:[[[300,700],[300,700],[300,700]],[[300,700],[300,700],[300,700]]],
 		spd:[8,8],
 		knockback:[3,3],
 		recharge:[4000,4000],
 		cost:[2700,2700],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.MINI_WAVE],[ABILITY.MINI_WAVE]],
 		abilities_data:[[{lvl:5,chance:20}],[{lvl:5,chance:20}]],
 		effects:[[EFFECT.WEAKEN,EFFECT.SLOW,EFFECT.CURSE],[EFFECT.WEAKEN,EFFECT.SLOW,EFFECT.CURSE]],
@@ -23368,13 +23365,13 @@ data.cats.mighty_carrowsell = {
 		multi_hit_dmgs:[[750,750,750],[750,750,750],[1000,1000,1000]],
 		atk_spd:[258,258,258],
 		range:[400,400,400],
-		long_dist_range:[[[1,401],[-35,435],[-70,470],[1,401],[1,401]],[[1,401],[-35,435],[-70,470],[1,401],[1,401]],[[1,401],[-35,435],[-70,470],[1,401],[1,401]]],
+		long_dist_range:[[[1,401],[-35,435],[-70,470]],[[1,401],[-35,435],[-70,470]],[[1,401],[-35,435],[-70,470]]],
 		spd:[5,5,5],
 		knockback:[4,4,4],
 		recharge:[4600,4600,4600],
 		cost:[3000,3000,3000],
 		targetings:[[TARGETING.BLACK,TARGETING.ZOMBIE],[TARGETING.BLACK,TARGETING.ZOMBIE],[TARGETING.BLACK,TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.COLOSSUS_SLAYER,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_TOXIC],[ABILITY.COLOSSUS_SLAYER,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_TOXIC],[ABILITY.COLOSSUS_SLAYER,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_TOXIC]],
 		abilities_data:[[{},{},{}],[{},{},{}],[{},{},{}]],
 		effects:[[EFFECT.SLOW,EFFECT.CURSE],[EFFECT.SLOW,EFFECT.CURSE],[EFFECT.SLOW,EFFECT.CURSE,EFFECT.RESISTANT]],
@@ -23411,13 +23408,13 @@ data.cats.sakura = {
 		multi_hit_dmgs:[[450,450,450],[450,450,450]],
 		atk_spd:[135,135],
 		range:[250,250],
-		omni_range:[[[-150,350],[-150,350],[-150,350],[-150,350]],[[-150,350],[-150,350],[-150,350],[-150,350]]],
+		omni_range:[[[-150,350],[-150,350],[-150,350]],[[-150,350],[-150,350],[-150,350]]],
 		spd:[20,20],
 		knockback:[4,4],
 		recharge:[3000,3000],
 		cost:[2650,2650],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[],[]],
 		abilities_data:[[],[]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -23485,13 +23482,13 @@ data.cats.spectral_goth_vega = {
 		multi_hit_dmgs:[[450,450],[600,600],[800,800]],
 		atk_spd:[204,204,204],
 		range:[380,380,380],
-		long_dist_range:[[[1,381],[230,630],[1,381],[1,381],[1,381]],[[1,381],[230,630],[1,381],[1,381],[1,381]],[[1,381],[230,630],[1,381],[1,381],[1,381]]],
+		long_dist_range:[[[1,381],[230,630]],[[1,381],[230,630]],[[1,381],[230,630]]],
 		spd:[13,13,13],
 		knockback:[3,3,3],
 		recharge:[3700,3700,3700],
 		cost:[3120,3120,3120],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.COLOSSUS_SLAYER,ABILITY.IMMUNE_TOXIC],[ABILITY.COLOSSUS_SLAYER,ABILITY.IMMUNE_TOXIC],[ABILITY.COLOSSUS_SLAYER,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_TOXIC]],
 		abilities_data:[[{},{}],[{},{}],[{},{},{}]],
 		effects:[[EFFECT.WEAKEN,EFFECT.STRONG],[EFFECT.WEAKEN,EFFECT.STRONG],[EFFECT.WEAKEN,EFFECT.STRONG]],
@@ -23528,7 +23525,7 @@ data.cats.count_yukimura = {
 		recharge:[1800,1800,1800],
 		cost:[2050,2050,2050],
 		targetings:[[TARGETING.FLOATING],[TARGETING.FLOATING],[TARGETING.FLOATING]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.SURVIVE],[ABILITY.SURVIVE],[ABILITY.SURVIVE]],
 		abilities_data:[[{chance:30}],[{chance:30}],[{chance:100}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -23560,13 +23557,13 @@ data.cats.goddess_of_light_sirius = {
 		multi_hit_dmgs:[[750,375,375],[900,450,450]],
 		atk_spd:[179,179],
 		range:[430,430],
-		long_dist_range:[[[1,431],[350,550],[350,550],[1,431]],[[1,431],[350,550],[350,550],[1,431]]],
+		long_dist_range:[[[1,431],[350,550],[350,550]],[[1,431],[350,550],[350,550]]],
 		spd:[15,15],
 		knockback:[4,4],
 		recharge:[2600,2600],
 		cost:[3350,3350],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.COLOSSUS_SLAYER,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_TOXIC],[ABILITY.COLOSSUS_SLAYER,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_TOXIC]],
 		abilities_data:[[{},{},{},{},{},{},{},{}],[{},{},{},{},{},{},{},{}]],
 		effects:[[EFFECT.STRONG],[EFFECT.STRONG]],
@@ -23634,13 +23631,13 @@ data.cats.child_of_destiny_phono = {
 		multi_hit_dmgs:[[250,250,250],[600,600,600]],
 		atk_spd:[216,216],
 		range:[350,600],
-		long_dist_range:[[[100,350],[250,500],[350,600],[100,350]],[[250,600],[450,800],[590,1000],[250,600]]],
+		long_dist_range:[[[100,350],[250,500],[350,600]],[[250,600],[450,800],[590,1000]]],
 		spd:[25,30],
 		knockback:[3,5],
 		recharge:[660,4400],
 		cost:[580,3400],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[],[ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_SURGE]],
 		abilities_data:[[],[{},{}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -23750,7 +23747,7 @@ data.cats.thunder_jack = {
 		recharge:[2600,2600,2600],
 		cost:[2100,2100,2100],
 		targetings:[[TARGETING.ANGEL,TARGETING.ALIEN],[TARGETING.ALIEN,TARGETING.ZOMBIE],[TARGETING.ALIEN,TARGETING.AKU]],
-		attack_type:[[ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE]],
+		attack_type:[[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.IMMUNE_WEAKEN],[ABILITY.IMMUNE_FREEZE],[ABILITY.IMMUNE_SURGE]],
 		abilities_data:[[{}],[{}],[{}]],
 		effects:[[EFFECT.KNOCKBACK],[EFFECT.KNOCKBACK],[EFFECT.KNOCKBACK]],
@@ -23819,13 +23816,13 @@ data.cats.king_of_doom_phono = {
 		multi_hit_dmgs:[[700,700,700],[1000,1000,1000]],
 		atk_spd:[216,216],
 		range:[500,500],
-		long_dist_range:[[[200,550],[400,750],[490,900],[200,550]],[[200,550],[400,750],[490,900],[200,550]]],
+		long_dist_range:[[[200,550],[400,750],[490,900]],[[200,550],[400,750],[490,900]]],
 		spd:[30,30],
 		knockback:[5,5],
 		recharge:[4400,4400],
 		cost:[3400,3400],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.MINI_SURGE,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_SURGE],[ABILITY.MINI_SURGE,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_SURGE]],
 		abilities_data:[[{lvl:1,distance:[400,1100],chance:100},{},{}],[{lvl:1,distance:[400,1100],chance:100},{},{},{}]],
 		effects:[[EFFECT.SLOW],[EFFECT.SLOW]],
@@ -23899,7 +23896,7 @@ data.cats.eva_unit_13 = {
 		recharge:[5200,5200],
 		cost:[2880,2880],
 		targetings:[[TARGETING.AKU],[TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.MINI_SURGE,ABILITY.EVA_KILLER,ABILITY.IMMUNE_SURGE],[ABILITY.MINI_SURGE,ABILITY.EVA_KILLER,ABILITY.IMMUNE_SURGE]],
 		abilities_data:[[{lvl:1,distance:[400,700],chance:50},{},{}],[{lvl:1,distance:[400,700],chance:50},{},{}]],
 		effects:[[EFFECT.STRONG],[EFFECT.STRONG]],
@@ -23931,13 +23928,13 @@ data.cats.betrothed_balaluga = {
 		multi_hit_dmgs:[0,[635,635,635]],
 		atk_spd:[82,299],
 		range:[140,640],
-		omni_range:[0,[[-310,540],[-635,590],[-960,640],[-310,540]]],
+		omni_range:[0,[[-310,540],[-635,590],[-960,640]]],
 		spd:[3,4],
 		knockback:[5,1],
 		recharge:[1000,10000],
 		cost:[3000,3000],
 		targetings:[[],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS]],
-		attack_type:[[ATTACKS.SINGLE],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.SINGLE],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[],[]],
 		abilities_data:[[],[]],
 		effects:[[],[EFFECT.FREEZE]],
@@ -24005,13 +24002,13 @@ data.cats.coastal_explorer_kanna = {
 		multi_hit_dmgs:[[290,290,290],[380,380,380]],
 		atk_spd:[225,225],
 		range:[400,400],
-		long_dist_range:[[[300,800],[250,750],[500,1000],[300,800]],[[300,800],[250,750],[500,1000],[300,800]]],
+		long_dist_range:[[[300,800],[250,750],[500,1000]],[[300,800],[250,750],[500,1000]]],
 		spd:[12,12],
 		knockback:[3,3],
 		recharge:[4200,4200],
 		cost:[3150,3150],
 		targetings:[[TARGETING.FLOATING,TARGETING.ALIEN],[TARGETING.FLOATING,TARGETING.ALIEN]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.SURGE],[ABILITY.SURGE]],
 		abilities_data:[[{lvl:1,distance:[400,700],chance:100,on_x_hit:1}],[{lvl:1,distance:[400,700],chance:100,on_x_hit:1}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -24116,13 +24113,13 @@ data.cats.high_school_kingpin_riki = {
 		multi_hit_dmgs:[[365,365,365],[280,280,280]],
 		atk_spd:[68,127],
 		range:[200,450],
-		long_dist_range:[0,[[1,451],[200,575],[400,700],[1,451]]],
+		long_dist_range:[0,[[1,451],[200,575],[400,700]]],
 		spd:[16,24],
 		knockback:[3,3],
 		recharge:[2000,3200],
 		cost:[1800,1800],
 		targetings:[[],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[],[]],
 		abilities_data:[[],[]],
 		effects:[[],[EFFECT.KNOCKBACK]],
@@ -24226,13 +24223,13 @@ data.cats.ninja_girl_tomoe = {
 		multi_hit_dmgs:[[810,540],[1440,720],[1600,800]],
 		atk_spd:[181,181,181],
 		range:[420,420,420],
-		long_dist_range:[[[1,421],[550,850],[1,421],[1,421],[1,421]],[[1,421],[550,850],[1,421],[1,421],[1,421]],[[1,421],[550,850],[1,421],[1,421],[1,421]]],
+		long_dist_range:[[[1,421],[550,850]],[[1,421],[550,850]],[[1,421],[550,850]]],
 		spd:[22,22,22],
 		knockback:[4,4,4],
 		recharge:[3600,3600,3600],
 		cost:[2800,2800,2800],
 		targetings:[[TARGETING.AKU,TARGETING.TRAITLESS],[TARGETING.AKU,TARGETING.TRAITLESS],[TARGETING.AKU,TARGETING.TRAITLESS]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.IMMUNE_SURGE],[ABILITY.IMMUNE_SURGE],[ABILITY.IMMUNE_SURGE]],
 		abilities_data:[[{}],[{}],[{}]],
 		effects:[[EFFECT.FREEZE],[EFFECT.FREEZE],[EFFECT.FREEZE,EFFECT.STRONG]],
@@ -24264,13 +24261,13 @@ data.cats.sol_dae_rokker = {
 		multi_hit_dmgs:[[1100,1100,1100],[1500,1500,1500]],
 		atk_spd:[249,249],
 		range:[400,400],
-		omni_range:[[[-150,450],[-300,300],[-599,1],[-150,450],[-150,450]],[[-150,450],[-300,300],[-599,1],[-150,450],[-150,450]]],
+		omni_range:[[[-150,450],[-300,300],[-599,1]],[[-150,450],[-300,300],[-599,1]]],
 		spd:[16,16],
 		knockback:[3,3],
 		recharge:[3600,3600],
 		cost:[2950,2950],
 		targetings:[[TARGETING.RED,TARGETING.ANGEL,TARGETING.ALIEN],[TARGETING.RED,TARGETING.ANGEL,TARGETING.ALIEN]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[ABILITY.COLOSSUS_SLAYER],[ABILITY.COLOSSUS_SLAYER]],
 		abilities_data:[[{}],[{}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
@@ -24308,7 +24305,7 @@ data.cats.pegasa = {
 		targetings:[[TARGETING.FLOATING,TARGETING.ZOMBIE],[TARGETING.FLOATING,TARGETING.ZOMBIE]],
 		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
 		abilities:[[ABILITY.CONJURE,ABILITY.ZOMBIE_KILLER],[ABILITY.CONJURE,ABILITY.ZOMBIE_KILLER]],
-		abilities_data:[[{spirit_id:734,range:-1,damage:-1,attack_animation:-1},{}],[{spirit_id:734,range:-1,damage:-1,attack_animation:-1},{}]],
+		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:734},{}],[{damage:-1,attack_animation:-1,range:-1,spirit_id:734},{}]],
 		effects:[[EFFECT.WEAKEN],[EFFECT.WEAKEN]],
 		effects_data:[[{time:120,chance:50,weaken:50}],[{time:120,chance:100,weaken:50}]],
 		talents:{
@@ -24600,7 +24597,7 @@ data.cats.akechi_mitsuhide = {
 		targetings:[[TARGETING.BLACK,TARGETING.ANGEL],[TARGETING.BLACK,TARGETING.ANGEL]],
 		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
 		abilities:[[ABILITY.CONJURE],[ABILITY.SURGE,ABILITY.CONJURE]],
-		abilities_data:[[{spirit_id:755,range:-1,damage:-1,attack_animation:-1}],[{lvl:1,distance:[350,650],chance:50},{spirit_id:755,range:-1,damage:-1,attack_animation:-1}]],
+		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:755}],[{lvl:1,distance:[350,650],chance:50},{damage:-1,attack_animation:-1,range:-1,spirit_id:755}]],
 		effects:[[EFFECT.KNOCKBACK],[EFFECT.KNOCKBACK]],
 		effects_data:[[{chance:100}],[{chance:100}]],
 		talents:{
@@ -24671,7 +24668,7 @@ data.cats.trixi_the_merc = {
 		recharge:[3000,3000],
 		cost:[2600,2600],
 		targetings:[[TARGETING.ALIEN,TARGETING.RELIC,TARGETING.TRAITLESS],[TARGETING.ALIEN,TARGETING.RELIC,TARGETING.TRAITLESS]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_CURSE],[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_CURSE]],
 		abilities_data:[[{},{},{}],[{},{},{}]],
 		effects:[[EFFECT.FREEZE,EFFECT.STRONG],[EFFECT.FREEZE,EFFECT.STRONG]],
@@ -24745,7 +24742,7 @@ data.cats.gunduros = {
 		targetings:[[TARGETING.BLACK,TARGETING.ALIEN],[TARGETING.BLACK,TARGETING.ALIEN]],
 		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
 		abilities:[[ABILITY.CONJURE,ABILITY.SAGE_SLAYER,ABILITY.IMMUNE_WAVE],[ABILITY.CONJURE,ABILITY.SAGE_SLAYER,ABILITY.IMMUNE_WAVE]],
-		abilities_data:[[{spirit_id:761,range:-1,damage:-1,attack_animation:-1},{},{}],[{spirit_id:761,range:-1,damage:-1,attack_animation:-1},{},{}]],
+		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:761},{},{}],[{damage:-1,attack_animation:-1,range:-1,spirit_id:761},{},{}]],
 		effects:[[EFFECT.SLOW,EFFECT.KNOCKBACK,EFFECT.MASSIVE_DMG],[EFFECT.SLOW,EFFECT.KNOCKBACK,EFFECT.MASSIVE_DMG]],
 		effects_data:[[{time:240,chance:50},{chance:50},{}],[{time:240,chance:100},{chance:100},{}]],
 		talents:{
@@ -24775,15 +24772,15 @@ data.cats.dynasaurus_cat = {
 		multi_hit_dmgs:[[700,700,700],[700,700,700]],
 		atk_spd:[244,244],
 		range:[350,350],
-		long_dist_range:[[[150,700],[150,700],[150,700],[150,700],[150,700]],[[150,700],[150,700],[150,700],[150,700],[150,700]]],
+		long_dist_range:[[[150,700],[150,700],[150,700]],[[150,700],[150,700],[150,700]]],
 		spd:[5,5],
 		knockback:[4,4],
 		recharge:[3200,3200],
 		cost:[2800,2800],
 		targetings:[[TARGETING.ANGEL],[TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.CONJURE,ABILITY.IMMUNE_KNOCKBACK],[ABILITY.CONJURE,ABILITY.IMMUNE_KNOCKBACK]],
-		abilities_data:[[{spirit_id:764,range:-1,damage:-1,attack_animation:-1},{}],[{spirit_id:764,range:-1,damage:-1,attack_animation:-1},{}]],
+		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:764},{}],[{damage:-1,attack_animation:-1,range:-1,spirit_id:764},{}]],
 		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
 		effects_data:[[{}],[{}]],
 		talents:{
@@ -24855,9 +24852,9 @@ data.cats.hanasaka_cat = {
 		recharge:[540,4400],
 		cost:[510,3200],
 		targetings:[[TARGETING.ANGEL,TARGETING.ZOMBIE],[TARGETING.ANGEL,TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[ABILITY.ZOMBIE_KILLER],[ABILITY.CONJURE,ABILITY.ZOMBIE_KILLER]],
-		abilities_data:[[{}],[{spirit_id:770,range:-1,damage:-1,attack_animation:-1},{}]],
+		abilities_data:[[{}],[{damage:-1,attack_animation:-1,range:-1,spirit_id:770},{}]],
 		effects:[[EFFECT.FREEZE,EFFECT.RESISTANT],[EFFECT.FREEZE,EFFECT.RESISTANT]],
 		effects_data:[[{time:60,chance:30,on_x_hit:[1,2]},{}],[{time:90,chance:50,on_x_hit:[1,2]},{}]],
 		talents:{
@@ -24923,15 +24920,15 @@ data.cats.mech_patrol_axel = {
 		multi_hit_dmgs:[[720,720,720],[720,720,720]],
 		atk_spd:[230,230],
 		range:[450,450],
-		long_dist_range:[[[250,650],[250,650],[250,650],[250,650],[250,650]],[[250,650],[250,650],[250,650],[250,650],[250,650]]],
+		long_dist_range:[[[250,650],[250,650],[250,650]],[[250,650],[250,650],[250,650]]],
 		spd:[12,12],
 		knockback:[3,3],
 		recharge:[4000,4000],
 		cost:[2800,2800],
 		targetings:[[TARGETING.METAL,TARGETING.ALIEN],[TARGETING.METAL,TARGETING.ALIEN]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.CONJURE],[ABILITY.METAL_KILLER,ABILITY.CONJURE,ABILITY.IMMUNE_WARP]],
-		abilities_data:[[{spirit_id:775,range:-1,damage:-1,attack_animation:-1}],[{percent:10},{spirit_id:775,range:-1,damage:-1,attack_animation:-1},{}]],
+		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:775}],[{percent:10},{damage:-1,attack_animation:-1,range:-1,spirit_id:775},{}]],
 		effects:[[EFFECT.WEAKEN,EFFECT.SLOW,EFFECT.KNOCKBACK],[EFFECT.FREEZE]],
 		effects_data:[[{time:120,chance:30,weaken:50},{time:120,chance:30},{chance:30}],[{time:90,chance:25}]],
 		talents:{
@@ -25076,7 +25073,7 @@ data.cats.mamoluga = {
 		targetings:[[],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS]],
 		attack_type:[[ATTACKS.SINGLE],[ATTACKS.AREA]],
 		abilities:[[],[ABILITY.CONJURE,ABILITY.BOSS_SHOCKWAVE_IMMUNITY,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_WARP]],
-		abilities_data:[[],[{spirit_id:782,range:-1,damage:-1,attack_animation:-1},{},{},{}]],
+		abilities_data:[[],[{damage:-1,attack_animation:-1,range:-1,spirit_id:782},{},{},{}]],
 		effects:[[],[EFFECT.WEAKEN]],
 		effects_data:[[],[{time:200,chance:100,weaken:50}]],
 		talents:{
@@ -25402,7 +25399,7 @@ data.cats.mighty_morta_loncha = {
 		targetings:[[TARGETING.ZOMBIE,TARGETING.AKU],[TARGETING.ZOMBIE,TARGETING.AKU]],
 		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
 		abilities:[[ABILITY.EXPLOSION,ABILITY.CONJURE,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_TOXIC,ABILITY.IMMUNE_SURGE],[ABILITY.EXPLOSION,ABILITY.CONJURE,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_TOXIC,ABILITY.IMMUNE_SURGE]],
-		abilities_data:[[{range:465,chance:100},{spirit_id:800,range:-1,damage:-1,attack_animation:-1},{},{},{}],[{range:465,chance:100},{spirit_id:800,range:-1,damage:-1,attack_animation:-1},{},{},{}]],
+		abilities_data:[[{range:465,chance:100},{damage:-1,attack_animation:-1,range:-1,spirit_id:800},{},{},{}],[{range:465,chance:100},{damage:-1,attack_animation:-1,range:-1,spirit_id:800},{},{},{}]],
 		effects:[[EFFECT.FREEZE],[EFFECT.FREEZE]],
 		effects_data:[[{time:150,chance:50}],[{time:150,chance:50}]],
 		talents:{
@@ -25505,13 +25502,13 @@ data.cats.knuckles = {
 		multi_hit_dmgs:[[280,280,280],[280,280,280]],
 		atk_spd:[54,54],
 		range:[350,350],
-		omni_range:[[[-100,400],[-100,400],[-100,400],[-100,400],[-100,400]],[[-100,400],[-100,400],[-100,400],[-100,400],[-100,400]]],
+		omni_range:[[[-100,400],[-100,400],[-100,400]],[[-100,400],[-100,400],[-100,400]]],
 		spd:[35,35],
 		knockback:[2,2],
 		recharge:[3800,3800],
 		cost:[1700,1700],
 		targetings:[[TARGETING.RED,TARGETING.ZOMBIE],[TARGETING.RED,TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
 		abilities:[[ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_WEAKEN],[ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_WEAKEN]],
 		abilities_data:[[{},{},{}],[{},{},{}]],
 		effects:[[EFFECT.STRONG],[EFFECT.STRONG]],
@@ -25584,7 +25581,7 @@ data.cats.agent_staal = {
 		recharge:[3200,3200],
 		cost:[2500,2500],
 		targetings:[[TARGETING.METAL,TARGETING.ZOMBIE,TARGETING.AKU],[TARGETING.METAL,TARGETING.ZOMBIE,TARGETING.AKU]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.CRITICAL,ABILITY.SHIELD_BREAKER,ABILITY.MINI_WAVE,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SURGE],[ABILITY.CRITICAL,ABILITY.SHIELD_BREAKER,ABILITY.MINI_WAVE,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SURGE]],
 		abilities_data:[[{chance:3},{chance:5},{lvl:3,chance:30},{},{},{}],[{chance:3},{chance:5},{lvl:3,chance:30},{},{},{}]],
 		effects:[[EFFECT.SLOW,EFFECT.STRONG],[EFFECT.SLOW,EFFECT.STRONG]],
@@ -25622,7 +25619,7 @@ data.cats.victorious_skanda = {
 		targetings:[[TARGETING.RED,TARGETING.ANGEL,TARGETING.ALIEN],[TARGETING.RED,TARGETING.ANGEL,TARGETING.ALIEN]],
 		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
 		abilities:[[ABILITY.WAVE,ABILITY.CONJURE,ABILITY.SAGE_SLAYER],[ABILITY.WAVE,ABILITY.CONJURE,ABILITY.SAGE_SLAYER]],
-		abilities_data:[[{lvl:2,chance:100},{spirit_id:812,range:-1,damage:-1,attack_animation:-1},{}],[{lvl:2,chance:100},{spirit_id:812,range:-1,damage:-1,attack_animation:-1},{}]],
+		abilities_data:[[{lvl:2,chance:100},{damage:-1,attack_animation:-1,range:-1,spirit_id:812},{}],[{lvl:2,chance:100},{damage:-1,attack_animation:-1,range:-1,spirit_id:812},{}]],
 		effects:[[EFFECT.WEAKEN],[EFFECT.WEAKEN]],
 		effects_data:[[{time:90,chance:100,weaken:50}],[{time:120,chance:100,weaken:50}]],
 		talents:{
@@ -25694,7 +25691,7 @@ data.cats.komori = {
 		targetings:[[TARGETING.BLACK,TARGETING.ALIEN],[TARGETING.BLACK,TARGETING.ALIEN]],
 		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
 		abilities:[[ABILITY.BEHEMOT_SLAYER,ABILITY.COLOSSUS_SLAYER,ABILITY.IMMUNE_WARP],[ABILITY.BARRIER_BREAKER,ABILITY.CONJURE,ABILITY.BEHEMOT_SLAYER,ABILITY.COLOSSUS_SLAYER,ABILITY.IMMUNE_WARP]],
-		abilities_data:[[{dodge_chance:5,dodge_time:30},{},{}],[{chance:100},{spirit_id:818,range:-1,damage:-1,attack_animation:-1},{dodge_chance:5,dodge_time:30},{},{}]],
+		abilities_data:[[{dodge_chance:5,dodge_time:30},{},{}],[{chance:100},{damage:-1,attack_animation:-1,range:-1,spirit_id:818},{dodge_chance:5,dodge_time:30},{},{}]],
 		effects:[[EFFECT.CURSE],[EFFECT.CURSE,EFFECT.RESISTANT]],
 		effects_data:[[{time:120,chance:50}],[{time:120,chance:100},{}]],
 		talents:{
@@ -25730,7 +25727,7 @@ data.cats.seaside_pegasa = {
 		targetings:[[TARGETING.BLACK,TARGETING.TRAITLESS],[TARGETING.BLACK,TARGETING.TRAITLESS]],
 		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
 		abilities:[[ABILITY.MINI_WAVE,ABILITY.CONJURE,ABILITY.IMMUNE_WAVE],[ABILITY.MINI_WAVE,ABILITY.CONJURE,ABILITY.IMMUNE_WAVE]],
-		abilities_data:[[{lvl:2,chance:100},{spirit_id:821,range:-1,damage:-1,attack_animation:-1},{}],[{lvl:3,chance:100},{spirit_id:821,range:-1,damage:-1,attack_animation:-1},{}]],
+		abilities_data:[[{lvl:2,chance:100},{damage:-1,attack_animation:-1,range:-1,spirit_id:821},{}],[{lvl:3,chance:100},{damage:-1,attack_animation:-1,range:-1,spirit_id:821},{}]],
 		effects:[[EFFECT.WEAKEN],[EFFECT.WEAKEN]],
 		effects_data:[[{time:100,chance:100,weaken:50}],[{time:100,chance:100,weaken:50}]],
 		talents:{
@@ -25765,9 +25762,9 @@ data.cats.sorceress_sidmi = {
 		recharge:[4300,4300],
 		cost:[3100,3100],
 		targetings:[[TARGETING.RED,TARGETING.FLOATING],[TARGETING.RED,TARGETING.FLOATING]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.CONJURE,ABILITY.SAGE_SLAYER,ABILITY.IMMUNE_WEAKEN],[ABILITY.CONJURE,ABILITY.SAGE_SLAYER,ABILITY.IMMUNE_WEAKEN]],
-		abilities_data:[[{spirit_id:825,range:-1,damage:-1,attack_animation:-1},{},{}],[{spirit_id:825,range:-1,damage:-1,attack_animation:-1},{},{}]],
+		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:825},{},{}],[{damage:-1,attack_animation:-1,range:-1,spirit_id:825},{},{}]],
 		effects:[[EFFECT.SLOW,EFFECT.RESISTANT],[EFFECT.SLOW,EFFECT.RESISTANT]],
 		effects_data:[[{time:100,chance:50},{}],[{time:150,chance:50},{}]],
 		talents:{
@@ -25833,13 +25830,13 @@ data.cats.juri = {
 		multi_hit_dmgs:[[1250,450,450],[1250,450,450]],
 		atk_spd:[164,164],
 		range:[430,430],
-		long_dist_range:[[[1,431],[75,505],[150,580],[5,35],[1,431]],[[1,431],[75,505],[150,580],[5,35],[1,431]]],
+		long_dist_range:[[[1,431],[75,505],[150,580]],[[1,431],[75,505],[150,580]]],
 		spd:[20,20],
 		knockback:[4,4],
 		recharge:[3000,3000],
 		cost:[2650,2650],
 		targetings:[[TARGETING.FLOATING,TARGETING.ANGEL],[TARGETING.FLOATING,TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.BEHEMOT_SLAYER,ABILITY.COLOSSUS_SLAYER,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_WEAKEN],[ABILITY.BEHEMOT_SLAYER,ABILITY.COLOSSUS_SLAYER,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_WEAKEN]],
 		abilities_data:[[{dodge_chance:5,dodge_time:30},{},{},{}],[{dodge_chance:5,dodge_time:30},{},{},{}]],
 		effects:[[EFFECT.FREEZE,EFFECT.SLOW,EFFECT.STRONG],[EFFECT.FREEZE,EFFECT.SLOW,EFFECT.STRONG]],
@@ -25951,7 +25948,7 @@ data.cats.squire_luno = {
 		targetings:[[TARGETING.BLACK,TARGETING.ANGEL,TARGETING.RELIC,TARGETING.AKU],[TARGETING.BLACK,TARGETING.ANGEL,TARGETING.RELIC,TARGETING.AKU]],
 		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
 		abilities:[[ABILITY.CONJURE,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_SURGE],[ABILITY.SAVAGE_BLOW,ABILITY.CONJURE,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_SURGE]],
-		abilities_data:[[{spirit_id:838,range:-1,damage:-1,attack_animation:-1},{},{},{},{}],[{percent:200,chance:10},{spirit_id:839,range:-1,damage:-1,attack_animation:-1},{},{},{},{},{},{}]],
+		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:838},{},{},{},{}],[{percent:200,chance:10},{damage:-1,attack_animation:-1,range:-1,spirit_id:839},{},{},{},{},{},{}]],
 		effects:[[EFFECT.KNOCKBACK,EFFECT.RESISTANT],[EFFECT.KNOCKBACK,EFFECT.RESISTANT]],
 		effects_data:[[{chance:50},{}],[{chance:100},{}]],
 		talents:{
@@ -26023,7 +26020,7 @@ data.cats.nezuko_kamado = {
 		recharge:[1800,1800],
 		cost:[1800,1800],
 		targetings:[[TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.TRAITLESS],[TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.TRAITLESS]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.STRENGTHEN,ABILITY.SURVIVE,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_CURSE],[ABILITY.STRENGTHEN,ABILITY.SURVIVE,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_CURSE]],
 		abilities_data:[[{amount:100,threshold:50},{chance:100},{},{},{}],[{amount:100,threshold:50},{chance:100},{},{},{}]],
 		effects:[[EFFECT.KNOCKBACK,EFFECT.TARGET_ONLY],[EFFECT.KNOCKBACK,EFFECT.TARGET_ONLY]],
@@ -26129,13 +26126,13 @@ data.cats.giyu_tomioka = {
 		multi_hit_dmgs:[[940,940,470],[1180,1180,590]],
 		atk_spd:[210,210],
 		range:[430,430],
-		long_dist_range:[[[1,431],[1,431],[330,680],[1,431],[1,431]],[[1,431],[1,431],[330,680],[1,431],[1,431]]],
+		long_dist_range:[[[1,431],[1,431],[330,680]],[[1,431],[1,431],[330,680]]],
 		spd:[10,10],
 		knockback:[4,4],
 		recharge:[4000,4000],
 		cost:[3100,3100],
 		targetings:[[TARGETING.RED,TARGETING.TRAITLESS],[TARGETING.RED,TARGETING.TRAITLESS]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_SURGE],[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_SURGE]],
 		abilities_data:[[{},{},{}],[{},{},{}]],
 		effects:[[EFFECT.SLOW,EFFECT.STRONG],[EFFECT.SLOW,EFFECT.STRONG]],
@@ -26167,13 +26164,13 @@ data.cats.shinobu_kocho = {
 		multi_hit_dmgs:[[500,500],[600,600]],
 		atk_spd:[141,141],
 		range:[390,390],
-		long_dist_range:[[[290,640],[290,640],[290,640],[290,640],[290,640]],[[290,640],[290,640],[290,640],[290,640],[290,640]]],
+		long_dist_range:[[[290,640],[290,640]],[[290,640],[290,640]]],
 		spd:[10,10],
 		knockback:[3,3],
 		recharge:[3000,3000],
 		cost:[2200,2200],
 		targetings:[[TARGETING.FLOATING,TARGETING.METAL,TARGETING.ANGEL],[TARGETING.FLOATING,TARGETING.METAL,TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
 		abilities:[[ABILITY.CRITICAL,ABILITY.SURVIVE,ABILITY.SAGE_SLAYER,ABILITY.IMMUNE_SLOW],[ABILITY.CRITICAL,ABILITY.SURVIVE,ABILITY.SAGE_SLAYER,ABILITY.IMMUNE_SLOW]],
 		abilities_data:[[{chance:10},{chance:100},{},{}],[{chance:10},{chance:100},{},{}]],
 		effects:[[EFFECT.WEAKEN],[EFFECT.WEAKEN]],
@@ -26247,7 +26244,7 @@ data.cats.fuma_kotaro = {
 		recharge:[3900,3900],
 		cost:[2650,2650],
 		targetings:[[TARGETING.RED,TARGETING.BLACK,TARGETING.ANGEL],[TARGETING.RED,TARGETING.BLACK,TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
 		abilities:[[ABILITY.EXPLOSION,ABILITY.IMMUNE_SURGE],[ABILITY.EXPLOSION,ABILITY.IMMUNE_SURGE]],
 		abilities_data:[[{range:410,chance:50},{}],[{range:410,chance:50},{}]],
 		effects:[[EFFECT.SLOW],[EFFECT.SLOW]],
@@ -26286,7 +26283,7 @@ data.cats.lone_moon_lunos = {
 		targetings:[[TARGETING.FLOATING,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.TRAITLESS],[TARGETING.FLOATING,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.TRAITLESS]],
 		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
 		abilities:[[ABILITY.CONJURE,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_TOXIC,ABILITY.IMMUNE_EXPLOSION],[ABILITY.STRENGTHEN,ABILITY.CONJURE,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_TOXIC,ABILITY.IMMUNE_EXPLOSION]],
-		abilities_data:[[{spirit_id:860,range:-1,damage:-1,attack_animation:-1},{},{},{},{},{},{},{}],[{amount:50,threshold:50},{spirit_id:860,range:-1,damage:-1,attack_animation:-1},{},{},{},{},{},{},{}]],
+		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:860},{},{},{},{},{},{},{}],[{amount:50,threshold:50},{damage:-1,attack_animation:-1,range:-1,spirit_id:860},{},{},{},{},{},{},{}]],
 		effects:[[EFFECT.KNOCKBACK,EFFECT.RESISTANT],[EFFECT.KNOCKBACK,EFFECT.RESISTANT]],
 		effects_data:[[{chance:100},{}],[{chance:100},{}]],
 		talents:{
@@ -26372,9 +26369,643 @@ data.cats.hanzo_the_betrothed = {
 	}
 }
 
-
-    
 #endregion
+
+#region legend rare
+
+data.cats.musashi_miyamoto = {
+	max_lvl:[50,9],
+	name:["","",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_musashi_miyamoto,spr_musashi_miyamoto_b,spr_musashi_miyamoto_c],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
+		value:[-1,-1,[["blue_catfruit",5],["behemot_blue_big",1]]],
+		level:[0,0,30],
+		xp:[0,0,3000000]
+	},
+	stats:{
+		life:[4880,4880,5580],
+		dmg:[1198,1198,1488],
+		multi_hit_dmgs:[[599,599],[599,599],[744,744]],
+		atk_spd:[66,66,66],
+		range:[400,400,400],
+		spd:[10,10,10],
+		knockback:[4,4,4],
+		recharge:[3000,3000,3000],
+		cost:[2850,2850,2850],
+		targetings:[[TARGETING.BLACK],[TARGETING.BLACK],[TARGETING.BLACK]],
+		attack_type:[[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT]],
+		abilities:[[],[],[ABILITY.COLOSSUS_SLAYER,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN]],
+		abilities_data:[[],[],[{},{},{}]],
+		effects:[[EFFECT.RESISTANT,EFFECT.INSANE_DMG],[EFFECT.RESISTANT,EFFECT.INSANE_DMG],[EFFECT.RESISTANT,EFFECT.INSANE_DMG]],
+		effects_data:[[{},{}],[{},{}],[{},{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.jeanne = {
+	max_lvl:[50,9],
+	name:["","",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_jeanne,spr_jeanne_b,spr_jeanne_c],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
+		value:[-1,-1,[["red_catfruit",5],["green_catfruit",3],["behemot_green_big",1]]],
+		level:[0,0,30],
+		xp:[0,0,3000000]
+	},
+	stats:{
+		life:[3200,3200,4000],
+		dmg:[660,660,726],
+		atk_spd:[87,87,87],
+		range:[400,400,400],
+		long_dist_range:[[200,550],[200,550],[200,600]],
+		spd:[20,20,20],
+		knockback:[4,4,4],
+		recharge:[3760,3760,3760],
+		cost:[3220,3220,3220],
+		targetings:[[TARGETING.RED,TARGETING.FLOATING],[TARGETING.RED,TARGETING.FLOATING],[TARGETING.RED,TARGETING.FLOATING]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		abilities:[[],[],[ABILITY.COLOSSUS_SLAYER,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_EXPLOSION]],
+		abilities_data:[[],[],[{},{},{}]],
+		effects:[[EFFECT.INSANE_DMG],[EFFECT.INSANE_DMG],[EFFECT.INSANE_DMG]],
+		effects_data:[[{}],[{}],[{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.high_lord_babel = {
+	max_lvl:[50,9],
+	name:["","",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_high_lord_babel,spr_high_lord_babel_b,spr_high_lord_babel_c],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
+		value:[-1,-1,[["green_catfruit",5],["red_catfruit",5],["behemot_red_big",1],["behemot_green_big",1]]],
+		level:[0,0,30],
+		xp:[0,0,3000000]
+	},
+	stats:{
+		life:[15000,15000,18000],
+		dmg:[5000,5000,5000],
+		atk_spd:[360,360,360],
+		range:[390,390,390],
+		spd:[8,8,8],
+		knockback:[2,2,2],
+		recharge:[5000,5000,5000],
+		cost:[4500,4500,4500],
+		targetings:[[TARGETING.RED,TARGETING.FLOATING],[TARGETING.RED,TARGETING.FLOATING],[TARGETING.RED,TARGETING.FLOATING]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		abilities:[[ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW],[ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW],[ABILITY.COLOSSUS_SLAYER,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_TOXIC]],
+		abilities_data:[[{},{}],[{},{}],[{},{},{},{},{}]],
+		effects:[[EFFECT.ULTRA_TOUGH],[EFFECT.ULTRA_TOUGH],[EFFECT.ULTRA_TOUGH]],
+		effects_data:[[{}],[{}],[{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.ushiwakamaru = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_ushiwakamaru,spr_ushiwakamaru_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[990,7500],
+		dmg:[570,3100],
+		atk_spd:[108,250],
+		range:[250,450],
+		spd:[12,7],
+		knockback:[2,3],
+		recharge:[440,5000],
+		cost:[550,4000],
+		targetings:[[TARGETING.ANGEL],[TARGETING.ANGEL]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		abilities:[[],[]],
+		abilities_data:[[],[]],
+		effects:[[EFFECT.RESISTANT,EFFECT.INSANE_DMG],[EFFECT.RESISTANT,EFFECT.INSANE_DMG]],
+		effects_data:[[{},{}],[{},{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.wonder_momoco = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_wonder_momoco,spr_wonder_momoco_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[4000,4000],
+		dmg:[3600,3600],
+		multi_hit_dmgs:[[300,600,2700],[300,600,2700]],
+		atk_spd:[201,201],
+		range:[375,375],
+		spd:[13,13],
+		knockback:[2,2],
+		recharge:[4000,4000],
+		cost:[3000,3000],
+		targetings:[[TARGETING.RED,TARGETING.BLACK,TARGETING.ANGEL],[TARGETING.RED,TARGETING.BLACK,TARGETING.ANGEL]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
+		abilities:[[ABILITY.WAVE,ABILITY.IMMUNE_WAVE],[ABILITY.WAVE,ABILITY.IMMUNE_WAVE]],
+		abilities_data:[[{lvl:8,chance:100,on_x_hit:1},{}],[{lvl:8,chance:100,on_x_hit:1},{}]],
+		effects:[[EFFECT.FREEZE],[EFFECT.FREEZE]],
+		effects_data:[[{time:60,chance:100,on_x_hit:1}],[{time:60,chance:100,on_x_hit:1}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.legeluga = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_legeluga,spr_legeluga_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[500,3000],
+		dmg:[150,2500],
+		atk_spd:[150,105],
+		range:[140,300],
+		omni_range:[0,[-700,300]],
+		spd:[4,20],
+		knockback:[5,5],
+		recharge:[10000,4000],
+		cost:[3000,3000],
+		targetings:[[],[]],
+		attack_type:[[ATTACKS.SINGLE],[ATTACKS.AREA,ATTACKS.OMNI]],
+		abilities:[[],[ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.IMMUNE_WARP]],
+		abilities_data:[[],[{},{},{},{},{},{}]],
+		effects:[[],[]],
+		effects_data:[[],[]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.mighty_kristul_muu = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_mighty_kristul_muu,spr_mighty_kristul_muu_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[9000,9000],
+		dmg:[1800,1800],
+		atk_spd:[144,144],
+		range:[400,400],
+		omni_range:[[-450,400],[-450,400]],
+		spd:[1,1],
+		knockback:[1,1],
+		recharge:[5500,5500],
+		cost:[3100,3100],
+		targetings:[[TARGETING.ZOMBIE],[TARGETING.ZOMBIE]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.OMNI]],
+		abilities:[[ABILITY.STOP_WAVES,ABILITY.ZOMBIE_KILLER],[ABILITY.STOP_WAVES,ABILITY.ZOMBIE_KILLER]],
+		abilities_data:[[{},{}],[{},{}]],
+		effects:[[EFFECT.RESISTANT,EFFECT.INSANE_DMG],[EFFECT.RESISTANT,EFFECT.INSANE_DMG]],
+		effects_data:[[{},{}],[{},{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.black_zeus = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_black_zeus,spr_black_zeus_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[3600,4500],
+		dmg:[2000,2500],
+		atk_spd:[285,285],
+		range:[455,455],
+		long_dist_range:[[300,700],[300,700]],
+		spd:[10,10],
+		knockback:[3,3],
+		recharge:[4800,4800],
+		cost:[3300,3300],
+		targetings:[[TARGETING.TRAITLESS],[TARGETING.TRAITLESS]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		abilities:[[ABILITY.IMMUNE_WEAKEN],[ABILITY.IMMUNE_WEAKEN]],
+		abilities_data:[[{}],[{}]],
+		effects:[[EFFECT.INSANE_DMG],[EFFECT.INSANE_DMG]],
+		effects_data:[[{}],[{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.lumina = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_lumina,spr_lumina_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[1250,8000],
+		dmg:[500,1835],
+		atk_spd:[136,136],
+		range:[330,375],
+		spd:[32,30],
+		knockback:[3,3],
+		recharge:[700,2500],
+		cost:[740,2450],
+		targetings:[[TARGETING.ALIEN],[TARGETING.ALIEN]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		abilities:[[ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP],[ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP]],
+		abilities_data:[[{chance:50},{},{}],[{chance:100},{},{}]],
+		effects:[[EFFECT.WEAKEN,EFFECT.ULTRA_TOUGH],[EFFECT.WEAKEN,EFFECT.ULTRA_TOUGH]],
+		effects_data:[[{time:150,chance:50,weaken:50},{}],[{time:150,chance:100,weaken:50},{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.doktor_heaven = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_doktor_heaven,spr_doktor_heaven_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[11000,11000],
+		dmg:[2710,2710],
+		atk_spd:[240,240],
+		range:[400,400],
+		spd:[8,8],
+		knockback:[3,3],
+		recharge:[5300,5300],
+		cost:[3600,3600],
+		targetings:[[TARGETING.BLACK,TARGETING.ALIEN],[TARGETING.BLACK,TARGETING.ALIEN]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		abilities:[[],[]],
+		abilities_data:[[],[]],
+		effects:[[EFFECT.ULTRA_TOUGH],[EFFECT.INSANE_DMG]],
+		effects_data:[[{}],[{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.gaia_the_creator = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_gaia_the_creator,spr_gaia_the_creator_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[4000,4000],
+		dmg:[2790,2790],
+		multi_hit_dmgs:[[930,930,930],[930,930,930]],
+		atk_spd:[300,300],
+		range:[400,400],
+		long_dist_range:[[350,550],[350,550]],
+		spd:[8,8],
+		knockback:[2,2],
+		recharge:[3960,3960],
+		cost:[2980,2980],
+		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
+		abilities:[[],[]],
+		abilities_data:[[],[]],
+		effects:[[EFFECT.INSANE_DMG],[EFFECT.INSANE_DMG]],
+		effects_data:[[{}],[{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.akuma = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_akuma,spr_akuma_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[2000,2000],
+		dmg:[1515,1515],
+		multi_hit_dmgs:[[505,505,505],[505,505,505]],
+		atk_spd:[148,148],
+		range:[450,450],
+		spd:[20,20],
+		knockback:[3,3],
+		recharge:[4000,4000],
+		cost:[3000,3000],
+		targetings:[[TARGETING.TRAITLESS],[TARGETING.TRAITLESS]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT]],
+		abilities:[[ABILITY.IMMUNE_FREEZE],[ABILITY.IMMUNE_FREEZE]],
+		abilities_data:[[{}],[{}]],
+		effects:[[EFFECT.INSANE_DMG],[EFFECT.INSANE_DMG]],
+		effects_data:[[{}],[{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.kyosaka_nanaho = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_kyosaka_nanaho,spr_kyosaka_nanaho_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[3000,3000],
+		dmg:[1000,1000],
+		multi_hit_dmgs:[[650,350],[650,350]],
+		atk_spd:[116,116],
+		range:[400,400],
+		long_dist_range:[[300,750],[300,750]],
+		spd:[15,15],
+		knockback:[7,7],
+		recharge:[3800,3800],
+		cost:[2700,2700],
+		targetings:[[TARGETING.METAL],[TARGETING.METAL]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
+		abilities:[[ABILITY.CRITICAL,ABILITY.BARRIER_BREAKER,ABILITY.SURVIVE,ABILITY.ZOMBIE_KILLER],[ABILITY.CRITICAL,ABILITY.BARRIER_BREAKER,ABILITY.SURVIVE,ABILITY.ZOMBIE_KILLER]],
+		abilities_data:[[{chance:50,on_x_hit:2},{chance:100,on_x_hit:2},{chance:100},{}],[{chance:50,on_x_hit:2},{chance:100,on_x_hit:2},{chance:100},{}]],
+		effects:[[EFFECT.ULTRA_TOUGH],[EFFECT.ULTRA_TOUGH]],
+		effects_data:[[{}],[{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.emperor_cat = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_emperor_cat,spr_emperor_cat_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[2400,3200],
+		dmg:[2100,2700],
+		atk_spd:[276,276],
+		range:[551,551],
+		spd:[5,5],
+		knockback:[4,4],
+		recharge:[5100,5100],
+		cost:[3000,3000],
+		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
+		abilities:[[],[]],
+		abilities_data:[[],[]],
+		effects:[[EFFECT.WEAKEN,EFFECT.FREEZE,EFFECT.SLOW,EFFECT.KNOCKBACK],[EFFECT.WEAKEN,EFFECT.FREEZE,EFFECT.SLOW,EFFECT.KNOCKBACK]],
+		effects_data:[[{time:120,chance:30,weaken:50},{time:120,chance:30},{time:120,chance:30},{chance:30}],[{time:120,chance:30,weaken:50},{time:120,chance:30},{time:120,chance:30},{chance:30}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.daybreaker_izanagi = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_daybreaker_izanagi,spr_daybreaker_izanagi_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[5000,7400],
+		dmg:[3600,5400],
+		multi_hit_dmgs:[[1200,1200,1200],[1800,1800,1800]],
+		atk_spd:[218,218],
+		range:[350,350],
+		long_dist_range:[[[1,351],[350,575],[575,800]],[[1,351],[350,575],[575,800]]],
+		spd:[12,12],
+		knockback:[3,3],
+		recharge:[4000,4000],
+		cost:[3000,3000],
+		targetings:[[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU]],
+		attack_type:[[ATTACKS.SINGLE,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.SINGLE,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
+		abilities:[[ABILITY.CONJURE,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_CURSE],[ABILITY.CONJURE,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_CURSE]],
+		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:732},{},{},{}],[{damage:-1,attack_animation:-1,range:-1,spirit_id:732},{},{},{}]],
+		effects:[[EFFECT.INSANE_DMG],[EFFECT.INSANE_DMG]],
+		effects_data:[[{}],[{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.izanami_of_dusk = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_izanami_of_dusk,spr_izanami_of_dusk_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[5000,6900],
+		dmg:[1650,2100],
+		multi_hit_dmgs:[[550,550,550],[700,700,700]],
+		atk_spd:[188,188],
+		range:[400,400],
+		long_dist_range:[[[1,401],[400,625],[625,850]],[[1,401],[400,625],[625,850]]],
+		spd:[10,10],
+		knockback:[3,3],
+		recharge:[4000,4000],
+		cost:[3100,3100],
+		targetings:[[TARGETING.TRAITLESS],[TARGETING.TRAITLESS]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
+		abilities:[[ABILITY.CONJURE,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_SURGE],[ABILITY.SAVAGE_BLOW,ABILITY.CONJURE,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_SURGE]],
+		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:739},{},{},{}],[{percent:200,chance:20},{damage:-1,attack_animation:-1,range:-1,spirit_id:739},{},{},{}]],
+		effects:[[EFFECT.INSANE_DMG],[EFFECT.INSANE_DMG]],
+		effects_data:[[{}],[{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+data.cats.moonshade_kaworu = {
+	max_lvl:[50,9],
+	name:["",""],
+	rarity:RARITY.LEGEND_RARE,
+	spr:[spr_moonshade_kaworu,spr_moonshade_kaworu_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[6000,6000],
+		dmg:[2250,2250],
+		multi_hit_dmgs:[[750,750,750],[750,750,750]],
+		atk_spd:[188,188],
+		range:[400,400],
+		long_dist_range:[[[1,401],[400,625],[625,850]],[[1,401],[400,625],[625,850]]],
+		spd:[12,12],
+		knockback:[3,3],
+		recharge:[4000,4000],
+		cost:[3100,3100],
+		targetings:[[TARGETING.TRAITLESS],[TARGETING.TRAITLESS]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
+		abilities:[[ABILITY.CONJURE,ABILITY.EVA_KILLER,ABILITY.SAGE_SLAYER,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_EXPLOSION],[ABILITY.CONJURE,ABILITY.EVA_KILLER,ABILITY.SAGE_SLAYER,ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_EXPLOSION]],
+		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:816},{},{},{},{},{}],[{damage:-1,attack_animation:-1,range:-1,spirit_id:816},{},{},{},{},{}]],
+		effects:[[EFFECT.KNOCKBACK,EFFECT.INSANE_DMG],[EFFECT.KNOCKBACK,EFFECT.INSANE_DMG]],
+		effects_data:[[{chance:40},{}],[{chance:40},{}]],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[
+
+			]
+		}
+	}
+}
+
+
+
+#endregion
+    
 ///
 data.cats.MEGA_TESTER_CAT = {
 	max_lvl:[50,80],
@@ -26430,15 +27061,28 @@ function cats_init(){
         _cat_data.true_form = false
         _cat_data.myid = _cats[i]
         _cat_data.added = false
+        _cat_data.combos = []
         
         if array_length(_cat_data.spr)>3{
             _cat_data.ultra_form = false
         }
         
+        
+        
         for (var c = 0; c < array_length(_cat_data.name); c++) {
         	_cat_data.name[c] = get_translation( _cats[i]+"_"+string(c) )
         }
-
+        
+        /*
+        var _mhit = variable_struct_exists(_cat_data.stats,"multi_hit_dmgs")
+        for (var d = 0; d < array_length(_cat_data.stats.attack_type); d++) {
+            if _mhit and !array_contains(_cat_data.stats.attack_type[d],ATTACKS.MULTI_HIT){
+                if _cat_data.stats.multi_hit_dmgs[d] != 0
+                    array_push(_cat_data.stats.attack_type[d],ATTACKS.MULTI_HIT)
+            }
+        }
+        */
+        
         var _talents_num = array_length(_cat_data.stats.talents.abilities)
         
         _cat_data.talent_unlocked = array_create(_talents_num,false)

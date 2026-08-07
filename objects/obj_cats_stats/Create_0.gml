@@ -929,6 +929,8 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 }
             }
             
+            //show_message($"{stats.long_dist_range}|{_len}|{_len_second}|{stats.multi_hit}")
+            
             if (_len > 0 and stats.multi_hit == false) or (_len > 0 and _len_second == false) {
                 _desc += text_format_insert( get_translation("attack_long_mhit_desc"),[number_format_selected(stats.long_dist_range[0]),number_format_selected(stats.long_dist_range[1])] )
             }
