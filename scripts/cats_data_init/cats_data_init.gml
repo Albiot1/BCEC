@@ -13220,32 +13220,32 @@ data.cats.kotomine_and_gilgamesh_cats = {
 
 data.cats.fiendish_nero = {
 	max_lvl:[50,70],
-	name:["","",""],
+	name:["",""],
 	rarity:RARITY.SUPER_RARE,
-	spr:[spr_fiendish_nero,spr_fiendish_nero_b,spr_fiendish_nero_c],
+	spr:[spr_fiendish_nero,spr_fiendish_nero_b],
 	evolutions:{
-		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
-		value:[-1,-1,[["purple_catfruit",3]]],
-		level:[0,0,30],
-		xp:[0,0,1000000]
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
 	},
 	stats:{
-		life:[1200,1500,1950],
-		dmg:[975,1275,1275],
-		multi_hit_dmgs:[[325,325,325],[425,425,425],[425,425,425]],
-		atk_spd:[185,185,185],
-		range:[225,225,275],
-		omni_range:[[[-800,225],[-800,225],[-800,225]],[[-800,225],[-800,225],[-800,225]],[[-800,275],[-800,275],[-800,275]]],
-		spd:[9,9,9],
-		knockback:[4,4,4],
-		recharge:[1120,1120,1120],
-		cost:[990,990,990],
-		targetings:[[TARGETING.ZOMBIE],[TARGETING.ZOMBIE],[TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
-		abilities:[[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER]],
-		abilities_data:[[{}],[{}],[{}]],
-		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
-		effects_data:[[{}],[{}],[{}]],
+		life:[1200,1500],
+		dmg:[975,1275],
+		multi_hit_dmgs:[[325,325,325],[425,425,425]],
+		atk_spd:[185,185],
+		range:[225,225],
+		omni_range:[[[-800,225],[-800,225],[-800,225]],[[-800,225],[-800,225],[-800,225]]],
+		spd:[9,9],
+		knockback:[4,4],
+		recharge:[1120,1120],
+		cost:[990,990],
+		targetings:[[TARGETING.ZOMBIE],[TARGETING.ZOMBIE]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.OMNI]],
+		abilities:[[ABILITY.ZOMBIE_KILLER],[ABILITY.ZOMBIE_KILLER]],
+		abilities_data:[[{}],[{}]],
+		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
+		effects_data:[[{}],[{}]],
 		talents:{
 			abilities:[],
 			talent_type:[],
@@ -14898,7 +14898,7 @@ data.cats.maeda_keiji = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.RESIST_WEAKEN,ABILITY.COST_DOWN,ABILITY.HP_UP,ABILITY.ATK_UP,TARGETING.FLOATING,ABILITY.WAVE,ABILITY.IMMUNE_FREEZE],
 			talent_type:[0,0,0,0,0,1,1,1],
 			data:[
-				{ total_cost : 175, improv_max : 50, improv : 3, amount : 23, threshold : 100 },
+				{ total_cost : 175, improv_max : 50, improv : 3, start_improv : 23, threshold : 100 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 175, start_number_improv : 30, number_improv_max : 300, number_improv : 30 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -16328,7 +16328,7 @@ data.cats.akira = {
 			talent_type:[0,0,0,0,0,1,1],
 			data:[
 				{ time : 39, total_cost : 235, time_improv_max : 120, time_improv : 9, chance : 40 },
-				{ total_cost : 235, improv_max : 50, improv : 3, amount : 23, threshold : 33 },
+				{ total_cost : 235, improv_max : 50, improv : 3, start_improv : 23, threshold : 33 },
 				{ total_cost : 235, chance : 28, chance_improv_max : 100, chance_improv : 8 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -17231,7 +17231,7 @@ data.cats.splendid_ganesha = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.RESIST_WEAKEN,ABILITY.IMMUNE_KNOCKBACK,ABILITY.HP_UP,ABILITY.ATK_UP,ABILITY.ATK_SPEED_UP],
 			talent_type:[0,0,0,0,0,1],
 			data:[
-				{ total_cost : 175, improv_max : 50, improv : 3, amount : 23, threshold : 100 },
+				{ total_cost : 175, improv_max : 50, improv : 3, start_improv : 23, threshold : 100 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 100 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
@@ -19999,30 +19999,30 @@ data.cats.satanmaria = {
 
 data.cats.heracrist = {
 	max_lvl:[60,70],
-	name:["","",""],
+	name:["",""],
 	rarity:RARITY.UBER_SUPER_RARE,
-	spr:[spr_heracrist,spr_heracrist_b,spr_heracrist_c],
+	spr:[spr_heracrist,spr_heracrist_b],
 	evolutions:{
-		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
-		value:[-1,-1,[["blue_catfruit",6],["green_catfruit",6],["elder_catfruit",1]]],
-		level:[0,0,30],
-		xp:[0,0,1000000]
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
 	},
 	stats:{
-		life:[6000,6000,6000],
-		dmg:[9000,9000,9000],
-		atk_spd:[237,237,237],
-		range:[360,360,360],
-		spd:[4,4,4],
-		knockback:[2,2,2],
-		recharge:[2500,2500,2500],
-		cost:[3000,3000,3000],
-		targetings:[[TARGETING.FLOATING],[TARGETING.ALIEN],[TARGETING.RELIC]],
-		attack_type:[[ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE]],
-		abilities:[[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP],[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP],[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_CURSE]],
-		abilities_data:[[{},{}],[{},{}],[{},{}]],
-		effects:[[EFFECT.STRONG],[EFFECT.STRONG],[EFFECT.STRONG]],
-		effects_data:[[{}],[{}],[{}]],
+		life:[6000,6000],
+		dmg:[9000,9000],
+		atk_spd:[237,237],
+		range:[360,360],
+		spd:[4,4],
+		knockback:[2,2],
+		recharge:[2500,2500],
+		cost:[3000,3000],
+		targetings:[[TARGETING.FLOATING],[TARGETING.ALIEN]],
+		attack_type:[[ATTACKS.SINGLE],[ATTACKS.SINGLE]],
+		abilities:[[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP],[ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WARP]],
+		abilities_data:[[{},{}],[{},{}]],
+		effects:[[EFFECT.STRONG],[EFFECT.STRONG]],
+		effects_data:[[{}],[{}]],
 		talents:{
 			abilities:[],
 			talent_type:[],
@@ -21483,11 +21483,11 @@ data.cats.squirtgun_saki = {
 	}
 }
 
-data.cats.summerluga  = {
+data.cats.summerluga = {
 	max_lvl:[60,70],
 	name:["","",""],
 	rarity:RARITY.UBER_SUPER_RARE,
-	spr:[spr_summerluga ,spr_summerluga _b,spr_summerluga _c],
+	spr:[spr_summerluga ,spr_summerluga_b,spr_summerluga_c],
 	evolutions:{
 		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
 		value:[-1,-1,[["aku_seed",3],["epic_catfruit",3],["behemot_red",3]]],
@@ -21882,7 +21882,7 @@ data.cats.keiji_claus = {
 			abilities:[ABILITY.STRENGTHEN,ABILITY.IMMUNE_SURGE,ABILITY.RESIST_FREEZE,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0],
 			data:[
-				{ total_cost : 175, improv_max : 50, improv : 3, amount : 23, threshold : 100 },
+				{ total_cost : 175, improv_max : 50, improv : 3, start_improv : 23, threshold : 100 },
 				{ total_cost : 100 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },

@@ -1039,7 +1039,7 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             if (_is_talent and !_has_effect[0]) or (!_is_talent){
                 
                 var _time = _mydata.time
-                var _percent = _mydata.weaken
+                var _percent = 100 - _mydata.weaken
                 var _chance = _mydata.chance
                 
                 _desc = get_translation("effect_weaken_desc")

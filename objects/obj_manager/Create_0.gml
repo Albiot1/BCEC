@@ -116,7 +116,7 @@ enum M_STATES {ADDCATS,NORMAL,SPECIAL,RARE,UBER_RARE,LEGEND,ALL}
 global.current_cats = []
 global.all_cats = [
     //test cats
-    data.cats.MEGA_TESTER_CAT,
+    //------
     //normal cats
     data.cats.cat, data.cats.tank_cat, data.cats.axe_cat, data.cats.gross_cat, data.cats.bird_cat, data.cats.fish_cat, data.cats.lizard_cat, data.cats.titan_cat, data.cats.superfeline, 
     //special cats
@@ -158,11 +158,72 @@ global.all_cats = [
     data.cats.killer_cowbird_cat,
     //super rare cats
     data.cats.bodhisattva_cat,data.cats.delinquent_cat,data.cats.hip_hop_cat,data.cats.kotatsu_cat,data.cats.nerd_cat,data.cats.swimmer_cat,data.cats.apple_cat,data.cats.bath_cat,data.cats.sushi_cat,data.cats.reaper,data.cats.sleeping_beauty_punt,data.cats.crazed_cat,data.cats.crazed_tank_cat,data.cats.crazed_axe_cat,data.cats.crazed_gross_cat,data.cats.crazed_cow_cat,data.cats.crazed_bird_cat,data.cats.crazed_fish_cat,data.cats.crazed_lizard_cat,data.cats.crazed_titan_cat,data.cats.aura,data.cats.rei,data.cats.gold_cat,data.cats.neneko,data.cats.cat_base_mini,data.cats.juliet_cat,data.cats.weightlifter_cat,data.cats.figure_skating_cats,data.cats.cat_toaster,data.cats.yurinchi,data.cats.baby_mola,data.cats.alois,data.cats.citrouille,data.cats.surfer_cat,data.cats.metal_cat,data.cats.sv_001,data.cats.allen_oneil,data.cats.gloomy_neneko,data.cats.freshman_cat_jobs,data.cats.rich_cat_iii,data.cats.sniper_the_recruit,data.cats.catway,data.cats.catornado,data.cats.cheerleader_cat,data.cats.sunny_neneko,data.cats.express_cat,data.cats.little_leaguer_cat,data.cats.kyubey,data.cats.vaulter_cat,data.cats.years_end_neneko,data.cats.belial,data.cats.easter_neneko,data.cats.orthos,data.cats.fencer_cat,data.cats.aoi_hayakawa,data.cats.mizuki_tachibana,data.cats.hijiri_rokudo,data.cats.rei_ayanami,data.cats.asuka_langley,data.cats.mari_illustrious,data.cats.otaku_geek_cat,data.cats.driller_cat,data.cats.piledriver_cat,data.cats.cutter_cat,data.cats.backhoe_cat,data.cats.miter_saw_cat,data.cats.kotomine_and_gilgamesh_cats,data.cats.fiendish_nero,data.cats.hina,data.cats.misato_katsuragi,data.cats.ritsuko_akagi,data.cats.rei_ayanami_,data.cats.good_luck_ebisu,data.cats.nymph_cat,data.cats.holy_knight_alibaba,data.cats.meiko_and_cat,data.cats.suntan_cat,data.cats.lifeguard_cats,data.cats.c_honda,data.cats.valentines_neneko,data.cats.kaito_and_cat,data.cats.happosai,data.cats.ukyo_kuonji_gr,data.cats.tatewaki_kuno_gi,data.cats.brainwashed_cat,data.cats.brainwashed_tank_cat,data.cats.brainwashed_axe_cat,data.cats.brainwashed_gross_cat,data.cats.brainwashed_cow_cat,data.cats.brainwashed_bird_cat,data.cats.genma_saotome_panda,data.cats.brainwashed_fish_cat,data.cats.brainwashed_lizard_cat,data.cats.brainwashed_titan_cat,data.cats.ancient_egg_n108,data.cats.ancient_egg_n111,data.cats.lil_kaoru,data.cats.lil_yahiko,data.cats.mummy_sumo,data.cats.ogre_cat,data.cats.zangief_cat,data.cats.jamie_cat,data.cats.lil_sakonji_urokodaki,
+    
     //uber rare cats
     data.cats.nekoluga,data.cats.ice_cat,data.cats.cat_machine,data.cats.lesser_demon_cat,data.cats.marauder_cat,data.cats.baby_cat,data.cats.ppt48,data.cats.sanada_yukimura,data.cats.maeda_keiji,data.cats.oda_nobunaga,data.cats.windy,data.cats.thundia,data.cats.sodom,data.cats.megidora,data.cats.vars,data.cats.kamukura,data.cats.raiden,data.cats.kuu,data.cats.kai,data.cats.coppermine,data.cats.wyvern,data.cats.date_masamune,data.cats.takeda_shingen,data.cats.urashima_taro,data.cats.the_grateful_crane,data.cats.momotaro,data.cats.kasa_jizo,data.cats.princess_kaguya,data.cats.nurse_cat,data.cats.uesugi_kenshin,data.cats.kalisa,data.cats.crazed_princess_punt,data.cats.asiluga,data.cats.kubiluga,data.cats.tecoluga,data.cats.balaluga,data.cats.mola_king,data.cats.dioramos,data.cats.mystery_girl_yuki,data.cats.hearscht,data.cats.cornelia,data.cats.juvens,data.cats.mystica,data.cats.akira,data.cats.mekako_saionji,data.cats.catman,data.cats.kachi_kachi,data.cats.the_white_rabbit,data.cats.huge_hermit,data.cats.jupiter_king,data.cats.donald_morden,data.cats.hi_do,data.cats.warlock_and_pierre,data.cats.hallowindy,data.cats.spooky_thundia,data.cats.togeluga,data.cats.frosty_kai,data.cats.santa_kuu,data.cats.holy_coppermine,data.cats.thunder_god_zeus,data.cats.anubis_the_protector,data.cats.radiant_aphrodite,data.cats.hayabusa,data.cats.baby_gao,data.cats.crazed_yuki,data.cats.shining_amaterasu,data.cats.splendid_ganesha,data.cats.tropical_kalisa,data.cats.midsummer_rabbit,data.cats.pai_pai,data.cats.strike_unit_rei,data.cats.madoka_kaname,data.cats.homura_akemi,data.cats.sayaka_miki,data.cats.mami_tomoe,data.cats.kyoko_sakura,data.cats.lilith_cat,data.cats.mighty_kat_a_pult,data.cats.mighty_drednot,data.cats.mighty_bomburr,data.cats.yuletide_nurse,data.cats.wrathful_poseidon,data.cats.miko_mitama,data.cats.sarukani,data.cats.mobius,data.cats.springtime_kenshin,data.cats.bunny_and_canard,data.cats.shadow_gao,data.cats.trickster_himeyuri,data.cats.sea_maiden_ruri,data.cats.queen_reika,data.cats.hms_princess,data.cats.imagawa_yoshimoto,data.cats.lost_world_yuki,data.cats.michelia,data.cats.todomeki,data.cats.twinstars,data.cats.seashore_kai,data.cats.mighty_rekon_korps,data.cats.wolfchild_deale,data.cats.graveflower_verbena,data.cats.bora,data.cats.mizli,data.cats.aer,data.cats.saber,data.cats.rin_tohsaka,data.cats.illyasviel,data.cats.archer,data.cats.lancer,data.cats.rider,data.cats.gilgamesh,data.cats.dark_mitama,data.cats.dartanyan,data.cats.saki_nijima,data.cats.subaru_hoshi,data.cats.miyabi_oyama,data.cats.ganglion,data.cats.sakura_sonic,data.cats.voli,data.cats.eva_unit_00,data.cats.eva_unit_01,data.cats.eva_unit_02,data.cats.shinji_cat,data.cats.moon_operators,data.cats.mighty_thermae_d_lux,data.cats.cat_clan_heroes,data.cats.detective_vigler,data.cats.lil_valkyrie,data.cats.nobiluga,data.cats.waverider_kuu,data.cats.empress_chronos,data.cats.bebe,data.cats.darktanyan,data.cats.sakura_matou,data.cats.super_zeus,data.cats.holy_phoenix,data.cats.super_devil,data.cats.satanmaria,data.cats.heracrist,data.cats.benevolent_souma,data.cats.lil_valkyrie_dark,data.cats.calette,data.cats.eva_unit_08,data.cats.aaa_wunder,data.cats.seabreeze_coppermine,data.cats.narita_kaihime,data.cats.myrcia_,data.cats.relentless_gladios,data.cats.eyewaltz,data.cats.ryu,data.cats.chun_li,data.cats.guile,data.cats.zangief,data.cats.blanka,data.cats.dhalsim,data.cats.ken,data.cats.lasvoss,data.cats.kintaro,data.cats.snow_angel_twinstars,data.cats.kasli_the_scourge,data.cats.herme,data.cats.sharpshooter_saki,data.cats.hades_the_punisher,data.cats.hatsune_miku,data.cats.sakura_miku,data.cats.kagamine_rin_and_len,data.cats.kasli_the_bane,data.cats.papaluga,data.cats.night_oracle_rei,data.cats.the_4th_angel,data.cats.the_6th_angel,data.cats.the_10th_angel,data.cats.the_9th_angel,data.cats.shaman_khan,data.cats.hell_warden_emma,data.cats.megurine_luka,data.cats.squirtgun_saki,data.cats.summerluga ,data.cats.gravi,data.cats.skull_rider_vars,data.cats.e_honda,data.cats.balrog,data.cats.vega,data.cats.sagat,data.cats.m_bison,data.cats.hatsune_miku_mm2020_osaka,data.cats.hatsune_miku_mm2020_tokyo,data.cats.keiji_claus,data.cats.baby_garu,data.cats.sweet_aphrodite,data.cats.first_love_myrcia,data.cats.snow_miku_2021,data.cats.mighty_aethur_ltd,data.cats.blooming_kamukura,data.cats.ranma_saotome_m,data.cats.akane_tendo,data.cats.ryoga_hibiki_pig,data.cats.shampoo_cat,data.cats.mousse_duck,data.cats.adventurer_kanna,data.cats.dark_aegis_garu,data.cats.princess_cat,data.cats.kaguya_of_the_coast,data.cats.summoner_satoru,data.cats.amakusa_shiro,data.cats.lilin,data.cats.hevijak_the_wicked,data.cats.kunio_kun,data.cats.furiluga,data.cats.yamii,data.cats.mighty_deth_troy_r,data.cats.shitakiri_sparrow,data.cats.white_knight_cyclops,data.cats.iz_the_dancer,data.cats.lucifer_the_fallen,data.cats.sweet_love_mekako,data.cats.terun,data.cats.lovestruck_lesser_demon,data.cats.hattori_hanzo,data.cats.bliza,data.cats.iz_the_dancer_of_grief,data.cats.sea_serpent_daliasan,data.cats.chronos_the_bride,data.cats.night_beach_lilin,data.cats.cat_tengu,data.cats.ranma_saotome_leotard,data.cats.mighty_carrowsell,data.cats.sakura,data.cats.luke,data.cats.spectral_goth_vega,data.cats.count_yukimura,data.cats.goddess_of_light_sirius,data.cats.reindeer_terun,data.cats.child_of_destiny_phono,data.cats.issun_boshi,data.cats.white_butler_vigler,data.cats.thunder_jack,data.cats.rabbit_satoru,data.cats.king_of_doom_phono,data.cats.one_eyed_asuka,data.cats.eva_unit_13,data.cats.betrothed_balaluga,data.cats.kaoluga,data.cats.coastal_explorer_kanna,data.cats.mighty_sphinx_korps,data.cats.tekachi,data.cats.high_school_kingpin_riki,data.cats.hatsune_miku_xvi,data.cats.lightmother_aset,data.cats.ninja_girl_tomoe,data.cats.sol_dae_rokker,data.cats.pegasa,data.cats.frozen_rose_cat,data.cats.floral_kalisa,data.cats.voluptuous_peony___daji,data.cats.kenshin_himura,data.cats.sanosuke_sagara,data.cats.aoshi_shinomori,data.cats.hajime_saito,data.cats.akechi_mitsuhide,data.cats.cake_machine,data.cats.trixi_the_merc,data.cats.music_fest_thundia,data.cats.gunduros,data.cats.dynasaurus_cat,data.cats.taitenki,data.cats.hanasaka_cat,data.cats.pumpkin_sodom,data.cats.mech_patrol_axel,data.cats.winter_general_kaihime,data.cats.madoka_cat_and_homura,data.cats.celestial_child_luna,data.cats.mamoluga,data.cats.koneko,data.cats.the_amazing_catman,data.cats.netherworld_nymph_lunacia,data.cats.baki_hanma,data.cats.retsu_kaioh,data.cats.kaoru_hanayama,data.cats.katsumi_orochi,data.cats.jack_hammer,data.cats.mighty_morta_loncha,data.cats.sonic,data.cats.tails,data.cats.knuckles,data.cats.shadow,data.cats.agent_staal,data.cats.victorious_skanda,data.cats.mass_production_eva,data.cats.komori,data.cats.seaside_pegasa,data.cats.sorceress_sidmi,data.cats.cammy,data.cats.juri,data.cats.raclesa,data.cats.giga_nyan_rex,data.cats.squire_luno,data.cats.tanjiro_kamado,data.cats.nezuko_kamado,data.cats.zenitsu_agatsuma,data.cats.inosuke_hashibira,data.cats.giyu_tomioka,data.cats.shinobu_kocho,data.cats.kyojuro_rengoku,data.cats.fuma_kotaro,data.cats.lone_moon_lunos,data.cats.vornado,data.cats.hanzo_the_betrothed,
+    
     //legend rare cats
     data.cats.musashi_miyamoto,data.cats.jeanne,data.cats.high_lord_babel,data.cats.ushiwakamaru,data.cats.wonder_momoco,data.cats.legeluga,data.cats.mighty_kristul_muu,data.cats.black_zeus,data.cats.lumina,data.cats.doktor_heaven,data.cats.gaia_the_creator,data.cats.akuma,data.cats.kyosaka_nanaho,data.cats.emperor_cat,data.cats.daybreaker_izanagi,data.cats.izanami_of_dusk,data.cats.moonshade_kaworu
+
 ]
+
+global.normal_cats = [
+    data.cats.cat, data.cats.tank_cat, data.cats.axe_cat, data.cats.gross_cat, data.cats.bird_cat, data.cats.fish_cat, data.cats.lizard_cat, data.cats.titan_cat, data.cats.superfeline
+]
+
+global.special_cats = [
+    data.cats.actress_cat, data.cats.kung_fu_cat, data.cats.mr, data.cats.bondage_cat, data.cats.dom_cat, data.cats.cats_in_a_box, data.cats.panties_cat, data.cats.moneko, data.cats.tricycle_cat,
+    data.cats.ninja_cat, data.cats.zombie_cat, data.cats.samurai_cat, data.cats.sumo_cat, data.cats.boogie_cat, data.cats.skirt_cat, data.cats.valkyrie_cat, data.cats.bahamut_cat,
+    data.cats.kerihime, data.cats.cat_princess, data.cats.capsule_cat , data.cats.blue_shinobi, data.cats.cabaret_cat, data.cats.healer, data.cats.merc, data.cats.bean_cat,data.cats.flower_cat,
+    data.cats.ururun_wolf, data.cats.lil_nyandam, data.cats.meowla_meowla, data.cats.yuki_cat, data.cats.mr_ninja, data.cats.titi, data.cats.baozi_cat, data.cats.lil_cat,
+    data.cats.lil_tank_cat, data.cats.lil_axe_cat, data.cats.catburger, data.cats.lil_gross_cat, data.cats.lil_cow_cat, data.cats.lil_bird_cat, data.cats.red_riding_mina,
+    data.cats.lil_homura, data.cats.lil_fish_cat, data.cats.lil_lizard_cat, data.cats.lil_titan_cat, data.cats.miyamoku_musashi, data.cats.happy_100, data.cats.maneki_cat, data.cats.hermit_cat,
+    data.cats.saber_the_cat, data.cats.lil_sakura, data.cats.coin_cat, data.cats.farmer_cat, data.cats.masked_yulala, data.cats.gendo_and_fuyutsuki_cats, data.cats.kaworu_and_cat,
+    data.cats.crazed_moneko, data.cats.mecha_bun, data.cats.nekokkuma, data.cats.cat_god_the_great, data.cats.shirou_the_cat, data.cats.filibuster_cat_x, data.cats.dogumaru,
+    data.cats.rosary_angel, data.cats.wakamiko_cat, data.cats.cat_devil, data.cats.shakurel_cat, data.cats.shakurel_lion, data.cats.shakurel_tiger, data.cats.shakurel_panda,
+    data.cats.chun_li_cat, data.cats.urs_and_fenrir, data.cats.master_uril, data.cats.heavenly_jack, data.cats.gacha_cat, data.cats.idi_n, data.cats.panda_cat, data.cats.gold_brick_cat,
+    data.cats.elder_mask_doron, data.cats.kabuto_cat, data.cats.kuwagata_cat, data.cats.jagando_jr, data.cats.million_dollar_cat, data.cats.firecracker_cat, data.cats.secret_crush_cat,
+    data.cats.tomboy_lion_cat, data.cats.chalkboard_eraser_cat, data.cats.elder_beast_naala, data.cats.ancient_egg_001, data.cats.ancient_egg_201, data.cats.ancient_egg_003, data.cats.ancient_egg_202,
+    data.cats.chika_amatori_and_cat, data.cats.ancient_egg_004, data.cats.meditation_cat, data.cats.ancient_egg_000, data.cats.class_rep_cat, data.cats.ancient_egg_005, data.cats.ancient_egg_203,
+    data.cats.ancient_egg_006, data.cats.medal_king, data.cats.master_of_mind_soractes, data.cats.ancient_egg_204, data.cats.principal_cat, data.cats.trash_cat, data.cats.felix_the_cat_duke_cat,
+    data.cats.dotty_cat, data.cats.kaoru_cat, data.cats.ancient_egg_205, data.cats.ancient_egg_206, data.cats.sardine, data.cats.squid, data.cats.master_of_life_dr_nova, data.cats.lieutenant_cat,
+    data.cats.lil_baki, data.cats.baki_cat, data.cats.kaioh_cat, data.cats.doppo_cat, data.cats.master_of_logic_newton, data.cats.tails_cat, data.cats.tasmanian_giant_crab, data.cats.consultant_cat,
+    data.cats.scarf_cat, data.cats.fedora_cat, data.cats.helmet_cat, data.cats.goggles_cat, data.cats.ribbon_cat, data.cats.the_invisible_cat, 
+    data.cats.nezuko_cat, data.cats.occultist_cat, data.cats.master_of_selection_darvin
+]
+
+global.rare_cats = [
+    data.cats.pogo_cat, data.cats.wheel_cat, data.cats.salon_cat, data.cats.jurassic_cat, data.cats.viking_cat, data.cats.pirate_cat, data.cats.thief_cat, data.cats.bishop_cat, data.cats.fortune_teller_cat,
+    data.cats.shaman_cat, data.cats.witch_cat, data.cats.archer_cat, data.cats.swordsman_cat, data.cats.bronze_cat, data.cats.sports_day_cat, data.cats.swordsman, data.cats.cow_princess, data.cats.lil_gau,
+    data.cats.salaryman_cat, data.cats.reindeer_fish_cat, data.cats.space_cat, data.cats.adult_cat, data.cats.evil_cat, data.cats.doll_cats, data.cats.rope_jump_cat, data.cats.maiden_cat, data.cats.koi_cat,
+    data.cats.madam_bride, data.cats.celesse, data.cats.nono, data.cats.olga, data.cats.norn, data.cats.yoichi, data.cats.serum, data.cats.fuu, data.cats.vacation_queen, data.cats.clockwork_cat, data.cats.vengeful_cat,
+    data.cats.kung_fu_cat_x, data.cats.cat_gunslinger, data.cats.stilts_cat, data.cats.tin_cat, data.cats.rocker_cat, data.cats.mer_cat, data.cats.hoop_cat, data.cats.marshmallow_cat, data.cats.takuya_and_yuki, data.cats.psychocat,
+    data.cats.onmyoji_cat, data.cats.drumcorps_cat, data.cats.hyakutaro, data.cats.marco, data.cats.tarma, data.cats.eri, data.cats.fio, data.cats.mars_people, data.cats.pumpcat, data.cats.a_gift_of_cats,
+    data.cats.funghi, data.cats.awa_odori_cat, data.cats.madoka_cat, data.cats.homura_cat, data.cats.sayaka_cat, data.cats.mami_cat, data.cats.kyoko_cat, data.cats.lil_madoka, data.cats.kyubey_cat, data.cats.food_stall_cat,
+    data.cats.gardener_cat, data.cats.pikotaro, data.cats.killer_cat, data.cats.curling_cat, data.cats.welterweight_cat, data.cats.eggy_cat, data.cats.redhead_yuki_cat, data.cats.slug_jockey_cat, data.cats.sakura_the_cat, data.cats.rin_the_cat,
+    data.cats.illya_the_cat, data.cats.lil_shirou, data.cats.rover_cat, data.cats.volley_cat, data.cats.glass_cat, data.cats.akio_yabe, data.cats.sairi_nijitani, data.cats.misaki_konno, data.cats.ren_katagiri, data.cats.karin_nekozuka,
+    data.cats.mentori, data.cats.shinji_and_cat, data.cats.giraffe_unit_01, data.cats.rei_cat, data.cats.asuka_cat, data.cats.mari_cat, data.cats.pokota, data.cats.ovis, data.cats.coco, data.cats.souma_cat, data.cats.betakkuma, data.cats.lone_cat_and_kitten,
+    data.cats.primordial_cat, data.cats.archer_the_cat, data.cats.rider_the_cat, data.cats.prince_yamato, data.cats.kano_and_souma, data.cats.matador_cat, data.cats.cat_bros, data.cats.mightycat, data.cats.ryu_cat, data.cats.akuma_giraffe,
+    data.cats.medusa_cat, data.cats.wushu_cat, data.cats.slime_cat, data.cats.cossack_cat, data.cats.teacher_bearcat, data.cats.miku_cat, data.cats.rugby_cat, data.cats.phantom_cat, data.cats.kaworu_cat, data.cats.bakery_cat,
+    data.cats.luka_cat, data.cats.balrog_cat, data.cats.vega_cat, data.cats.sagat_cat, data.cats.m_bison_cat, data.cats.stone_cat, data.cats.neko_rin, data.cats.neko_len, data.cats.ranma_cat_m, data.cats.akane_cat, data.cats.godzilla_cat,
+    data.cats.aku_researcher, data.cats.pied_piper_cat, data.cats.calligraphy_cat, data.cats.ancient_egg_n101, data.cats.ancient_egg_n102, data.cats.ancient_egg_n103, data.cats.ancient_egg_n104, data.cats.ancient_egg_n105, data.cats.ancient_egg_n106,
+    data.cats.osamu_mikumo_and_cat, data.cats.yuma_kuga_and_cat, data.cats.killer_tank_cat, data.cats.ancient_egg_n107, data.cats.ancient_egg_n109, data.cats.jetpack_cat, data.cats.ancient_egg_n110, data.cats.maize_cat, data.cats.ancient_egg_n112,
+    data.cats.mollyanna_cat, data.cats.madhead, data.cats.kenshin_cat, data.cats.bowler_cat, data.cats.killer_gross_cat, data.cats.sonic_cat, data.cats.shadow_cat, data.cats.carpenter_cat, data.cats.tanjiro_cat, data.cats.paperboy_cat,
+    data.cats.killer_cowbird_cat
+]
+
+global.super_rare_cats = [
+    data.cats.bodhisattva_cat,data.cats.delinquent_cat,data.cats.hip_hop_cat,data.cats.kotatsu_cat,data.cats.nerd_cat,data.cats.swimmer_cat,data.cats.apple_cat,data.cats.bath_cat,data.cats.sushi_cat,data.cats.reaper,data.cats.sleeping_beauty_punt,data.cats.crazed_cat,data.cats.crazed_tank_cat,data.cats.crazed_axe_cat,data.cats.crazed_gross_cat,data.cats.crazed_cow_cat,data.cats.crazed_bird_cat,data.cats.crazed_fish_cat,data.cats.crazed_lizard_cat,data.cats.crazed_titan_cat,data.cats.aura,data.cats.rei,data.cats.gold_cat,data.cats.neneko,data.cats.cat_base_mini,data.cats.juliet_cat,data.cats.weightlifter_cat,data.cats.figure_skating_cats,data.cats.cat_toaster,data.cats.yurinchi,data.cats.baby_mola,data.cats.alois,data.cats.citrouille,data.cats.surfer_cat,data.cats.metal_cat,data.cats.sv_001,data.cats.allen_oneil,data.cats.gloomy_neneko,data.cats.freshman_cat_jobs,data.cats.rich_cat_iii,data.cats.sniper_the_recruit,data.cats.catway,data.cats.catornado,data.cats.cheerleader_cat,data.cats.sunny_neneko,data.cats.express_cat,data.cats.little_leaguer_cat,data.cats.kyubey,data.cats.vaulter_cat,data.cats.years_end_neneko,data.cats.belial,data.cats.easter_neneko,data.cats.orthos,data.cats.fencer_cat,data.cats.aoi_hayakawa,data.cats.mizuki_tachibana,data.cats.hijiri_rokudo,data.cats.rei_ayanami,data.cats.asuka_langley,data.cats.mari_illustrious,data.cats.otaku_geek_cat,data.cats.driller_cat,data.cats.piledriver_cat,data.cats.cutter_cat,data.cats.backhoe_cat,data.cats.miter_saw_cat,data.cats.kotomine_and_gilgamesh_cats,data.cats.fiendish_nero,data.cats.hina,data.cats.misato_katsuragi,data.cats.ritsuko_akagi,data.cats.rei_ayanami_,data.cats.good_luck_ebisu,data.cats.nymph_cat,data.cats.holy_knight_alibaba,data.cats.meiko_and_cat,data.cats.suntan_cat,data.cats.lifeguard_cats,data.cats.c_honda,data.cats.valentines_neneko,data.cats.kaito_and_cat,data.cats.happosai,data.cats.ukyo_kuonji_gr,data.cats.tatewaki_kuno_gi,data.cats.brainwashed_cat,data.cats.brainwashed_tank_cat,data.cats.brainwashed_axe_cat,data.cats.brainwashed_gross_cat,data.cats.brainwashed_cow_cat,data.cats.brainwashed_bird_cat,data.cats.genma_saotome_panda,data.cats.brainwashed_fish_cat,data.cats.brainwashed_lizard_cat,data.cats.brainwashed_titan_cat,data.cats.ancient_egg_n108,data.cats.ancient_egg_n111,data.cats.lil_kaoru,data.cats.lil_yahiko,data.cats.mummy_sumo,data.cats.ogre_cat,data.cats.zangief_cat,data.cats.jamie_cat,data.cats.lil_sakonji_urokodaki,
+]
+
+global.uber_rare_cats = [
+    data.cats.nekoluga,data.cats.ice_cat,data.cats.cat_machine,data.cats.lesser_demon_cat,data.cats.marauder_cat,data.cats.baby_cat,data.cats.ppt48,data.cats.sanada_yukimura,data.cats.maeda_keiji,data.cats.oda_nobunaga,data.cats.windy,data.cats.thundia,data.cats.sodom,data.cats.megidora,data.cats.vars,data.cats.kamukura,data.cats.raiden,data.cats.kuu,data.cats.kai,data.cats.coppermine,data.cats.wyvern,data.cats.date_masamune,data.cats.takeda_shingen,data.cats.urashima_taro,data.cats.the_grateful_crane,data.cats.momotaro,data.cats.kasa_jizo,data.cats.princess_kaguya,data.cats.nurse_cat,data.cats.uesugi_kenshin,data.cats.kalisa,data.cats.crazed_princess_punt,data.cats.asiluga,data.cats.kubiluga,data.cats.tecoluga,data.cats.balaluga,data.cats.mola_king,data.cats.dioramos,data.cats.mystery_girl_yuki,data.cats.hearscht,data.cats.cornelia,data.cats.juvens,data.cats.mystica,data.cats.akira,data.cats.mekako_saionji,data.cats.catman,data.cats.kachi_kachi,data.cats.the_white_rabbit,data.cats.huge_hermit,data.cats.jupiter_king,data.cats.donald_morden,data.cats.hi_do,data.cats.warlock_and_pierre,data.cats.hallowindy,data.cats.spooky_thundia,data.cats.togeluga,data.cats.frosty_kai,data.cats.santa_kuu,data.cats.holy_coppermine,data.cats.thunder_god_zeus,data.cats.anubis_the_protector,data.cats.radiant_aphrodite,data.cats.hayabusa,data.cats.baby_gao,data.cats.crazed_yuki,data.cats.shining_amaterasu,data.cats.splendid_ganesha,data.cats.tropical_kalisa,data.cats.midsummer_rabbit,data.cats.pai_pai,data.cats.strike_unit_rei,data.cats.madoka_kaname,data.cats.homura_akemi,data.cats.sayaka_miki,data.cats.mami_tomoe,data.cats.kyoko_sakura,data.cats.lilith_cat,data.cats.mighty_kat_a_pult,data.cats.mighty_drednot,data.cats.mighty_bomburr,data.cats.yuletide_nurse,data.cats.wrathful_poseidon,data.cats.miko_mitama,data.cats.sarukani,data.cats.mobius,data.cats.springtime_kenshin,data.cats.bunny_and_canard,data.cats.shadow_gao,data.cats.trickster_himeyuri,data.cats.sea_maiden_ruri,data.cats.queen_reika,data.cats.hms_princess,data.cats.imagawa_yoshimoto,data.cats.lost_world_yuki,data.cats.michelia,data.cats.todomeki,data.cats.twinstars,data.cats.seashore_kai,data.cats.mighty_rekon_korps,data.cats.wolfchild_deale,data.cats.graveflower_verbena,data.cats.bora,data.cats.mizli,data.cats.aer,data.cats.saber,data.cats.rin_tohsaka,data.cats.illyasviel,data.cats.archer,data.cats.lancer,data.cats.rider,data.cats.gilgamesh,data.cats.dark_mitama,data.cats.dartanyan,data.cats.saki_nijima,data.cats.subaru_hoshi,data.cats.miyabi_oyama,data.cats.ganglion,data.cats.sakura_sonic,data.cats.voli,data.cats.eva_unit_00,data.cats.eva_unit_01,data.cats.eva_unit_02,data.cats.shinji_cat,data.cats.moon_operators,data.cats.mighty_thermae_d_lux,data.cats.cat_clan_heroes,data.cats.detective_vigler,data.cats.lil_valkyrie,data.cats.nobiluga,data.cats.waverider_kuu,data.cats.empress_chronos,data.cats.bebe,data.cats.darktanyan,data.cats.sakura_matou,data.cats.super_zeus,data.cats.holy_phoenix,data.cats.super_devil,data.cats.satanmaria,data.cats.heracrist,data.cats.benevolent_souma,data.cats.lil_valkyrie_dark,data.cats.calette,data.cats.eva_unit_08,data.cats.aaa_wunder,data.cats.seabreeze_coppermine,data.cats.narita_kaihime,data.cats.myrcia_,data.cats.relentless_gladios,data.cats.eyewaltz,data.cats.ryu,data.cats.chun_li,data.cats.guile,data.cats.zangief,data.cats.blanka,data.cats.dhalsim,data.cats.ken,data.cats.lasvoss,data.cats.kintaro,data.cats.snow_angel_twinstars,data.cats.kasli_the_scourge,data.cats.herme,data.cats.sharpshooter_saki,data.cats.hades_the_punisher,data.cats.hatsune_miku,data.cats.sakura_miku,data.cats.kagamine_rin_and_len,data.cats.kasli_the_bane,data.cats.papaluga,data.cats.night_oracle_rei,data.cats.the_4th_angel,data.cats.the_6th_angel,data.cats.the_10th_angel,data.cats.the_9th_angel,data.cats.shaman_khan,data.cats.hell_warden_emma,data.cats.megurine_luka,data.cats.squirtgun_saki,data.cats.summerluga ,data.cats.gravi,data.cats.skull_rider_vars,data.cats.e_honda,data.cats.balrog,data.cats.vega,data.cats.sagat,data.cats.m_bison,data.cats.hatsune_miku_mm2020_osaka,data.cats.hatsune_miku_mm2020_tokyo,data.cats.keiji_claus,data.cats.baby_garu,data.cats.sweet_aphrodite,data.cats.first_love_myrcia,data.cats.snow_miku_2021,data.cats.mighty_aethur_ltd,data.cats.blooming_kamukura,data.cats.ranma_saotome_m,data.cats.akane_tendo,data.cats.ryoga_hibiki_pig,data.cats.shampoo_cat,data.cats.mousse_duck,data.cats.adventurer_kanna,data.cats.dark_aegis_garu,data.cats.princess_cat,data.cats.kaguya_of_the_coast,data.cats.summoner_satoru,data.cats.amakusa_shiro,data.cats.lilin,data.cats.hevijak_the_wicked,data.cats.kunio_kun,data.cats.furiluga,data.cats.yamii,data.cats.mighty_deth_troy_r,data.cats.shitakiri_sparrow,data.cats.white_knight_cyclops,data.cats.iz_the_dancer,data.cats.lucifer_the_fallen,data.cats.sweet_love_mekako,data.cats.terun,data.cats.lovestruck_lesser_demon,data.cats.hattori_hanzo,data.cats.bliza,data.cats.iz_the_dancer_of_grief,data.cats.sea_serpent_daliasan,data.cats.chronos_the_bride,data.cats.night_beach_lilin,data.cats.cat_tengu,data.cats.ranma_saotome_leotard,data.cats.mighty_carrowsell,data.cats.sakura,data.cats.luke,data.cats.spectral_goth_vega,data.cats.count_yukimura,data.cats.goddess_of_light_sirius,data.cats.reindeer_terun,data.cats.child_of_destiny_phono,data.cats.issun_boshi,data.cats.white_butler_vigler,data.cats.thunder_jack,data.cats.rabbit_satoru,data.cats.king_of_doom_phono,data.cats.one_eyed_asuka,data.cats.eva_unit_13,data.cats.betrothed_balaluga,data.cats.kaoluga,data.cats.coastal_explorer_kanna,data.cats.mighty_sphinx_korps,data.cats.tekachi,data.cats.high_school_kingpin_riki,data.cats.hatsune_miku_xvi,data.cats.lightmother_aset,data.cats.ninja_girl_tomoe,data.cats.sol_dae_rokker,data.cats.pegasa,data.cats.frozen_rose_cat,data.cats.floral_kalisa,data.cats.voluptuous_peony___daji,data.cats.kenshin_himura,data.cats.sanosuke_sagara,data.cats.aoshi_shinomori,data.cats.hajime_saito,data.cats.akechi_mitsuhide,data.cats.cake_machine,data.cats.trixi_the_merc,data.cats.music_fest_thundia,data.cats.gunduros,data.cats.dynasaurus_cat,data.cats.taitenki,data.cats.hanasaka_cat,data.cats.pumpkin_sodom,data.cats.mech_patrol_axel,data.cats.winter_general_kaihime,data.cats.madoka_cat_and_homura,data.cats.celestial_child_luna,data.cats.mamoluga,data.cats.koneko,data.cats.the_amazing_catman,data.cats.netherworld_nymph_lunacia,data.cats.baki_hanma,data.cats.retsu_kaioh,data.cats.kaoru_hanayama,data.cats.katsumi_orochi,data.cats.jack_hammer,data.cats.mighty_morta_loncha,data.cats.sonic,data.cats.tails,data.cats.knuckles,data.cats.shadow,data.cats.agent_staal,data.cats.victorious_skanda,data.cats.mass_production_eva,data.cats.komori,data.cats.seaside_pegasa,data.cats.sorceress_sidmi,data.cats.cammy,data.cats.juri,data.cats.raclesa,data.cats.giga_nyan_rex,data.cats.squire_luno,data.cats.tanjiro_kamado,data.cats.nezuko_kamado,data.cats.zenitsu_agatsuma,data.cats.inosuke_hashibira,data.cats.giyu_tomioka,data.cats.shinobu_kocho,data.cats.kyojuro_rengoku,data.cats.fuma_kotaro,data.cats.lone_moon_lunos,data.cats.vornado,data.cats.hanzo_the_betrothed,
+]
+
+global.legend_rare_cats = [
+     data.cats.musashi_miyamoto,data.cats.jeanne,data.cats.high_lord_babel,data.cats.ushiwakamaru,data.cats.wonder_momoco,data.cats.legeluga,data.cats.mighty_kristul_muu,data.cats.black_zeus,data.cats.lumina,data.cats.doktor_heaven,data.cats.gaia_the_creator,data.cats.akuma,data.cats.kyosaka_nanaho,data.cats.emperor_cat,data.cats.daybreaker_izanagi,data.cats.izanami_of_dusk,data.cats.moonshade_kaworu
+]
+
 global.selected_cat = -1
 
 global.save = {
@@ -240,6 +301,8 @@ instance_create_depth(1280-41-16,11,depth,obj_music_button)
 instance_create_depth(1280-41-16-41-16,11,depth,obj_sound_button)
 var _w = string_width("SETTINGS")+32
 instance_create_depth(1280-41-16-41-16-_w-16,10,depth,obj_settings_button)
+var _w1 = string_width("FILTER")+32
+instance_create_depth(1280-41-16-41-16-_w-16-_w1-16,10,depth,obj_filter_button)
 
 global.music = audio_play_sound(snd_music_menu,0,1)
 
@@ -409,7 +472,7 @@ info.fruits.get = function (){
             draw_sprite_ext(_spr,0,_x,_y,0.5,0.5,0,c_white,1)
             
 
-            draw_text_outline(_x+80,_y+12,c_black,c_white,_num)
+            draw_text_outline(_x+80,_y+16,c_black,c_white,_num)
             
             _pos ++
             if _pos>=4{
@@ -740,6 +803,7 @@ info.get_pages = function (){
     for(var i=0;i<_cats_num;i++){
         var _data = global.current_cats[i]
         
+        /*TODO: maybe change this again leater ? to have grouped pages but it make searching bad sometimes with filters
         if _data.rarity != _current_rarity and _num>0{
             _current_rarity = _data.rarity
             _page ++
@@ -748,6 +812,7 @@ info.get_pages = function (){
         else if _data.rarity != _current_rarity and _num==0{
             _current_rarity = _data.rarity
         }
+        */
         
         info.pages[_page][_num] =  _data
         
@@ -923,13 +988,13 @@ info.bottom_bar.update()
 
 #region TOP BUTTONS
 buttons = {}
-buttons.text = ["ADD CATS","NORMAL","SPECIAL","RARE","UBER","LEGEND","ALL CATS"]
+buttons.text = ["ADD CATS","ALL CATS"]
 buttons.pos = []
 buttons.surf = []
 buttons.buffer = []
 buttons.width = []
 buttons.mouse_on = []
-buttons.action = [M_STATES.ADDCATS,M_STATES.NORMAL,M_STATES.SPECIAL,M_STATES.RARE,M_STATES.UBER_RARE,M_STATES.LEGEND,M_STATES.ALL]
+buttons.action = [M_STATES.ADDCATS,M_STATES.ALL]
 buttons.number = 0
 buttons.pos_plus = 0
 buttons.height = 48
@@ -1036,68 +1101,321 @@ menu.draw = function (){
     }
 }
 
+enum FILTER_TYPE {
+    OR,
+    AND
+}
+
+global.filters = {
+    rarity : [],
+    targets : [],
+    targets_num: 0,
+    atktypes : [],
+    atktypes_num : 0,
+    check_type : FILTER_TYPE.OR,
+    abilities : [],
+    abilities_num : 0,
+    effects : [],
+    effects_num : 0,
+    talents : [],
+    talents_num : 0,
+    talent_abilities : [],
+    talent_abilities_num : 0,
+    talent_effects : [],
+    talent_effects_num : 0,
+    check_talents : false,
+    filtered : false,
+    clear : function (){
+        rarity = []
+        targets = []
+        targets_num= 0
+        atktypes = []
+        atktypes_num = 0
+        abilities = []
+        abilities_num = 0
+        effects = []
+        effects_num = 0
+        talents = []
+        talents_num = 0
+        talent_abilities = []
+        talent_abilities_num = 0
+        talent_effects = []
+        talent_effects_num = 0
+        check_talents = false
+        filtered = false
+    }
+}
+
 get_menu_cats = function (){
     global.current_cats = []
     
-
-    switch (menu.state) {
-    	case M_STATES.ADDCATS:
-            global.current_cats = global.all_cats
-        break;
-        case M_STATES.ALL:
-            var _cats_length = array_length(global.all_cats)
-            for(var i=0;i<_cats_length;i++){
-                var _data = global.all_cats[i]
-                if variable_struct_exists(global.save.added_cats,_data.myid){
-                    array_push(global.current_cats,global.all_cats[i])
+    var _list = global.all_cats
+    var _list_l = array_length(_list)
+    
+    if menu.state == M_STATES.ALL{
+        for (var i = 0; i < _list_l; i++) {
+        	var _mid = _list[i].myid
+            if variable_struct_exists(global.save.added_cats,_mid){
+                array_push(global.current_cats,_list[i])
+            }
+        }
+    }
+    else {
+    	global.current_cats = global.all_cats
+    }
+    
+    if global.filters.filtered{
+    
+        var _found_cats = []
+        var _ftype = global.filters.check_type
+        for (var i = 0; i < array_length(global.current_cats); i++) {
+        	var _dt = global.current_cats[i]
+            var _forms = array_length(_dt.spr)
+            
+            var _fnd = false
+            var _goodrarity = false
+            
+            if array_length(global.filters.rarity) > 0{
+                if !array_contains(global.filters.rarity,_dt.rarity){
+                    continue
+                }
+                else {
+                	_goodrarity = true
                 }
             }
-        break;
-        case M_STATES.NORMAL:
-            var _cats_length = array_length(global.all_cats)
-            for(var i=0;i<_cats_length;i++){
-                var _data = global.all_cats[i]
-                if _data.rarity==RARITY.NORMAL and variable_struct_exists(global.save.added_cats,_data.myid){
-                    array_push(global.current_cats,global.all_cats[i])
-                }
+            else {
+            	_goodrarity = true
             }
-        break;
-        case M_STATES.RARE:
-            var _cats_length = array_length(global.all_cats)
-            for(var i=0;i<_cats_length;i++){
-                var _data = global.all_cats[i]
-                if _data.rarity==RARITY.RARE and variable_struct_exists(global.save.added_cats,_data.myid){
-                    array_push(global.current_cats,global.all_cats[i])
-                }
+            
+            var _targetings = _dt.stats.targetings
+            var _atkyypes = _dt.stats.attack_type
+            var _abils = _dt.stats.abilities
+            var _effes = _dt.stats.effects
+            var _talen = _dt.stats.talents.abilities
+            
+            var _found_effects = []
+            var _found_abilities = []
+            var _found_targets = []
+            var _found_atktypes = []
+            
+            if _ftype == FILTER_TYPE.AND{
+                _found_effects = array_create( global.filters.effects_num,0 )
+                _found_abilities = array_create( global.filters.abilities_num,0 )
+                _found_targets = array_create( global.filters.targets_num,0 )
+                _found_atktypes = array_create( global.filters.atktypes_num, 0 )
             }
-        break;
-        case M_STATES.SPECIAL:
-            var _cats_length = array_length(global.all_cats)
-            for(var i=0;i<_cats_length;i++){
-                var _data = global.all_cats[i]
-                if _data.rarity==RARITY.SPECIAL and variable_struct_exists(global.save.added_cats,_data.myid){
-                    array_push(global.current_cats,global.all_cats[i])
+            
+            
+            
+            for (var p = 0; p < _forms; p++) {
+                
+                if global.filters.targets_num > 0 {
+                    
+                    if _ftype == FILTER_TYPE.OR{
+                        for (var l = 0; l < global.filters.targets_num; l++) {
+                        	if array_contains(_targetings[p],global.filters.targets[l]){
+                                _fnd = true
+                                break;
+                            }
+                        }
+                    }
+                    else {
+                        for (var l = 0; l < global.filters.targets_num; l++) {
+                            if _found_targets[l] == 0 and array_contains(_targetings[p],global.filters.targets[l]){
+                                _found_targets[l] = 1
+                            }
+                        }
+                        
+                    }
+                    
                 }
-            }
-        break;
-        case M_STATES.UBER_RARE:
-            var _cats_length = array_length(global.all_cats)
-            for(var i=0;i<_cats_length;i++){
-                var _data = global.all_cats[i]
-                if _data.rarity==RARITY.UBER_SUPER_RARE and variable_struct_exists(global.save.added_cats,_data.myid){
-                    array_push(global.current_cats,global.all_cats[i])
+                
+                if global.filters.atktypes_num > 0 {
+                    
+                    if _ftype == FILTER_TYPE.OR{
+                        for (var l = 0; l < global.filters.atktypes_num; l++) {
+                        	if array_contains(_atkyypes[p],global.filters.atktypes[l]){
+                                _fnd = true
+                                break;
+                            }
+                        }
+                    }
+                    else {
+                        for (var l = 0; l < global.filters.atktypes_num; l++) {
+                        	if _found_atktypes[l] == 0 and array_contains(_atkyypes[p],global.filters.atktypes[l]){
+                                _found_atktypes[l] = 1
+                            }
+                        }
+                    }
+                    
                 }
-            }
-        break;
-        case M_STATES.LEGEND:
-            var _cats_length = array_length(global.all_cats)
-            for(var i=0;i<_cats_length;i++){
-                var _data = global.all_cats[i]
-                if _data.rarity==RARITY.LEGEND_RARE and variable_struct_exists(global.save.added_cats,_data.myid){
-                    array_push(global.current_cats,global.all_cats[i])
+                
+                if global.filters.abilities_num > 0 {
+                    
+                    if _ftype == FILTER_TYPE.OR{
+                        for (var l = 0; l < global.filters.abilities_num; l++) {
+                        	if array_contains(_abils[p],global.filters.abilities[l]){
+                                _fnd = true
+                                break;
+                            }
+                        }
+                    }
+                    else {
+                        for (var l = 0; l < global.filters.abilities_num; l++) {
+                            if _found_abilities[l] == 0 and array_contains(_abils[p],global.filters.abilities[l]){
+                                _found_abilities[l] = 1
+                            }
+                        }
+                        
+                    }
+                    
                 }
+                
+                if global.filters.effects_num > 0 {
+                    
+                    if _ftype == FILTER_TYPE.OR{
+                        for (var l = 0; l < global.filters.effects_num; l++) {
+                        	if array_contains(_effes[p],global.filters.effects[l]){
+                                _fnd = true
+                                break;
+                            }
+                        }
+                    }
+                    else {
+                       
+                        for (var l = 0; l < global.filters.effects_num; l++) {
+                            if _found_effects[l] == 0 and array_contains(_effes[p],global.filters.effects[l]){
+                                _found_effects[l] = 1
+                            }
+                        }
+                        
+                    }
+                    
+                }
+                
             }
-        break;
+            
+            var _found_talents = true
+            
+            if global.filters.check_talents{
+                //TODO: leater add add_targeting check maybe ? decide when you know the performance of filter more.
+                
+                if _ftype == FILTER_TYPE.AND{
+                    for (var l = 0; l < array_length(_talen); l++) {
+                    	var _type = _talen[l]
+                        
+                        if array_contains(global.filters.talent_effects,_type){
+                            var _num = array_find_index(global.filters.talent_effects,_type)
+                            if _found_effects[_num] == 0
+                                _found_effects[_num] = 1
+                        }
+                        if array_contains(global.filters.talent_abilities,_type){
+                            var _num = array_find_index(global.filters.talent_abilities,_type)
+                            if _found_abilities[_num] == 0
+                                _found_abilities[_num] = 1
+                        }
+                        if array_contains(global.filters.targets,_type){
+                            var _num = array_find_index(global.filters.targets,_type)
+                            if _found_targets[_num] == 0
+                                _found_targets[_num] = 1
+                        }
+                    }
+                }
+                else {
+                    for (var l = 0; l < array_length(_talen); l++) {
+                    	var _type = _talen[l]
+                        
+                        if array_contains(global.filters.talent_effects,_type){
+                            _fnd = true
+                        }
+                        if array_contains(global.filters.talent_abilities,_type){
+                            _fnd = true
+                        }
+                        if array_contains(global.filters.targets,_type){
+                            _fnd = true
+                        }
+                    }
+                }
+                
+                
+                if _ftype == FILTER_TYPE.OR{
+                    for (var l = 0; l < global.filters.talents_num; l++) {
+                    	if array_contains(_talen,global.filters.talents[l]){
+                            _fnd = true
+                            break;
+                        }
+                    }
+                }
+                else {
+                    for (var l = 0; l < global.filters.talents_num; l++) {
+                    	if !array_contains(_talen,global.filters.talents[l]){
+                            _found_talents = false
+                            break;
+                        }
+                    }
+                }
+                
+            }
+            
+            if _ftype == FILTER_TYPE.AND{
+                _fnd = true
+                
+                for (var l = 0; l < global.filters.effects_num; l++) {
+                	if _found_effects[l] == 0{
+                        _fnd = false
+                        break;
+                    }
+                }
+                
+                if _fnd{
+                    for (var l = 0; l < global.filters.abilities_num; l++) {
+                    	if _found_abilities[l] == 0{
+                            _fnd = false
+                            break;
+                        }
+                    }
+                }
+                
+                if _fnd{
+                    for (var l = 0; l < global.filters.targets_num; l++) {
+                    	if _found_targets[l] == 0{
+                            _fnd = false
+                            break;
+                        }
+                    }
+                }
+                
+                if _fnd{
+                    for (var l = 0; l < global.filters.atktypes_num; l++) {
+                    	if _found_atktypes[l] == 0{
+                            _fnd = false
+                            break;
+                        }
+                    }
+                }
+                
+                if _fnd{
+                    if !_found_talents{
+                        _fnd = false
+                    }
+                }
+                
+            }
+            
+            if global.filters.abilities_num==0 and global.filters.atktypes_num==0 and global.filters.effects_num==0 and global.filters.talent_abilities_num==0 and global.filters.targets_num==0{
+                if _goodrarity
+                    _fnd = true
+            }
+            
+            if !_fnd
+                continue
+            
+            if _goodrarity and _fnd
+                array_push(_found_cats,global.current_cats[i])
+        }
+    
+    
+        global.current_cats = _found_cats
     }
     
     info.get_pages()
@@ -1109,3 +1427,35 @@ global.gui_wait = 0
 global.gui_layer = 0
 
 get_menu_cats()
+/*
+for (var i = 0; i < array_length(global.all_cats); i++) {
+	var _data = global.all_cats[i]
+    
+    var _abils_list = _data.stats.abilities
+    var _abils_talent = _data.stats.talents.abilities
+    
+    var _has_strengthen_abil = false
+    var _has_strengthen_tale = false
+    
+    for (var p = 0; p < array_length(_abils_list); p++) {
+    	if array_contains(_abils_list[p],ABILITY.STRENGTHEN){
+            _has_strengthen_abil = true
+            break;
+        }
+    }
+    
+    for (var p = 0; p < array_length(_abils_talent); p++) {
+    	if _abils_talent[p] == ABILITY.STRENGTHEN{
+            _has_strengthen_tale = true
+            break;
+        }
+    }
+    
+    if _has_strengthen_tale and _has_strengthen_abil{
+        show_debug_message(
+            $"{_data.name[0]} | ABIL : {_has_strengthen_abil} | TALE : {_has_strengthen_tale}"
+        )
+    }
+    
+}
+*/
