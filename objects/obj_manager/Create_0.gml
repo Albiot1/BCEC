@@ -242,9 +242,18 @@ global.save_settings = {
     accounting: 1,
     fullscreen: false,
     number_format: FORMAT_TYPES.DOTTED,
-    black_targeting: true
+    black_targeting: true,
+    cat_deletion_noconfirm: false
 }
 
+global.save.remove_cat = function (_cat_id){
+    if !variable_struct_exists(global.save.added_cats,_cat_id)
+        exit
+    
+    variable_struct_remove(global.save.added_cats,_cat_id)
+    
+    data_save()
+}
 global.save.add_cat = function (_cat_id,_form = 0){
     if variable_struct_exists(global.save.added_cats,_cat_id)
         exit
@@ -947,6 +956,11 @@ info.step = function (){
                 with instance_create_depth(0,0,depth-1,obj_cats_stats){
                     mydata = _current_cat
                 }
+                global.gui_layer = 1
+                global.gui_wait = 5
+            }
+            if keyboard_check_pressed(vk_delete) and menu.state != M_STATES.ADDCATS and global.gui_layer == 0 and global.gui_wait == 0{
+                with instance_create_depth(x,y,depth-1,obj_delete_cat) { cat_id = _current_cat.myid cat_number = i page_number = other.info.current_page }
                 global.gui_layer = 1
                 global.gui_wait = 5
             }

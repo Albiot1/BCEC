@@ -1,6 +1,7 @@
 window.draw()
 input_boxes.draw()
 buttons.draw()
+togglables.draw()
 
 reset_window.draw()
 

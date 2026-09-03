@@ -376,6 +376,99 @@ buttons.draw = function (){
 
 buttons.update()
 
+togglables = {}
+togglables.pos = []
+togglables.mouse_on = []
+togglables.text_width = []
+togglables.toggled = []
+togglables.value_id = []
+togglables.height = 15
+togglables.surface = []
+togglables.buffer = []
+togglables.num = 0
+
+togglables.add = function (_x,_y,_text,_value_id){
+    array_push(togglables.pos,[_x,_y])
+    array_push(togglables.value_id,_value_id)
+    array_push(togglables.mouse_on,false)
+    array_push(togglables.toggled,global.save_settings[$ _value_id])
+    
+    var _surf = surface_create(string_width(_text)+4,string_height(_text)+4)
+    array_push(togglables.text_width,string_width(_text)+2)
+    array_push(togglables.surface,_surf)
+    
+    surface_set_target(_surf)
+    draw_text_outline(2,2,c_black,c_white,_text)
+    surface_reset_target()
+    
+    array_push(togglables.buffer,surface_to_buffer(_surf))
+    
+    togglables.num++
+}
+
+togglables.step = function (){
+    for (var i = 0; i < togglables.num; i++) {
+    	var _pos = togglables.pos[i]
+        var _x = _pos[0]
+        var _y = _pos[1]
+        
+        if !surface_exists(togglables.surface[i]){
+            togglables.surface[i] = surface_create(togglables.text_width[i],togglables.height)
+            buffer_set_surface(togglables.buffer[i],togglables.surface[i],0)
+        }
+        
+        var _full_width = _x + togglables.text_width[i]+8+38
+        
+        if point_in_rectangle(mouse_x,mouse_y,_pos[0],_pos[1],_pos[0]+_full_width,_pos[1]+togglables.height) and global.gui_layer == 1 and global.gui_wait == 0{
+            togglables.mouse_on[i] = true
+            if mouse_check_button_pressed(mb_left){
+                global.save_settings[$ togglables.value_id[i]] = !global.save_settings[$ togglables.value_id[i]]
+                
+                togglables.toggled[i] = global.save_settings[$ togglables.value_id[i]]
+                settings_save()
+            }
+        }
+        else {
+        	togglables.mouse_on[i] = false
+        }
+        
+    }
+}
+
+togglables.draw = function (){
+    for (var i = 0; i < togglables.num; i++) {
+    	var _pos = togglables.pos[i]
+        var _x = _pos[0]
+        var _y = _pos[1]
+        
+        if surface_exists(togglables.surface[i]){
+            draw_surface(togglables.surface[i],_x,_y)
+        }
+        
+        var _chck_x = _x + togglables.text_width[i]+8
+        
+        draw_sprite( togglables.toggled[i] ? spr_checkbox2 : spr_checkbox1 , 0 , _chck_x, _y-4 )
+        
+        if togglables.mouse_on[i]{
+            draw_sprite_stretched(spr_overlay,0,_pos[0]-8,_pos[1]-12,togglables.text_width[i]+16+38,42)
+        }
+        
+    }
+}
+
+togglables.clean = function (){
+    for (var i = 0; i < togglables.num; i++) {
+    	if surface_exists(togglables.surface[i]){
+            surface_free(togglables.surface[i])
+        }
+        if buffer_exists(togglables.buffer[i]){
+            buffer_delete(togglables.buffer[i])
+        }
+    }
+}
+
+togglables.add(window.pos[0]+window.size[0]/2,window.pos[1]+window.size[1]/2,get_translation("settings_button_text_3"),"cat_deletion_noconfirm")
+
 reset_window = {}
 reset_window.size = [200,150]
 reset_window.pos = [100-50,100+50]
@@ -385,7 +478,7 @@ reset_window.buttons = {}
 reset_window.buttons.pos = []
 reset_window.buttons.offset = [0,48]
 reset_window.buttons.mouse_on = [false,false]
-reset_window.buttons.text = [get_translation("settings_erase_save_choice_0"),get_translation("settings_erase_save_choice_1")]
+reset_window.buttons.text = [get_translation("choice_yes"),get_translation("choice_no")]
 reset_window.buttons.width = [0,0]
 reset_window.opened = false
 reset_window.message = get_translation("settings_erase_save_warning")
@@ -494,3 +587,4 @@ reset_window.clean = function (){
     if buffer_exists(reset_window.buffer)
         buffer_delete(reset_window.buffer)
 }
+

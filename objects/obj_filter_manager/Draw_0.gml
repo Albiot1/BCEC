@@ -12,8 +12,8 @@ draw_sprite_ext(spr_cancel,0,_x,_y,0.5,0.5,0,c_white,1)
 if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+47,_y+47) and global.gui_layer == 1 and global.gui_wait == 0{
     draw_sprite_ext(spr_cancel,1,_x,_y,0.5,0.5,0,c_white,1)
     if mouse_check_button_pressed(mb_left){
-    global.gui_wait = 5
-    global.gui_layer = 0
-    instance_destroy()
+        global.gui_wait = 5
+        global.gui_layer = 0
+        instance_destroy()
     }
 }

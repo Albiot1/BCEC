@@ -2244,7 +2244,7 @@
 	"effect_dodge_chance":"\n+{0}% chance to dodge enemy attacks.",
 	"effect_dodge_chance_locked":"Increases chance to dodge attacks from indicated traits",
 	
-	"ability_kamikaze_name":"[KAMIAZE]",
+	"ability_kamikaze_name":"[KAMIKAZE]",
 	"ability_kamikaze_desc":"Attacks once, then disappears from the battlefield",
 	"ability_bosswave_immune_name":"[BOSS WAVE IMMUNE]",
 	"ability_bosswave_immune_desc":"Cats with this ability are unaffected by the global knockback that occurs when a boss enemy spawns.",
@@ -2462,6 +2462,11 @@
 	"talent_lock_note":"\n[PRESS RMB TO LOCK]",
 	"talent_change_note":"\n[SCROLL TO INCR/DECR LEVEL]\nLEVEL:{0}",
 
+    "delete_warning":"Are you sure you want to delete this cat from your collection ?",
+    "delete_toggle":"Don't show again",
+    "choice_yes":"YES",
+    "choice_no":"NO",
+    
 	"settings_top_text":"SETTINGS",
 	"settings_text_0":"EoC Cat Shield %",
 	"settings_text_1":"EoC Cat Sword %",
@@ -2475,7 +2480,6 @@
 	"settings_button_text_0":"ERASE DATA",
 	"settings_button_text_1":"FULLSCREEN",
 	"settings_button_text_2":"NUMBER FORMATTING",
-	"settings_erase_save_choice_0":"YES",
-	"settings_erase_save_choice_1":"NO",
+    "settings_button_text_3":"DONT SHOW CAT REMOVE CONFIRMATION",
 	"settings_erase_save_warning":"Are you sure you want to erease your save ?\n(It will delete all your added cats and close the program)"
 }

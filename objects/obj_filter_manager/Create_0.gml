@@ -385,6 +385,8 @@ buttons = {
             global.gui_layer = 0
             global.gui_wait = 5
             
+            sound_click_play()
+            obj_manager.info.current_page = 0
             obj_manager.get_menu_cats()
             
             instance_destroy(_caller)
