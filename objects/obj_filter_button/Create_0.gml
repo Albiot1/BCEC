@@ -3,6 +3,8 @@ onbutton = false
 size = [0,48]
 buffer = -1
 update = function (){
+    draw_set_font(fnt_bc_small)
+    
     var _txt = "FILTER"
     var _txt_w = string_width(_txt)+32
     size[0] = _txt_w

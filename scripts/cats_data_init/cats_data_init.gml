@@ -8013,7 +8013,7 @@ data.cats.volley_cat = {
 		dmg:[160,200,200],
 		atk_spd:[81,81,81],
 		range:[375,375,375],
-		long_dist_range:[ [250,450],[250,450] ],
+		long_dist_range:[ [250,450],[250,450],[250,450] ],
 		spd:[10,10,10],
 		knockback:[3,3,3],
 		recharge:[500,500,500],

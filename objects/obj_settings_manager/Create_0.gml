@@ -9,9 +9,9 @@ window.update = function (){
     surface_set_target(window.surface)
     draw_sprite_stretched(spr_back_wood,0,0,0,window.size[0],window.size[1])
     
-    draw_set_font(fnt_big) draw_set_valign(fa_middle) draw_set_halign(fa_center)
+    draw_set_font(fnt_bc) draw_set_valign(fa_middle) draw_set_halign(fa_center)
     draw_text_outline(600,16,c_black,c_white,get_translation("settings_top_text"))
-    draw_set_font(fnt_general) draw_set_valign(0) draw_set_halign(0)
+    draw_set_font(fnt_bc_small) draw_set_valign(0) draw_set_halign(0)
     
     surface_reset_target()
     window.buffer = surface_to_buffer(window.surface)
@@ -40,7 +40,7 @@ input_boxes.offset = [0,24]
 input_boxes.pos = []
 input_boxes.row = [0,0,0,0,0,0,1,1]
 input_boxes.active = [false,false,false,false,false,false,false,false]
-input_boxes.size = [64,24]
+input_boxes.size = [64,28]
 input_boxes.mouse_on = [false,false,false,false,false,false,false,false]
 input_boxes.text = [get_translation("settings_text_0"),get_translation("settings_text_1"),get_translation("settings_text_2"),get_translation("settings_text_3"),get_translation("settings_text_4"),get_translation("settings_text_5"),get_translation("settings_text_6"),get_translation("settings_text_7")]
 input_boxes.value_id = ["cat_shield","cat_sword","anti_alien_power","anti_alien_starred_power","itf_fruits","cotc_fruits","research","accounting"]
@@ -126,7 +126,7 @@ input_boxes.step = function (){
         var _on_box = point_in_rectangle(mouse_x,mouse_y,_mx,_my,_mx+_size[0],_my+_size[1]) and global.gui_layer == 1 and global.gui_wait == 0
         
         if _active==true{
-            keyboard_string = string_copy(keyboard_string,0,6)
+            keyboard_string = string_copy(keyboard_string,0,4)
         }
         
         if (keyboard_check_pressed(vk_enter) and global.gui_layer == 1 and global.gui_wait == 0) or (!_on_box and mouse_check_button_pressed(mb_left)){
@@ -219,7 +219,7 @@ input_boxes.draw = function (){
         
         
         if _active==false{
-            draw_text_outline(_x+_pos[0]+5,_y+_pos[1],c_black,COLOR_LEVEL,_data_old)
+            draw_text_outline(_x+_pos[0]+5,_y+_pos[1]-2,c_black,COLOR_LEVEL,_data_old)
         }
         else if _active==true{
             var _time = abs(sin(current_time/200)) 
@@ -228,7 +228,7 @@ input_boxes.draw = function (){
                 _sign = "|"
             }
                 
-            draw_text_outline(_x+_pos[0]+5,_y+_pos[1],c_black,COLOR_LEVEL,keyboard_string+_sign)
+            draw_text_outline(_x+_pos[0]+5,_y+_pos[1]-2,c_black,COLOR_LEVEL,keyboard_string+_sign)
         }
     }
     
@@ -369,7 +369,7 @@ buttons.draw = function (){
             }
         }
         if i == 2 {
-            draw_text(_x+_w+16,_y+8,$"{number_format_selected(1500)}  {number_format_selected(25520)}\n{number_format_selected(1000000)}   {number_format_selected(1251002)}")
+            draw_text(_x+_w+16,_y+8,$"{number_format_selected(1500)}  {number_format_selected(2550)}\n{number_format_selected(100000)}   {number_format_selected(125002)}")
         }
     }
 }
@@ -380,6 +380,7 @@ togglables = {}
 togglables.pos = []
 togglables.mouse_on = []
 togglables.text_width = []
+togglables.text_height = []
 togglables.toggled = []
 togglables.value_id = []
 togglables.height = 15
@@ -394,11 +395,12 @@ togglables.add = function (_x,_y,_text,_value_id){
     array_push(togglables.toggled,global.save_settings[$ _value_id])
     
     var _surf = surface_create(string_width(_text)+4,string_height(_text)+4)
-    array_push(togglables.text_width,string_width(_text)+2)
+    array_push(togglables.text_width,string_width(_text)+4)
+    array_push(togglables.text_height,string_height(_text)+4)
     array_push(togglables.surface,_surf)
     
     surface_set_target(_surf)
-    draw_text_outline(2,2,c_black,c_white,_text)
+    draw_text_outline(2,-12,c_black,c_white,_text)
     surface_reset_target()
     
     array_push(togglables.buffer,surface_to_buffer(_surf))
@@ -413,7 +415,7 @@ togglables.step = function (){
         var _y = _pos[1]
         
         if !surface_exists(togglables.surface[i]){
-            togglables.surface[i] = surface_create(togglables.text_width[i],togglables.height)
+            togglables.surface[i] = surface_create(togglables.text_width[i],togglables.text_height[i])
             buffer_set_surface(togglables.buffer[i],togglables.surface[i],0)
         }
         

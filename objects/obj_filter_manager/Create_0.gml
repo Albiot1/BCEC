@@ -65,7 +65,7 @@ rarity_buttons = {
     },
     draw:function (){
         align_set(fa_middle,fa_center)
-        draw_set_font(fnt_big)
+        draw_set_font(fnt_bc)
         for (var i = 0; i < num; i++) {
         	var _x = main_x + posx[i]
             var _y = main_y + posy[i]
@@ -89,7 +89,7 @@ rarity_buttons = {
             
             
         }
-        draw_set_font(fnt_general)
+        draw_set_font(fnt_bc_small)
         align_reset()
     }
 }
@@ -240,7 +240,7 @@ icons = {
     },
     draw:function (){
         align_set(fa_middle,fa_center)
-        draw_set_font(fnt_big)
+        draw_set_font(fnt_bc)
         for (var i = 0; i < num; i++) {
         	var _x = main_x + posx[i]
             var _y = main_y + posy[i]
@@ -262,7 +262,7 @@ icons = {
             
             
         }
-        draw_set_font(fnt_general)
+        draw_set_font(fnt_bc_small)
         align_reset()
     }
 }

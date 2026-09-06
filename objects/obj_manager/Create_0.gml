@@ -306,6 +306,8 @@ settings_load()
 
 window_set_fullscreen(global.save_settings.fullscreen)
 
+draw_set_font(fnt_bc_small)
+
 instance_create_depth(1280-41-16,11,depth,obj_music_button)
 instance_create_depth(1280-41-16-41-16,11,depth,obj_sound_button)
 var _w = string_width("SETTINGS")+32
@@ -414,10 +416,14 @@ info.fruits.get = function (){
         
         draw_sprite_stretched(spr_info,0,0,0,info.fruits.size[0],info.fruits.size[1])
         
-        draw_set_font(fnt_big)
+        draw_set_font(fnt_bc)
         draw_set_halign(fa_center)
-        draw_text_outline(400,8,c_yellow,c_black,"FRUITS TO EVOLVE YOUR CATS")
+        SET_BLENDMODE_SURFACE_ALPHA
+        draw_text_outline(400,8,c_black,c_yellow,"FRUITS TO EVOLVE YOUR CATS",2)
+        gpu_set_blendmode(bm_normal)
         draw_set_halign(fa_left)
+        
+        draw_set_valign(fa_middle)
         
         var _order = [
         "purple_catfruit",
@@ -472,24 +478,27 @@ info.fruits.get = function (){
             
             var _str_w = string_width(string(_num))
             
-            gpu_set_blendmode_ext_sepalpha(bm_one,bm_inv_src_alpha,bm_one,bm_one)
+            SET_BLENDMODE_SURFACE_ALPHA
             draw_set_alpha(0.5)
             draw_roundrect_color(_x+32,_y+16,_x+80+_str_w+8,_y+28+16,c_black,c_black,0)
             draw_set_alpha(1)
-            gpu_set_blendmode(bm_normal)
+            
             
             draw_sprite_ext(_spr,0,_x,_y,0.5,0.5,0,c_white,1)
             
-
-            draw_text_outline(_x+80,_y+16,c_black,c_white,_num)
             
+            draw_text_outline(_x+80,_y+26,c_black,c_white,_num)
+            gpu_set_blendmode(bm_normal)
             _pos ++
             if _pos>=4{
                 _pos = 0
                 _row ++
             }
         }
-        draw_set_font(fnt_general)
+        
+        draw_set_valign(fa_top)
+        
+        draw_set_font(fnt_bc_small)
         surface_reset_target()
         
         info.fruits.buffer = surface_to_buffer(info.fruits.surface)
@@ -542,6 +551,7 @@ info.bottom_bar.search_buttons.pos = [ [-1,-1],[-1,-1] ]
 info.bottom_bar.search_buttons.mouse_on = [ false,false ]
 info.bottom_bar.search_buttons.action = [ open_fruits_info,open_stages_info ]
 info.bottom_bar.update = function (){
+    draw_set_font(fnt_bc)
     
     for(var c=0;c<array_length(info.bottom_bar.surfaces);c++){
         surface_free(info.bottom_bar.surfaces[c])
@@ -551,12 +561,12 @@ info.bottom_bar.update = function (){
         buffer_delete(info.bottom_bar.buffers[c])
     }
     
-    var _fruits_text = $"FRUITS TO EVO."
-    var _stages_text = $"STAGES TO EVO."
+    var _fruits_text = get_translation("bottom_bar_fruits")
+    var _stages_text = get_translation("bottom_bar_stages")
     
     
     var _w = string_width( _fruits_text )
-    info.bottom_bar.surfaces[0] = surface_create(160+32+_w,64)
+    info.bottom_bar.surfaces[0] = surface_create(128+_w,64)
     info.bottom_bar.widths[0] = surface_get_width(info.bottom_bar.surfaces[0])
     
     surface_set_target(info.bottom_bar.surfaces[0])
@@ -567,9 +577,9 @@ info.bottom_bar.update = function (){
     draw_sprite_ext(spr_seed_yellow,0,0+48,0,0.5,0.5,0,c_white,1)
     draw_sprite_ext(spr_seed_purple,0,0+64,0,0.5,0.5,0,c_white,1)
     
-    draw_set_font(fnt_big)
+
     draw_set_valign(fa_middle)
-    draw_text_outline(16+32+64,0+32,c_black,c_white,_fruits_text)
+    draw_text_outline(128,0+28,c_black,c_white,_fruits_text)
     
     surface_reset_target()
     
@@ -581,16 +591,17 @@ info.bottom_bar.update = function (){
     
     surface_set_target(info.bottom_bar.surfaces[1])
     draw_clear_alpha(c_white,0)
-    draw_text_outline(0,0+32,c_black,c_white,_stages_text)
+    draw_text_outline(0,0+28,c_black,c_white,_stages_text)
     surface_reset_target()
     
     info.bottom_bar.buffers[1] = surface_to_buffer(info.bottom_bar.surfaces[1])
     
     align_reset()
-    draw_set_font(fnt_general)
     
     info.bottom_bar.search_buttons.pos[0] = [ info.bottom_bar.widths[0]+8,704+6-48 ]
-    info.bottom_bar.search_buttons.pos[1] = [ 1280-info.bottom_bar.widths[1]-8-52-32,704+6-48 ]
+    info.bottom_bar.search_buttons.pos[1] = [ 1280-info.bottom_bar.widths[1]-8-52-16,704+6-48 ]
+    
+    draw_set_font(fnt_bc_small)
 }
 info.bottom_bar.step = function (){
     if menu.state == M_STATES.ADDCATS
@@ -635,7 +646,7 @@ info.bottom_bar.draw = function (){
     if surface_exists(info.bottom_bar.surfaces[0])
     draw_surface(info.bottom_bar.surfaces[0],0,704-48)
     if surface_exists(info.bottom_bar.surfaces[1])
-    draw_surface(info.bottom_bar.surfaces[1],1280-info.bottom_bar.widths[1]-32,704-48)
+    draw_surface(info.bottom_bar.surfaces[1],1280-info.bottom_bar.widths[1]-16,704-48)
     
     var _pos = info.bottom_bar.search_buttons.pos[0]
     draw_sprite(spr_search,info.bottom_bar.search_buttons.mouse_on[0],_pos[0],_pos[1])
@@ -1002,7 +1013,7 @@ info.bottom_bar.update()
 
 #region TOP BUTTONS
 buttons = {}
-buttons.text = ["ADD CATS","ALL CATS"]
+buttons.text = [get_translation("top_button_add"),get_translation("top_button_all")]
 buttons.pos = []
 buttons.surf = []
 buttons.buffer = []
@@ -1017,7 +1028,7 @@ buttons.init = function (){
     //var _width_all = 0
     //var _position_start = 32
     //var _position_end = 0
-    draw_set_font(fnt_general)
+    draw_set_font(fnt_bc_small)
     
     var _start_pos = 32
     var _padding = 16
@@ -1107,11 +1118,11 @@ menu = {}
 menu.state = M_STATES.ALL
 menu.draw = function (){
     if array_length(global.current_cats)<=0{
-        draw_set_font(fnt_big)
+        draw_set_font(fnt_bc)
         align_set(fa_center,fa_middle)
-            draw_text_outline(1280/2,720/2,c_black,c_white,"NO CATS ADDED OR ALL CATS EVOLVED")
+            draw_text_outline(1280/2,720/2,c_black,c_white,get_translation("no_cats_message"))
         align_reset()
-        draw_set_font(fnt_general)
+        draw_set_font(fnt_bc_small)
     }
 }
 

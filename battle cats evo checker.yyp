@@ -62,6 +62,8 @@
   },
   "name":"battle cats evo checker",
   "resources":[
+    {"id":{"name":"fnt_bc_small","path":"fonts/fnt_bc_small/fnt_bc_small.yy",},},
+    {"id":{"name":"fnt_bc","path":"fonts/fnt_bc/fnt_bc.yy",},},
     {"id":{"name":"fnt_big","path":"fonts/fnt_big/fnt_big.yy",},},
     {"id":{"name":"fnt_general","path":"fonts/fnt_general/fnt_general.yy",},},
     {"id":{"name":"obj_cats_stats","path":"objects/obj_cats_stats/obj_cats_stats.yy",},},

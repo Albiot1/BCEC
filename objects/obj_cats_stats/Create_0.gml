@@ -284,7 +284,7 @@ cat_render.form_buttons.width = []
 cat_render.level_boxes = {}
 cat_render.level_boxes.pos = []
 cat_render.level_boxes.active = [false,false]
-cat_render.level_boxes.size = [64,24]
+cat_render.level_boxes.size = [60,28]
 cat_render.level_boxes.mouse_on = [false,false]
 cat_render.clean = function (){
     if surface_exists(cat_render.surface){
@@ -320,11 +320,11 @@ cat_render.update = function (){
     draw_text_outline(_middle,16,c_black,c_white,stats.current_rarity)
     
     draw_set_valign(fa_top)
-    draw_text_outline_ext(_middle,48,c_black,c_white,stats.current_name,16,cat_render.size[0]-8)
+    draw_text_outline_ext(_middle,48,c_black,c_white,stats.current_name,24,cat_render.size[0]-8)
     
     draw_set_valign(fa_middle)
     
-    var _text_h = string_height_ext(stats.current_name,16,cat_render.size[0]-8)
+    var _text_h = string_height_ext(stats.current_name,24,cat_render.size[0]-8)
     
     var _x = _middle-55
     var _y = 48 + _text_h + 8
@@ -341,14 +341,17 @@ cat_render.update = function (){
     cat_render.form_buttons.pos = []
     cat_render.form_buttons.width = []
     for (var i = 0; i < stats.form_number; i++) {
-        array_push(cat_render.form_buttons.pos,[_x,_y])
+        var _mx = _middle
         var _bw = string_width(_form_names[i])+32
+        _mx -= _bw/2
+        array_push(cat_render.form_buttons.pos,[_mx,_y])
+        
         array_push(cat_render.form_buttons.width,_bw)
-        draw_button_special(_x,_y,_form_names[i],40)
+        draw_button_special(_mx,_y,_form_names[i],40)
         
         if cat_render.form_buttons.unlocked[i]==false{
         gpu_set_blendmode_ext_sepalpha(bm_one,bm_inv_src_alpha,bm_one,bm_one)
-            draw_sprite_stretched_ext(spr_button,0,_x,_y,_bw,40,c_black,0.5)
+            draw_sprite_stretched_ext(spr_button,0,_mx,_y,_bw,40,c_black,0.5)
         gpu_set_blendmode(bm_normal)
         }
         
@@ -359,31 +362,31 @@ cat_render.update = function (){
     
     draw_set_valign(fa_middle)
     
-    draw_text_outline(_x-32,_y,c_black,c_white,"LVL:")
+    draw_text_outline(_x-32,_y,c_black,c_white,"LVL")
     
     var _w = cat_render.level_boxes.size[0]
     var _h = cat_render.level_boxes.size[1]
     //draw_roundrect_color(_x,_y-_h/2,_x+_w,_y+_h/2,c_gray,c_gray,0)
-    draw_sprite_stretched(spr_input_box,0,_x,_y-_h/2,_w,_h)
+    draw_sprite_stretched(spr_input_box,0,_x+4,_y-_h/2,_w,_h)
     
     cat_render.level_boxes.pos = []
-    array_push( cat_render.level_boxes.pos,[_x,_y] )
+    array_push( cat_render.level_boxes.pos,[_x+4,_y] )
     
     draw_text_outline(_x+_w+6,_y,c_black,c_white,$"MAX({stats.lvl_max})")
     
     _y+=32
     
-    draw_text_outline(_x-32-8,_y,c_black,c_white,"+LVL:")
+    draw_text_outline(_x-32-8,_y,c_black,c_white,"+LVL")
     
     var _w = cat_render.level_boxes.size[0]
     var _h = cat_render.level_boxes.size[1]
     //draw_roundrect_color(_x,_y-_h/2,_x+_w,_y+_h/2,c_gray,c_gray,0)
     
-    draw_sprite_stretched(spr_input_box,0,_x,_y-_h/2,_w,_h)
+    draw_sprite_stretched(spr_input_box,0,_x+6,_y-_h/2,_w,_h)
     
-    array_push( cat_render.level_boxes.pos,[_x,_y] )
+    array_push( cat_render.level_boxes.pos,[_x+6,_y] )
     
-    draw_text_outline(_x+_w+6,_y,c_black,c_white,$"MAX({stats.lvl_plus_max})")
+    draw_text_outline(_x+_w+6+2,_y,c_black,c_white,$"MAX({stats.lvl_plus_max})")
     
     draw_set_valign(0)
     
@@ -456,7 +459,7 @@ cat_render.step = function (){
         }
         
         if _active==true{
-            keyboard_string = string_copy(keyboard_string,0,6)
+            keyboard_string = string_copy(keyboard_string,0,4)
         }
         
         if (keyboard_check_pressed(vk_enter) and global.gui_layer == 1 and global.gui_wait == 0) or (!_on_box and mouse_check_button_pressed(mb_left)){
@@ -577,7 +580,7 @@ cat_render.draw = function (){
             _lvl_now = stats.lvl_plus
         
         if _lboxes.active[i]==false{
-            draw_text_outline(_x+_lboxes.pos[i][0]+5,_y+_lboxes.pos[i][1],c_black,COLOR_LEVEL,_lvl_now)
+            draw_text_outline(_x+_lboxes.pos[i][0]+5,_y+_lboxes.pos[i][1]-2,c_black,COLOR_LEVEL,_lvl_now)
         }
         else if _lboxes.active[i]==true{
             var _time = abs(sin(current_time/200))
@@ -586,7 +589,7 @@ cat_render.draw = function (){
                 _sign = "|"
             }
                 
-            draw_text_outline(_x+_lboxes.pos[i][0]+5,_y+_lboxes.pos[i][1],c_black,COLOR_LEVEL,keyboard_string+_sign)
+            draw_text_outline(_x+_lboxes.pos[i][0]+5,_y+_lboxes.pos[i][1]-2,c_black,COLOR_LEVEL,keyboard_string+_sign)
         }
     }
     
@@ -622,46 +625,45 @@ stats_render.update = function (){
     
     var _y = 16
     var _x = 4
-    
     draw_text_outline(_x,_y,c_black,c_white,"Health: "+string(number_format_selected(stats.hp)))
-    _y+=24
+    _y+=28
     draw_text_outline(_x,_y,c_black,c_white,"Knockbacks: "+string(stats.knockback))
-    _y+=24
-    _y+=24
+    _y+=28
+    _y+=28
     
     draw_text_outline(_x,_y,c_black,c_white,"Attack: "+string(number_format_selected(stats.atk)))
-    _y+=24
+    _y+=28
     
     draw_text_outline(_x,_y,c_black,c_white,"Dps: "+string(number_format_selected(stats.dps)))
-    _y+=24
+    _y+=28
     
     if stats.multi_hit!=false{
         var _dmgs = array_to_separated_text(stats.multi_hit_dmgs,", ",true)
         var _str = "Multi hit: "+_dmgs
         
-        var _str_h = string_height_ext(_str,24,240)
+        var _str_h = string_height_ext(_str,28,240)
         
-        draw_text_outline_ext(_x,_y,c_black,c_white,_str,24,240)
+        draw_text_outline_ext(_x,_y,c_black,c_white,_str,28,240)
         _y+=_str_h+10
     }
     
     draw_text_outline(_x,_y,c_black,c_white,"Attack spd: "+string(floor(stats.atkspd))+"f"+$"/{floor(stats.atkspd)/FRAMERATE}s")    
-    _y+=24
+    _y+=28
     draw_text_outline(_x,_y,c_black,c_white,"Range: "+string(number_format_selected(stats.range)))
-    _y+=24
-    _y+=24
+    _y+=28
+    _y+=28
     
     draw_text_outline(_x,_y,c_black,c_white,"Movement spd: "+string(floor(stats.spd)))
-    _y+=24
+    _y+=28
     draw_text_outline(_x,_y,c_black,c_white,"Recharge: "+string(floor(stats.recharge))+"f"+$"/{floor(stats.recharge)/FRAMERATE}s")
-    _y+=24
+    _y+=28
     
 
-    _y+=24
+    _y+=28
     draw_text_outline(_x,_y,c_black,c_white,"Price CH1: "+string(number_format_selected(stats.price))+"$")
-    _y+=24
+    _y+=28
     draw_text_outline(_x,_y,c_black,c_white,"Price CH2: "+string(number_format_selected(stats.price*1.5))+"$")
-    _y+=24
+    _y+=28
     draw_text_outline(_x,_y,c_black,c_white,"Price CH3: "+string(number_format_selected(stats.price*2))+"$")
     
     surface_reset_target()
@@ -726,7 +728,7 @@ ability_render.current.update = function (_num){
     var _menu_type = ability_render.list.type[_num]
     var _npcost = ability_render.list.npcost[_num]
     
-    var _h = 40+20+16 + 20 + string_height_ext(_desc,16,350)
+    var _h = 40+20+16 + 20 + string_height_ext(_desc,28,350)
     var _w = 400
     
     ability_render.current.surf = surface_create(_w,_h)
@@ -737,11 +739,11 @@ ability_render.current.update = function (_num){
     draw_sprite_stretched(spr_info,0,0,32,_w,_h-32)
     
     draw_set_halign(fa_center)
-    draw_text_outline(200,6,c_black,c_white,_txt)
+    draw_text_outline(200,-5,c_black,c_white,_txt)
     
     var _desc_x = 200
     var _desc_y = 84
-    var _desc_yspace = 16
+    var _desc_yspace = 28
     var _desc_max_w = 350
     
     draw_text_outline_ext(_desc_x,_desc_y,c_black,c_white,_desc,_desc_yspace,_desc_max_w)
@@ -763,8 +765,9 @@ ability_render.current.update = function (_num){
     if _npcost!=-1{
         var _np_y = 0
         draw_sprite_ext(spr_npoints,0,0,_np_y+4,0.5,0.5,0,c_white,1)
-        draw_set_font(fnt_big)
-        draw_text_outline(54,_np_y+2,c_black,NPCOLOR,_npcost)
+        draw_set_font(fnt_bc)
+        //draw_text_colour(54,-4,_npcost,NPCOLOR,NPCOLOR,NPCOLOR,NPCOLOR,1)
+        draw_text_outline(54,-12,c_black,NPCOLOR,_npcost,2)
     }
     
     surface_reset_target()
@@ -1014,8 +1017,8 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
                 for (var i = 0; i < _num; i++) {
                     var _val = _multi_dmgs[i]
-                	_mystats.stats[2+i] = { value: variable_clone(_val), scales: true, multiplier: 0.3, base_multiplier: 1.5, damage: true }
-                    _info_build+="{"+$"stat{2+i}"+"}"
+                	_mystats.stats[3+i] = { value: variable_clone(_val), scales: true, multiplier: 0.3, base_multiplier: 1.5, damage: true }
+                    _info_build+="{"+$"stat{3+i}"+"}"
                     if i < _num-1{
                         _info_build+=","
                     }
@@ -1023,7 +1026,7 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     
                 _mystats.info+=_info_build
             }
-            
+            show_message(_mystats)
             
             
             _desc += return_info(_mystats,_target_plus)
@@ -1433,8 +1436,8 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
                 for (var i = 0; i < _num; i++) {
                     var _val = _multi_dmgs[i]
-                	_mystats.stats[1+i] = { value: variable_clone(_val), scales: true, multiplier: 1, base_multiplier: 3, damage: true }
-                    _info_build+="{"+$"stat{1+i}"+"}"
+                	_mystats.stats[2+i] = { value: variable_clone(_val), scales: true, multiplier: 1, base_multiplier: 3, damage: true }
+                    _info_build+="{"+$"stat{2+i}"+"}"
                     if i < _num-1{
                         _info_build+=","
                     }
@@ -1484,8 +1487,8 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 
                 for (var i = 0; i < _num; i++) {
                     var _val = _multi_dmgs[i]
-                	_mystats.stats[1+i] = { value: variable_clone(_val), scales: true, multiplier: 1, base_multiplier: 5, damage: true }
-                    _info_build+="{"+$"stat{1+i}"+"}"
+                	_mystats.stats[2+i] = { value: variable_clone(_val), scales: true, multiplier: 1, base_multiplier: 5, damage: true }
+                    _info_build+="{"+$"stat{2+i}"+"}"
                     if i < _num-1{
                         _info_build+=","
                     }
@@ -3685,10 +3688,10 @@ ability_render.update = function (){
     var _x = 24
     var _y = 24+64
     
-    draw_set_valign(fa_middle) draw_set_font(fnt_big)
-    draw_text_outline(_x,_y,c_black,COLOR_LEVEL,"TARGETING:")
+    draw_set_valign(fa_middle) draw_set_font(fnt_bc)
+    draw_text_outline(_x,_y-4,c_black,COLOR_LEVEL,"TARGETING:",2)
     _x += string_width("TARGETING:")+20
-    draw_set_valign(0) draw_set_font(fnt_general)
+    draw_set_valign(0) draw_set_font(fnt_bc_small)
     
     var _targ_icon = [spr_targeting_red,spr_targeting_floating, spr_targeting_dark,spr_targeting_metal,spr_targeting_angel,spr_targeting_alien,spr_targeting_zombie,spr_targeting_relic,spr_targeting_aku,spr_targeting_traitless]
     var _targ_value = [TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU,TARGETING.TRAITLESS]
@@ -3708,10 +3711,10 @@ ability_render.update = function (){
     var _x = 24
     var _y = 24
     
-    draw_set_valign(fa_middle) draw_set_font(fnt_big)
-    draw_text_outline(_x,_y,c_black,COLOR_LEVEL,"ATTACK TYPE:")
+    draw_set_valign(fa_middle) draw_set_font(fnt_bc)
+    draw_text_outline(_x,_y-4,c_black,COLOR_LEVEL,"ATTACK TYPE:",2)
     _x += string_width("ATTACK TYPE:")+20
-    draw_set_valign(0) draw_set_font(fnt_general)
+    draw_set_valign(0) draw_set_font(fnt_bc_small)
     
     _length = array_length(stats.attack_type)
     
@@ -3736,10 +3739,10 @@ ability_render.update = function (){
     _length = array_length(stats.effects)
     
     if _length>0{
-    draw_set_valign(fa_middle) draw_set_font(fnt_big)
-    draw_text_outline(_x,_y,c_black,COLOR_LEVEL,"EFFECTS:")
+    draw_set_valign(fa_middle) draw_set_font(fnt_bc)
+    draw_text_outline(_x,_y-4,c_black,COLOR_LEVEL,"EFFECTS:",2)
     _x += string_width("EFFECTS:")+20
-    draw_set_valign(0) draw_set_font(fnt_general)
+    draw_set_valign(0) draw_set_font(fnt_bc_small)
     }
     
     for (var i = 0; i < _length; i++) {
@@ -3774,10 +3777,10 @@ ability_render.update = function (){
     _length = array_length(stats.abilities)
     
     if _length>0{
-    draw_set_valign(fa_middle) draw_set_font(fnt_big)
-    draw_text_outline(_x,_y,c_black,COLOR_LEVEL,"ABILITIES:")
+    draw_set_valign(fa_middle) draw_set_font(fnt_bc)
+    draw_text_outline(_x,_y-4,c_black,COLOR_LEVEL,"ABILITIES:",2)
     _x += string_width("ABILITIES:")+20
-    draw_set_valign(0) draw_set_font(fnt_general)
+    draw_set_valign(0) draw_set_font(fnt_bc_small)
     }
     
     var _column = 0
@@ -3867,10 +3870,10 @@ ability_render.update = function (){
         _length = array_length(stats.talents)
         
         if _length>0{
-        draw_set_valign(fa_middle) draw_set_font(fnt_big)
-        draw_text_outline(_x,_y,c_black,COLOR_LEVEL,"TALENTS:")
+        draw_set_valign(fa_middle) draw_set_font(fnt_bc)
+        draw_text_outline(_x,_y-4,c_black,COLOR_LEVEL,"TALENTS:",2)
         _x += string_width("TALENTS:")+20
-        draw_set_valign(0) draw_set_font(fnt_general)
+        draw_set_valign(0) draw_set_font(fnt_bc_small)
         }
     
         _column = 0
@@ -4239,7 +4242,7 @@ evolve_render.pos = [200+32+250+51-43,84+400]
 evolve_render.size = [750,200]
 evolve_render.surface = -1
 evolve_render.buffer = -1
-evolve_render.button = { pos:[750/2,140],text:"Evolve",mouse_on:false }
+evolve_render.button = { pos:[750/2,140],text:get_translation("evolve_button"),mouse_on:false }
 evolve_render.clean = function (){
     if surface_exists(evolve_render.surface){
         surface_free(evolve_render.surface)
@@ -4254,10 +4257,10 @@ evolve_render.step = function (){
         buffer_set_surface(evolve_render.buffer,evolve_render.surface,0)
     }
     
-    draw_set_font(fnt_big)
+    draw_set_font(fnt_bc)
     var _btn = evolve_render.button
     var _btn_w = string_width(_btn.text)+32
-    draw_set_font(fnt_general)
+    draw_set_font(fnt_bc_small)
     
     if point_in_rectangle(mouse_x,mouse_y,evolve_render.pos[0]+_btn.pos[0]-_btn_w/2,evolve_render.pos[1]+_btn.pos[1],evolve_render.pos[0]+_btn.pos[0]+_btn_w/2,evolve_render.pos[1]+_btn.pos[1]+48){
         
@@ -4360,15 +4363,12 @@ evolve_render.update = function (){
         
         var _btn = evolve_render.button
 
-        draw_set_font(fnt_big)
+        draw_set_font(fnt_bc)
         
         var _strw = string_width(_btn.text)+32
         
-        draw_button_special(_btn.pos[0]-_strw/2,_btn.pos[1],_btn.text)
+        draw_button_special(_btn.pos[0]-_strw/2,_btn.pos[1],_btn.text,,,4)
         
-        if DEBUG_STAT_RECTANGLES{
-            draw_rectangle(_btn.pos[0]-_strw/2,_btn.pos[1],_btn.pos[0]+_strw/2,_btn.pos[1]+48,1)
-        }
         
         var _evodata = mydata.evolutions
         var _evotype = _evodata.type[_form_number-1]
@@ -4394,10 +4394,10 @@ evolve_render.update = function (){
                     draw_sprite(_fruit_sprite,0,_px-64,_py-64)
                     
                     var _num = $"x{_fruit_number}"
-                    var _num_w = string_width(_num)+4
+                    var _num_w = string_width(_num)
                     var _num_h = string_height(_num)
                     draw_set_alpha(0.5)
-                    draw_roundrect_color(_px+4-_num_w/2,_py-_num_h/2+32,_px+4+_num_w/2,_py+32+_num_h/2,c_black,c_black,false)
+                    draw_roundrect_color(_px+2-_num_w/2,_py-_num_h/2+28+12+4,_px+2+_num_w/2+5,_py+28+_num_h/2,c_black,c_black,false)
                     draw_set_alpha(1)
 
                     draw_text_outline(_px+4,_py+32,c_black,c_white,_num)
@@ -4409,15 +4409,15 @@ evolve_render.update = function (){
                 
             break;
             case EVO_TYPE.STAGE:
-                align_set(fa_middle,fa_center)
+                align_set(fa_center,fa_middle)
                 var _stage = get_translation(_evovalue+"_main")
-                draw_text_outline(evolve_render.size[0]/2,evolve_render.size[1]/2-16,c_black,c_white,"Get from stage/(s):\n"+_stage)
+                draw_text_outline(evolve_render.size[0]/2,evolve_render.size[1]/2-32,c_black,c_white,"Get from stage/(s):\n"+_stage)
                 align_reset()
             break;
             case EVO_TYPE.WIN_CHAPTER:
-                align_set(fa_middle,fa_center)
+                align_set(fa_center,fa_middle)
                 var _chapter = get_translation("chapter_"+_evovalue)
-                draw_text_outline(evolve_render.size[0]/2,evolve_render.size[1]/2-16,c_black,c_white,"Clear:\n"+_chapter)
+                draw_text_outline(evolve_render.size[0]/2,evolve_render.size[1]/2-32,c_black,c_white,"Clear:\n"+_chapter)
                 align_reset()
             break;
         }
@@ -4452,7 +4452,7 @@ evolve_render.update = function (){
             draw_set_valign(fa_top)
         }
         
-        draw_set_font(fnt_general)
+        draw_set_font(fnt_bc_small)
     }
     
     surface_reset_target()
@@ -4466,11 +4466,11 @@ evolve_render.draw = function (){
     if evolve_render.button.mouse_on == true{
         var _btn = evolve_render.button
     
-        draw_set_font(fnt_big)
+        draw_set_font(fnt_bc)
         var _strw = string_width(_btn.text)+32
     
         draw_sprite_stretched(spr_button,1,evolve_render.pos[0]+_btn.pos[0]-_strw/2,evolve_render.pos[1]+_btn.pos[1],_strw,48)
-        draw_set_font(fnt_general)
+        draw_set_font(fnt_bc_small)
     }
 }
 

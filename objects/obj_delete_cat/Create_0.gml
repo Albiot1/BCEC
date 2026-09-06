@@ -147,28 +147,33 @@ window.draw = function (){
     }
 }
 window.init = function (){
-    var _height = string_height_ext(texts[0],12,180) 
+    var _height = string_height_ext(texts[0],28,180) 
     window.height = _height + 116
     
     window.surface = surface_create(window.width,window.height)
     surface_set_target(window.surface)
     draw_sprite_stretched(spr_back_wood,0,0,0,window.width,window.height)
-    var _pos = window.main_text_pos
-    draw_text_outline_ext(_pos[0],_pos[1],c_black,c_red,texts[0],12,180)
     
-    window.no_pos = [ window.width-64,_pos[1]+_height+8 ]
+    SET_BLENDMODE_SURFACE_ALPHA
+    
+    var _pos = window.main_text_pos
+    draw_text_outline_ext(_pos[0],_pos[1]-16,c_black,c_red,texts[0],28,180)
+    
+    window.no_pos = [ window.width-64,_pos[1]+_height+8+24+12 ]
     
     draw_button_special(window.no_pos[0],window.no_pos[1],texts[3])
     
-    window.yes_pos = [ 24,_pos[1]+_height+8 ]
+    window.yes_pos = [ 10,_pos[1]+_height+8+24+12 ]
     
     draw_button_special(window.yes_pos[0],window.yes_pos[1],texts[2])
     
-    window.toggle_pos = [ 16 ,_pos[1]+24+64+8+12 ]
+    window.toggle_pos = [ 16 ,_pos[1]+24+64+8+24 ]
     window.toggle_box_pos = [ window.toggle_pos[0] + string_width(texts[1]) + 4, window.toggle_pos[1] - 4 ]
     
-    draw_text_outline(window.toggle_pos[0],window.toggle_pos[1],c_black,c_white,texts[1])
+    draw_text_outline(window.toggle_pos[0],window.toggle_pos[1]-12,c_black,c_white,texts[1])
     window.toggle_width = string_width(texts[1]) + 4 + 29
+    
+    gpu_set_blendmode(bm_normal)
     
     surface_reset_target()
     
