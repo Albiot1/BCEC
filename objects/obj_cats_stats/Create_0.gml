@@ -304,6 +304,8 @@ cat_render.update = function (){
     if buffer_exists(cat_render.buffer)
         buffer_delete(cat_render.buffer)
     
+    draw_set_font(fnt_bc_small)
+    
     cat_render.surface = surface_create(cat_render.size[0],cat_render.size[1])
     
     surface_set_target(cat_render.surface)
@@ -611,6 +613,8 @@ stats_render.clean = function (){
 }
 stats_render.update = function (){
     
+    draw_set_font(fnt_bc_small)
+    
     surface_free(stats_render.surface)
     if buffer_exists(stats_render.buffer)
         buffer_delete(stats_render.buffer)
@@ -731,6 +735,10 @@ ability_render.current.update = function (_num){
     var _h = 40+20+16 + 20 + string_height_ext(_desc,28,350)
     var _w = 400
     
+    var _ico_x = []
+    var _ico_y = []
+    var _ico_spr = []
+    
     ability_render.current.surf = surface_create(_w,_h)
     
     surface_set_target(ability_render.current.surf)
@@ -746,19 +754,42 @@ ability_render.current.update = function (_num){
     var _desc_yspace = 28
     var _desc_max_w = 350
     
-    draw_text_outline_ext(_desc_x,_desc_y,c_black,c_white,_desc,_desc_yspace,_desc_max_w)
-    
     var _fix_x = 0
     if _ico_targ!=-1{
-        _fix_x = -24
-        var _myx = 200-20+24
-        if _ico == -1
-            _myx -= 24
-        draw_sprite(_ico_targ,0,_myx,20+16+6)
+        if is_array(_ico_targ){
+            var _len = array_length(_ico_targ)
+            
+            var _myx = 200 - 20 - (24 * (_len-1))/2 - 24
+            var _myy = 20 + 16 + 6
+            
+            for (var g = 0; g < _len+1; g++) {
+            	if g == 0{
+                    draw_sprite(_ico,0,_myx,_myy)
+                    _myx += 48
+                }
+                else{
+                    draw_sprite(_ico_targ[g-1],0,_myx,_myy)
+                    _myx += 24
+                }
+            }
+        }
+        else {
+            _fix_x = -24
+            var _myx = 200-20+24
+            if _ico == -1
+                _myx -= 24
+            draw_sprite(_ico_targ,0,_myx,20+16+6)
+            
+            if _ico != -1
+                draw_sprite(_ico,0,200-20+_fix_x,20+16+6)
+        }
+    }
+    else{
+        if _ico != -1
+            draw_sprite(_ico,0,200-20+_fix_x,20+16+6)
     }
     
-    if _ico != -1
-    draw_sprite(_ico,0,200-20+_fix_x,20+16+6)
+    draw_text_outline_ext(_desc_x,_desc_y,c_black,c_white,_desc,_desc_yspace,_desc_max_w)
     
     draw_set_halign(0)
     
@@ -809,18 +840,15 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             var _talent_data = { unlocked:mydata.talent_unlocked[_data_num], level:mydata.talent_level[_data_num] }
             
             if variable_struct_exists(_mydata,"add_targeting"){
-                var _targ = -1
-                switch (_mydata.add_targeting) {
-                	case TARGETING.AKU: _icon_target = spr_targeting_aku break;
-                    case TARGETING.ALIEN: _icon_target = spr_targeting_alien break;
-                    case TARGETING.ANGEL: _icon_target = spr_targeting_angel break;
-                    case TARGETING.BLACK: _icon_target = spr_targeting_dark break;
-                    case TARGETING.FLOATING: _icon_target = spr_targeting_floating break;
-                    case TARGETING.METAL: _icon_target = spr_targeting_metal break;
-                    case TARGETING.RED: _icon_target = spr_targeting_red break;
-                    case TARGETING.RELIC: _icon_target = spr_targeting_relic break;
-                    case TARGETING.TRAITLESS: _icon_target = spr_targeting_traitless break;
-                    case TARGETING.ZOMBIE: _icon_target = spr_targeting_zombie break;
+
+                if is_array(_mydata.add_targeting){
+                    _icon_target = []
+                    for (var i = 0; i < array_length(_mydata.add_targeting); i++) {
+                    	_icon_target[i] = scr_get_targeting_icon(_mydata.add_targeting[i])
+                    }
+                }
+                else{
+                    _icon_target = scr_get_targeting_icon(_mydata.add_targeting)
                 }
                 
                 _target_plus = _mydata.add_targeting
@@ -1007,7 +1035,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 ],
                 info: get_translation("effect_strong_against_stats")
             }
-        
             
             if stats.multi_hit != false{
                 var _multi_dmgs = stats.multi_hit_dmgs
@@ -1026,8 +1053,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     
                 _mystats.info+=_info_build
             }
-            show_message(_mystats)
-            
             
             _desc += return_info(_mystats,_target_plus)
         break;
@@ -1540,6 +1565,7 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 var _stat_targets = stats.targetings
                 
                 if _target_plus != undefined{
+                    show_message(_target_plus)
                     if is_array(_target_plus){
                         for (var t = 0; t < array_length(_target_plus); t++) {
                         	array_push(_stat_targets,_target_plus[t])

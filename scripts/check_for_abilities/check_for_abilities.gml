@@ -67,6 +67,21 @@ function has_targeting(_targeting,_check_talent = true){
                     _found = true
                     break;
                 }
+                if variable_struct_exists(stats.talent_data[i],"add_targeting"){
+                    var _targs = stats.talent_data[i].add_targeting
+                    if is_array(_targs){
+                        if array_contains(_targs,_targeting){
+                            _found = true
+                            break;
+                        }
+                    }
+                    else {
+                    	if _targs == _targeting{
+                            _found = true
+                            break;
+                        }
+                    }
+                }
             }
         }
     }

@@ -99,6 +99,7 @@
     {"id":{"name":"return_info","path":"scripts/return_info/return_info.yy",},},
     {"id":{"name":"save_json","path":"scripts/save_json/save_json.yy",},},
     {"id":{"name":"save_value_check","path":"scripts/save_value_check/save_value_check.yy",},},
+    {"id":{"name":"scr_get_targeting_icon","path":"scripts/scr_get_targeting_icon/scr_get_targeting_icon.yy",},},
     {"id":{"name":"set_resolution","path":"scripts/set_resolution/set_resolution.yy",},},
     {"id":{"name":"settings_load","path":"scripts/settings_load/settings_load.yy",},},
     {"id":{"name":"settings_save","path":"scripts/settings_save/settings_save.yy",},},

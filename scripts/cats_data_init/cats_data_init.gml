@@ -16054,7 +16054,7 @@ data.cats.mola_king = {
 			abilities:[EFFECT.DODGE,ABILITY.MINI_SURGE,ABILITY.ATK_UP],
 			talent_type:[0,0,0],
 			data:[
-				{ time : 30, total_cost : 285, chance : 17, chance_improv_max : 80, chance_improv : 7 },
+				{ time : 30, total_cost : 285, chance : 17, chance_improv_max : 80, chance_improv : 7, add_targeting: TARGETING_ALL },
 				{ lvl : 5, distance : [ 500,500 ], chance : 28, chance_improv_max : 100, chance_improv : 8, total_cost : 235 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 }
 			]
@@ -20947,7 +20947,7 @@ data.cats.hades_the_punisher = {
 			talent_type:[0,0,0,0,0,1,1],
 			data:[
 				{ total_cost : 100 },
-				{ time : 3, chance : 20, total_cost : 285, time_improv_max : 30, time_improv : 3, add_targeting : TARGETING.RELIC },
+				{ time : 3, chance : 20, total_cost : 285, time_improv_max : 30, time_improv : 3 },
 				{ time : 3, chance : 20, total_cost : 285, time_improv_max : 30, time_improv : 3, weaken : 50, add_targeting : TARGETING.RELIC },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
