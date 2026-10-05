@@ -942,7 +942,7 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _desc = get_translation("attack_single_desc")
         break;
         case ATTACKS.AREA:
-            _icon = spr_single_attack
+            _icon = spr_area_attack
             _txt = get_translation("attack_area_name")
             _desc = get_translation("attack_area_desc")
         break;
@@ -981,7 +981,7 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             var _len_second = false
         
             if _len>0{
-                if is_array(stats.omni_range){
+                if is_array(stats.omni_range[0]){
                     _len_second = true
                 }
             }
@@ -1565,7 +1565,6 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 var _stat_targets = stats.targetings
                 
                 if _target_plus != undefined{
-                    show_message(_target_plus)
                     if is_array(_target_plus){
                         for (var t = 0; t < array_length(_target_plus); t++) {
                         	array_push(_stat_targets,_target_plus[t])
@@ -2040,37 +2039,45 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     }
                 }
                 
-                if variable_struct_exists(_mydata,"on_x_hit") and stats.multi_hit != false{
-                    var _multi_dmgs = stats.multi_hit_dmgs
-                    _desc += text_format_insert( get_translation("ability_critical_stats_multi_xhit"),[_chance,number_format_selected(_multi_dmgs[_mydata.on_x_hit-1] * 2)] )
-                }
-                else if stats.multi_hit == false{
-                	_desc += text_format_insert( get_translation("ability_critical_stats"),[_chance,number_format_selected(_crit_dmg)] )
-                }
-                
-            }
-        
-            if stats.multi_hit != false{
-                var _multi_dmgs = stats.multi_hit_dmgs
-                var _num = array_length(_multi_dmgs)
-
-                var _info_build = ""
-                
-                if variable_struct_exists(_mydata,"on_x_hit"){
-                    _info_build = text_format_insert( get_translation("ability_critical_onxhit"),[number_with_ending(_mydata.on_x_hit)] )
-                }
-                else{
-                    _info_build = "\nMulti hit damage: "
-                    for (var i = 0; i < _num; i++) {
-                        var _val = number_format_selected(_multi_dmgs[i] * 2)
-                        _info_build+=$"{_val}"
-                        if i < _num-1{
-                            _info_build+=","
+                if stats.multi_hit{
+                    if variable_struct_exists(_mydata,"on_x_hit"){
+                        var _multi_dmgs = stats.multi_hit_dmgs
+                        _desc += text_format_insert( get_translation("ability_critical_stats_multi_xhit"),[_chance,number_format_selected(_multi_dmgs[_mydata.on_x_hit-1] * 2)] )
+                    }
+                    else {
+                        var _multi_dmgs = stats.multi_hit_dmgs
+                        
+                        var _diffrent_damages = false
+                        
+                        var _ddmg = _multi_dmgs[0]
+                        for (var l = 1; l < array_length(_multi_dmgs); l++) {
+                        	if _ddmg != _multi_dmgs[l]{
+                                _diffrent_damages = true
+                                break;
+                            }
+                        }
+                        
+                        if _diffrent_damages{
+                            var _damages = ""
+                            
+                            for (var l = 0; l < array_length(_multi_dmgs); l++) {
+                            	_damages += number_format_selected(_multi_dmgs[l] * 2)
+                                if l < array_length(_multi_dmgs)-1{
+                                    _damages += " , "
+                                }
+                            }
+                            
+                            _desc += text_format_insert( get_translation("ability_critical_stats_multi_xhit"),[_chance,_damages] )
+                        }
+                        else {
+                        	_desc += text_format_insert( get_translation("ability_critical_stats_multi_xhit"),[_chance,number_format_selected(_multi_dmgs[0] * 2)] )
                         }
                     }
                 }
-                    
-                _desc += _info_build
+                else{
+                	_desc += text_format_insert( get_translation("ability_critical_stats"),[_chance,number_format_selected(_crit_dmg)] )
+                }
+                
             }
         
             if (_is_talent and _has_effect[0]){
@@ -2322,7 +2329,7 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             
             _icon = spr_savage_blow
             _txt = get_translation("ability_savage_blow_name")
-            var _savage_dmg = stats.atk*_mydata.percent
+            var _savage_dmg = stats.atk*(_mydata.percent/100)
 
             var _has_talent = has_talent(ABILITY.SAVAGE_BLOW,true,true)
             var _has_effect = has_effect(ABILITY.SAVAGE_BLOW)
@@ -2355,16 +2362,17 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                     _chance += _has_talent[1].start_chance_improv
                 }
                 
-                if stats.multi_hit == false{
+                //if stats.multi_hit == false{
                     _desc += text_format_insert( get_translation("ability_savage_blow_stats"),[_chance,number_format_selected(_savage_dmg)] )
-                }
+                //}
+                /*
                 else{
                     
                     if variable_struct_exists(_mydata,"on_x_hit"){
                         _desc += text_format_insert( get_translation("ability_savage_blow_stats_xhit"),[_chance,number_with_ending(_mydata.on_x_hit)] )
                         
                         for (var i = 0; i < array_length(_mydata.on_x_hit); i++) {
-                        	_desc += $"{number_format_selected(stats.multi_hit_dmgs[_mydata.on_x_hit[i]]*3)}"
+                        	_desc += $"{number_format_selected(stats.multi_hit_dmgs[_mydata.on_x_hit[i]]*_mydata.percent/100)}"
                         }
                         
                     }
@@ -2372,11 +2380,12 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                         _desc += text_format_insert( get_translation("ability_savage_blow_stats_multihit"),[_chance] )
                         
                         for (var i = 0; i < array_length(stats.multi_hit_dmgs); i++) {
-                        	_desc += $"{number_format_selected(stats.multi_hit_dmgs[i]*3)}"
+                        	_desc += $"{number_format_selected(stats.multi_hit_dmgs[i]*_mydata.percent/100)}"
                         }
                     }
                     
                 }
+                */
             }
         
             if (_is_talent and _has_effect[0]){
@@ -4595,5 +4604,11 @@ top_buttons.clean = function (){
 #endregion
 
 combos_render = {}
+combos_render.pos = [40,78]
+combos_render.size = [1200,604]
+combos_render.surface = -1
+combos_render.buffer = -1
+combos_render.page = 0
+combos_render.max_page = 0
 
 usage_render = {}

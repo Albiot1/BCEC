@@ -167,7 +167,7 @@ window.init = function (){
     
     draw_button_special(window.yes_pos[0],window.yes_pos[1],texts[2])
     
-    window.toggle_pos = [ 16 ,_pos[1]+24+64+8+24 ]
+    window.toggle_pos = [ 12 ,_pos[1]+24+64+8+24 ]
     window.toggle_box_pos = [ window.toggle_pos[0] + string_width(texts[1]) + 4, window.toggle_pos[1] - 4 ]
     
     draw_text_outline(window.toggle_pos[0],window.toggle_pos[1]-12,c_black,c_white,texts[1])

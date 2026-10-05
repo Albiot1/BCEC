@@ -1,0 +1,52 @@
+add names / descriptions for filter abilities
+align filter buttons better
+add drain immunity
+add all combos
+add new cats
+add new tf's
+add damage vs x_traits as like TRAIT EFFECTIVE STATS
+add animations button leater
+if there is no
+    usage info hide usage button
+    combos info hide combos button
+order units like in cat guide and maybe make it selectable (BY ID, BY GUIDE)
+
+add stages that are needed for evolutions
+add all legend of stories stages and story stages
+add enemy guide
+add 1v1 battle sim
+
+add orb slots
+
+you would have slots which you could select
+and then ui like
+
+TOP -
+   Orb type   [X]
+[NORMAL] [DOJO]
+TRAIT
+EFFECT
+RANK
+[DONE]  [REMOVE] (if already equipped)
+
+add max average damage (which will count surges etc)
+
+leater make android release
+then add battle cats like borders
+
+conjure being its own unit which you can open for full stats
+
+
+making and saving decks
+which could be shared with image or code
+
+stages would have deck recommendations
+
+precached
+    - unit stats
+    - unit combos
+
+
+leater when enemies are added
+split texture pages into
+CATS/ENEMIES/UI/BACKGROUNDS

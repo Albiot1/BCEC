@@ -1,8 +1,8 @@
 draw_sprite_stretched(spr_back_wood,0,270-8,48-12,740,384+32+150+32+48)
 
 rarity_buttons.draw()
-icons.draw()
 buttons.draw()
+icons.draw()
 
 var _x = 270-12+740-20-8
 var _y = 48-12-20

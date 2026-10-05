@@ -78,7 +78,7 @@ rarity_buttons = {
             
             draw_sprite(spr_button_1,0,_x,_y)
             
-            draw_text(_x+85,_y+27,_txt)
+            draw_text(_x+85,_y+22,_txt)
             
             if !_act
                 shader_reset()
@@ -119,6 +119,8 @@ icons = {
     mouseon:[],
     type:[],
     sprite:[],
+    name:[],
+    desc:[],
     num:0,
     update: function (){
         for (var i = 0; i < num; i++) {
@@ -141,13 +143,22 @@ icons = {
             }
         }
     },
-    add:function (_x,_y,_value,_type,_sprite){
+    add:function (_x,_y,_value,_type,_sprite,_text_id = undefined){
         array_push(posx,_x)
         array_push(posy,_y)
         array_push(value,_value)
         array_push(sprite,_sprite)
         array_push(mouseon,false)
         array_push(type,_type)
+        if _text_id == undefined{
+            array_push(name, -1 )
+            array_push(desc, -1 )
+        }
+        else {
+            array_push(name, get_translation(_text_id+"_name") )
+            array_push(desc, get_translation(_text_id+"_desc") )
+        }
+        
         
         var _array = []
         
@@ -283,91 +294,91 @@ icons.add(_dist * 9,0,TARGETING.TRAITLESS,ICON_TYPE.TARGETING,spr_targeting_trai
 //
 
 //atk types
-icons.add(0,_dist,ATTACKS.SINGLE,ICON_TYPE.ATTACK_TYPE,spr_single_attack)
-icons.add(_dist,_dist,ATTACKS.AREA,ICON_TYPE.ATTACK_TYPE,spr_area_attack)
-icons.add(_dist*2,_dist,ATTACKS.LONG,ICON_TYPE.ATTACK_TYPE,spr_long_range)
-icons.add(_dist*3,_dist,ATTACKS.OMNI,ICON_TYPE.ATTACK_TYPE,spr_omni_strike)
-icons.add(_dist*4,_dist,ATTACKS.MULTI_HIT,ICON_TYPE.ATTACK_TYPE,spr_multi_hit)
+icons.add(0,_dist,ATTACKS.SINGLE,ICON_TYPE.ATTACK_TYPE,spr_single_attack,"attack_single")
+icons.add(_dist,_dist,ATTACKS.AREA,ICON_TYPE.ATTACK_TYPE,spr_area_attack,"attack_area")
+icons.add(_dist*2,_dist,ATTACKS.LONG,ICON_TYPE.ATTACK_TYPE,spr_long_range,"attack_long")
+icons.add(_dist*3,_dist,ATTACKS.OMNI,ICON_TYPE.ATTACK_TYPE,spr_omni_strike,"attack_omni")
+icons.add(_dist*4,_dist,ATTACKS.MULTI_HIT,ICON_TYPE.ATTACK_TYPE,spr_multi_hit,"attack_multi_hit")
 //
 
 //effects
-icons.add(0,_dist*2,EFFECT.WEAKEN,ICON_TYPE.EFFECT,spr_weaken)
-icons.add(_dist,_dist*2,EFFECT.FREEZE,ICON_TYPE.EFFECT,spr_freeze)
-icons.add(_dist*2,_dist*2,EFFECT.SLOW,ICON_TYPE.EFFECT,spr_slow)
-icons.add(_dist*3,_dist*2,EFFECT.TARGET_ONLY,ICON_TYPE.EFFECT,spr_attack_only)
-icons.add(_dist*4,_dist*2,EFFECT.STRONG,ICON_TYPE.EFFECT,spr_strong_against)
-icons.add(_dist*5,_dist*2,EFFECT.RESISTANT,ICON_TYPE.EFFECT,spr_resistant)
-icons.add(_dist*6,_dist*2,EFFECT.ULTRA_TOUGH,ICON_TYPE.EFFECT,spr_insanly_tough)
-icons.add(_dist*7,_dist*2,EFFECT.MASSIVE_DMG,ICON_TYPE.EFFECT,spr_massive_damage)
-icons.add(_dist*8,_dist*2,EFFECT.INSANE_DMG,ICON_TYPE.EFFECT,spr_insane_damage)
-icons.add(_dist*9,_dist*2,EFFECT.KNOCKBACK,ICON_TYPE.EFFECT,spr_knockback)
-icons.add(0,_dist*3,EFFECT.WARP,ICON_TYPE.EFFECT,spr_warp)
-icons.add(_dist,_dist*3,EFFECT.CURSE,ICON_TYPE.EFFECT,spr_curse)
-icons.add(_dist*2,_dist*3,EFFECT.DODGE,ICON_TYPE.EFFECT,spr_dodge_attack)
+icons.add(0,_dist*2,EFFECT.WEAKEN,ICON_TYPE.EFFECT,spr_weaken,"effect_weaken")
+icons.add(_dist,_dist*2,EFFECT.FREEZE,ICON_TYPE.EFFECT,spr_freeze,"effect_freeze")
+icons.add(_dist*2,_dist*2,EFFECT.SLOW,ICON_TYPE.EFFECT,spr_slow,"effect_slow")
+icons.add(_dist*3,_dist*2,EFFECT.TARGET_ONLY,ICON_TYPE.EFFECT,spr_attack_only,"effect_target_only")
+icons.add(_dist*4,_dist*2,EFFECT.STRONG,ICON_TYPE.EFFECT,spr_strong_against,"effect_strong_against")
+icons.add(_dist*5,_dist*2,EFFECT.RESISTANT,ICON_TYPE.EFFECT,spr_resistant,"effect_resist")
+icons.add(_dist*6,_dist*2,EFFECT.ULTRA_TOUGH,ICON_TYPE.EFFECT,spr_insanly_tough,"effect_though")
+icons.add(_dist*7,_dist*2,EFFECT.MASSIVE_DMG,ICON_TYPE.EFFECT,spr_massive_damage,"effect_massdmg")
+icons.add(_dist*8,_dist*2,EFFECT.INSANE_DMG,ICON_TYPE.EFFECT,spr_insane_damage,"effect_insadmg")
+icons.add(_dist*9,_dist*2,EFFECT.KNOCKBACK,ICON_TYPE.EFFECT,spr_knockback,"effect_knockback")
+icons.add(0,_dist*3,EFFECT.WARP,ICON_TYPE.EFFECT,spr_warp,"effect_warp")
+icons.add(_dist,_dist*3,EFFECT.CURSE,ICON_TYPE.EFFECT,spr_curse,"effect_curse")
+icons.add(_dist*2,_dist*3,EFFECT.DODGE,ICON_TYPE.EFFECT,spr_dodge_attack,"effect_dodge")
 //
 
 //abilities
-icons.add(0,_dist*4,ABILITY.STRENGTHEN,ICON_TYPE.ABILITY,spr_strengthen)
-icons.add(_dist,_dist*4,ABILITY.SURVIVE,ICON_TYPE.ABILITY,spr_survive)
-icons.add(_dist*2,_dist*4,ABILITY.BASE_DESTROYER,ICON_TYPE.ABILITY,spr_base_destroyer)
-icons.add(_dist*3,_dist*4,ABILITY.CRITICAL,ICON_TYPE.ABILITY,spr_critical)
-icons.add(_dist*4,_dist*4,ABILITY.METAL_KILLER,ICON_TYPE.ABILITY,spr_metal_killer)
-icons.add(_dist*5,_dist*4,ABILITY.ZOMBIE_KILLER,ICON_TYPE.ABILITY,spr_zombie_killer)
-icons.add(_dist*6,_dist*4,ABILITY.SOULSTRIKE,ICON_TYPE.ABILITY,spr_soulstrike)
-icons.add(_dist*7,_dist*4,ABILITY.BARRIER_BREAKER,ICON_TYPE.ABILITY,spr_barrier_breaker)
-icons.add(_dist*8,_dist*4,ABILITY.SHIELD_BREAKER,ICON_TYPE.ABILITY,spr_shield_piercing)
-icons.add(_dist*9,_dist*4,ABILITY.SAVAGE_BLOW,ICON_TYPE.ABILITY,spr_savage_blow)
-icons.add(0,_dist*5,ABILITY.EXTRA_MONEY,ICON_TYPE.ABILITY,spr_extra_money)
-icons.add(_dist,_dist*5,ABILITY.METAL,ICON_TYPE.ABILITY,spr_metal)
-icons.add(_dist*2,_dist*5,ABILITY.MINI_WAVE,ICON_TYPE.ABILITY,spr_mini_wave)
-icons.add(_dist*3,_dist*5,ABILITY.WAVE,ICON_TYPE.ABILITY,spr_wave_attack)
-icons.add(_dist*4,_dist*5,ABILITY.MINI_SURGE,ICON_TYPE.ABILITY,spr_mini_surge)
-icons.add(_dist*5,_dist*5,ABILITY.SURGE,ICON_TYPE.ABILITY,spr_surge_attack)
-icons.add(_dist*6,_dist*5,ABILITY.COUNTER_SURGE,ICON_TYPE.ABILITY,spr_counter_surge)
-icons.add(_dist*7,_dist*5,ABILITY.EXPLOSION,ICON_TYPE.ABILITY,spr_explosion)
-icons.add(_dist*8,_dist*5,ABILITY.STOP_WAVES,ICON_TYPE.ABILITY,spr_wave_shield)
-icons.add(_dist*9,_dist*5,ABILITY.CONJURE,ICON_TYPE.ABILITY,spr_conjure)
-icons.add(0,_dist*6,ABILITY.COLOSSUS_SLAYER,ICON_TYPE.ABILITY,spr_colossus_slayer)
-icons.add(_dist,_dist*6,ABILITY.BEHEMOT_SLAYER,ICON_TYPE.ABILITY,spr_behemot_slayer)
-icons.add(_dist*2,_dist*6,ABILITY.SAGE_SLAYER,ICON_TYPE.ABILITY,spr_sage_slayer)
-icons.add(_dist*3,_dist*6,ABILITY.WITCH_KILLER,ICON_TYPE.ABILITY,spr_witch_killer)
-icons.add(_dist*4,_dist*6,ABILITY.EVA_KILLER,ICON_TYPE.ABILITY,spr_eva_angel_killer)
-icons.add(_dist*5,_dist*6,ABILITY.IMMUNE_WEAKEN,ICON_TYPE.ABILITY,spr_immune_to_weaken)
-icons.add(_dist*6,_dist*6,ABILITY.IMMUNE_FREEZE,ICON_TYPE.ABILITY,spr_immune_to_freeze)
-icons.add(_dist*7,_dist*6,ABILITY.IMMUNE_SLOW,ICON_TYPE.ABILITY,spr_immune_to_slow)
-icons.add(_dist*8,_dist*6,ABILITY.IMMUNE_KNOCKBACK,ICON_TYPE.ABILITY,spr_immune_to_knockback)
-icons.add(_dist*9,_dist*6,ABILITY.IMMUNE_WAVE,ICON_TYPE.ABILITY,spr_immune_to_waves)
-icons.add(0,_dist*7,ABILITY.IMMUNE_SURGE,ICON_TYPE.ABILITY,spr_immune_to_surge)
-icons.add(_dist,_dist*7,ABILITY.IMMUNE_EXPLOSION,ICON_TYPE.ABILITY,spr_immune_to_explosions)
-icons.add(_dist*2,_dist*7,ABILITY.IMMUNE_WARP,ICON_TYPE.ABILITY,spr_immune_to_warp)
-icons.add(_dist*3,_dist*7,ABILITY.IMMUNE_CURSE,ICON_TYPE.ABILITY,spr_immune_to_curse)
-icons.add(_dist*4,_dist*7,ABILITY.IMMUNE_TOXIC,ICON_TYPE.ABILITY,spr_immune_to_toxic)
-icons.add(_dist*5,_dist*7,ABILITY.BOSS_SHOCKWAVE_IMMUNITY,ICON_TYPE.ABILITY,spr_boss_wave_immune)
-icons.add(_dist*6,_dist*7,ABILITY.KAMIKAZE,ICON_TYPE.ABILITY,spr_suicide)
+icons.add(0,_dist*4,ABILITY.STRENGTHEN,ICON_TYPE.ABILITY,spr_strengthen,"ability_strengthen")
+icons.add(_dist,_dist*4,ABILITY.SURVIVE,ICON_TYPE.ABILITY,spr_survive,"ability_survive")
+icons.add(_dist*2,_dist*4,ABILITY.BASE_DESTROYER,ICON_TYPE.ABILITY,spr_base_destroyer,"ability_basedest")
+icons.add(_dist*3,_dist*4,ABILITY.CRITICAL,ICON_TYPE.ABILITY,spr_critical,"ability_critical")
+icons.add(_dist*4,_dist*4,ABILITY.METAL_KILLER,ICON_TYPE.ABILITY,spr_metal_killer,"ability_metal_killer")
+icons.add(_dist*5,_dist*4,ABILITY.ZOMBIE_KILLER,ICON_TYPE.ABILITY,spr_zombie_killer,"ability_zkiller")
+icons.add(_dist*6,_dist*4,ABILITY.SOULSTRIKE,ICON_TYPE.ABILITY,spr_soulstrike,"ability_soulstrike")
+icons.add(_dist*7,_dist*4,ABILITY.BARRIER_BREAKER,ICON_TYPE.ABILITY,spr_barrier_breaker,"ability_barrier_breaker")
+icons.add(_dist*8,_dist*4,ABILITY.SHIELD_BREAKER,ICON_TYPE.ABILITY,spr_shield_piercing,"ability_shield_pierce")
+icons.add(_dist*9,_dist*4,ABILITY.SAVAGE_BLOW,ICON_TYPE.ABILITY,spr_savage_blow,"ability_savage_blow")
+icons.add(0,_dist*5,ABILITY.EXTRA_MONEY,ICON_TYPE.ABILITY,spr_extra_money,"ability_extra_money")
+icons.add(_dist,_dist*5,ABILITY.METAL,ICON_TYPE.ABILITY,spr_metal,"ability_metal")
+icons.add(_dist*2,_dist*5,ABILITY.MINI_WAVE,ICON_TYPE.ABILITY,spr_mini_wave,"ability_mini_wave")
+icons.add(_dist*3,_dist*5,ABILITY.WAVE,ICON_TYPE.ABILITY,spr_wave_attack,"ability_wave")
+icons.add(_dist*4,_dist*5,ABILITY.MINI_SURGE,ICON_TYPE.ABILITY,spr_mini_surge,"ability_mini_surge")
+icons.add(_dist*5,_dist*5,ABILITY.SURGE,ICON_TYPE.ABILITY,spr_surge_attack,"ability_surge")
+icons.add(_dist*6,_dist*5,ABILITY.COUNTER_SURGE,ICON_TYPE.ABILITY,spr_counter_surge,"ability_counter_surge")
+icons.add(_dist*7,_dist*5,ABILITY.EXPLOSION,ICON_TYPE.ABILITY,spr_explosion,"ability_expl")
+icons.add(_dist*8,_dist*5,ABILITY.STOP_WAVES,ICON_TYPE.ABILITY,spr_wave_shield,"ability_wave_shield")
+icons.add(_dist*9,_dist*5,ABILITY.CONJURE,ICON_TYPE.ABILITY,spr_conjure,"ability_conjure")
+icons.add(0,_dist*6,ABILITY.COLOSSUS_SLAYER,ICON_TYPE.ABILITY,spr_colossus_slayer,"ability_colossus_slayer")
+icons.add(_dist,_dist*6,ABILITY.BEHEMOT_SLAYER,ICON_TYPE.ABILITY,spr_behemot_slayer,"ability_behemoth_slayer")
+icons.add(_dist*2,_dist*6,ABILITY.SAGE_SLAYER,ICON_TYPE.ABILITY,spr_sage_slayer,"ability_sage_slayer")
+icons.add(_dist*3,_dist*6,ABILITY.WITCH_KILLER,ICON_TYPE.ABILITY,spr_witch_killer,"ability_witch_killer")
+icons.add(_dist*4,_dist*6,ABILITY.EVA_KILLER,ICON_TYPE.ABILITY,spr_eva_angel_killer,"ability_evaa_killer")
+icons.add(_dist*5,_dist*6,ABILITY.IMMUNE_WEAKEN,ICON_TYPE.ABILITY,spr_immune_to_weaken,"ability_immune_weaken")
+icons.add(_dist*6,_dist*6,ABILITY.IMMUNE_FREEZE,ICON_TYPE.ABILITY,spr_immune_to_freeze,"ability_immune_freeze")
+icons.add(_dist*7,_dist*6,ABILITY.IMMUNE_SLOW,ICON_TYPE.ABILITY,spr_immune_to_slow,"ability_immune_slow")
+icons.add(_dist*8,_dist*6,ABILITY.IMMUNE_KNOCKBACK,ICON_TYPE.ABILITY,spr_immune_to_knockback,"ability_immune_knockback")
+icons.add(_dist*9,_dist*6,ABILITY.IMMUNE_WAVE,ICON_TYPE.ABILITY,spr_immune_to_waves,"ability_immune_wave")
+icons.add(0,_dist*7,ABILITY.IMMUNE_SURGE,ICON_TYPE.ABILITY,spr_immune_to_surge,"ability_immune_surge")
+icons.add(_dist,_dist*7,ABILITY.IMMUNE_EXPLOSION,ICON_TYPE.ABILITY,spr_immune_to_explosions,"ability_immune_explosion")
+icons.add(_dist*2,_dist*7,ABILITY.IMMUNE_WARP,ICON_TYPE.ABILITY,spr_immune_to_warp,"ability_immune_warp")
+icons.add(_dist*3,_dist*7,ABILITY.IMMUNE_CURSE,ICON_TYPE.ABILITY,spr_immune_to_curse,"ability_immune_curse")
+icons.add(_dist*4,_dist*7,ABILITY.IMMUNE_TOXIC,ICON_TYPE.ABILITY,spr_immune_to_toxic,"ability_immune_toxic")
+icons.add(_dist*5,_dist*7,ABILITY.BOSS_SHOCKWAVE_IMMUNITY,ICON_TYPE.ABILITY,spr_boss_wave_immune,"ability_bosswave_immune")
+icons.add(_dist*6,_dist*7,ABILITY.KAMIKAZE,ICON_TYPE.ABILITY,spr_suicide,"ability_kamikaze")
 //
 
 //talent specific
-icons.add(0,_dist*8,ABILITY.RESIST_WEAKEN,ICON_TYPE.TALENT,spr_ability_resist_weaken)
-icons.add(_dist,_dist*8,ABILITY.RESIST_FREEZE,ICON_TYPE.TALENT,spr_ability_resist_freeze)
-icons.add(_dist*2,_dist*8,ABILITY.RESIST_SLOW,ICON_TYPE.TALENT,spr_ability_resist_slow)
-icons.add(_dist*3,_dist*8,ABILITY.RESIST_KNOCKBACK,ICON_TYPE.TALENT,spr_ability_resist_knockback)
-icons.add(_dist*4,_dist*8,ABILITY.RESIST_WAVE,ICON_TYPE.TALENT,spr_ability_resist_wave)
-icons.add(_dist*5,_dist*8,ABILITY.RESIST_SURGE,ICON_TYPE.TALENT,spr_ability_resist_surge)
+icons.add(0,_dist*8,ABILITY.RESIST_WEAKEN,ICON_TYPE.TALENT,spr_ability_resist_weaken,"ability_resist_weaken")
+icons.add(_dist,_dist*8,ABILITY.RESIST_FREEZE,ICON_TYPE.TALENT,spr_ability_resist_freeze,"ability_resist_freeze")
+icons.add(_dist*2,_dist*8,ABILITY.RESIST_SLOW,ICON_TYPE.TALENT,spr_ability_resist_slow,"ability_resist_slow")
+icons.add(_dist*3,_dist*8,ABILITY.RESIST_KNOCKBACK,ICON_TYPE.TALENT,spr_ability_resist_knockback,"ability_resist_knockback")
+icons.add(_dist*4,_dist*8,ABILITY.RESIST_WAVE,ICON_TYPE.TALENT,spr_ability_resist_wave,"ability_resist_wave")
+icons.add(_dist*5,_dist*8,ABILITY.RESIST_SURGE,ICON_TYPE.TALENT,spr_ability_resist_surge,"ability_resist_surge")
 icons.add(_dist*6,_dist*8,ABILITY.RESIST_WARP,ICON_TYPE.TALENT,spr_ability_resist_warp)
-icons.add(_dist*7,_dist*8,ABILITY.RESIST_CURSE,ICON_TYPE.TALENT,spr_ability_resist_curse)
-icons.add(_dist*8,_dist*8,ABILITY.RESIST_TOXIC,ICON_TYPE.TALENT,spr_ability_resist_toxic)
-icons.add(_dist*9,_dist*8,ABILITY.HP_UP,ICON_TYPE.TALENT,spr_ability_defense_up)
-icons.add(0,_dist*9,ABILITY.ATK_UP,ICON_TYPE.TALENT,spr_ability_attack_up)
-icons.add(_dist,_dist*9,ABILITY.SPD_UP,ICON_TYPE.TALENT,spr_ability_speed_up)
-icons.add(_dist*2,_dist*9,ABILITY.IMPROVED_KNOCKBACK,ICON_TYPE.TALENT,spr_ability_improved_knockback)
-icons.add(_dist*3,_dist*9,ABILITY.COST_DOWN,ICON_TYPE.TALENT,spr_ability_cost_down)
-icons.add(_dist*4,_dist*9,ABILITY.RECOVER_DOWN,ICON_TYPE.TALENT,spr_ability_recover_speed_up)
-icons.add(_dist*5,_dist*9,ABILITY.ATK_SPEED_UP,ICON_TYPE.TALENT,spr_ability_frequency_up)
+icons.add(_dist*7,_dist*8,ABILITY.RESIST_CURSE,ICON_TYPE.TALENT,spr_ability_resist_curse,"ability_resist_curse")
+icons.add(_dist*8,_dist*8,ABILITY.RESIST_TOXIC,ICON_TYPE.TALENT,spr_ability_resist_toxic,"ability_resist_toxic")
+icons.add(_dist*9,_dist*8,ABILITY.HP_UP,ICON_TYPE.TALENT,spr_ability_defense_up,"ability_hpup")
+icons.add(0,_dist*9,ABILITY.ATK_UP,ICON_TYPE.TALENT,spr_ability_attack_up,"ability_atkup")
+icons.add(_dist,_dist*9,ABILITY.SPD_UP,ICON_TYPE.TALENT,spr_ability_speed_up,"ability_spdup")
+icons.add(_dist*2,_dist*9,ABILITY.IMPROVED_KNOCKBACK,ICON_TYPE.TALENT,spr_ability_improved_knockback,"ability_improved_knockback")
+icons.add(_dist*3,_dist*9,ABILITY.COST_DOWN,ICON_TYPE.TALENT,spr_ability_cost_down,"ability_cost_down")
+icons.add(_dist*4,_dist*9,ABILITY.RECOVER_DOWN,ICON_TYPE.TALENT,spr_ability_recover_speed_up,"ability_recover_down")
+icons.add(_dist*5,_dist*9,ABILITY.ATK_SPEED_UP,ICON_TYPE.TALENT,spr_ability_frequency_up,"ability_atk_speedup")
 //
 
 buttons = {
     
-    main_x:270+576,
+    main_x:270+570,
     main_y:48,
     
     search:{
@@ -377,7 +388,7 @@ buttons = {
         mon: false,
         exec : function (_caller){
             
-            if global.filters.abilities_num > 0 or global.filters.atktypes_num > 0 or global.filters.effects_num > 0 or global.filters.targets_num > 0 or array_length(global.filters.rarity) > 0 or global.filters.talent_abilities_num > 0  
+            if global.filters.abilities_num > 0 or global.filters.atktypes_num > 0 or global.filters.effects_num > 0 or global.filters.targets_num > 0 or array_length(global.filters.rarity) > 0 or global.filters.talents_num > 0  
                 global.filters.filtered = true
             else
                 global.filters.filtered = false

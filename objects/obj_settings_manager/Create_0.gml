@@ -472,13 +472,13 @@ togglables.clean = function (){
 togglables.add(window.pos[0]+window.size[0]/2,window.pos[1]+window.size[1]/2,get_translation("settings_button_text_3"),"cat_deletion_noconfirm")
 
 reset_window = {}
-reset_window.size = [200,150]
+reset_window.size = [200,250]
 reset_window.pos = [100-50,100+50]
 reset_window.surface = -1
 reset_window.buffer = -1
 reset_window.buttons = {}
 reset_window.buttons.pos = []
-reset_window.buttons.offset = [0,48]
+reset_window.buttons.offset = [0,128]
 reset_window.buttons.mouse_on = [false,false]
 reset_window.buttons.text = [get_translation("choice_yes"),get_translation("choice_no")]
 reset_window.buttons.width = [0,0]
@@ -496,7 +496,7 @@ reset_window.update = function (){
     
     draw_sprite_stretched(spr_back_wood,0,0,0,reset_window.size[0],reset_window.size[1])
     
-    draw_text_outline_ext(8,12,c_black,c_white,reset_window.message,16,190)
+    draw_text_outline_ext(8,12,c_black,c_white,reset_window.message,24,190)
     
     for (var i = 0; i < 2; i++) {
     	var _txt = reset_window.buttons.text[i]
@@ -539,6 +539,7 @@ reset_window.step = function (){
             if mouse_check_button_pressed(mb_left){
                 if i == 0{
                     file_delete(working_directory+"save.json")
+                    file_delete(working_directory+"settings.json")
                     global.resetting_data = true
                     game_end()
                 }

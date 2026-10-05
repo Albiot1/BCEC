@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"cats_data_init",
+  "%Name":"cats_data_uber_rare_init",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"cats_data_init",
+  "name":"cats_data_uber_rare_init",
   "parent":{
     "name":"cat_stats",
     "path":"folders/Scripts/cat_stats.yy",

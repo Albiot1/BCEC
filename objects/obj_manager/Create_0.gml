@@ -87,7 +87,14 @@ data.items= {
     behemot_green_big:{ spr: spr_behemot_big_green }
 }
 
-cats_data_init()
+data.cats = {}
+
+cats_data_normal_init()
+cats_data_special_init()
+cats_data_rare_init()
+cats_data_super_rare_init()
+cats_data_uber_rare_init()
+cats_data_legend_rare_init()
 
 data.enemies = {}
 
@@ -124,11 +131,11 @@ global.all_cats = [
     data.cats.ninja_cat, data.cats.zombie_cat, data.cats.samurai_cat, data.cats.sumo_cat, data.cats.boogie_cat, data.cats.skirt_cat, data.cats.valkyrie_cat, data.cats.bahamut_cat,
     data.cats.kerihime, data.cats.cat_princess, data.cats.capsule_cat , data.cats.blue_shinobi, data.cats.cabaret_cat, data.cats.healer, data.cats.merc, data.cats.bean_cat,data.cats.flower_cat,
     data.cats.ururun_wolf, data.cats.lil_nyandam, data.cats.meowla_meowla, data.cats.yuki_cat, data.cats.mr_ninja, data.cats.titi, data.cats.baozi_cat, data.cats.lil_cat,
-    data.cats.lil_tank_cat, data.cats.lil_axe_cat, data.cats.catburger, data.cats.lil_gross_cat, data.cats.lil_cow_cat, data.cats.lil_bird_cat, data.cats.red_riding_mina,
+    data.cats.lil_tank_cat, data.cats.lil_axe_cat, data.cats.catburger, data.cats.lil_gross_cat, data.cats.lil_cow_cat, data.cats.lil_bird_cat, data.cats.undead_cat, data.cats.red_riding_mina,
     data.cats.lil_homura, data.cats.lil_fish_cat, data.cats.lil_lizard_cat, data.cats.lil_titan_cat, data.cats.miyamoku_musashi, data.cats.happy_100, data.cats.maneki_cat, data.cats.hermit_cat,
     data.cats.saber_the_cat, data.cats.lil_sakura, data.cats.coin_cat, data.cats.farmer_cat, data.cats.masked_yulala, data.cats.gendo_and_fuyutsuki_cats, data.cats.kaworu_and_cat,
     data.cats.crazed_moneko, data.cats.mecha_bun, data.cats.nekokkuma, data.cats.cat_god_the_great, data.cats.shirou_the_cat, data.cats.filibuster_cat_x, data.cats.dogumaru,
-    data.cats.rosary_angel, data.cats.wakamiko_cat, data.cats.cat_devil, data.cats.shakurel_cat, data.cats.shakurel_lion, data.cats.shakurel_tiger, data.cats.shakurel_panda,
+    data.cats.rosary_angel, data.cats.wakamiko_cat, data.cats.cat_devil, data.cats.shakurel_cat, data.cats.shakurel_lion, data.cats.shakurel_tiger, data.cats.shakurel_panda, data.cats.burgle_boss_cat_retired,
     data.cats.chun_li_cat, data.cats.urs_and_fenrir, data.cats.master_uril, data.cats.heavenly_jack, data.cats.gacha_cat, data.cats.idi_n, data.cats.panda_cat, data.cats.gold_brick_cat,
     data.cats.elder_mask_doron, data.cats.kabuto_cat, data.cats.kuwagata_cat, data.cats.jagando_jr, data.cats.million_dollar_cat, data.cats.firecracker_cat, data.cats.secret_crush_cat,
     data.cats.tomboy_lion_cat, data.cats.chalkboard_eraser_cat, data.cats.elder_beast_naala, data.cats.ancient_egg_001, data.cats.ancient_egg_201, data.cats.ancient_egg_003, data.cats.ancient_egg_202,
@@ -136,8 +143,8 @@ global.all_cats = [
     data.cats.ancient_egg_006, data.cats.medal_king, data.cats.master_of_mind_soractes, data.cats.ancient_egg_204, data.cats.principal_cat, data.cats.trash_cat, data.cats.felix_the_cat_duke_cat,
     data.cats.dotty_cat, data.cats.kaoru_cat, data.cats.ancient_egg_205, data.cats.ancient_egg_206, data.cats.sardine, data.cats.squid, data.cats.master_of_life_dr_nova, data.cats.lieutenant_cat,
     data.cats.lil_baki, data.cats.baki_cat, data.cats.kaioh_cat, data.cats.doppo_cat, data.cats.master_of_logic_newton, data.cats.tails_cat, data.cats.tasmanian_giant_crab, data.cats.consultant_cat,
-    data.cats.scarf_cat, data.cats.fedora_cat, data.cats.helmet_cat, data.cats.goggles_cat, data.cats.ribbon_cat, data.cats.the_invisible_cat, 
-    data.cats.nezuko_cat, data.cats.occultist_cat, data.cats.master_of_selection_darvin,
+    data.cats.scarf_cat, data.cats.fedora_cat, data.cats.helmet_cat, data.cats.goggles_cat, data.cats.ribbon_cat, data.cats.nezuko_cat,
+    data.cats.occultist_cat, data.cats.master_of_selection_darvin, data.cats.the_invisible_cat, 
     //rare cats
     data.cats.pogo_cat, data.cats.wheel_cat, data.cats.salon_cat, data.cats.jurassic_cat, data.cats.viking_cat, data.cats.pirate_cat, data.cats.thief_cat, data.cats.bishop_cat, data.cats.fortune_teller_cat,
     data.cats.shaman_cat, data.cats.witch_cat, data.cats.archer_cat, data.cats.swordsman_cat, data.cats.bronze_cat, data.cats.sports_day_cat, data.cats.swordsman, data.cats.cow_princess, data.cats.lil_gau,
@@ -176,11 +183,11 @@ global.special_cats = [
     data.cats.ninja_cat, data.cats.zombie_cat, data.cats.samurai_cat, data.cats.sumo_cat, data.cats.boogie_cat, data.cats.skirt_cat, data.cats.valkyrie_cat, data.cats.bahamut_cat,
     data.cats.kerihime, data.cats.cat_princess, data.cats.capsule_cat , data.cats.blue_shinobi, data.cats.cabaret_cat, data.cats.healer, data.cats.merc, data.cats.bean_cat,data.cats.flower_cat,
     data.cats.ururun_wolf, data.cats.lil_nyandam, data.cats.meowla_meowla, data.cats.yuki_cat, data.cats.mr_ninja, data.cats.titi, data.cats.baozi_cat, data.cats.lil_cat,
-    data.cats.lil_tank_cat, data.cats.lil_axe_cat, data.cats.catburger, data.cats.lil_gross_cat, data.cats.lil_cow_cat, data.cats.lil_bird_cat, data.cats.red_riding_mina,
+    data.cats.lil_tank_cat, data.cats.lil_axe_cat, data.cats.catburger, data.cats.lil_gross_cat, data.cats.lil_cow_cat, data.cats.lil_bird_cat, data.cats.undead_cat, data.cats.red_riding_mina,
     data.cats.lil_homura, data.cats.lil_fish_cat, data.cats.lil_lizard_cat, data.cats.lil_titan_cat, data.cats.miyamoku_musashi, data.cats.happy_100, data.cats.maneki_cat, data.cats.hermit_cat,
     data.cats.saber_the_cat, data.cats.lil_sakura, data.cats.coin_cat, data.cats.farmer_cat, data.cats.masked_yulala, data.cats.gendo_and_fuyutsuki_cats, data.cats.kaworu_and_cat,
     data.cats.crazed_moneko, data.cats.mecha_bun, data.cats.nekokkuma, data.cats.cat_god_the_great, data.cats.shirou_the_cat, data.cats.filibuster_cat_x, data.cats.dogumaru,
-    data.cats.rosary_angel, data.cats.wakamiko_cat, data.cats.cat_devil, data.cats.shakurel_cat, data.cats.shakurel_lion, data.cats.shakurel_tiger, data.cats.shakurel_panda,
+    data.cats.rosary_angel, data.cats.wakamiko_cat, data.cats.cat_devil, data.cats.shakurel_cat, data.cats.shakurel_lion, data.cats.shakurel_tiger, data.cats.shakurel_panda, data.cats.burgle_boss_cat_retired,
     data.cats.chun_li_cat, data.cats.urs_and_fenrir, data.cats.master_uril, data.cats.heavenly_jack, data.cats.gacha_cat, data.cats.idi_n, data.cats.panda_cat, data.cats.gold_brick_cat,
     data.cats.elder_mask_doron, data.cats.kabuto_cat, data.cats.kuwagata_cat, data.cats.jagando_jr, data.cats.million_dollar_cat, data.cats.firecracker_cat, data.cats.secret_crush_cat,
     data.cats.tomboy_lion_cat, data.cats.chalkboard_eraser_cat, data.cats.elder_beast_naala, data.cats.ancient_egg_001, data.cats.ancient_egg_201, data.cats.ancient_egg_003, data.cats.ancient_egg_202,
@@ -188,8 +195,8 @@ global.special_cats = [
     data.cats.ancient_egg_006, data.cats.medal_king, data.cats.master_of_mind_soractes, data.cats.ancient_egg_204, data.cats.principal_cat, data.cats.trash_cat, data.cats.felix_the_cat_duke_cat,
     data.cats.dotty_cat, data.cats.kaoru_cat, data.cats.ancient_egg_205, data.cats.ancient_egg_206, data.cats.sardine, data.cats.squid, data.cats.master_of_life_dr_nova, data.cats.lieutenant_cat,
     data.cats.lil_baki, data.cats.baki_cat, data.cats.kaioh_cat, data.cats.doppo_cat, data.cats.master_of_logic_newton, data.cats.tails_cat, data.cats.tasmanian_giant_crab, data.cats.consultant_cat,
-    data.cats.scarf_cat, data.cats.fedora_cat, data.cats.helmet_cat, data.cats.goggles_cat, data.cats.ribbon_cat, data.cats.the_invisible_cat, 
-    data.cats.nezuko_cat, data.cats.occultist_cat, data.cats.master_of_selection_darvin
+    data.cats.scarf_cat, data.cats.fedora_cat, data.cats.helmet_cat, data.cats.goggles_cat, data.cats.ribbon_cat, data.cats.nezuko_cat,
+    data.cats.occultist_cat, data.cats.master_of_selection_darvin, data.cats.the_invisible_cat
 ]
 
 global.rare_cats = [
@@ -1222,12 +1229,14 @@ get_menu_cats = function (){
             var _found_abilities = []
             var _found_targets = []
             var _found_atktypes = []
+            var _found_talents = []
             
             if _ftype == FILTER_TYPE.AND{
                 _found_effects = array_create( global.filters.effects_num,0 )
                 _found_abilities = array_create( global.filters.abilities_num,0 )
                 _found_targets = array_create( global.filters.targets_num,0 )
                 _found_atktypes = array_create( global.filters.atktypes_num, 0 )
+                _found_talents = array_create( global.filters.talents_num, 0 )
             }
             
             
@@ -1320,8 +1329,6 @@ get_menu_cats = function (){
                 
             }
             
-            var _found_talents = true
-            
             if global.filters.check_talents{
                 //TODO: leater add add_targeting check maybe ? decide when you know the performance of filter more.
                 
@@ -1329,36 +1336,123 @@ get_menu_cats = function (){
                     for (var l = 0; l < array_length(_talen); l++) {
                     	var _type = _talen[l]
                         
-                        if array_contains(global.filters.talent_effects,_type){
-                            var _num = array_find_index(global.filters.talent_effects,_type)
-                            if _found_effects[_num] == 0
-                                _found_effects[_num] = 1
+                        var _has_add_targeting = variable_struct_exists(_dt.stats.talents.data[l],"add_targeting")
+                        
+                        if global.filters.talent_effects_num > 0{
+                        
+                            if array_contains(global.filters.talent_effects,_type){
+                                var _num = array_get_index(global.filters.talent_effects,_type)
+                                if _found_effects[_num] == 0
+                                    _found_effects[_num] = 1
+                            }
+                            
                         }
-                        if array_contains(global.filters.talent_abilities,_type){
-                            var _num = array_find_index(global.filters.talent_abilities,_type)
-                            if _found_abilities[_num] == 0
-                                _found_abilities[_num] = 1
+                        
+                        if global.filters.talents_num > 0{
+                            
+                            if array_contains(global.filters.talents,_type){
+                                var _num = array_get_index(global.filters.talents,_type)
+                                if _found_talents[_num] == 0
+                                    _found_talents[_num] = 1
+                            }
+                            
                         }
-                        if array_contains(global.filters.targets,_type){
-                            var _num = array_find_index(global.filters.targets,_type)
-                            if _found_targets[_num] == 0
-                                _found_targets[_num] = 1
+                        
+                        if global.filters.talent_abilities_num > 0{
+                        
+                            if array_contains(global.filters.talent_abilities,_type){
+                                var _num = array_get_index(global.filters.talent_abilities,_type)
+                                if _found_abilities[_num] == 0
+                                    _found_abilities[_num] = 1
+                            }
+                            
+                        }
+                        
+                        if global.filters.targets_num > 0{
+                        
+                            if array_contains(global.filters.targets,_type){
+                                var _num = array_get_index(global.filters.targets,_type)
+                                if _found_targets[_num] == 0
+                                    _found_targets[_num] = 1
+                            }
+                            if _has_add_targeting{
+                                var _targ = _dt.stats.talents.data[l].add_targeting
+                                if is_array(_targ){
+                                    for (var z = 0; z < array_length(_targ); z++) {
+                                    	if array_contains(global.filters.targets,_targ[z]){
+                                            var _num = array_get_index(global.filters.targets,_targ[z])
+                                            if _found_targets[_num] == 0
+                                                _found_targets[_num] = 1
+                                        }
+                                    }
+                                }
+                                else {
+                                    if array_contains(global.filters.targets,_targ){
+                                        var _num = array_get_index(global.filters.targets,_targ)
+                                        if _found_targets[_num] == 0
+                                            _found_targets[_num] = 1
+                                    }
+                                }
+                            }
+                            
                         }
                     }
                 }
                 else {
                     for (var l = 0; l < array_length(_talen); l++) {
                     	var _type = _talen[l]
+                        var _has_add_targeting = variable_struct_exists(_dt.stats.talents.data[l],"add_targeting")
                         
-                        if array_contains(global.filters.talent_effects,_type){
-                            _fnd = true
+                        if global.filters.talent_effects_num > 0{
+                        
+                            if array_contains(global.filters.talent_effects,_type){
+                                _fnd = true
+                            }
+                            
                         }
-                        if array_contains(global.filters.talent_abilities,_type){
-                            _fnd = true
+                        
+                        if global.filters.talent_abilities_num > 0{
+                        
+                            if array_contains(global.filters.talent_abilities,_type){
+                                _fnd = true
+                            }
+                            
                         }
-                        if array_contains(global.filters.targets,_type){
-                            _fnd = true
+                        
+                        if global.filters.talents_num > 0{
+                            
+                            if array_contains(global.filters.talents,_type){
+                                _fnd = true
+                            }
+                            
                         }
+                        
+                        if global.filters.targets_num > 0{
+                        
+                            if array_contains(global.filters.targets,_type){
+                                _fnd = true
+                            }
+                            
+                            if _has_add_targeting{
+                                var _targ = _dt.stats.talents.data[l].add_targeting
+                                if is_array(_targ){
+                                    for (var z = 0; z < array_length(_targ); z++) {
+                                    	if array_contains(global.filters.targets,_targ[z]){
+                                            _fnd = true
+                                        }
+                                    }
+                                }
+                                else {
+                                    if array_contains(global.filters.targets,_targ){
+                                        _fnd = true
+                                    }
+                                }
+                            }
+                            
+                        }
+                        
+                        
+                        
                     }
                 }
                 
@@ -1367,14 +1461,6 @@ get_menu_cats = function (){
                     for (var l = 0; l < global.filters.talents_num; l++) {
                     	if array_contains(_talen,global.filters.talents[l]){
                             _fnd = true
-                            break;
-                        }
-                    }
-                }
-                else {
-                    for (var l = 0; l < global.filters.talents_num; l++) {
-                    	if !array_contains(_talen,global.filters.talents[l]){
-                            _found_talents = false
                             break;
                         }
                     }
@@ -1419,15 +1505,18 @@ get_menu_cats = function (){
                     }
                 }
                 
-                if _fnd{
-                    if !_found_talents{
-                        _fnd = false
+                if _fnd and global.filters.check_talents{
+                    for (var l = 0; l < global.filters.talents_num; l++) {
+                    	if _found_talents[l] == 0{
+                            _fnd = false
+                            break;
+                        }
                     }
                 }
                 
             }
             
-            if global.filters.abilities_num==0 and global.filters.atktypes_num==0 and global.filters.effects_num==0 and global.filters.talent_abilities_num==0 and global.filters.targets_num==0{
+            if global.filters.abilities_num==0 and global.filters.atktypes_num==0 and global.filters.effects_num==0 and global.filters.talent_abilities_num==0 and global.filters.targets_num==0 and global.filters.talents_num==0 and global.filters.talent_effects_num==0{
                 if _goodrarity
                     _fnd = true
             }
