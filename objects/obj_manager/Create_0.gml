@@ -1178,357 +1178,103 @@ global.filters = {
     }
 }
 
+// every item in _need is in _have, or its talent counterpart is in _pool
+function filter_need(_need,_have,_tneed,_pool){
+    for (var k = 0; k < array_length(_need); k++) {
+        if array_contains(_have,_need[k]) continue
+        if k < array_length(_tneed) and array_contains(_pool,_tneed[k]) continue
+        return false
+    }
+    return true
+}
+
+// at least one item of _need is in _have
+function filter_any(_need,_have){
+    for (var k = 0; k < array_length(_need); k++) {
+        if array_contains(_have,_need[k]) return true
+    }
+    return false
+}
+
 get_menu_cats = function (){
     global.current_cats = []
     
     var _list = global.all_cats
-    var _list_l = array_length(_list)
     
     if menu.state == M_STATES.ALL{
-        for (var i = 0; i < _list_l; i++) {
-        	var _mid = _list[i].myid
-            if variable_struct_exists(global.save.added_cats,_mid){
+        for (var i = 0; i < array_length(_list); i++) {
+            if variable_struct_exists(global.save.added_cats,_list[i].myid)
                 array_push(global.current_cats,_list[i])
-            }
         }
     }
     else {
-    	global.current_cats = global.all_cats
+        global.current_cats = global.all_cats
     }
     
     if global.filters.filtered{
-    
+        var _f = global.filters
+        var _is_and = (_f.check_type == FILTER_TYPE.AND)
+        var _only_rarity = _f.abilities_num==0 and _f.atktypes_num==0 and _f.effects_num==0 and _f.talent_abilities_num==0 and _f.targets_num==0 and _f.talents_num==0 and _f.talent_effects_num==0
         var _found_cats = []
-        var _ftype = global.filters.check_type
+        
         for (var i = 0; i < array_length(global.current_cats); i++) {
-        	var _dt = global.current_cats[i]
-            var _forms = array_length(_dt.spr)
+            var _dt = global.current_cats[i]
+            var _st = _dt.stats
             
-            var _fnd = false
-            var _goodrarity = false
+            if array_length(_f.rarity) > 0 and !array_contains(_f.rarity,_dt.rarity) continue
             
-            if array_length(global.filters.rarity) > 0{
-                if !array_contains(global.filters.rarity,_dt.rarity){
-                    continue
-                }
-                else {
-                	_goodrarity = true
+            // talent pools: _tp = talent types, _tt = talent types + add_targeting
+            var _tp = []
+            var _tt = []
+            if _f.check_talents{
+                _tp = _st.talents.abilities
+                _tt = array_concat(_tp,[])
+                for (var l = 0; l < array_length(_tp); l++) {
+                    var _td = _st.talents.data[l]
+                    if variable_struct_exists(_td,"add_targeting"){
+                        var _a = _td.add_targeting
+                        if is_array(_a) _tt = array_concat(_tt,_a)
+                        else array_push(_tt,_a)
+                    }
                 }
             }
-            else {
-            	_goodrarity = true
-            }
             
-            var _targetings = _dt.stats.targetings
-            var _atkyypes = _dt.stats.attack_type
-            var _abils = _dt.stats.abilities
-            var _effes = _dt.stats.effects
-            var _talen = _dt.stats.talents.abilities
+            var _fnd = _only_rarity
             
-            var _found_effects = []
-            var _found_abilities = []
-            var _found_targets = []
-            var _found_atktypes = []
-            var _found_talents = []
-            
-            if _ftype == FILTER_TYPE.AND{
-                _found_effects = array_create( global.filters.effects_num,0 )
-                _found_abilities = array_create( global.filters.abilities_num,0 )
-                _found_targets = array_create( global.filters.targets_num,0 )
-                _found_atktypes = array_create( global.filters.atktypes_num, 0 )
-                _found_talents = array_create( global.filters.talents_num, 0 )
-            }
-            
-            
-            
-            for (var p = 0; p < _forms; p++) {
-                
-                if global.filters.targets_num > 0 {
-                    
-                    if _ftype == FILTER_TYPE.OR{
-                        for (var l = 0; l < global.filters.targets_num; l++) {
-                        	if array_contains(_targetings[p],global.filters.targets[l]){
+            if !_fnd{
+                if _is_and{
+                    // talent filter slots must be satisfied by talents
+                    if !_f.check_talents or filter_need(_f.talents,_tp,[],[]){
+                        for (var p = 0; p < array_length(_dt.spr); p++) {
+                            if filter_need(_f.effects,_st.effects[p],_f.talent_effects,_tp)
+                            and filter_need(_f.abilities,_st.abilities[p],_f.talent_abilities,_tp)
+                            and filter_need(_f.targets,_st.targetings[p],_f.targets,_tt)
+                            and filter_need(_f.atktypes,_st.attack_type[p],[],[]){
                                 _fnd = true
-                                break;
+                                break
                             }
-                        }
-                    }
-                    else {
-                        for (var l = 0; l < global.filters.targets_num; l++) {
-                            if _found_targets[l] == 0 and array_contains(_targetings[p],global.filters.targets[l]){
-                                _found_targets[l] = 1
-                            }
-                        }
-                        
-                    }
-                    
-                }
-                
-                if global.filters.atktypes_num > 0 {
-                    
-                    if _ftype == FILTER_TYPE.OR{
-                        for (var l = 0; l < global.filters.atktypes_num; l++) {
-                        	if array_contains(_atkyypes[p],global.filters.atktypes[l]){
-                                _fnd = true
-                                break;
-                            }
-                        }
-                    }
-                    else {
-                        for (var l = 0; l < global.filters.atktypes_num; l++) {
-                        	if _found_atktypes[l] == 0 and array_contains(_atkyypes[p],global.filters.atktypes[l]){
-                                _found_atktypes[l] = 1
-                            }
-                        }
-                    }
-                    
-                }
-                
-                if global.filters.abilities_num > 0 {
-                    
-                    if _ftype == FILTER_TYPE.OR{
-                        for (var l = 0; l < global.filters.abilities_num; l++) {
-                        	if array_contains(_abils[p],global.filters.abilities[l]){
-                                _fnd = true
-                                break;
-                            }
-                        }
-                    }
-                    else {
-                        for (var l = 0; l < global.filters.abilities_num; l++) {
-                            if _found_abilities[l] == 0 and array_contains(_abils[p],global.filters.abilities[l]){
-                                _found_abilities[l] = 1
-                            }
-                        }
-                        
-                    }
-                    
-                }
-                
-                if global.filters.effects_num > 0 {
-                    
-                    if _ftype == FILTER_TYPE.OR{
-                        for (var l = 0; l < global.filters.effects_num; l++) {
-                        	if array_contains(_effes[p],global.filters.effects[l]){
-                                _fnd = true
-                                break;
-                            }
-                        }
-                    }
-                    else {
-                       
-                        for (var l = 0; l < global.filters.effects_num; l++) {
-                            if _found_effects[l] == 0 and array_contains(_effes[p],global.filters.effects[l]){
-                                _found_effects[l] = 1
-                            }
-                        }
-                        
-                    }
-                    
-                }
-                
-            }
-            
-            if global.filters.check_talents{
-                //TODO: leater add add_targeting check maybe ? decide when you know the performance of filter more.
-                
-                if _ftype == FILTER_TYPE.AND{
-                    for (var l = 0; l < array_length(_talen); l++) {
-                    	var _type = _talen[l]
-                        
-                        var _has_add_targeting = variable_struct_exists(_dt.stats.talents.data[l],"add_targeting")
-                        
-                        if global.filters.talent_effects_num > 0{
-                        
-                            if array_contains(global.filters.talent_effects,_type){
-                                var _num = array_get_index(global.filters.talent_effects,_type)
-                                if _found_effects[_num] == 0
-                                    _found_effects[_num] = 1
-                            }
-                            
-                        }
-                        
-                        if global.filters.talents_num > 0{
-                            
-                            if array_contains(global.filters.talents,_type){
-                                var _num = array_get_index(global.filters.talents,_type)
-                                if _found_talents[_num] == 0
-                                    _found_talents[_num] = 1
-                            }
-                            
-                        }
-                        
-                        if global.filters.talent_abilities_num > 0{
-                        
-                            if array_contains(global.filters.talent_abilities,_type){
-                                var _num = array_get_index(global.filters.talent_abilities,_type)
-                                if _found_abilities[_num] == 0
-                                    _found_abilities[_num] = 1
-                            }
-                            
-                        }
-                        
-                        if global.filters.targets_num > 0{
-                        
-                            if array_contains(global.filters.targets,_type){
-                                var _num = array_get_index(global.filters.targets,_type)
-                                if _found_targets[_num] == 0
-                                    _found_targets[_num] = 1
-                            }
-                            if _has_add_targeting{
-                                var _targ = _dt.stats.talents.data[l].add_targeting
-                                if is_array(_targ){
-                                    for (var z = 0; z < array_length(_targ); z++) {
-                                    	if array_contains(global.filters.targets,_targ[z]){
-                                            var _num = array_get_index(global.filters.targets,_targ[z])
-                                            if _found_targets[_num] == 0
-                                                _found_targets[_num] = 1
-                                        }
-                                    }
-                                }
-                                else {
-                                    if array_contains(global.filters.targets,_targ){
-                                        var _num = array_get_index(global.filters.targets,_targ)
-                                        if _found_targets[_num] == 0
-                                            _found_targets[_num] = 1
-                                    }
-                                }
-                            }
-                            
                         }
                     }
                 }
                 else {
-                    for (var l = 0; l < array_length(_talen); l++) {
-                    	var _type = _talen[l]
-                        var _has_add_targeting = variable_struct_exists(_dt.stats.talents.data[l],"add_targeting")
-                        
-                        if global.filters.talent_effects_num > 0{
-                        
-                            if array_contains(global.filters.talent_effects,_type){
-                                _fnd = true
-                            }
-                            
-                        }
-                        
-                        if global.filters.talent_abilities_num > 0{
-                        
-                            if array_contains(global.filters.talent_abilities,_type){
-                                _fnd = true
-                            }
-                            
-                        }
-                        
-                        if global.filters.talents_num > 0{
-                            
-                            if array_contains(global.filters.talents,_type){
-                                _fnd = true
-                            }
-                            
-                        }
-                        
-                        if global.filters.targets_num > 0{
-                        
-                            if array_contains(global.filters.targets,_type){
-                                _fnd = true
-                            }
-                            
-                            if _has_add_targeting{
-                                var _targ = _dt.stats.talents.data[l].add_targeting
-                                if is_array(_targ){
-                                    for (var z = 0; z < array_length(_targ); z++) {
-                                    	if array_contains(global.filters.targets,_targ[z]){
-                                            _fnd = true
-                                        }
-                                    }
-                                }
-                                else {
-                                    if array_contains(global.filters.targets,_targ){
-                                        _fnd = true
-                                    }
-                                }
-                            }
-                            
-                        }
-                        
-                        
-                        
+                    for (var p = 0; p < array_length(_dt.spr) and !_fnd; p++) {
+                        _fnd = filter_any(_f.effects,_st.effects[p])
+                            or filter_any(_f.abilities,_st.abilities[p])
+                            or filter_any(_f.targets,_st.targetings[p])
+                            or filter_any(_f.atktypes,_st.attack_type[p])
+                    }
+                    if !_fnd and _f.check_talents{
+                        _fnd = filter_any(_f.talent_effects,_tp)
+                            or filter_any(_f.talent_abilities,_tp)
+                            or filter_any(_f.talents,_tp)
+                            or filter_any(_f.targets,_tt)
                     }
                 }
-                
-                
-                if _ftype == FILTER_TYPE.OR{
-                    for (var l = 0; l < global.filters.talents_num; l++) {
-                    	if array_contains(_talen,global.filters.talents[l]){
-                            _fnd = true
-                            break;
-                        }
-                    }
-                }
-                
             }
             
-            if _ftype == FILTER_TYPE.AND{
-                _fnd = true
-                
-                for (var l = 0; l < global.filters.effects_num; l++) {
-                	if _found_effects[l] == 0{
-                        _fnd = false
-                        break;
-                    }
-                }
-                
-                if _fnd{
-                    for (var l = 0; l < global.filters.abilities_num; l++) {
-                    	if _found_abilities[l] == 0{
-                            _fnd = false
-                            break;
-                        }
-                    }
-                }
-                
-                if _fnd{
-                    for (var l = 0; l < global.filters.targets_num; l++) {
-                    	if _found_targets[l] == 0{
-                            _fnd = false
-                            break;
-                        }
-                    }
-                }
-                
-                if _fnd{
-                    for (var l = 0; l < global.filters.atktypes_num; l++) {
-                    	if _found_atktypes[l] == 0{
-                            _fnd = false
-                            break;
-                        }
-                    }
-                }
-                
-                if _fnd and global.filters.check_talents{
-                    for (var l = 0; l < global.filters.talents_num; l++) {
-                    	if _found_talents[l] == 0{
-                            _fnd = false
-                            break;
-                        }
-                    }
-                }
-                
-            }
-            
-            if global.filters.abilities_num==0 and global.filters.atktypes_num==0 and global.filters.effects_num==0 and global.filters.talent_abilities_num==0 and global.filters.targets_num==0 and global.filters.talents_num==0 and global.filters.talent_effects_num==0{
-                if _goodrarity
-                    _fnd = true
-            }
-            
-            if !_fnd
-                continue
-            
-            if _goodrarity and _fnd
-                array_push(_found_cats,global.current_cats[i])
+            if _fnd array_push(_found_cats,_dt)
         }
-    
-    
+        
         global.current_cats = _found_cats
     }
     

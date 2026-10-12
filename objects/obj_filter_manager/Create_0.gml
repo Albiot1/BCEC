@@ -116,12 +116,63 @@ icons = {
     posy:[],
     value:[],
     active:[],
-    mouseon:[],
+    mouseon:-1,
     type:[],
     sprite:[],
     name:[],
     desc:[],
+    current_info:-1,
+    current_info_surf:-1,
+    current_info_size:[0,0],
     num:0,
+    clean: function (){
+        if surface_exists(current_info_surf){
+            surface_free(current_info_surf)
+        }
+    },
+    current_info_update: function (){
+        var _num = current_info
+        
+        if surface_exists(current_info_surf)
+            surface_free(current_info_surf)
+        
+        var _ico = sprite[_num]
+        var _txt = name[_num]
+        var _desc = desc[_num]
+        
+        var _h = 40 + 20 + 16 + 20 + string_height_ext(_desc,28,350)
+        var _w = 400
+        current_info_size[0] = _w
+        current_info_size[1] = _h
+        
+        var _ico_x = []
+        var _ico_y = []
+        var _ico_spr = []
+        
+        current_info_surf = surface_create(_w,_h)
+        
+        surface_set_target(current_info_surf)
+        
+        draw_sprite_stretched(spr_back_many,0,0,0,_w,32)
+        draw_sprite_stretched(spr_info,0,0,32,_w,_h-32)
+        
+        draw_set_halign(fa_center)
+        draw_text_outline(200,-5,c_black,c_white,_txt)
+        
+        var _desc_x = 200
+        var _desc_y = 84
+        var _desc_yspace = 28
+        var _desc_max_w = 350
+        
+        var _fix_x = 0
+        draw_sprite(_ico,0,200-20+_fix_x,20+16+6)
+
+        draw_text_outline_ext(_desc_x,_desc_y,c_black,c_white,_desc,_desc_yspace,_desc_max_w)
+        
+        draw_set_halign(0)
+        
+        surface_reset_target()
+    },
     update: function (){
         for (var i = 0; i < num; i++) {
                 
@@ -148,7 +199,6 @@ icons = {
         array_push(posy,_y)
         array_push(value,_value)
         array_push(sprite,_sprite)
-        array_push(mouseon,false)
         array_push(type,_type)
         if _text_id == undefined{
             array_push(name, -1 )
@@ -156,7 +206,7 @@ icons = {
         }
         else {
             array_push(name, get_translation(_text_id+"_name") )
-            array_push(desc, get_translation(_text_id+"_desc") )
+            array_push(desc, get_translation(_text_id+"_filter_desc") )
         }
         
         
@@ -175,12 +225,18 @@ icons = {
         num++
     },
     step:function (){
+        mouseon = -1
+        
         for (var i = 0; i < num; i++) {
         	var _x = main_x + posx[i]
             var _y = main_y + posy[i]
             
             if point_in_rectangle(mouse_x,mouse_y,_x,_y,_x+40,_y+40){
-                mouseon[i] = true
+                mouseon = i
+                if name[i] != -1 and (mouseon != current_info or !surface_exists(current_info_surf)){
+                    current_info = i
+                    current_info_update()
+                }
                 if mouse_check_button_pressed(mb_left){
                     var _val = 0
                     var _type = type[i]
@@ -244,9 +300,6 @@ icons = {
                 
                 }
             }
-            else {
-            	mouseon[i] = false
-            }
         }
     },
     draw:function (){
@@ -255,7 +308,6 @@ icons = {
         for (var i = 0; i < num; i++) {
         	var _x = main_x + posx[i]
             var _y = main_y + posy[i]
-            var _mon = mouseon[i]
             var _act = active[i]
             var _spr = sprite[i]
             
@@ -267,14 +319,21 @@ icons = {
             if !_act
                 shader_reset()
             
-            if _mon{
+            if mouseon == i{
                 draw_sprite(spr_effect_outline,1,_x,_y)
             }
-            
-            
         }
         draw_set_font(fnt_bc_small)
         align_reset()
+        
+        if mouseon != -1{
+            if surface_exists(current_info_surf) and mouseon == current_info{
+                var _mx = clamp( mouse_x-current_info_size[0]/2,current_info_size[0]/2,1280-current_info_size[0] )
+                var _my = clamp( mouse_y+32,0,720-current_info_size[1] )
+                
+                draw_surface(current_info_surf,_mx,_my)
+            }
+        }
     }
 }
 
@@ -364,7 +423,7 @@ icons.add(_dist*2,_dist*8,ABILITY.RESIST_SLOW,ICON_TYPE.TALENT,spr_ability_resis
 icons.add(_dist*3,_dist*8,ABILITY.RESIST_KNOCKBACK,ICON_TYPE.TALENT,spr_ability_resist_knockback,"ability_resist_knockback")
 icons.add(_dist*4,_dist*8,ABILITY.RESIST_WAVE,ICON_TYPE.TALENT,spr_ability_resist_wave,"ability_resist_wave")
 icons.add(_dist*5,_dist*8,ABILITY.RESIST_SURGE,ICON_TYPE.TALENT,spr_ability_resist_surge,"ability_resist_surge")
-icons.add(_dist*6,_dist*8,ABILITY.RESIST_WARP,ICON_TYPE.TALENT,spr_ability_resist_warp)
+icons.add(_dist*6,_dist*8,ABILITY.RESIST_WARP,ICON_TYPE.TALENT,spr_ability_resist_warp,"ability_resist_warp")
 icons.add(_dist*7,_dist*8,ABILITY.RESIST_CURSE,ICON_TYPE.TALENT,spr_ability_resist_curse,"ability_resist_curse")
 icons.add(_dist*8,_dist*8,ABILITY.RESIST_TOXIC,ICON_TYPE.TALENT,spr_ability_resist_toxic,"ability_resist_toxic")
 icons.add(_dist*9,_dist*8,ABILITY.HP_UP,ICON_TYPE.TALENT,spr_ability_defense_up,"ability_hpup")
