@@ -82,15 +82,24 @@ stats.update = function (){
     var _has_hpup = has_talent(ABILITY.HP_UP,true,true)
     var _has_atkup = has_talent(ABILITY.ATK_UP,true,true)
     
-    if _has_hpup[0]==true and _check_talent==true{
-        if _has_hpup[2].unlocked==true{
+    var _has_hpup_plus = has_talent(ABILITY.HP_UP_PLUS,true,true)
+    var _has_atkup_plus = has_talent(ABILITY.ATK_UP_PLUS,true,true)
+    
+    if _check_talent{
+        if _has_hpup[0]==true and _has_hpup[2].unlocked==true{
             _hpup += (_has_hpup[1].start_improv + _has_hpup[1].improv * _has_hpup[2].level)/100
         }
-    }
-    
-    if _has_atkup[0]==true and _check_talent==true{
-        if _has_atkup[2].unlocked==true{
+        
+        if _has_hpup_plus[0]==true and _has_hpup_plus[2].unlocked==true{
+            _hpup += (_has_hpup_plus[1].start_improv + _has_hpup_plus[1].improv * _has_hpup_plus[2].level)/100
+        }
+        
+        if _has_atkup[0]==true and _has_atkup[2].unlocked==true{
             _atkup += (_has_atkup[1].start_improv + _has_atkup[1].improv * _has_atkup[2].level)/100
+        }
+        
+        if _has_atkup_plus[0]==true and _has_atkup_plus[2].unlocked==true{
+            _atkup += (_has_atkup_plus[1].start_improv + _has_atkup_plus[1].improv * _has_atkup_plus[2].level)/100
         }
     }
     
@@ -248,7 +257,7 @@ stats.update = function (){
         }
         
         
-        
+        //TODO
         //strengthen considered
         //weaken considered
         //base destroyer shows base dmg
@@ -1857,6 +1866,73 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _desc = get_translation("ability_bosswave_immune_desc")
         
         break;
+    
+        case ABILITY.IMMUNE_DRAIN:
+            
+            _icon = spr_immune_to_drain
+            _txt = get_translation("ability_drain_immune_name")
+            _desc = get_translation("ability_drain_immune_desc")
+            
+        break;
+    
+        case ABILITY.SHORTENED_COOLDOWN:
+            
+            _icon = spr_shortened_cooldown
+            _txt = get_translation("ability_shortened_cooldown_name")
+            
+            var _has_talent = has_talent(ABILITY.SHORTENED_COOLDOWN,true,true)
+            var _has_effect = has_effect(ABILITY.SHORTENED_COOLDOWN)
+        
+            if (_is_talent and !_has_effect[0]) or (!_is_talent){
+                
+                var _amount = _mydata.amount
+                var _level = 0
+                
+                if _is_talent{
+                    _level = _talent_data.level
+                }
+                if !_is_talent and _has_talent[0]{
+                    _level = _has_talent[2].level
+                }
+                
+                //desc
+                _desc = get_translation("ability_shortened_cooldown_desc")
+                if ((_has_talent[0] and !_is_talent) or (_is_talent and !_has_effect[0])){
+                    //+to stats!
+                    var _mytalent_data = _has_talent[1]
+
+                    if variable_struct_exists(_mytalent_data,"improv"){
+                        var _stat_num = _mytalent_data.improv*_level
+                        _amount+=_stat_num
+                    }
+                }
+                
+                if variable_struct_exists(_has_talent[1],"start_improv"){
+                    _amount += _has_talent[1].start_improv
+                }
+                _desc += text_format_insert( get_translation("ability_shortened_cooldown_stats"),[_amount] )
+                
+                
+            }
+        
+            if (_is_talent and _has_effect[0]){
+                
+                if _talent_data.unlocked == true{
+                    if variable_struct_exists(_mydata,"improv"){
+                        var _stat_num = _mydata.start_improv + _mydata.improv*_talent_data.level
+                        _desc = text_format_insert( get_translation("ability_shortened_cooldown_percent"),[_stat_num] )
+                    }
+                }
+                else {
+                    if variable_struct_exists(_mydata,"improv"){
+                        var _stat_num = _mydata.start_improv + _mydata.improv*_talent_data.level
+                        _desc = get_translation("ability_shortened_cooldown_percent_locked")
+                    }
+                }
+                
+            }
+            
+        break;
         
         case ABILITY.KAMIKAZE:
         
@@ -2329,7 +2405,7 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             
             _icon = spr_savage_blow
             _txt = get_translation("ability_savage_blow_name")
-            var _savage_dmg = stats.atk*(_mydata.percent/100)
+            var _savage_dmg = stats.atk*(1+_mydata.percent/100)
 
             var _has_talent = has_talent(ABILITY.SAVAGE_BLOW,true,true)
             var _has_effect = has_effect(ABILITY.SAVAGE_BLOW)
@@ -2817,6 +2893,19 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
                 _desc += text_format_insert( get_translation("ability_hpup_stats"),[_perc] )
         
         break;
+    
+        case ABILITY.HP_UP_PLUS:
+            
+            _icon = spr_ability_defense_up_plus
+            _txt = get_translation("ability_hpup_plus_name")
+        
+            var _perc = _mydata.start_improv+_mydata.improv*_talent_data.level
+            _desc = get_translation("ability_hpup_plus_desc")
+            
+            if _talent_data.unlocked == true
+                _desc += text_format_insert( get_translation("ability_hpup_plus_stats"),[_perc] )
+        
+        break;
         
         case ABILITY.ATK_UP:
         
@@ -2828,6 +2917,19 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             
             if _talent_data.unlocked == true
                 _desc += text_format_insert( get_translation("ability_atkup_stats"),[_perc] )
+            
+        break;
+
+        case ABILITY.ATK_UP_PLUS:
+        
+            _icon = spr_ability_attack_up_plus
+            _txt = get_translation("ability_atkup_plus_name")
+        
+            var _perc = _mydata.start_improv+_mydata.improv*_talent_data.level
+            _desc = get_translation("ability_atkup_plus_desc")
+            
+            if _talent_data.unlocked == true
+                _desc += text_format_insert( get_translation("ability_atkup_plus_stats"),[_perc] )
             
         break;
         
@@ -3518,10 +3620,9 @@ ability_render.list.add = function (_pos,_type,_render = ABILITY_RENDER_TYPE.NOR
             _icon = spr_conjure
             _txt = get_translation("ability_conjure_name")
             _desc = get_translation("ability_conjure_desc")
-            var _conj_damage = calculate_stat(mydata.rarity,stats.lvl+stats.lvl_plus,"conjure",_mydata.damage)
-
-            _desc += text_format_insert( get_translation("ability_conjure_stats"), [number_format_selected(_conj_damage),number_format_selected(_mydata.range),_mydata.attack_animation,_mydata.attack_animation/FRAMERATE,get_translation(mydata.myid+"_spirit_desc")] )
-
+            
+            _desc += get_translation("spirit_desc_"+string(_mydata.spirit_id))
+            
         break;
     }
     
@@ -3859,6 +3960,8 @@ ability_render.update = function (){
             case ABILITY.WITCH_KILLER: _cicon = spr_witch_killer break;
             case ABILITY.ZOMBIE_KILLER: _cicon = spr_zombie_killer break;
             case ABILITY.BOSS_SHOCKWAVE_IMMUNITY: _cicon = spr_boss_wave_immune break;
+            case ABILITY.IMMUNE_DRAIN: _cicon = spr_immune_to_drain break;
+            case ABILITY.SHORTENED_COOLDOWN: _cicon = spr_shortened_cooldown break;
             case ABILITY.KAMIKAZE: _cicon = spr_suicide break;
             case ABILITY.RESIST_WEAKEN: _cicon = spr_ability_resist_weaken break;
             case ABILITY.RESIST_FREEZE: _cicon = spr_ability_resist_freeze break;
@@ -3870,6 +3973,7 @@ ability_render.update = function (){
             case ABILITY.RESIST_CURSE: _cicon = spr_ability_resist_curse break;
             case ABILITY.RESIST_TOXIC: _cicon = spr_ability_resist_toxic break;
             case ABILITY.HP_UP: _cicon = spr_ability_defense_up break;
+            case ABILITY.HP_UP_PLUS: _cicon = spr_ability_defense_up_plus break;
             case ABILITY.SPD_UP: _cicon = spr_ability_speed_up break;
             case ABILITY.IMPROVED_KNOCKBACK: _cicon = spr_ability_improved_knockback break;
             case ABILITY.COST_DOWN: _cicon = spr_ability_cost_down break;
@@ -3969,10 +4073,14 @@ ability_render.update = function (){
                 case ABILITY.WITCH_KILLER: _cicon = spr_witch_killer break;
                 case ABILITY.ZOMBIE_KILLER: _cicon = spr_zombie_killer break;
                 case ABILITY.BOSS_SHOCKWAVE_IMMUNITY: _cicon = spr_boss_wave_immune break;
+                case ABILITY.IMMUNE_DRAIN: _cicon = spr_immune_to_drain break;
+                case ABILITY.SHORTENED_COOLDOWN: _cicon = spr_shortened_cooldown break;
                 case ABILITY.KAMIKAZE: _cicon = spr_suicide break;
                 
                 case ABILITY.ATK_UP: _cicon = spr_ability_attack_up break;
+                case ABILITY.ATK_UP_PLUS: _cicon = spr_ability_attack_up_plus break;
                 case ABILITY.HP_UP: _cicon = spr_ability_defense_up break;
+                case ABILITY.HP_UP_PLUS: _cicon = spr_ability_defense_up_plus break;
                 case ABILITY.ATK_SPEED_UP: _cicon = spr_ability_frequency_up break;
                 case ABILITY.COST_DOWN: _cicon = spr_ability_cost_down break;
                 case ABILITY.IMPROVED_KNOCKBACK: _cicon = spr_ability_improved_knockback break;
@@ -4062,8 +4170,10 @@ ability_render.step = function (){
                     case ABILITY.RECOVER_DOWN: _stat_modyfying = true break;
                     case ABILITY.ATK_SPEED_UP: _stat_modyfying = true break;
                     case ABILITY.ATK_UP: _stat_modyfying = true break;
+                    case ABILITY.ATK_UP_PLUS: _stat_modyfying = true break;
                     case ABILITY.COST_DOWN: _stat_modyfying = true break;
                     case ABILITY.HP_UP: _stat_modyfying = true break;
+                    case ABILITY.HP_UP_PLUS: _stat_modyfying = true break;
                     case ABILITY.SPD_UP: _stat_modyfying = true break;
                     case TARGETING.AKU: _stat_modyfying = true break;
                     case TARGETING.ALIEN: _stat_modyfying = true break;

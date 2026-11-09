@@ -1,6 +1,3 @@
-add names / descriptions for filter abilities
-align filter buttons better
-add drain immunity
 add all combos
 add new cats
 add new tf's

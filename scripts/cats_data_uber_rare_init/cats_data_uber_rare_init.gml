@@ -1,7 +1,6 @@
 function cats_data_uber_rare_init(){
 
 #region uber super rare
-
 data.cats.nekoluga = {
 	max_lvl:[60,70],
 	name:["","",""],
@@ -829,8 +828,8 @@ data.cats.coppermine = {
 		effects:[[EFFECT.FREEZE],[EFFECT.FREEZE],[EFFECT.FREEZE]],
 		effects_data:[[{time:140,chance:50}],[{time:140,chance:50}],[{time:140,chance:75}]],
 		talents:{
-			abilities:[ABILITY.RESIST_WAVE,ABILITY.RESIST_SLOW,ABILITY.COST_DOWN,ABILITY.HP_UP,ABILITY.ATK_UP,ABILITY.ATK_SPEED_UP,TARGETING.ZOMBIE,ABILITY.MINI_SURGE],
-			talent_type:[0,0,0,0,0,1,1,1],
+			abilities:[ABILITY.RESIST_WAVE,ABILITY.RESIST_SLOW,ABILITY.COST_DOWN,ABILITY.HP_UP,ABILITY.ATK_UP,ABILITY.ATK_SPEED_UP,TARGETING.ZOMBIE,ABILITY.MINI_SURGE,ABILITY.HP_UP_PLUS,EFFECT.STRONG,ABILITY.ZOMBIE_KILLER],
+			talent_type:[0,0,0,0,0,1,1,1,1,1,1],
 			data:[
 				{ total_cost : 175, start_improv : 5, improv_max : 50, improv : 5 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
@@ -839,8 +838,11 @@ data.cats.coppermine = {
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 225, start_time_improv : 8, time_improv_max : 24, time_improv : [2,0,2,2,2,2,2,2,2] },
                 { total_cost : 150 },
-                { total_cost : 285, chance : 10, chance_improv : 10, chance_improv_max : 100, lvl: 3, distance : [150,850]  }
-			]
+                { total_cost : 285, chance : 10, chance_improv : 10, chance_improv_max : 100, lvl: 3, distance : [150,850]  },
+                { total_cost : 100, start_improv : 10, improv : 10, improv_max : 50 },
+                { total_cost : 150 },
+                { total_cost : 150 }
+            ]
 		}
 	}
 }
@@ -908,15 +910,18 @@ data.cats.date_masamune = {
 		effects:[[EFFECT.KNOCKBACK],[EFFECT.KNOCKBACK],[EFFECT.KNOCKBACK]],
 		effects_data:[[{chance:40}],[{chance:40}],[{chance:40}]],
 		talents:{
-			abilities:[EFFECT.KNOCKBACK,ABILITY.RESIST_WAVE,ABILITY.IMMUNE_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP,ABILITY.MINI_WAVE],
-			talent_type:[0,0,0,0,0,1],
+			abilities:[EFFECT.KNOCKBACK,ABILITY.RESIST_WAVE,ABILITY.IMMUNE_SLOW,ABILITY.HP_UP,ABILITY.ATK_UP,ABILITY.MINI_WAVE,ABILITY.SAVAGE_BLOW,ABILITY.HP_UP_PLUS,ABILITY.SAGE_SLAYER],
+			talent_type:[0,0,0,0,0,1,1,1,1],
 			data:[
 				{ total_cost : 175, chance : 3, chance_improv_max : 30, chance_improv : 3 },
 				{ total_cost : 175, start_improv : 5, improv_max : 50, improv : 5 },
 				{ total_cost : 100 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
-				{ lvl : 5, total_cost : 285, chance : 10, chance_improv_max : 100, chance_improv : 10 }
+				{ lvl : 5, total_cost : 285, chance : 10, chance_improv_max : 100, chance_improv : 10 },
+                { total_cost : 285, chance : 2, percent : 300, chance_improv : 2, chance_improv_max : 20 },
+                { total_cost : 285, start_improv : 10, improv : 10, improv_max : 50 },
+                { total_cost : 150 }
 			]
 		}
 	}
@@ -1856,30 +1861,30 @@ data.cats.mekako_saionji = {
 
 data.cats.catman = {
 	max_lvl:[60,70],
-	name:["","",""],
+	name:["","","",""],
 	rarity:RARITY.UBER_SUPER_RARE,
-	spr:[spr_catman,spr_catman_b,spr_catman_c],
+	spr:[spr_catman,spr_catman_b,spr_catman_c,spr_catman_d],
 	evolutions:{
-		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
-		value:[-1,-1,[["green_catfruit",3],["purple_catfruit",4],["red_catfruit",3],["blue_catfruit",8],["elder_catfruit",2]]],
-		level:[0,0,30],
-		xp:[0,0,1000000]
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS,EVO_TYPE.FRUITS],
+		value:[-1,-1,[["green_catfruit",3],["purple_catfruit",4],["red_catfruit",3],["blue_catfruit",8],["elder_catfruit",2]],[ [BEHEMOT_BLUE_BIG,1],[BEHEMOT_PURPLE,5],[BEHEMOT_RED,5] ]],
+		level:[0,0,30,60],
+		xp:[0,0,1000000,2_000_000]
 	},
 	stats:{
-		life:[3950,3950,3950],
-		dmg:[2500,2500,2500],
-		atk_spd:[279,279,279],
-		range:[440,440,440],
-		spd:[12,12,12],
-		knockback:[5,5,5],
-		recharge:[4700,4700,4700],
-		cost:[3680,3680,3680],
-		targetings:[[TARGETING.FLOATING,TARGETING.ALIEN],[TARGETING.ANGEL,TARGETING.ALIEN],[TARGETING.ALIEN,TARGETING.RELIC]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
-		abilities:[[],[],[ABILITY.IMMUNE_CURSE]],
-		abilities_data:[[],[],[{}]],
-		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
-		effects_data:[[{}],[{}],[{}]],
+		life:[3950,3950,3950,5250],
+		dmg:[2500,2500,2500,2500],
+		atk_spd:[279,279,279,186],
+		range:[440,440,440,440],
+		spd:[12,12,12,12],
+		knockback:[5,5,5,5],
+		recharge:[4700,4700,4700,3700],
+		cost:[3680,3680,3680,3680],
+		targetings:[[TARGETING.FLOATING,TARGETING.ALIEN],[TARGETING.ANGEL,TARGETING.ALIEN],[TARGETING.ALIEN,TARGETING.RELIC],[TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.RELIC]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		abilities:[[],[],[ABILITY.IMMUNE_CURSE],[ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_DRAIN]],
+		abilities_data:[[],[],[{}],[{},{}]],
+		effects:[[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG],[EFFECT.MASSIVE_DMG]],
+		effects_data:[[{}],[{}],[{}],[{}]],
 		talents:{
 			abilities:[EFFECT.DODGE,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_FREEZE,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0],
@@ -2413,8 +2418,8 @@ data.cats.thunder_god_zeus = {
 		effects:[[EFFECT.RESISTANT],[EFFECT.RESISTANT],[EFFECT.RESISTANT]],
 		effects_data:[[{}],[{}],[{}]],
 		talents:{
-			abilities:[ABILITY.RESIST_WAVE,ABILITY.RESIST_WEAKEN,TARGETING.ZOMBIE,ABILITY.HP_UP,ABILITY.ATK_UP,ABILITY.BEHEMOT_SLAYER,EFFECT.SLOW],
-			talent_type:[0,0,0,0,0,1,1],
+			abilities:[ABILITY.RESIST_WAVE,ABILITY.RESIST_WEAKEN,TARGETING.ZOMBIE,ABILITY.HP_UP,ABILITY.ATK_UP,ABILITY.BEHEMOT_SLAYER,EFFECT.SLOW,ABILITY.SHORTENED_COOLDOWN,ABILITY.IMMUNE_EXPLOSION,ABILITY.ZOMBIE_KILLER],
+			talent_type:[0,0,0,0,0,1,1,1,1,1],
 			data:[
 				{ total_cost : 175, start_improv : 5, improv_max : 50, improv : 5 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
@@ -2422,7 +2427,10 @@ data.cats.thunder_god_zeus = {
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
 				{ total_cost : 150, dodge_chance : 5, dodge_time : 30 },
-				{ time : 10, total_cost : 285, time_improv_max : 30, time_improv : 2, chance : 100 }
+				{ time : 10, total_cost : 285, time_improv_max : 30, time_improv : 2, chance : 100 },
+                { total_cost:285, amount:5, improv:5, improv_max:50 },
+                { total_cost:150 },
+                { total_cost:150 }
 			]
 		}
 	}
@@ -3082,10 +3090,14 @@ data.cats.lilith_cat = {
 		effects:[[EFFECT.FREEZE],[EFFECT.FREEZE],[EFFECT.FREEZE]],
 		effects_data:[[{time:120,chance:75}],[{time:120,chance:75}],[{time:120,chance:75}]],
 		talents:{
-			abilities:[],
-			talent_type:[],
+			abilities:[ABILITY.MINI_WAVE,ABILITY.IMMUNE_SURGE,ABILITY.IMMUNE_FREEZE,ABILITY.HP_UP,ABILITY.ATK_UP],
+			talent_type:[0,0,0,0,0],
 			data:[
-
+                { total_cost:235, lvl:2, chance:28, chance_improv:8, chance_improv_max:100 },
+                { total_cost:100 },
+                { total_cost:100 },
+                { total_cost:175, improv:2, start_improv:2, improv_max:20 },
+                { total_cost:175, improv:2, start_improv:2, improv_max:20 }
 			]
 		}
 	}
@@ -4706,30 +4718,32 @@ data.cats.sakura_sonic = {
 
 data.cats.voli = {
 	max_lvl:[60,70],
-	name:["","",""],
+	name:["","","",""],
 	rarity:RARITY.UBER_SUPER_RARE,
-	spr:[spr_voli,spr_voli_b,spr_voli_c],
+	spr:[spr_voli,spr_voli_b,spr_voli_c,spr_voli_d],
 	evolutions:{
-		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
-		value:[-1,-1,[["green_catfruit",4],["purple_catfruit",4],["blue_catfruit",7],["yellow_catfruit",3],["epic_catfruit",3]]],
-		level:[0,0,30],
-		xp:[0,0,1000000]
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS,EVO_TYPE.FRUITS],
+		value:[-1,-1,[["green_catfruit",4],["purple_catfruit",4],["blue_catfruit",7],["yellow_catfruit",3],["epic_catfruit",3]],[ [BEHEMOT_BLUE_BIG,2],[BEHEMOT_YELLOW_BIG,1] ]],
+		level:[0,0,30,60],
+		xp:[0,0,1000000,2_000_000]
 	},
 	stats:{
-		life:[1100,2600,3200],
-		dmg:[775,1475,2000],
-		atk_spd:[179,179,179],
-		range:[320,370,370],
-		spd:[15,20,20],
-		knockback:[3,3,3],
-		recharge:[750,2750,2750],
-		cost:[750,2550,2550],
-		targetings:[[TARGETING.ALIEN],[TARGETING.ALIEN],[TARGETING.ALIEN]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
-		abilities:[[ABILITY.IMMUNE_WARP],[ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_WARP],[ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_WARP]],
-		abilities_data:[[{}],[{chance:100},{}],[{chance:100},{}]],
-		effects:[[EFFECT.FREEZE],[EFFECT.FREEZE,EFFECT.RESISTANT],[EFFECT.FREEZE,EFFECT.RESISTANT]],
-		effects_data:[[{time:90,chance:50}],[{time:90,chance:100},{}],[{time:110,chance:100},{}]],
+		life:[1100,2600,3200,3800],
+		dmg:[775,1475,2000,2500],
+		atk_spd:[179,179,179,178],
+		range:[320,370,370,370],
+		spd:[15,20,20,20],
+		knockback:[3,3,3,3],
+        multi_hit_dmgs:[0,0,0,[2000,500]],
+        long_dist_range:[0,0,0,[ [1,371],[270,520] ]],
+		recharge:[750,2750,2750,2750],
+		cost:[750,2550,2550,2550],
+		targetings:[[TARGETING.ALIEN],[TARGETING.ALIEN],[TARGETING.ALIEN],[TARGETING.ALIEN]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG]],
+		abilities:[[ABILITY.IMMUNE_WARP],[ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_WARP],[ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_WARP],[ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_DRAIN]],
+		abilities_data:[[{}],[{chance:100},{}],[{chance:100},{}],[{chance:100},{},{}]],
+		effects:[[EFFECT.FREEZE],[EFFECT.FREEZE,EFFECT.RESISTANT],[EFFECT.FREEZE,EFFECT.RESISTANT],[EFFECT.FREEZE,EFFECT.RESISTANT]],
+		effects_data:[[{time:90,chance:50}],[{time:90,chance:100},{}],[{time:110,chance:100},{}],[{time:110,chance:100},{}]],
 		talents:{
 			abilities:[ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_FREEZE,ABILITY.HP_UP,ABILITY.ATK_UP],
 			talent_type:[0,0,0,0,0],
@@ -5192,15 +5206,18 @@ data.cats.empress_chronos = {
 		effects:[[EFFECT.FREEZE],[EFFECT.FREEZE],[EFFECT.FREEZE]],
 		effects_data:[[{time:30,chance:100}],[{time:30,chance:100}],[{time:30,chance:100}]],
 		talents:{
-			abilities:[ABILITY.RESIST_CURSE,ABILITY.RESIST_SLOW,ABILITY.SPD_UP,ABILITY.HP_UP,ABILITY.ATK_UP],
-			talent_type:[0,0,0,0,0],
+			abilities:[ABILITY.RESIST_CURSE,ABILITY.RESIST_SLOW,ABILITY.SPD_UP,ABILITY.HP_UP,ABILITY.ATK_UP,ABILITY.SURGE,ABILITY.IMMUNE_SURGE,ABILITY.COLOSSUS_SLAYER],
+			talent_type:[0,0,0,0,0,1,1,1],
 			data:[
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 175, start_improv : 16, improv_max : 70, improv : 6 },
 				{ total_cost : 175, start_number_improv : 1, number_improv_max : 10, number_improv : 1 },
 				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
-				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 }
-			]
+				{ total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
+                { total_cost : 285, lvl : 1, distance : [400,700], chance:5, chance_improv:5, chance_improv_max:50 },
+                { total_cost : 150 },
+                { total_cost : 150 }
+            ]
 		}
 	}
 }
@@ -5319,6 +5336,76 @@ data.cats.sakura_matou = {
 	}
 }
 
+data.cats.shirou_emiya = {
+	max_lvl:[60,70],
+	name:["",""],
+	rarity: RARITY.UBER_SUPER_RARE,
+	spr:[spr_shirou_emiya,spr_shirou_emiya_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[3200,4000],
+		dmg:[4800,6000],
+        multi_hit_dmgs:[ [2400,2400],[3000,3000] ],
+		atk_spd:[374,374],
+		range:[560,560],
+		spd:[12,12],
+		knockback:[3,3],
+		recharge:[5400,5400],
+		cost:[3200,3200],
+		targetings:[ [],[] ],
+		attack_type:[ [ATTACKS.AREA,ATTACKS.MULTI_HIT],[ATTACKS.AREA,ATTACKS.MULTI_HIT] ],
+		abilities:[ [ABILITY.WAVE,ABILITY.IMMUNE_KNOCKBACK],[ABILITY.WAVE,ABILITY.IMMUNE_KNOCKBACK] ],
+		abilities_data:[ [{chance:100,lvl:4},{}],[{chance:100,lvl:4},{}] ],
+		effects:[ [],[] ],
+		effects_data:[ [],[] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
+data.cats.true_assassin = {
+	max_lvl:[60,70],
+	name:["",""],
+	rarity: RARITY.UBER_SUPER_RARE,
+	spr:[spr_true_assassin,spr_true_assassin_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[1360,1700],
+		dmg:[480,600],
+		atk_spd:[94,94],
+		range:[500,500],
+        omni_range:[ [350,700],[350,700] ],
+		spd:[40,40],
+		knockback:[5,5],
+		recharge:[2900,2900],
+		cost:[2500,2500],
+		targetings:[ [TARGETING.FLOATING,TARGETING.ALIEN],[TARGETING.FLOATING,TARGETING.ALIEN] ],
+		attack_type:[ [ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG] ],
+		abilities:[ [ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_TOXIC],[ABILITY.BARRIER_BREAKER,ABILITY.IMMUNE_TOXIC] ],
+		abilities_data:[ [{chance:50},{}],[{chance:50},{}] ],
+		effects:[ [EFFECT.FREEZE,EFFECT.WEAKEN,EFFECT.DODGE],[EFFECT.FREEZE,EFFECT.WEAKEN,EFFECT.DODGE] ],
+		effects_data:[ [{chance:100,time: 30},{chance:100,time:75,weaken:50},{chance:60,time:60}],[{chance:100,time: 30},{chance:100,time:75,weaken:50},{chance:60,time:60}] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
 data.cats.super_zeus = {
 	max_lvl:[60,70],
 	name:["","",""],
@@ -6863,7 +6950,7 @@ data.cats.hell_warden_emma = {
 		multi_hit_dmgs:[[400,400,400],[400,400,400],[400,400,400]],
 		atk_spd:[159,159,159],
 		range:[200,200,200],
-		omni_range:[[[-600,350],[-600,350],[-600,350]],[[-600,350],[-600,350],[-600,350]],[[-600,350],[-600,350],[-600,350]]],
+		omni_range:[[-600,350],[-600,350],[-600,350]],
 		spd:[30,30,30],
 		knockback:[10,10,10],
 		recharge:[4000,4000,4000],
@@ -8596,10 +8683,14 @@ data.cats.bliza = {
 		effects:[[EFFECT.SLOW],[EFFECT.SLOW,EFFECT.RESISTANT],[EFFECT.SLOW,EFFECT.RESISTANT]],
 		effects_data:[[{time:90,chance:50,on_x_hit:3}],[{time:90,chance:100,on_x_hit:3},{}],[{time:120,chance:100,on_x_hit:3},{}]],
 		talents:{
-			abilities:[],
-			talent_type:[],
+			abilities:[EFFECT.SLOW,ABILITY.RESIST_FREEZE,ABILITY.COST_DOWN,ABILITY.HP_UP,ABILITY.ATK_UP],
+			talent_type:[0,0,0,0,0],
 			data:[
-
+                { total_cost:175, time_improv:2, start_time_improv:12, time_improv_max:30 },
+                { total_cost:175, start_improv:16, improv:6, improv_max:70 },
+                { total_cost:175, start_number_improv:30, number_improv:30, number_improv_max:300 },
+                { total_cost:175, start_improv : 2, improv_max : 20, improv : 2 },
+                { total_cost:175, start_improv : 2, improv_max : 20, improv : 2 },
 			]
 		}
 	}
@@ -8781,10 +8872,14 @@ data.cats.cat_tengu = {
 		effects:[[EFFECT.KNOCKBACK,EFFECT.STRONG],[EFFECT.KNOCKBACK,EFFECT.STRONG],[EFFECT.KNOCKBACK,EFFECT.STRONG]],
 		effects_data:[[{chance:30},{}],[{chance:30},{}],[{chance:50},{}]],
 		talents:{
-			abilities:[],
-			talent_type:[],
+			abilities:[ABILITY.MINI_SURGE,ABILITY.RESIST_SLOW,ABILITY.SURVIVE,ABILITY.HP_UP,ABILITY.ATK_UP],
+			talent_type:[0,0,0,0,0],
 			data:[
-
+                { total_cost : 285, lvl:2, distance:[150,850], chance:5, chance_improv:5, chance_improv_max:50 },
+                { total_cost : 100 },
+				{ total_cost : 235, chance : 10, chance_improv_max : 100, chance_improv : 10 },
+                { total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 },
+                { total_cost : 175, start_improv : 2, improv_max : 20, improv : 2 }
 			]
 		}
 	}
@@ -9763,30 +9858,30 @@ data.cats.sol_dae_rokker = {
 
 data.cats.pegasa = {
 	max_lvl:[60,70],
-	name:["",""],
+	name:["","",""],
 	rarity:RARITY.UBER_SUPER_RARE,
-	spr:[spr_pegasa,spr_pegasa_b],
+	spr:[spr_pegasa,spr_pegasa_b,spr_pegasa_c],
 	evolutions:{
-		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
-		value:[-1,-1],
-		level:[0,0],
-		xp:[0,0]
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
+		value:[-1,-1,[ [CATFRUIT_EPIC,3],[CATFRUIT_PURPLE,10],[CATFRUIT_GREEN,10] ]],
+		level:[0,0,30],
+		xp:[0,0,1_000_000]
 	},
 	stats:{
-		life:[2800,3300],
-		dmg:[1100,1400],
-		atk_spd:[159,159],
-		range:[450,450],
-		spd:[9,9],
-		knockback:[5,5],
-		recharge:[4200,4200],
-		cost:[2700,2700],
-		targetings:[[TARGETING.FLOATING,TARGETING.ZOMBIE],[TARGETING.FLOATING,TARGETING.ZOMBIE]],
-		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA]],
-		abilities:[[ABILITY.CONJURE,ABILITY.ZOMBIE_KILLER],[ABILITY.CONJURE,ABILITY.ZOMBIE_KILLER]],
-		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:734},{}],[{damage:-1,attack_animation:-1,range:-1,spirit_id:734},{}]],
-		effects:[[EFFECT.WEAKEN],[EFFECT.WEAKEN]],
-		effects_data:[[{time:120,chance:50,weaken:50}],[{time:120,chance:100,weaken:50}]],
+		life:[2800,3300,3960],
+		dmg:[1100,1400,1400],
+		atk_spd:[159,159,159],
+		range:[450,450,450],
+		spd:[9,9,9],
+		knockback:[5,5,5],
+		recharge:[4200,4200,4200],
+		cost:[2700,2700,2700],
+		targetings:[[TARGETING.FLOATING,TARGETING.ZOMBIE],[TARGETING.FLOATING,TARGETING.ZOMBIE],[TARGETING.FLOATING,TARGETING.ZOMBIE]],
+		attack_type:[[ATTACKS.AREA],[ATTACKS.AREA],[ATTACKS.AREA]],
+		abilities:[[ABILITY.CONJURE,ABILITY.ZOMBIE_KILLER],[ABILITY.CONJURE,ABILITY.ZOMBIE_KILLER],[ABILITY.CONJURE,ABILITY.ZOMBIE_KILLER,ABILITY.IMMUNE_FREEZE]],
+		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:734},{}],[{damage:-1,attack_animation:-1,range:-1,spirit_id:734},{}],[{damage:-1,attack_animation:-1,range:-1,spirit_id:875},{},{}]],
+		effects:[[EFFECT.WEAKEN],[EFFECT.WEAKEN],[EFFECT.WEAKEN,EFFECT.MASSIVE_DMG]],
+		effects_data:[[{time:120,chance:50,weaken:50}],[{time:120,chance:100,weaken:50}],[{time:120,chance:100,weaken:50},{}]],
 		talents:{
 			abilities:[],
 			talent_type:[],
@@ -10054,31 +10149,31 @@ data.cats.hajime_saito = {
 
 data.cats.akechi_mitsuhide = {
 	max_lvl:[60,70],
-	name:["",""],
+	name:["","",""],
 	rarity:RARITY.UBER_SUPER_RARE,
-	spr:[spr_akechi_mitsuhide,spr_akechi_mitsuhide_b],
+	spr:[spr_akechi_mitsuhide,spr_akechi_mitsuhide_b,spr_akechi_mitsuhide_c],
 	evolutions:{
-		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
-		value:[-1,-1],
-		level:[0,0],
-		xp:[0,0]
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.FRUITS],
+		value:[-1,-1, [ [CATFRUIT_EPIC,3],[CATFRUIT_PURPLE,4],[CATFRUIT_YELLOW,4] ] ],
+		level:[0,0,30],
+		xp:[0,0,1_000_000]
 	},
 	stats:{
-		life:[2500,3000],
-		dmg:[1000,1350],
-		atk_spd:[201,201],
-		range:[550,550],
-		long_dist_range:[[450,800],[450,800]],
-		spd:[8,8],
-		knockback:[5,5],
-		recharge:[4600,4600],
-		cost:[3000,3000],
-		targetings:[[TARGETING.BLACK,TARGETING.ANGEL],[TARGETING.BLACK,TARGETING.ANGEL]],
-		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
-		abilities:[[ABILITY.CONJURE],[ABILITY.SURGE,ABILITY.CONJURE]],
-		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:755}],[{lvl:1,distance:[350,650],chance:50},{damage:-1,attack_animation:-1,range:-1,spirit_id:755}]],
-		effects:[[EFFECT.KNOCKBACK],[EFFECT.KNOCKBACK]],
-		effects_data:[[{chance:100}],[{chance:100}]],
+		life:[2500,3000,3500],
+		dmg:[1000,1350,1350],
+		atk_spd:[201,201,201],
+		range:[550,550,550],
+		long_dist_range:[[450,800],[450,800],[450,800]],
+		spd:[8,8,9],
+		knockback:[5,5,5],
+		recharge:[4600,4600,4600],
+		cost:[3000,3000,3000],
+		targetings:[[TARGETING.BLACK,TARGETING.ANGEL],[TARGETING.BLACK,TARGETING.ANGEL],[TARGETING.BLACK,TARGETING.ANGEL]],
+		attack_type:[[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.LONG]],
+		abilities:[[ABILITY.CONJURE],[ABILITY.SURGE,ABILITY.CONJURE],[ABILITY.SURGE,ABILITY.CONJURE,ABILITY.IMMUNE_WAVE]],
+		abilities_data:[[{damage:-1,attack_animation:-1,range:-1,spirit_id:755}],[{lvl:1,distance:[350,650],chance:50},{damage:-1,attack_animation:-1,range:-1,spirit_id:755}],[{lvl:1,distance:[350,650],chance:50},{damage:-1,attack_animation:-1,range:-1,spirit_id:876}]],
+		effects:[[EFFECT.KNOCKBACK],[EFFECT.KNOCKBACK],[EFFECT.KNOCKBACK]],
+		effects_data:[[{chance:100}],[{chance:100}],[{chance:100}]],
 		talents:{
 			abilities:[],
 			talent_type:[],
@@ -10597,6 +10692,74 @@ data.cats.koneko = {
 			data:[
 
 			]
+		}
+	}
+}
+    
+data.cats.ryuichi = {
+	max_lvl:[60,70],
+	name:["",""],
+	rarity: RARITY.UBER_SUPER_RARE,
+	spr:[spr_ryuichi,spr_ryuichi_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[2000,6600],
+		dmg:[770,820],
+		atk_spd:[100,95],
+		range:[550,250],
+		spd:[20,20],
+		knockback:[4,3],
+		recharge:[3300,2800],
+		cost:[2000,2000],
+		targetings:[ [TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU],[TARGETING.RED,TARGETING.FLOATING,TARGETING.BLACK,TARGETING.METAL,TARGETING.ANGEL,TARGETING.ALIEN,TARGETING.ZOMBIE,TARGETING.RELIC,TARGETING.AKU] ],
+		attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG] ],
+		abilities:[ [],[ABILITY.SAVAGE_BLOW] ],
+		abilities_data:[ [],[{chance:30}] ],
+		effects:[ [EFFECT.WEAKEN],[EFFECT.WEAKEN] ],
+		effects_data:[ [{chance:30,time:120,weaken:50}],[{chance:20,time:120,weaken:50}] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
+data.cats.metal_maiden_koneko = {
+	max_lvl:[60,70],
+	name:["",""],
+	rarity: RARITY.UBER_SUPER_RARE,
+	spr:[spr_metal_maiden_koneko,spr_metal_maiden_koneko_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[2150,4500],
+		dmg:[160,240],
+		atk_spd:[57,34],
+		range:[250,450],
+		spd:[10,10],
+		knockback:[2,3],
+		recharge:[1998,5998],
+		cost:[99,1400],
+		targetings:[ [TARGETING.RED,TARGETING.FLOATING,TARGETING.ZOMBIE],[TARGETING.RED,TARGETING.FLOATING,TARGETING.ZOMBIE] ],
+		attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+		abilities:[ [ABILITY.ZOMBIE_KILLER,ABILITY.COLOSSUS_SLAYER,ABILITY.BEHEMOT_SLAYER,ABILITY.SAGE_SLAYER,ABILITY.EXPLOSION,ABILITY.IMMUNE_FREEZE],[ABILITY.ZOMBIE_KILLER,ABILITY.COLOSSUS_SLAYER,ABILITY.BEHEMOT_SLAYER,ABILITY.SAGE_SLAYER,ABILITY.EXPLOSION,ABILITY.IMMUNE_FREEZE] ],
+		abilities_data:[ [{},{},{dodge_chance:5,dodge_time:30},{},{chance:100,range:250},{}],[{},{},{dodge_chance:5,dodge_time:30},{},{chance:100,range:450},{}] ],
+		effects:[ [EFFECT.KNOCKBACK,EFFECT.SLOW,EFFECT.CURSE],[EFFECT.KNOCKBACK,EFFECT.SLOW,EFFECT.CURSE] ],
+		effects_data:[ [{chance:22},{chance:22,time: 90},{chance:22,time:90}],[{chance:22},{chance:22,time: 90},{chance:22,time:90}] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
 		}
 	}
 }
@@ -11775,6 +11938,40 @@ data.cats.lone_moon_lunos = {
 	}
 }
 
+data.cats.jungle_gourmet_tomoe = {
+	max_lvl:[60,70],
+	name:["",""],
+	rarity: RARITY.UBER_SUPER_RARE,
+	spr:[spr_jungle_gourmet_tomoe,spr_jungle_gourmet_tomoe_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[3300,3800],
+		dmg:[1580,1980],
+		atk_spd:[181,181],
+		range:[420,420],
+		spd:[20,20],
+		knockback:[4,4],
+		recharge:[3600,3600],
+		cost:[2900,2900],
+		targetings:[ [TARGETING.RED,TARGETING.ANGEL,TARGETING.ALIEN],[TARGETING.RED,TARGETING.ANGEL,TARGETING.ALIEN] ],
+		attack_type:[ [ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG],[ATTACKS.AREA,ATTACKS.MULTI_HIT,ATTACKS.LONG] ],
+		abilities:[ [ABILITY.COLOSSUS_SLAYER,ABILITY.IMMUNE_WAVE],[ABILITY.COLOSSUS_SLAYER,ABILITY.IMMUNE_WAVE] ],
+		abilities_data:[ [{},{}],[{},{}] ],
+		effects:[ [EFFECT.STRONG,EFFECT.FREEZE],[EFFECT.STRONG,EFFECT.FREEZE] ],
+		effects_data:[ [{},{chance:50,time: 120}],[{},{chance:50,time: 120}] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
 data.cats.vornado = {
 	max_lvl:[60,70],
 	name:["",""],
@@ -11847,7 +12044,75 @@ data.cats.hanzo_the_betrothed = {
 		}
 	}
 }
+    
+data.cats.akane_tounji = {
+	max_lvl:[60,70],
+	name:["",""],
+	rarity: RARITY.UBER_SUPER_RARE,
+	spr:[spr_akane_tounji,spr_akane_tounji_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[10400,13000],
+		dmg:[2000,2500],
+		atk_spd:[249,249],
+		range:[415,415],
+		spd:[7,7],
+		knockback:[2,2],
+		recharge:[3200,3200],
+		cost:[3300,3300],
+		targetings:[ [TARGETING.RED,TARGETING.BLACK],[TARGETING.RED,TARGETING.BLACK] ],
+		attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA] ],
+		abilities:[ [ABILITY.IMMUNE_KNOCKBACK],[ABILITY.IMMUNE_KNOCKBACK] ],
+		abilities_data:[ [{}],[{}] ],
+		effects:[ [EFFECT.FREEZE,EFFECT.TARGET_ONLY,EFFECT.DODGE],[EFFECT.FREEZE,EFFECT.TARGET_ONLY,EFFECT.DODGE] ],
+		effects_data:[ [{chance:50,time: 120},{},{chance:60,time:30}],[{chance:50,time: 120},{},{chance:60,time:30}] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
 
+data.cats.hare_of_inaba = {
+	max_lvl:[60,70],
+	name:["",""],
+	rarity: RARITY.UBER_SUPER_RARE,
+	spr:[spr_hare_of_inaba,spr_hare_of_inaba_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[2200,5500],
+		dmg:[450,2200],
+		atk_spd:[72,171],
+		range:[250,380],
+		spd:[12,30],
+		knockback:[2,4],
+		recharge:[600,3400],
+		cost:[650,3100],
+		targetings:[ [TARGETING.ANGEL,TARGETING.ALIEN],[TARGETING.ANGEL,TARGETING.ALIEN] ],
+		attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA] ],
+		abilities:[ [ABILITY.SAVAGE_BLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.SHORTENED_COOLDOWN],[ABILITY.SAVAGE_BLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.SHORTENED_COOLDOWN] ],
+		abilities_data:[ [{chance:5,percent:300},{},{amount:50}],[{chance:15,percent:300},{},{amount:75}] ],
+		effects:[ [EFFECT.STRONG],[EFFECT.STRONG] ],
+		effects_data:[ [{}],[{}] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
 #endregion
     
 }

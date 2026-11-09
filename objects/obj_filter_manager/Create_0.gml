@@ -412,8 +412,10 @@ icons.add(_dist,_dist*7,ABILITY.IMMUNE_EXPLOSION,ICON_TYPE.ABILITY,spr_immune_to
 icons.add(_dist*2,_dist*7,ABILITY.IMMUNE_WARP,ICON_TYPE.ABILITY,spr_immune_to_warp,"ability_immune_warp")
 icons.add(_dist*3,_dist*7,ABILITY.IMMUNE_CURSE,ICON_TYPE.ABILITY,spr_immune_to_curse,"ability_immune_curse")
 icons.add(_dist*4,_dist*7,ABILITY.IMMUNE_TOXIC,ICON_TYPE.ABILITY,spr_immune_to_toxic,"ability_immune_toxic")
-icons.add(_dist*5,_dist*7,ABILITY.BOSS_SHOCKWAVE_IMMUNITY,ICON_TYPE.ABILITY,spr_boss_wave_immune,"ability_bosswave_immune")
-icons.add(_dist*6,_dist*7,ABILITY.KAMIKAZE,ICON_TYPE.ABILITY,spr_suicide,"ability_kamikaze")
+icons.add(_dist*5,_dist*7,ABILITY.IMMUNE_DRAIN,ICON_TYPE.ABILITY,spr_immune_to_drain,"ability_drain_immune")
+icons.add(_dist*6,_dist*7,ABILITY.BOSS_SHOCKWAVE_IMMUNITY,ICON_TYPE.ABILITY,spr_boss_wave_immune,"ability_bosswave_immune")
+icons.add(_dist*7,_dist*7,ABILITY.KAMIKAZE,ICON_TYPE.ABILITY,spr_suicide,"ability_kamikaze")
+icons.add(_dist*8,_dist*7,ABILITY.SHORTENED_COOLDOWN,ICON_TYPE.ABILITY,spr_shortened_cooldown,"ability_shortened_cooldown")
 //
 
 //talent specific
@@ -433,6 +435,8 @@ icons.add(_dist*2,_dist*9,ABILITY.IMPROVED_KNOCKBACK,ICON_TYPE.TALENT,spr_abilit
 icons.add(_dist*3,_dist*9,ABILITY.COST_DOWN,ICON_TYPE.TALENT,spr_ability_cost_down,"ability_cost_down")
 icons.add(_dist*4,_dist*9,ABILITY.RECOVER_DOWN,ICON_TYPE.TALENT,spr_ability_recover_speed_up,"ability_recover_down")
 icons.add(_dist*5,_dist*9,ABILITY.ATK_SPEED_UP,ICON_TYPE.TALENT,spr_ability_frequency_up,"ability_atk_speedup")
+icons.add(_dist*6,_dist*9,ABILITY.HP_UP_PLUS,ICON_TYPE.TALENT,spr_ability_defense_up_plus,"ability_hpup_plus")
+icons.add(_dist*7,_dist*9,ABILITY.ATK_UP_PLUS,ICON_TYPE.TALENT,spr_ability_attack_up_plus,"ability_atkup_plus")
 //
 
 buttons = {

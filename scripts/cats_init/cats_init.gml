@@ -17,10 +17,11 @@ function cats_init(){
         }
         
         
-        
         for (var c = 0; c < array_length(_cat_data.name); c++) {
         	_cat_data.name[c] = get_translation( _cats[i]+"_"+string(c) )
         }
+        
+        _cat_data.reference_name = _cats[i]
         
         /*
         var _mhit = variable_struct_exists(_cat_data.stats,"multi_hit_dmgs")

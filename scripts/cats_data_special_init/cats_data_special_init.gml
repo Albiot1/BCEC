@@ -395,6 +395,40 @@ data.cats.ninja_cat = {
     }
 }
     
+data.cats.cat_bros_sp = {
+	max_lvl:[50,0],
+	name:["",""],
+	rarity: RARITY.SPECIAL,
+	spr:[spr_cat_bros_sp,spr_cat_bros_sp_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[320,320],
+		dmg:[263,263],
+		atk_spd:[91,91],
+		range:[170,170],
+		spd:[10,10],
+		knockback:[4,4],
+		recharge:[290,290],
+		cost:[680,680],
+		targetings:[ [],[] ],
+		attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA] ],
+		abilities:[ [],[] ],
+		abilities_data:[ [],[] ],
+		effects:[ [],[] ],
+		effects_data:[ [],[] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
 data.cats.zombie_cat = {
     max_lvl: [50,0],
     name: ["","",""],
@@ -1015,6 +1049,143 @@ data.cats.ururun_wolf = {
         }
     }
 }
+    
+data.cats.squish_ball_cat = {
+	max_lvl:[NaN,0],
+	name:["",""],
+	rarity: RARITY.SPECIAL,
+	spr:[spr_squish_ball_cat,spr_squish_ball_cat_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[400,400],
+		dmg:[155,155],
+		atk_spd:[101,105],
+		range:[160,160],
+		spd:[36,36],
+		knockback:[5,5],
+		recharge:[330,330],
+		cost:[580,580],
+		targetings:[ [],[] ],
+		attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA] ],
+		abilities:[ [],[] ],
+		abilities_data:[ [],[] ],
+		effects:[ [],[] ],
+		effects_data:[ [],[] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
+data.cats.cpac = {
+	max_lvl:[50,0],
+	name:["",""],
+	rarity: RARITY.SPECIAL,
+	spr:[spr_cpac,spr_cpac_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[200,200],
+		dmg:[60,60],
+		atk_spd:[66,66],
+		range:[150,150],
+		spd:[9,9],
+		knockback:[3,3],
+		recharge:[240,240],
+		cost:[240,240],
+		targetings:[ [TARGETING.RED],[TARGETING.RED] ],
+		attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+		abilities:[ [],[] ],
+		abilities_data:[ [],[] ],
+		effects:[ [EFFECT.STRONG],[EFFECT.STRONG] ],
+		effects_data:[ [{}],[{}] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
+data.cats.imoto = {
+	max_lvl:[50,0],
+	name:["",""],
+	rarity: RARITY.SPECIAL,
+	spr:[spr_imoto,spr_imoto_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[480,480],
+		dmg:[100,100],
+		atk_spd:[60,60],
+		range:[170,170],
+		spd:[8,8],
+		knockback:[2,2],
+		recharge:[480,480],
+		cost:[320,320],
+		targetings:[ [],[] ],
+		attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+		abilities:[ [ABILITY.CRITICAL],[ABILITY.CRITICAL] ],
+		abilities_data:[ [{chance:3}],[{chance:3}] ],
+		effects:[ [],[] ],
+		effects_data:[ [],[] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
+data.cats.nekonosuke = {
+	max_lvl:[50,30],
+	name:["",""],
+	rarity: RARITY.SPECIAL,
+	spr:[spr_nekonosuke,spr_nekonosuke_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[1340,1340],
+		dmg:[870,870],
+		atk_spd:[201,201],
+		range:[250,250],
+		spd:[6,6],
+		knockback:[3,3],
+		recharge:[980,980],
+		cost:[830,830],
+		targetings:[ [TARGETING.ALIEN],[TARGETING.ALIEN] ],
+		attack_type:[ [ATTACKS.AREA],[ATTACKS.AREA] ],
+		abilities:[ [],[] ],
+		abilities_data:[ [],[] ],
+		effects:[ [EFFECT.STRONG],[EFFECT.STRONG] ],
+		effects_data:[ [{}],[{}] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+
     
 data.cats.lil_nyandam = {
     max_lvl: [50,0],
@@ -1877,7 +2048,7 @@ data.cats.saber_the_cat = {
 		cost:[380,380,380],
 		targetings:[ [TARGETING.FLOATING],[TARGETING.FLOATING],[TARGETING.FLOATING] ],
 		attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
-		abilities:[ [],[],[ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_CURSE] ],
+		abilities:[ [],[],[ABILITY.IMMUNE_WAVE,ABILITY.IMMUNE_KNOCKBACK,ABILITY.IMMUNE_FREEZE,ABILITY.IMMUNE_SLOW,ABILITY.IMMUNE_WEAKEN,ABILITY.IMMUNE_WARP,ABILITY.IMMUNE_CURSE,ABILITY.IMMUNE_DRAIN] ],
 		abilities_data:[ [],[],[{},{},{},{},{},{},{}] ],
 		effects:[ [EFFECT.STRONG],[EFFECT.STRONG],[EFFECT.STRONG] ],
 		effects_data:[ [{}],[{}],[{}] ],
@@ -4050,6 +4221,176 @@ data.cats.ancient_egg_206 = {
 		abilities_data:[ [],[],[{dodge_chance:5,dodge_time:30},{}] ],
 		effects:[ [],[EFFECT.RESISTANT],[EFFECT.RESISTANT] ],
 		effects_data:[ [],[{}],[{}] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
+data.cats.ancient_egg_207 = {
+	max_lvl:[50,10],
+	name:["","",""],
+	rarity: RARITY.SPECIAL,
+	spr:[spr_ancient_egg_207,spr_ancient_egg_207_b,spr_ancient_egg_207_c],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1,-1],
+		level:[0,0,0],
+		xp:[0,0,0]
+	},
+	stats:{
+		life:[100,100,670],
+		dmg:[2,2,120],
+		atk_spd:[471,471,104],
+		range:[100,100,280],
+		spd:[5,5,8],
+		knockback:[1,1,2],
+		recharge:[200,200,620],
+		cost:[120,120,400],
+		targetings:[ [],[TARGETING.BLACK,TARGETING.ANGEL],[TARGETING.BLACK,TARGETING.ANGEL] ],
+		attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.AREA] ],
+		abilities:[ [],[],[ABILITY.MINI_WAVE,ABILITY.BEHEMOT_SLAYER] ],
+		abilities_data:[ [],[],[{chance:50,lvl:2},{dodge_chance:5,dodge_time:30}] ],
+		effects:[ [],[EFFECT.WEAKEN],[EFFECT.WEAKEN] ],
+		effects_data:[ [],[{chance:1,time:120,weaken:50}],[{chance:50,time:120,weaken:50}] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
+data.cats.ancient_egg_208 = {
+	max_lvl:[50,10],
+	name:["","",""],
+	rarity: RARITY.SPECIAL,
+	spr:[spr_ancient_egg_208,spr_ancient_egg_208_b,spr_ancient_egg_208_c],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1,-1],
+		level:[0,0,0],
+		xp:[0,0,0]
+	},
+	stats:{
+		life:[100,100,600],
+		dmg:[2,2,100],
+		atk_spd:[471,471,99],
+		range:[100,100,160],
+		spd:[5,5,33],
+		knockback:[1,1,2],
+		recharge:[200,200,440],
+		cost:[120,120,320],
+		targetings:[ [],[TARGETING.FLOATING,TARGETING.ANGEL],[TARGETING.FLOATING,TARGETING.ANGEL] ],
+		attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+		abilities:[ [],[],[ABILITY.BEHEMOT_SLAYER] ],
+		abilities_data:[ [],[],[{dodge_chance:5,dodge_time:30}] ],
+		effects:[ [],[EFFECT.RESISTANT],[EFFECT.RESISTANT] ],
+		effects_data:[ [],[{}],[{}] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
+data.cats.tanky = {
+	max_lvl:[50,0],
+	name:["",""],
+	rarity: RARITY.SPECIAL,
+	spr:[spr_tanky,spr_tanky_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[600,600],
+		dmg:[200,200],
+		atk_spd:[155,155],
+		range:[380,380],
+		spd:[6,6],
+		knockback:[3,3],
+		recharge:[660,660],
+		cost:[600,600],
+		targetings:[ [],[] ],
+		attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+		abilities:[ [],[] ],
+		abilities_data:[ [],[] ],
+		effects:[ [],[] ],
+		effects_data:[ [],[] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
+data.cats.white_cat = {
+	max_lvl:[50,0],
+	name:["",""],
+	rarity: RARITY.SPECIAL,
+	spr:[spr_white_cat,spr_white_cat_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[400,400],
+		dmg:[120,120],
+		atk_spd:[113,131],
+		range:[175,350],
+		spd:[12,12],
+		knockback:[3,3],
+		recharge:[360,360],
+		cost:[440,440],
+		targetings:[ [],[] ],
+		attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+		abilities:[ [],[] ],
+		abilities_data:[ [],[] ],
+		effects:[ [],[] ],
+		effects_data:[ [],[] ],
+		talents:{
+			abilities:[],
+			talent_type:[],
+			data:[]
+		}
+	}
+}
+    
+data.cats.fortressy = {
+	max_lvl:[50,0],
+	name:["",""],
+	rarity: RARITY.SPECIAL,
+	spr:[spr_fortressy,spr_fortressy_b],
+	evolutions:{
+		type:[EVO_TYPE.NONE,EVO_TYPE.NONE],
+		value:[-1,-1],
+		level:[0,0],
+		xp:[0,0]
+	},
+	stats:{
+		life:[450,450],
+		dmg:[10,10],
+		atk_spd:[126,126],
+		range:[130,130],
+		spd:[7,7],
+		knockback:[1,1],
+		recharge:[240,240],
+		cost:[120,120],
+		targetings:[ [],[] ],
+		attack_type:[ [ATTACKS.SINGLE],[ATTACKS.SINGLE] ],
+		abilities:[ [],[] ],
+		abilities_data:[ [],[] ],
+		effects:[ [],[] ],
+		effects_data:[ [],[] ],
 		talents:{
 			abilities:[],
 			talent_type:[],
