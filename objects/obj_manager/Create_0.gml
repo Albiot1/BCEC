@@ -937,7 +937,6 @@ global.all_cats_guide = [
 
 global.all_cats = global.all_cats_guide
 
-
 global.selected_cat = -1
 
 global.save = {
@@ -1834,7 +1833,7 @@ menu.draw = function (){
     if array_length(global.current_cats)<=0{
         draw_set_font(fnt_bc)
         align_set(fa_center,fa_middle)
-            draw_text_outline(1280/2,720/2,c_black,c_white,get_translation("no_cats_message"))
+        draw_text_outline(1280/2,720/2,c_black,c_white,get_translation("no_cats_message"))
         align_reset()
         draw_set_font(fnt_bc_small)
     }
@@ -1887,7 +1886,6 @@ global.filters = {
     }
 }
 
-// every item in _need is in _have, or its talent counterpart is in _pool
 function filter_need(_need,_have,_tneed,_pool){
     for (var k = 0; k < array_length(_need); k++) {
         if array_contains(_have,_need[k]) continue
@@ -1897,7 +1895,6 @@ function filter_need(_need,_have,_tneed,_pool){
     return true
 }
 
-// at least one item of _need is in _have
 function filter_any(_need,_have){
     for (var k = 0; k < array_length(_need); k++) {
         if array_contains(_have,_need[k]) return true
@@ -1999,6 +1996,7 @@ global.gui_layer = 0
 
 get_menu_cats()
 
+/*
 global.cats_order = {
     by_id:{
         everything:[],
@@ -2038,4 +2036,4 @@ for (var i = 0; i < array_length(global.all_cats); i++) {
         array_push(_array,global.all_cats[i])
     
 }
-
+*/
